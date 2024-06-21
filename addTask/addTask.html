@@ -133,6 +133,32 @@
 
               <div class="addTaskSubtasks">
                 <label>Subtasks</label>
+                <div class="addTaskBTNPlus" id="addTaskBTNPlus">
+                  <img
+                    class="addTaskBTNAddSubtask"
+                    src="./img/icon/add.png"
+                    onclick="showAddAndDeleteSubTask()"
+                  />
+                </div>
+                <div class="addTaskCheckDel" id="addTaskCheckDel">
+                  <img
+                    id="delSubtask"
+                    src="./img/icon/close.png"
+                    alt=""
+                    onclick="delSubtask()"
+                  />
+                  <img
+                    id="check"
+                    src="./img/icon/check.png"
+                    onclick="addNewSubTask()"
+                  />
+                </div>
+                <input
+                  class="add_task_input"
+                  id="taskSubtasks"
+                  placeholder="Add new subtask"
+                  type="text"
+                />
               </div>
             </div>
           </div>
