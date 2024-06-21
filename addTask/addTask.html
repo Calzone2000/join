@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon -->
+    <link rel="icon" href="./img/icon/joinLogo.png" />
+
+    <link rel="stylesheet" href="add_task.css" />
+    <script src="add_task.js"></script>
+    <title>Add Task</title>
+  </head>
+  <body>
+    <section>
+      <div>
+        <h1 class="titleTask">Add Task</h1>
+
+        <form action="" id="myForm" class="" onsubmit="">
+          <div class="addTaskForm">
+            <div class="addTaskLeft">
+              <div class="addTaskTitle">
+                <label for=""> Title<b class="required">*</b></label>
+                <input
+                  type="text"
+                  name="title"
+                  id="taskTitle"
+                  placeholder="Enter a Title"
+                />
+              </div>
+
+              <div class="addTaskDescription">
+                <label for=""> Description<b class="required">*</b></label>
+                <textarea
+                  name="description"
+                  id="taskDescription"
+                  cols="30"
+                  rows="10"
+                  placeholder="Enter a Description"
+                ></textarea>
+              </div>
+
+              <div class="addTaskAssigned">
+                <label for="">Assigned to</label>
+                <div>
+                  <input
+                    type="text"
+                    name="assignedTo"
+                    class="AssignedToContact"
+                    id="taskAssignedTo"
+                    placeholder="Select option"
+                    onkeydown="chooseContact()"
+                  />
+                  <img src="./img/icon/arrow_drop_down.png" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <div class="addTaskLine"></div>
+
+            <div class="addTaskRight">
+              <div>
+                <label for="" class="addTaskDate"
+                  >Due date<b class="required">*</b></label
+                >
+                <input for="" id="taskDate" class="addDate" type="date" />
+              </div>
+
+              <div class="addTaskPrio">
+                <label for="">Prio</label>
+                <div>
+                  <button
+                    id="urgent"
+                    type="button"
+                    class="addTaskBTN addTaskHover"
+                    value="1"
+                    onclick="getTaskPrio('urgent')"
+                  >
+                    Urgent
+                    <div>
+                      <img src="./img/icon/vector_red.svg" alt="" />
+                    </div>
+                  </button>
+
+                  <button
+                    id="medium"
+                    type="button"
+                    class="addTaskBTN addTaskHover"
+                    value="1"
+                    onclick="getTaskPrio('medium')"
+                  >
+                    Medium
+                    <div>
+                      <img src="./img/icon/vector_strich.svg" alt="" />
+                    </div>
+                  </button>
+
+                  <button
+                    id="low"
+                    type="button"
+                    class="addTaskBTN addTaskHover"
+                    value="1"
+                    onclick="getTaskPrio('low')"
+                  >
+                    Low
+                    <div>
+                      <img src="./img/icon/vector_green.svg" alt="" />
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <div class="addTaskCategory">
+                <label for="">Category<b class="required">*</b></label>
+                <select
+                  id="task_category"
+                  class="taskCategorySelection"
+                  required
+                >
+                  <option value="" hidden>Select task category</option>
+                  <option value="technicalTask">Technical Task</option>
+                  <option value="userStory">User Story</option>
+                </select>
+              </div>
+
+              <div class="addTaskSubtasks">
+                <label>Subtasks</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="addTaskFooter"></div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

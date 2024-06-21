@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f6f7f8;
+  font-family: "Inter", sans-serif;
+}
+
+.titleTask {
+  top: 206px;
+  left: 328px;
+  width: 278px;
+  height: 73px;
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 73.2px;
+  color: #000000;
+}
+
+.addTaskLine {
+  width: 0px;
+  height: 424px;
+  top: 327px;
+  left: 816.25px;
+  gap: 0px;
+  border: 1px 0px 0px 0px;
+  opacity: 0px;
+  rotate: -0°;
+}
