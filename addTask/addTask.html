@@ -95,50 +95,53 @@
                   <button
                     id="urgent"
                     type="button"
-                    class="addTaskBTN addTaskHover urgent"
+                    class="addTaskBTN addTaskHover urgents"
                     value="1"
                     onclick="getTaskPrio('urgent')"
                   >
                     Urgent
-                    
-                      <img
-                        src="./img/icon/vector_red.svg"
-                        alt=""
-                        class="urgentIMG"
-                      />
+                    <div class="urgentIMG">
+                      <img src="./img/icon/vector_red.svg" alt="" />
                     </div>
                   </button>
 
                   <button
                     id="medium"
                     type="button"
-                    class="addTaskBTN addTaskHover"
+                    class="addTaskBTN addTaskHover mediums"
                     value="1"
                     onclick="getTaskPrio('medium')"
                   >
-                    Medium
-                    <div>
-                      <img src="./img/icon/vector_strich.svg" alt="" />
-                    </div>
+                    Medium<img
+                      src="./img/icon/vector_strich.svg"
+                      alt=""
+                      class="mediumIMG"
+                    />
                   </button>
 
                   <button
                     id="low"
                     type="button"
-                    class="addTaskBTN addTaskHover"
+                    class="addTaskBTN addTaskHover lows"
                     value="1"
                     onclick="getTaskPrio('low')"
                   >
                     Low
                     <div>
-                      <img src="./img/icon/vector_green.svg" alt="" />
+                      <img
+                        src="./img/icon/vector_green.svg"
+                        alt=""
+                        class="lowIMG"
+                      />
                     </div>
                   </button>
                 </div>
               </div>
 
               <div class="addTaskCategory formRow">
-                <label for="">Category<b class="required">*</b></label>
+                <label class="lblCategory" for=""
+                  >Category<b class="required">*</b></label
+                >
                 <select
                   id="task_category"
                   class="taskCategorySelection"
@@ -152,7 +155,7 @@
 
               <!-- Subtasks -->
               <div class="addTaskSubtasks formRow">
-                <label>Subtasks</label>
+                <label class="lblSubtasks">Subtasks</label>
                 <div class="addTaskBTNPlus" id="addTaskBTNPlus">
                   <img
                     class="addTaskBTNAddSubtask"
@@ -174,7 +177,7 @@
                   />
                 </div>
                 <input
-                  class="add_task_input"
+                  class="addTaskInput"
                   id="taskSubtasks"
                   placeholder="Add new subtask"
                   type="text"
@@ -183,7 +186,21 @@
             </div>
           </div>
 
-          <div class="addTaskFooter"></div>
+          <div class="addTaskFooter">
+            <p class="requiring">
+              <b class="required">*</b>This field is required
+            </p>
+
+            <div class="BTNFooter">
+              <button class="clearBTNFooter">
+                Clear <img src="./img/icon/close.png" alt="" />
+              </button>
+              <button class="creatingBTNFooter">
+                Create Task
+                <img src="./img/icon/check.png" alt="" />
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </section>
