@@ -2,13 +2,11 @@ html {
     scroll-behavior: smooth;
 }
 
-
 body {
     margin: 0;
     background-color: rgb(246, 247, 248);
     font-family: "Inter", sans-serif;
 }
-
 
 .upper-section {
     display: flex;
@@ -17,13 +15,11 @@ body {
     margin: 80px 77px;
 }
 
-
 .sign-up-section {
     display: flex;
     align-items: center;
     gap: 35px;
 }
-
 
 .btn {
     font-weight: 700;
@@ -31,20 +27,18 @@ body {
     padding: 15px 16px 15px 16px;
 }
 
-
 .btn-dark {
     background-color: rgb(42, 54, 71);
     color: white;
     border: none;
 }
 
-
 .btn-bright {
     background-color: transparent;
     color: rgb(42, 54, 71);
     border: solid 1px rgb(42, 54, 71);
+    margin-left: 35px;
 }
-
 
 .btn-dark:hover {
     background-color: rgb(41, 171, 226);
@@ -52,7 +46,6 @@ body {
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     transition: 0.2s;
 }
-
 
 .btn-bright:hover {
     border: solid 1px rgb(41, 171, 226);
@@ -62,13 +55,11 @@ body {
     transition: 0.2s;
 }
 
-
 main {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 
 .log-in-section {
     display: flex;
@@ -77,16 +68,17 @@ main {
     gap: 32px;
     background-color: white;
     border-radius: 30px;
-    padding: 48px 115px 48px 115px;
+    padding: 4vw 8vw; /* Flexible padding */
+    max-width: 90%; /* Maximale Breite begrenzen */
+    box-sizing: border-box; /* Stellen Sie sicher, dass das Padding in der Breite enthalten ist */
 }
-
 
 .log-in-section p {
     margin: 0;
 }
 
-
 .log-in-headline {
+    max-width: 90%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -96,31 +88,36 @@ main {
     font-weight: 700;
 }
 
-
 .underline {
     background-color: rgb(41, 171, 226);
     height: 3px;
     width: 150px;
+    max-width: 70%;
 }
-
 
 .mail-and-password {
     display: flex;
     flex-direction: column;
     gap: 32px;
+    width: 100%;
+    max-width: 90%; /* Maximale Breite begrenzen */
+    box-sizing: border-box; /* Stellen Sie sicher, dass das Padding in der Breite enthalten ist */
 }
-
 
 .input-fields {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    width: 100%; /* Breite auf 100% setzen */
 }
 
 .log-in-input {
+    flex: 1; /* Eingabefeld flexibel machen */
     border: solid 1px rgba(209, 209, 209, 1);
     border-radius: 10px;
-    padding: 12px 21px 12px 21px;
-    width: 380px;
+    padding: 12px 21px;
+    width: 422px; /* Breite auf 100% setzen */
+    box-sizing: border-box; /* Stellen Sie sicher, dass das Padding in der Breite enthalten ist */
 }
 
 .input-icon {
@@ -133,22 +130,12 @@ main {
     height: 24px;
 }
 
-
-.log-in-input::placeholder {
-    color: rgba(209, 209, 209, 1);
-}
-
-
-
-
-
 .checkbox {
     display: flex;
     align-items: center;
     font-size: 16px;
     gap: 8px;
 }
-
 
 .white-background {
     position: fixed;
@@ -162,7 +149,6 @@ main {
     animation-delay: 0.5s;
 }
 
-
 .join-logo img {
     animation: logoAnimation 1s forwards;
     animation-delay: 0.5s;
@@ -175,13 +161,11 @@ main {
     transform: translate(-50%, -50%);
 }
 
-
 @keyframes logoAnimation {
     0% {
         top: 50%;
         left: 50%;
     }
-
     100% {
         top: 80px;
         left: 77px;
@@ -191,18 +175,15 @@ main {
     }
 }
 
-
 @keyframes fadeOut {
     0% {
         opacity: 1;
     }
-
     100% {
         opacity: 0;
         z-index: -1;
     }
 }
-
 
 .bottom {
     display: flex;
@@ -212,12 +193,10 @@ main {
     margin: 142px 0 64px 0;   
 }
 
-
 .bottom-links {
     margin: 0 17px;
     cursor: pointer;
 }
-
 
 .bottom-links:hover {
     color: rgb(41, 171, 226);
@@ -225,17 +204,14 @@ main {
     margin: 0 15.05px;
 }
 
-
 .blue-font {
     color: rgb(41, 171, 226);
     cursor: pointer;
 }
 
-
 .blue-font:hover {
     text-decoration: underline;
 }
-
 
 .back-to-log-in {
     position: absolute;
@@ -245,3 +221,34 @@ main {
 }
 
 
+/* TODO: Positionierung vom Logo korrigieren! */
+
+@media (max-width: 1000px) {
+    .join-logo img {
+        position: absolute;
+        top: 37px;
+        left: 38px;
+        width: 100px;
+        height: 120px;
+        transform: translate(0%, 0%);
+    }
+}
+
+@media (max-width: 450px) {
+    .log-in-headline p {
+        font-size: 47px;
+    }
+    .log-in-btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 21px;
+    }
+    .btn {
+        width: 200px;
+    }
+    .btn-bright {
+        margin-left: 0;
+    }
+}
