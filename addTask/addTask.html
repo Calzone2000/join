@@ -15,8 +15,8 @@
     <!-- Icon -->
     <link rel="icon" href="./img/icon/joinLogo.png" />
 
-    <link rel="stylesheet" href="add_task.css" />
-    <script src="add_task.js"></script>
+    <link rel="stylesheet" href="addTask.css" />
+    <script src="addTask.js"></script>
     <title>Add Task</title>
   </head>
   <body>
@@ -27,29 +27,40 @@
         <form action="" id="myForm" class="" onsubmit="">
           <div class="addTaskForm">
             <div class="addTaskLeft">
-              <div class="addTaskTitle">
-                <label for=""> Title<b class="required">*</b></label>
+              <!-- Title -->
+              <div class="addTaskTitle formRow">
+                <label for="" class="titleAddTask">
+                  Title<b class="required">*</b></label
+                >
                 <input
                   type="text"
                   name="title"
                   id="taskTitle"
+                  class="addTaskInput"
                   placeholder="Enter a Title"
                 />
               </div>
 
-              <div class="addTaskDescription">
-                <label for=""> Description<b class="required">*</b></label>
-                <textarea
-                  name="description"
-                  id="taskDescription"
-                  cols="30"
-                  rows="10"
-                  placeholder="Enter a Description"
-                ></textarea>
+              <!-- Description -->
+              <div class="addTaskDescription formRow">
+                <label class="lblDescription" for=""
+                  >Description<b class="required">*</b></label
+                >
+                <div class="addTaskTextArea">
+                  <textarea
+                    name="description"
+                    id="taskDescriptionArea"
+                    class="DescriptionTXTArea"
+                    cols="30"
+                    rows="10"
+                    placeholder="Enter a Description"
+                  ></textarea>
+                </div>
               </div>
 
-              <div class="addTaskAssigned">
-                <label for="">Assigned to</label>
+              <!-- Assigned to -->
+              <div class="addTaskAssigned formRow">
+                <label class="lblAssigned">Assigned to</label>
                 <div>
                   <input
                     type="text"
@@ -66,27 +77,35 @@
 
             <div class="addTaskLine"></div>
 
+            <!-- Due Date -->
             <div class="addTaskRight">
-              <div>
+              <div class="addTaskDueDate formRow">
                 <label for="" class="addTaskDate"
                   >Due date<b class="required">*</b></label
                 >
-                <input for="" id="taskDate" class="addDate" type="date" />
+                <div class="taskCalender">
+                  <input for="" id="taskDate" class="addDate" type="date" />
+                </div>
               </div>
 
-              <div class="addTaskPrio">
+              <!-- Prio -->
+              <div class="addTaskPrio formRow">
                 <label for="">Prio</label>
-                <div>
+                <div class="prioBTNS">
                   <button
                     id="urgent"
                     type="button"
-                    class="addTaskBTN addTaskHover"
+                    class="addTaskBTN addTaskHover urgent"
                     value="1"
                     onclick="getTaskPrio('urgent')"
                   >
                     Urgent
-                    <div>
-                      <img src="./img/icon/vector_red.svg" alt="" />
+                    
+                      <img
+                        src="./img/icon/vector_red.svg"
+                        alt=""
+                        class="urgentIMG"
+                      />
                     </div>
                   </button>
 
@@ -118,7 +137,7 @@
                 </div>
               </div>
 
-              <div class="addTaskCategory">
+              <div class="addTaskCategory formRow">
                 <label for="">Category<b class="required">*</b></label>
                 <select
                   id="task_category"
@@ -131,7 +150,8 @@
                 </select>
               </div>
 
-              <div class="addTaskSubtasks">
+              <!-- Subtasks -->
+              <div class="addTaskSubtasks formRow">
                 <label>Subtasks</label>
                 <div class="addTaskBTNPlus" id="addTaskBTNPlus">
                   <img
