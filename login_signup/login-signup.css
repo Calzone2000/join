@@ -57,8 +57,8 @@ body {
 
 main {
     display: flex;
-    justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .log-in-section {
@@ -167,8 +167,8 @@ main {
         left: 50%;
     }
     100% {
-        top: 80px;
-        left: 77px;
+        top: 37px;
+        left: 38px;
         width: 100px;
         height: 120px;
         transform: translate(0%, 0%);
@@ -215,28 +215,46 @@ main {
 
 .back-to-log-in {
     position: absolute;
-    left: -168px;
+    left: -80px;
     top: 28%;
     transform: translateY(-50%);
 }
 
-
-/* TODO: Positionierung vom Logo korrigieren! */
+.sign-up-2 {
+    display: none;
+}
 
 @media (max-width: 1000px) {
-    .join-logo img {
-        position: absolute;
-        top: 37px;
-        left: 38px;
-        width: 100px;
-        height: 120px;
-        transform: translate(0%, 0%);
+    .log-in-section {
+        margin-top: 32px;
+    }
+    .sign-up-1 {
+        display: none;
+    }
+    .sign-up-2 {
+        display: block;
+        margin-top: 32px;
+    }
+    .d-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 35px;
+    }
+}
+
+@media (max-width: 550px) {
+    .log-in-headline p {
+        font-size: 47px;
     }
 }
 
 @media (max-width: 450px) {
     .log-in-headline p {
-        font-size: 47px;
+        font-size: 40px;
+    }
+    .back-to-log-in {
+        left: -50px;
     }
     .log-in-btns {
         display: flex;
