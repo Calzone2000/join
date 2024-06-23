@@ -1,0 +1,51 @@
+.choosingContact img {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+}
+
+.addTaskPlus img {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+}
+
+/* IMG Footer */
+.check {
+  width: 20px;
+  height: 20px;
+}
+
+.clsX {
+  position: relative;
+  float: right;
+  width: 25px;
+  height: 25px;
+}
+
+/* IMGs Prio */
+.urgentIMG {
+  width: 25px;
+  height: 25px;
+}
+
+.urgentIMG:hover {
+  filter: brightness(0) invert(1);
+}
+
+.mediumIMG {
+  width: 25px;
+  height: 25px;
+}
+
+.lowIMG {
+  width: 25px;
+  height: 25px;
+}
+
+/* Subtasks */
+.addTaskBTNAddSubtask {
+  position: absolute;
+  right: 16px;
+  top: 25px;
+}

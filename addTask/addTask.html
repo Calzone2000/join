@@ -12,6 +12,9 @@
       rel="stylesheet"
     />
 
+    <link rel="stylesheet" href="addTaskBTN.css" />
+    <link rel="stylesheet" href="addTaskIMG.css" />
+
     <!-- Icon -->
     <link rel="icon" href="./img/icon/joinLogo.png" />
 
@@ -26,7 +29,7 @@
 
         <form action="" id="myForm" class="" onsubmit="">
           <div class="addTaskForm">
-            <div class="addTaskLeft">
+            <div class="addTaskLeft addTaskWidth">
               <!-- Title -->
               <div class="addTaskTitle formRow">
                 <label for="" class="titleAddTask">
@@ -38,6 +41,7 @@
                   id="taskTitle"
                   class="addTaskInput"
                   placeholder="Enter a Title"
+                  required
                 />
               </div>
 
@@ -54,6 +58,7 @@
                     cols="30"
                     rows="10"
                     placeholder="Enter a Description"
+                    required
                   ></textarea>
                 </div>
               </div>
@@ -61,30 +66,36 @@
               <!-- Assigned to -->
               <div class="addTaskAssigned formRow">
                 <label class="lblAssigned">Assigned to</label>
-                <div>
+                <div class="choosingContact">
+                  <img src="./img/icon/arrow_drop_down.png" alt="" />
                   <input
                     type="text"
                     name="assignedTo"
-                    class="AssignedToContact"
+                    class="AssignedToContact addTaskInput"
                     id="taskAssignedTo"
                     placeholder="Select option"
                     onkeydown="chooseContact()"
                   />
-                  <img src="./img/icon/arrow_drop_down.png" alt="" />
                 </div>
               </div>
             </div>
 
             <div class="addTaskLine"></div>
 
-            <!-- Due Date -->
-            <div class="addTaskRight">
+            <div class="addTaskRight addTaskWidth">
+              <!-- Due Date -->
               <div class="addTaskDueDate formRow">
                 <label for="" class="addTaskDate"
                   >Due date<b class="required">*</b></label
                 >
                 <div class="taskCalender">
-                  <input for="" id="taskDate" class="addDate" type="date" />
+                  <input
+                    for=""
+                    id="taskDate"
+                    class="addDate addTaskInput"
+                    type="date"
+                    required
+                  />
                 </div>
               </div>
 
@@ -100,9 +111,12 @@
                     onclick="getTaskPrio('urgent')"
                   >
                     Urgent
-                    <div class="urgentIMG">
-                      <img src="./img/icon/vector_red.svg" alt="" />
-                    </div>
+
+                    <img
+                      src="./img/icon/vector_red.svg"
+                      alt=""
+                      class="urgentIMG"
+                    />
                   </button>
 
                   <button
@@ -156,11 +170,17 @@
               <!-- Subtasks -->
               <div class="addTaskSubtasks formRow">
                 <label class="lblSubtasks">Subtasks</label>
-                <div class="addTaskBTNPlus" id="addTaskBTNPlus">
+                <div class="addTaskPlus" id="addTaskBTNPlus">
                   <img
-                    class="addTaskBTNAddSubtask"
                     src="./img/icon/add.png"
                     onclick="showAddAndDeleteSubTask()"
+                  />
+
+                  <input
+                    class="addTaskSubs addTaskInput"
+                    id="taskSubtasks"
+                    placeholder="Add new subtask"
+                    type="text"
                   />
                 </div>
                 <div class="addTaskCheckDel" id="addTaskCheckDel">
@@ -176,12 +196,8 @@
                     onclick="addNewSubTask()"
                   />
                 </div>
-                <input
-                  class="addTaskInput"
-                  id="taskSubtasks"
-                  placeholder="Add new subtask"
-                  type="text"
-                />
+
+                <div></div>
               </div>
             </div>
           </div>
@@ -193,11 +209,11 @@
 
             <div class="BTNFooter">
               <button class="clearBTNFooter">
-                Clear <img src="./img/icon/close.png" alt="" />
+                Clear <img src="./img/icon/close.png" alt="" class="cancelX" />
               </button>
               <button class="creatingBTNFooter">
                 Create Task
-                <img src="./img/icon/check.png" alt="" />
+                <img src="./img/icon/check.png" alt="" class="check" />
               </button>
             </div>
           </div>

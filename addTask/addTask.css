@@ -9,17 +9,23 @@ html {
 body {
   background-color: #f6f7f8;
   font-family: "Inter", sans-serif;
+  margin: 0px;
+  color: #2a3647;
 }
 
 #myForm {
   display: flex;
   flex-direction: column;
+  position: relative;
+  top: 210px;
+  left: 328px;
+  width: 1750px;
 }
 
 .addTaskForm {
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
+  font-size: 30px;
   line-height: 24px;
   font-weight: 400;
   max-height: 480px;
@@ -28,12 +34,12 @@ body {
   margin-top: 5%;
 }
 
+.addTaskWidth {
+  width: 50%;
+}
+
 .addTaskLeft {
-  width: 440px;
   height: 376px;
-  position: absolute; /* This is necessary to position the element using top and left */
-  top: 327px;
-  left: 328px;
   gap: 16px;
 }
 
@@ -51,8 +57,7 @@ body {
 
 .required {
   color: #ff8190;
-
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
@@ -70,17 +75,27 @@ body {
 }
 
 .titleAddTask {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
 }
 
 .addTaskInput {
+  font-size: clamp(17px, 1.3vw, 30px);
   width: 100%;
   height: 48px;
   padding: 12px 21px 12px 21px;
   gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+}
+
+.addTaskSubs {
+  width: 100%;
+  height: 50px;
+  padding: 12px 16px 12px 16px;
+  gap: 0px;
   border-radius: 10px;
   border: 1px solid #d1d1d1;
 }
@@ -94,16 +109,20 @@ body {
 }
 
 .lblDescription {
-  width: 440px;
-  height: 24px;
-  gap: 0px;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
+  font-size: clamp(17px, 1.3vw, 30px);
+  width: 100%;
+  height: 120px;
+  gap: 10px;
+  border-radius: 10px;
+  font-size: 30px;
+}
+
+.choosingContact {
+  position: relative;
 }
 
 .DescriptionTXTArea {
+  font-size: clamp(17px, 1.3vw, 30px);
   width: 100%;
   height: 120px;
   padding: 18px 16px 18px 16px;
@@ -120,14 +139,12 @@ body {
 }
 
 .lblAssigned {
-  width: 112px;
+  width: 250px;
   height: 24px;
   gap: 0px;
   opacity: 0px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
-  line-height: 24px;
-  text-align: left;
   color: #2a3647;
 }
 
@@ -135,7 +152,7 @@ body {
   width: 100%;
   height: 48px;
   padding: 12px 16px 12px 16px;
-  gap: 0px;
+  gap: 8px;
   border-radius: 10px;
   border: 1px solid #d1d1d1;
 }
@@ -145,194 +162,89 @@ body {
   border-color: #2a3647;
 }
 
-img {
-  position: absolute;
-  bottom: 15px;
-  right: 16px;
-}
-
 .addTaskLine {
   border: 1px solid #d1d1d1;
-  width: 0px;
   height: 424px;
-  top: 327px;
-  left: 816.25px;
-  gap: 0px;
-  border: 1px 0px 0px 0px;
-  opacity: 0px;
-  rotate: -0°;
+  margin: 0px 50px 0;
+  background-color: #d1d1d1;
 }
 
 .addTaskRight {
-  width: 440px;
   height: 416px;
-  position: absolute; /* This is necessary to position the element using top and left */
-  top: 327px;
-  left: 864.25px;
   gap: 24px;
 }
 
 .addTaskDueDate {
-  width: 440px;
-  height: 96px;
+  width: 100%;
+  height: 100px;
   gap: 8px;
 }
 
 .addTaskDate {
-  width: 96px;
+  width: 100%;
   height: 24px;
   gap: 0px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
 }
 
 .taskCalender {
-  width: 440px;
+  width: 100%;
   height: 64px;
   gap: 4px;
 }
 
 .addDate {
-  width: 440px;
+  width: 100%;
   height: 48px;
   padding: 12px 16px 12px 16px;
   gap: 0px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 30px;
   justify-content: space-between;
   border: 1px solid #d1d1d1;
 }
 
 .addTaskPrio {
-  width: 440px;
-  height: 100px;
+  width: 100%;
+  height: 120px;
   top: 120px;
   gap: 8px;
 }
 
-/* Buttons */
-.prioBTNS {
-  display: flex; /* Aligns the buttons horizontally */
-  width: 440px; /* Fixed width */
-  height: 56px; /* Fixed height */
-  gap: 16px; /* Space between buttons */
-}
-
-.addTaskBTN {
-  width: 136px;
-  height: 56px;
-  padding: 16px 10px 16px 10px;
-  gap: 8px;
-  border-radius: 10px;
-  display: flex; /* Allows for inner alignment of content */
-}
-
-.addTaskHover:hover {
-  cursor: pointer;
-  box-shadow: 0px 6px 7px -3px rgba(0, 0, 0, 0.37);
-}
-
-.urgents:hover {
-  background-color: red;
-  color: white;
-  border-color: transparent;
-}
-
-.mediums:hover {
-  background-color: #ffa800;
-  color: white;
-  border-color: transparent;
-}
-
-.lows:hover {
-  background-color: #7ae229;
-  color: white;
-  border-color: transparent;
-}
-
-.urgents {
-  gap: 0px;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
-  border: 1px solid #d1d1d1;
-}
-
-.mediums {
-  gap: 0px;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
-  border: 1px solid #d1d1d1;
-}
-
-.lows {
-  gap: 0px;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
-  border: 1px solid #d1d1d1;
-}
-
-/* IMGs */
-.urgentIMG {
-  width: 20px;
-  height: 14.51px;
-}
-
-.lowIMG {
-  width: 20px;
-  height: 14.51px;
-}
-
 /* Category */
 .addTaskCategory {
-  width: 440px;
-  height: 96px;
+  width: 100%;
+  height: 120px;
   gap: 8px;
 }
 
 .lblCategory {
-  width: 98px;
-  height: 24px;
+  width: 150px;
+  height: 30px;
   gap: 8px;
-
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
 }
 
 .taskCategorySelection {
-  width: 440px;
-  height: 48px;
+  font-size: clamp(17px, 1.3vw, 30px);
+  width: 100%;
+  height: 60px;
   padding: 12px 16px 12px 16px;
   gap: 0px;
   border-radius: 10px;
   justify-content: space-between;
   border: 1px solid #d1d1d1;
-}
-
-.addTaskInput {
-  width: 440px;
-  height: 48px;
-  padding: 12px 16px 12px 16px;
-  gap: 0px;
-  border-radius: 10px;
-  border: 1px solid #d1d1d1;
-  justify-content: space-between;
 }
 
 /* Subtasks */
 .addTaskSubtasks {
-  width: 440px;
-  height: 80px;
-  top: 336px;
+  width: 100%;
   gap: 8px;
 }
 
@@ -340,77 +252,30 @@ img {
   width: 88px;
   height: 24px;
   gap: 0px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
 }
 
-.addTaskInput {
-  width: 440px;
-  height: 48px;
-  padding: 12px 16px 12px 16px;
-  gap: 0px;
-  border-radius: 10px;
-  border: 1px solid #d1d1d1;
-  justify-content: space-between;
+.addTaskPlus {
+  position: relative;
+}
+
+/*Footer Form */
+.addTaskFooter {
+  position: absolute;
+  display: flex;
 }
 
 .requiring {
-  width: 170px;
+  position: absolute;
+  width: 250px;
   height: 27px;
-  top: 926px;
-  left: 328px;
+  top: 750px;
 
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
-}
-
-.BTNFooter {
-  width: 309px;
-  height: 56px;
-  top: 889px;
-  left: 995.25px;
-  gap: 16px;
-}
-
-.clearBTNFooter {
-  width: 110px;
-  height: 56px;
-  padding: 16px;
-  gap: 4px;
-  border-radius: 10px;
-  border: 1px solid #2a3647;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
-}
-
-.clearBTNFooter:hover {
-  background: #29abe2;
-  cursor: pointer;
-  color: white;
-  border: transparent;
-}
-
-.creatingBTNFooter {
-  width: 183px;
-  height: 56px;
-  padding: 16px;
-  gap: 4px;
-  border-radius: 10px;
-  font-size: 20px;
-  line-height: 25.2px;
-  text-align: left;
-  border: 1px solid #2a3647;
-}
-
-.creatingBTNFooter:hover {
-  background: #29abe2;
-  cursor: pointer;
-  color: white;
-  border: transparent;
 }
