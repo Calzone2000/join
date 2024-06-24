@@ -1,0 +1,182 @@
+@font-face {
+  font-family: "inter";
+  src: url(../fonts/inter/Inter-Regular.ttf);
+}
+
+body {
+  margin: 0;
+  background-color: #f6f7f8;
+  font-family: "inter";
+}
+
+.add-contact-main-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.add-contact-container {
+  width: 1212px;
+  height: 592px;
+  display: flex;
+  background-color: white;
+  border-radius: 30px;
+}
+
+.add-contact-left-section {
+  background-color: #2a3647;
+  width: 467px;
+  height: 100%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.add-contact-left-section-container {
+  padding-left: 66px;
+}
+
+.contact-heading {
+  width: 366px;
+  height: 73px;
+  font-family: "inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 61px;
+  line-height: 120%;
+  color: #ffffff;
+}
+
+.contact-heading-2 {
+  font-family: "inter";
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 32.4px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.add-contact-right-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding-right: 66px;
+}
+
+.contact-default-svg {
+  width: 120px;
+  height: 120px;
+  border: 3px;
+  margin-left: 83px;
+  margin-right: 83px;
+}
+
+.add-contact-right-section-2 {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 48px;
+  height: 100%;
+  padding-top: 48px;
+}
+
+.input-fields {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.contact-data {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.log-in-input {
+  flex: 1;
+  border: solid 1px rgba(209, 209, 209, 1);
+  border-radius: 10px;
+  padding: 12px 21px;
+  box-sizing: border-box;
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  width: 24px;
+  height: 24px;
+}
+
+.btn {
+  font-weight: 400;
+  font-size: 20px;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 4px;
+}
+
+.btn-dark {
+  background-color: rgb(42, 54, 71);
+  color: white;
+  border: none;
+}
+
+.btn-bright {
+  background-color: transparent;
+  color: rgb(42, 54, 71);
+  border: solid 1px rgb(42, 54, 71);
+}
+
+.btn-dark:hover {
+  background-color: rgb(41, 171, 226);
+  cursor: pointer;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: 0.2s;
+}
+
+.btn-bright:hover {
+  border: solid 1px rgb(41, 171, 226);
+  color: rgb(41, 171, 226);
+  cursor: pointer;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: 0.2s;
+}
+
+.add-contact-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+}
+
+.close-svg {
+  height: 32px;
+  width: 32px;
+}
+
+.close-svg:hover {
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 3px rgb(41, 171, 226));
+  transition: 0.2s;
+}
+
+.close-svg-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+}

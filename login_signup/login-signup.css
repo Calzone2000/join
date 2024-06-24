@@ -22,9 +22,15 @@ body {
 }
 
 .btn {
-    font-weight: 700;
+    font-weight: 400;
     border-radius: 8px;
+    font-size: 20px;
     padding: 15px 16px 15px 16px;
+}
+
+.btn img{
+    height: 24px;
+    width: 24px;
 }
 
 .btn-dark {
