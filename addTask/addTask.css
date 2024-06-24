@@ -263,14 +263,9 @@ body {
 }
 
 /*Footer Form */
-.addTaskFooter {
-  position: absolute;
-  display: flex;
-}
-
 .requiring {
   position: absolute;
-  width: 250px;
+  width: 350px;
   height: 27px;
   top: 750px;
 

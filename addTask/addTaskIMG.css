@@ -24,23 +24,28 @@
 }
 
 /* IMGs Prio */
-.urgentIMG {
-  width: 25px;
-  height: 25px;
+
+/* .urgentIMG:hover {
+  filter: brightness(0) invert(1);
+} */
+
+.addTaskBTNImg {
+  max-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.urgentIMG:hover {
+.addTaskBTN#urgent.active .addTaskBTNImg img {
   filter: brightness(0) invert(1);
 }
 
-.mediumIMG {
-  width: 25px;
-  height: 25px;
+.addTaskBTNp#medium.active .addTaskBTNImg img {
+  filter: brightness(0) invert(1);
 }
 
-.lowIMG {
-  width: 25px;
-  height: 25px;
+.addTaskBTN#low.active .addTaskBTNImg img {
+  filter: brightness(0) invert(1);
 }
 
 /* Subtasks */
@@ -48,4 +53,17 @@
   position: absolute;
   right: 16px;
   top: 25px;
+}
+
+.delContent {
+  position: absolute;
+  right: 16px;
+  top: 15px;
+  display: none;
+}
+
+.cancelX {
+  position: absolute;
+  right: 200px;
+  top: 12px;
 }

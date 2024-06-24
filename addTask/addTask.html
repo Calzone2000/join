@@ -111,12 +111,13 @@
                     onclick="getTaskPrio('urgent')"
                   >
                     Urgent
-
-                    <img
-                      src="./img/icon/vector_red.svg"
-                      alt=""
-                      class="urgentIMG"
-                    />
+                    <div class="addTaskBTNImg">
+                      <img
+                        src="./img/icon/vector_red.svg"
+                        alt=""
+                        class="urgentIMG"
+                      />
+                    </div>
                   </button>
 
                   <button
@@ -126,11 +127,14 @@
                     value="1"
                     onclick="getTaskPrio('medium')"
                   >
-                    Medium<img
-                      src="./img/icon/vector_strich.svg"
-                      alt=""
-                      class="mediumIMG"
-                    />
+                    Medium
+                    <div class="addTaskBTNImg">
+                      <img
+                        src="./img/icon/vector_strich.svg"
+                        alt=""
+                        class="mediumIMG"
+                      />
+                    </div>
                   </button>
 
                   <button
@@ -141,7 +145,7 @@
                     onclick="getTaskPrio('low')"
                   >
                     Low
-                    <div>
+                    <div class="addTaskBTNImg">
                       <img
                         src="./img/icon/vector_green.svg"
                         alt=""
@@ -182,19 +186,22 @@
                     placeholder="Add new subtask"
                     type="text"
                   />
-                </div>
-                <div class="addTaskCheckDel" id="addTaskCheckDel">
+
                   <img
                     id="delSubtask"
                     src="./img/icon/close.png"
                     alt=""
                     onclick="delSubtask()"
+                    class="delContent"
                   />
-                  <img
+                </div>
+                <div class="addTaskCheckDel" id="addTaskCheckDel">
+                  <!-- <img
                     id="check"
                     src="./img/icon/check.png"
                     onclick="addNewSubTask()"
-                  />
+                    class="accept"
+                  /> -->
                 </div>
 
                 <div></div>
