@@ -1,0 +1,70 @@
+.choosingContact img {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+}
+
+.addTaskPlus img {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+}
+
+/* IMG Footer */
+.check {
+  width: 20px;
+  height: 20px;
+}
+
+.clsX {
+  position: relative;
+  float: right;
+  width: 25px;
+  height: 25px;
+}
+
+/* IMGs Prio */
+
+/* .urgentIMG:hover {
+  filter: brightness(0) invert(1);
+} */
+
+.addTaskBTNImg {
+  max-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.addTaskBTN#urgent.active .addTaskBTNImg img {
+  filter: brightness(0) invert(1);
+}
+
+.addTaskBTNp#medium.active .addTaskBTNImg img {
+  filter: brightness(0) invert(1);
+}
+
+.addTaskBTN#low.active .addTaskBTNImg img {
+  filter: brightness(0) invert(1);
+}
+
+/* Subtasks */
+.addTaskBTNAddSubtask {
+  position: absolute;
+  right: 16px;
+  top: 25px;
+}
+
+.delContent {
+  position: absolute;
+  right: 16px;
+  top: 15px;
+  display: none;
+}
+
+.cancelX {
+  position: absolute;
+  right: 200px;
+  top: 12px;
+}
