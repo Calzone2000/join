@@ -1,0 +1,306 @@
+body {
+    background-color: #f6f7f8;
+    margin: 0;
+    font-family: "Figtree", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* General classes */
+a:hover  {
+    color:white;
+}
+
+.d-none {
+    display:none;
+}
+
+img.logo-light {
+    width: 140px;
+    margin-top: 50px;
+    margin-right:auto;
+    margin-left:auto;
+    cursor:pointer;
+}
+
+img.logo-dark {
+    display:none;
+    width: 50px;
+    margin-left:30px;  
+    cursor:pointer;  
+}
+
+a.logo-big{
+    display:flex;
+    justify-content: center;
+}
+
+/* Slide-Out Menu at the right top position of any page */
+.slide-out {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #091931;
+    width:150px;
+    position:fixed;
+    top:110px;
+    right:-200px;
+    height:240px;
+    width:200px;
+    gap:40px;
+    border-top-right-radius: 0; 
+    border-top-left-radius: 20px; 
+    border-bottom-left-radius: 20px; 
+    border-bottom-right-radius: 20px;
+    transition: right 0.5s ease;
+}
+
+.slide-out.show {
+    right:60px
+}
+
+.slide-out a {
+    color: #cdcdcd;
+    text-decoration: none; 
+    margin-left:40px;
+}
+
+/* Body container*/
+.body{
+    display:flex;
+}
+
+
+/* Navigation bar */
+.sidebar {
+    background-color: #2a3647;
+    height: 100vh;
+    min-width: 225px;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    justify-content: space-between;
+    flex:1;
+    position:sticky;
+    top:0;
+    left:0;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+.nav-link {
+    display: flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap: 20px;
+    width: 100%;
+    height: 60px;
+    cursor: pointer;   
+}
+
+.nav-link:hover {
+    background-color: #091931;
+}
+
+.nav-link:hover .nav-text {
+    color: rgb(255, 255, 255); 
+}
+
+.nav-link:hover .nav-icon-g {
+    display:none; 
+}
+
+.nav-link:hover .nav-icon-w {
+    display:flex; 
+}
+
+.nav-icon-w {
+    display:none;
+}
+
+img.nav-icon-w, img.nav-icon-g {
+    margin-left: 40px;
+}
+
+.nav-text {
+    color: #cdcdcd;
+    font-size: large;
+}
+
+.legal {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    gap: 20px;
+}
+
+.legal-link {
+    color: #cdcdcd;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+/* Right section*/
+.right-section {
+    width:100%;
+}
+
+.header-text {
+    font-size:x-large;
+    color: #091931;
+    margin-left:100px;
+}
+
+header {
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    background-color: white;
+    height: 110px;
+    width: 100%;
+    flex: 1;
+    z-index: 10;
+    -webkit-box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.12);
+}
+
+.right-top {
+    display:flex;
+    align-items: center;
+    gap:12px;
+    margin-right:50px;
+}
+
+.initials {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:10px;
+    border: solid;
+    border-radius: 50%;
+    width:35px;
+    height:35px;
+    border-width: 3px;
+    border-spacing: 34px;
+    border-color: #091931;
+    color: #29abe2;
+    font-size: x-large;
+    font-weight: bold;
+    padding:8px;
+    cursor: pointer;
+}
+
+/* Content section */
+.content {
+    margin:30px;
+}
+
+h1 {
+    font-size:60px;
+}
+
+h2 {
+    font-size:36px;
+}
+
+h3 {
+    font-size:24px;
+}
+
+h1, h2, h3, .join {
+    color:#091931;    
+}
+
+.join {
+    font-weight:bold;
+}
+
+
+@media (max-width:920px) {
+    .header-text {
+        font-size: large;
+        margin-left:30px
+    }
+}
+
+@media (max-width:600px) {
+
+}
+
+@media (max-width:600px) {
+    .body {
+        flex-direction:column-reverse
+    }
+
+    img.logo-light {
+        display:none;
+    }
+
+    img.logo-dark {
+        display:flex;   
+    }
+
+    .header-text {
+        display:none;
+    }
+
+    header {
+        position:sticky;
+        top:0;
+
+    }
+
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+        align-items: center;
+        width: 100%;
+
+    }
+
+    .sidebar {
+        height:82px;
+        flex:none;
+        position:sticky;
+        bottom:0;
+    }
+
+    .nav-text {
+        font-size: small;
+        padding-bottom:15px;
+    }
+
+    .nav-link {
+        flex-direction: column;
+        justify-content:center;
+        gap:5px;
+        height:100%;
+    }
+
+    img.nav-icon-w, img.nav-icon-g {
+        margin-left:0px;
+        margin-top:15px;
+        
+    }
+
+    .content {
+        min-height: calc(100vh - 252px);
+    }
+
+    .legal {
+        display:none;
+    }
+}
+
+

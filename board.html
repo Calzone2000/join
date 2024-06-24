@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Kanban Board</title>
+    <script src="./scripts/include.js"></script>
+    <script src="./scripts/navigation.js"></script>
+    <script src="./scripts/storage.js"></script>
+    <script src="./scripts/board.js"></script>
+    <script src="./scripts/global.js"></script>
+    <script src="./scripts/init.js"></script>
+    <script src="./scripts/render.js"></script>
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/board.css">
+    <link rel="stylesheet" href="./style/fonts.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png">
+    <link rel="manifest" href="./assets/img/site.webmanifest">
+    <link rel="mask-icon" href="./assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body onload="includeHTML(); initBoard();">
+    <!--<div id="slide-out" class="slide-out" w3-include-html="/tpl/flyout.html"></div>-->
+    <div id="slide-out" class="slide-out"></div>
+    <div class="body">
+        <section class="sidebar" w3-include-html="/tpl/sidebar.html"></section>
+        <section class="right-section">
+            <header w3-include-html="/tpl/top.html"></header>
+            <section class="content">
+                <div class="board-header">
+                    <h1>Board</h1>
+                    <div class="board-functions">
+                        <form id="search-task" class="search-task">
+                            <input type="text">
+                        </form>
+                        <button>Add Task</button>
+                    </div>
+                </div>
+                <section class="kanban-board">
+                    <div id="col-to-do" class="kanban-board-col">
+                        <div class="kanban-col-hl">
+                            <h3>To Do</h3>
+                            <img src="./assets/img/plus_b.svg" alt="Add">
+                        </div>
+                        <div id="kb-task-to-do" class="kanban-tasks" ondragover="allowDrop(event)" ondrop="moveTaskTo('to-do')">
+                            <div class="no-task-info">No tasks to do</div>
+                        </div>
+                    </div>
+                    <div id="col-in-progress" class="kanban-board-col">
+                        <div class="kanban-col-hl">
+                            <h3>In Progress</h3>
+                            <img src="./assets/img/plus_b.svg" alt="Add">
+                        </div>
+                        <div id="kb-task-in-progress" class="kanban-tasks" ondragover="allowDrop(event)" ondrop="moveTaskTo('in-progress')">
+                            <div class="no-task-info">No tasks to do</div>
+                        </div>
+                    </div>
+                    <div id="col-await-feedback" class="kanban-board-col">
+                        <div class="kanban-col-hl">
+                            <h3>Await Feedback</h3>
+                            <img src="./assets/img/plus_b.svg" alt="Add">
+                        </div>
+                        <div id="kb-task-await-feedback"class="kanban-tasks" ondragover="allowDrop(event)" ondrop="moveTaskTo('await-feedback')">
+                            <div class="no-task-info">No tasks to do</div>
+                        </div>
+                    </div>
+                    <div id="col-done" class="kanban-board-col">
+                        <div class="kanban-col-hl">
+                            <h3>Done</h3>
+                            <img src="./assets/img/plus_b.svg" alt="Add">
+                        </div>
+                        <div id="kb-task-done" class="kanban-tasks" ondragover="allowDrop(event)" ondrop="moveTaskTo('done')">
+                            <div class="no-task-info">No tasks to do</div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </div>
+</body>
+
+</html>

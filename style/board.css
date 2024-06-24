@@ -1,0 +1,107 @@
+.board-header {
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.board-functions {
+    display:flex;
+    gap:50px;
+}
+
+.kanban-col-hl {
+    display:flex;
+    justify-content: space-between;
+}
+
+.kanban-board-col {
+    width:20%;
+}
+
+.kanban-board {
+    display:flex;
+    justify-content:space-between;
+}
+
+.kanban-tasks {
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+    
+    height:100%;
+}
+
+.no-task-info {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:100%;
+    background-color: #E7E7E7;
+    font-size: x-large;
+    color:darkgrey;
+    border-radius:10px;
+    height:75px;
+    border-color: rgb(73, 73, 73);
+}
+
+.task-info {
+    padding:25px;
+    display:flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    font-size: medium;
+    color:black;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.task-info span {
+    color:rgb(185, 185, 185);
+}
+
+.task-cat {
+    width:fit-content;
+    background-color: black;
+    border-radius:10px;
+    color:white;
+    padding:8px 15px;
+}
+
+.progress, .task-add-info {
+    padding-top:20px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.participants {
+    display:flex;    
+    justify-content: flex-start;
+
+}
+
+.user-in {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius:25px;
+    color:white !important;
+    width:40px;
+    height:40px;
+    margin-left:-10px;
+    position: relative;
+    z-index:1;
+    border: 2px solid white;
+}
+
+.progress-counter {
+    font-size: small;
+}
+
+.technical {
+    background-color:#1FD7C1;
+}
+
+.story {
+    background-color:#0038FF;
+}

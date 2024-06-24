@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Template</title>
+    <script src="./scripts/include.js"></script>
+    <script src="./scripts/navigation.js"></script>
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/fonts.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png">
+    <link rel="manifest" href="./assets/img/site.webmanifest">
+    <link rel="mask-icon" href="./assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body onload="includeHTML(); initBoard();">
+    <div id="slide-out" class="slide-out">
+        <a href="legal.html">Legal Notice</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="#">Logout</a>
+    </div>
+    
+    <div class="body">
+        <section class="sidebar" w3-include-html="/tpl/sidebar.html"></section>
+        <section class="right-section">
+            <header w3-include-html="/tpl/top.html"></header>
+            <section class="content">
+                <!-- Insert your code here -->
+                 <h1>Summary</h1>
+
+            </section>
+        </section>
+    </div>
+</body>
+
+</html>
