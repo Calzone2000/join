@@ -5,11 +5,17 @@ async function createNewUser() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
+    const acceptPrivacyPolicyCheckbox = document.getElementById('acceptPrivacyPolicyCheckbox').checked;
 
-    if(password !== confirmPassword) {
+    if (password !== confirmPassword) {
         alert("Passwords do not match!")
         return;
     }
+
+    // if (!acceptPrivacyPolicyCheckbox) {
+    //     alert("Please accept the Privacy Policy!")
+    //     return;
+    // }
 
     let data = {
         name: name,
