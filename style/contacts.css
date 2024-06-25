@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "inter";
-  src: url(../fonts/inter/Inter-Regular.ttf);
+  font-family: "figtree";
+  src: url(../assets/fonts/static/Figtree-Regular.ttf);
 }
 
 body {
   margin: 0;
   background-color: #f6f7f8;
-  font-family: "inter";
+  font-family: "figtree";
 }
 
 .add-contact-main-container {
@@ -26,6 +26,7 @@ body {
   display: flex;
   background-color: white;
   border-radius: 30px;
+  width: 100%;
 }
 
 .add-contact-left-section {
@@ -37,6 +38,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  padding-right: 66px;
 }
 
 .add-contact-left-section-container {
@@ -46,7 +48,7 @@ body {
 .contact-heading {
   max-width: 366px;
   height: 73px;
-  font-family: "inter";
+  font-family: "figtree";
   font-style: normal;
   font-weight: 700;
   font-size: 61px;
@@ -55,7 +57,7 @@ body {
 }
 
 .contact-heading-2 {
-  font-family: "inter";
+  font-family: "figtree";
   font-size: 27px;
   font-weight: 400;
   line-height: 32.4px;
@@ -99,6 +101,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 100%;
 }
 
 .log-in-input {
@@ -107,6 +110,7 @@ body {
   border-radius: 10px;
   padding: 12px 21px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .input-icon {
