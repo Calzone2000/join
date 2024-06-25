@@ -7,6 +7,25 @@ async function createNewUser() {
     const confirmPassword = document.getElementById('confirm-password').value;
     const acceptPrivacyPolicyCheckbox = document.getElementById('acceptPrivacyPolicyCheckbox');
 
+    if (submitConditions(name, email, password, confirmPassword, acceptPrivacyPolicyCheckbox)) {
+
+        let data = {
+            name: name,
+            email: email,
+            password: password
+        };
+
+        try {
+            const response = await postNewUser("/user", data);
+            alert('User created successfully!');
+        } catch (error) {
+            console.error("Error creating user:", error);
+            alert('There was an error creating the user.');
+        }
+    }
+}
+
+function submitConditions(name, email, password, confirmPassword, acceptPrivacyPolicyCheckbox) {
     if (!name || !email) {
         alert("Please fill out all fields!")
         return;
@@ -22,20 +41,9 @@ async function createNewUser() {
         return;
     }
 
-        let data = {
-            name: name,
-            email: email,
-            password: password
-        };
-
-        try {
-            const response = await postNewUser("/user", data);
-            alert('User created successfully!');
-        } catch (error) {
-            console.error("Error creating user:", error);
-            alert('There was an error creating the user.');
-        }
+    return true;
 }
+
 
 async function postNewUser(path = "", data = {}) {
     let response = await fetch(BASE_URL + path + '.json', {
