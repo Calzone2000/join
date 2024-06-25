@@ -115,6 +115,7 @@
                     />
                   </div>
                 </div>
+                <div class="showCheck" id="showCheck"></div>
               </div>
 
               <div class="addTaskLine"></div>
@@ -213,6 +214,7 @@
                   <label class="lblSubtasks">Subtasks</label>
                   <div class="addTaskPlus" id="addTaskBTNPlus">
                     <img
+                      class="addTaskPlusIMG"
                       id="addNewTask"
                       src="../assets/img/icon/add.svg"
                       onclick="showAddAndDeleteSubTask()"
@@ -227,7 +229,7 @@
                       />
                       <img
                         id="check"
-                        src="../assets/img/icon/check.svg"
+                        src="../assets/img/check.svg"
                         onclick="addNewSubTask()"
                         class="accept d-none"
                       />
@@ -239,14 +241,8 @@
                       placeholder="Add new subtask"
                       type="text"
                     />
-                    <img
-                      id="delSubtask"
-                      src="../assets/img/icon/close.svg"
-                      alt=""
-                      onclick="delSubtask()"
-                      class="delContent d-none"
-                    />
                   </div>
+                  <div class="getSubtask" id="getSubtask"></div>
                 </div>
               </div>
             </div>

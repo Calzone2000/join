@@ -4,7 +4,7 @@
   right: 16px;
 }
 
-.addTaskPlus img {
+.addTaskPlusIMG {
   position: absolute;
   top: 18px;
   right: 16px;
@@ -22,6 +22,10 @@
   padding-top: 5px;
 }
 
+.clearBTNFooter:hover img {
+  filter: invert(43%) sepia(76%) saturate(438%) hue-rotate(157deg)
+    brightness(96%) contrast(97%);
+}
 .clsX {
   position: relative;
   float: right;
@@ -30,11 +34,6 @@
 }
 
 /* IMGs Prio */
-
-/* .urgentIMG:hover {
-  filter: brightness(0) invert(1);
-} */
-
 .addTaskBTNImg {
   max-width: 20px;
   display: flex;
@@ -80,4 +79,18 @@
 
 .accept {
   height: 40px;
+}
+
+.accept:hover {
+  filter: invert(43%) sepia(76%) saturate(438%) hue-rotate(157deg)
+    brightness(96%) contrast(97%);
+}
+
+.delContent {
+  height: 20px;
+}
+
+.delContent:hover {
+  filter: invert(43%) sepia(76%) saturate(438%) hue-rotate(157deg)
+    brightness(96%) contrast(97%);
 }

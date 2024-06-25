@@ -91,6 +91,11 @@ body {
   border: 1px solid #d1d1d1;
 }
 
+.addTaskInput:focus {
+  border: 1px solid #29abe2;
+  outline: none;
+}
+
 .addTaskSubs {
   width: 100%;
   height: 50px;
@@ -131,6 +136,11 @@ body {
   border: 1px solid #d1d1d1;
 }
 
+.DescriptionTXTArea:focus {
+  border: 1px solid #29abe2;
+  outline: none;
+}
+
 .addTaskAssigned {
   width: 100%;
   height: 80px;
@@ -159,7 +169,7 @@ body {
 
 .AssignedToContact:hover {
   cursor: pointer;
-  border-color: #2a3647;
+  border-color: #29abe2;
 }
 
 .addTaskLine {
@@ -240,6 +250,11 @@ body {
   border-radius: 10px;
   justify-content: space-between;
   border: 1px solid #d1d1d1;
+}
+
+.taskCategorySelection:focus {
+  border: 1px solid #29abe2;
+  outline: none;
 }
 
 /* Subtasks */

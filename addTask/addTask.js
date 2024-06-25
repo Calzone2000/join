@@ -33,27 +33,42 @@ function getTaskPrio(id) {
  */
 function showAddAndDeleteSubTask() {
   document.getElementById("addNewTask").classList.add("d-none");
+  document.getElementById("delSubtask").classList.remove("d-none");
+  document.getElementById("check").classList.remove("d-none");
 }
 
 /**
  * Task löschen / Inputfeld leeren
  */
 function delSubtask() {
-  // document.getElementById("taskSubtasks").value = "";
-  document.getElementById("delSubtask").classList.remove("d-none");
+  document.getElementById("taskSubtasks").value = "";
+
+  document.getElementById("addNewTask").classList.remove("d-none");
+  document.getElementById("delSubtask").classList.add("d-none");
+  document.getElementById("check").classList.add("d-none");
 }
 
 /**
  * Task hinzufügen
  */
 function addNewSubTask() {
-  document.getElementById("check").classList.remove("d-none");
+  document.getElementById("addNewTask").classList.remove("d-none");
+  document.getElementById("delSubtask").classList.add("d-none");
+  document.getElementById("check").classList.add("d-none");
 }
 
 /**
  * Die Eingegebenen Inhalt wird gelöscht
  */
-function clearContent() {}
+function clearContent() {
+  let idChekBox = document.getElementById("showCheck");
+  idChekBox.innerHTML = "";
+  subtasks = [];
+  document.getElementById("showCheck").innerHTML = "";
+  document.getElementById("getSubtask").innerHTML = "";
+  document.getElementById("myForm").reset();
+  getSubTaskAddTask();
+}
 
 /**
  * Task wird erstellt und auf Board angezeigt werden
