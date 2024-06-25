@@ -21,7 +21,7 @@ body {
 }
 
 .add-contact-container {
-  width: 1212px;
+  max-width: 1212px;
   height: 592px;
   display: flex;
   background-color: white;
@@ -30,7 +30,7 @@ body {
 
 .add-contact-left-section {
   background-color: #2a3647;
-  width: 467px;
+  max-width: 467px;
   height: 100%;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
@@ -44,7 +44,7 @@ body {
 }
 
 .contact-heading {
-  width: 366px;
+  max-width: 366px;
   height: 73px;
   font-family: "inter";
   font-style: normal;
@@ -72,8 +72,8 @@ body {
 }
 
 .contact-default-svg {
-  width: 120px;
-  height: 120px;
+  max-width: 120px;
+  max-height: 120px;
   border: 3px;
   margin-left: 83px;
   margin-right: 83px;
