@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Privacy</title>
+    <script src="./scripts/include.js"></script>
+    <script src="./scripts/navigation.js"></script>
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/fonts.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png">
+    <link rel="manifest" href="./assets/img/site.webmanifest">
+    <link rel="mask-icon" href="./assets/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body onload="includeHTML()">
+    <div id="slide-out" class="slide-out">
+        <a href="legal.html">Legal Notice</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="#">Logout</a>
+    </div>
+    
+    <div class="body">
+        <section class="sidebar" w3-include-html="/tpl/sidebar.html"></section>
+        <section class="right-section">
+            <header w3-include-html="/tpl/top.html"></header>
+            <section class="content">
+                <h1>Privacy</h1>
+                <p>Lorem <span class="join">Join</span> ipsum dolor sit amet consectetur adipisicing elit. Sequi unde quasi vero numquam iusto facilis accusamus placeat tenetur molestias ex quo modi nihil quidem obcaecati dolore qui, quod cumque porro?</p>
+                <h2>Subheadline 2</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing <span class="join">Join</span> elit. Sequi unde quasi vero numquam iusto facilis accusamus placeat tenetur molestias ex quo modi nihil quidem obcaecati <span class="join">Join</span> dolore qui, quod cumque porro?</p>                
+                <h3>Subheadline 3</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi unde quasi vero numquam iusto facilis accusamus placeat tenetur molestias ex quo modi nihil quidem obcaecati dolore qui, quod cumque porro?</p>
+                <h2>Subheadline 2</h2>
+                <p>Lorem ipsum dolor <span class="join">Join</span> sit amet consectetur adipisicing elit. Sequi unde quasi vero <span class="join">Join</span> numquam iusto facilis accusamus placeat tenetur molestias ex quo modi nihil quidem obcaecati dolore qui, quod cumque porro?</p>
+            </section>
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,19 +1,25 @@
 .choosingContact img {
   position: absolute;
-  top: 15px;
+  top: 20px;
   right: 16px;
 }
 
 .addTaskPlus img {
   position: absolute;
-  top: 15px;
+  top: 18px;
   right: 16px;
 }
 
 /* IMG Footer */
 .check {
+  width: 25px;
+  height: 25px;
+}
+
+.cancelX {
   width: 20px;
   height: 20px;
+  padding-top: 5px;
 }
 
 .clsX {
@@ -41,7 +47,7 @@
   filter: brightness(0) invert(1);
 }
 
-.addTaskBTNp#medium.active .addTaskBTNImg img {
+.addTaskBTN#medium.active .addTaskBTNImg img {
   filter: brightness(0) invert(1);
 }
 
@@ -56,15 +62,22 @@
   top: 25px;
 }
 
-.delContent {
-  position: absolute;
-  right: 16px;
-  top: 15px;
+.d-none {
   display: none;
 }
 
-.cancelX {
+.addTaskCheckDel {
+  display: flex;
+  align-items: center;
+  width: 14px;
   position: absolute;
-  right: 200px;
-  top: 12px;
+  top: 10px;
+  right: 8%;
+  gap: 4px;
+  bottom: 9px;
+  color: #2a3647;
+}
+
+.accept {
+  height: 40px;
 }
