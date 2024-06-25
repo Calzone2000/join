@@ -49,7 +49,7 @@ function renderCardFooter(index) {
                         <div class="participants">`;
     cardFooter += renderParticipants(index);
     cardFooter += `                    </div>
-                        <img src="/assets/img/prio-${priority}.svg">
+                        <img src="./assets/img/prio-${priority}.svg">
                     </div>
                 </div>`;
     return cardFooter;
