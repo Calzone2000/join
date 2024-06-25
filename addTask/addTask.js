@@ -1,13 +1,11 @@
-let BASE_URL_addTask =
+/*let BASE_URL_addTask =
   "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task";
 
 let BASE_URL_Contacts =
-  "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/user";
+  "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/user"; */
 
 let task = [];
 let taskID = [];
-
-let toDo = "to-do";
 
 /* Tasks den Kontakten zu weisen */
 function chooseContact() {}
@@ -29,12 +27,14 @@ function getTaskPrio(id) {
 }
 
 /**
- * Task hinzufügen
+ * add Task
  */
 function showAddAndDeleteSubTask() {
   document.getElementById("addNewTask").classList.add("d-none");
   document.getElementById("delSubtask").classList.remove("d-none");
   document.getElementById("check").classList.remove("d-none");
+
+  let taskSubtask = document.getElementById("taskSubtask");
 }
 
 /**
