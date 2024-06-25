@@ -56,11 +56,24 @@
   top: 25px;
 }
 
-.delContent {
-  position: absolute;
-  right: 16px;
-  top: 15px;
+.d-none {
   display: none;
+}
+
+.addTaskCheckDel {
+  display: flex;
+  align-items: center;
+  width: 14px;
+  position: absolute;
+  top: 10px;
+  right: 8%;
+  gap: 4px;
+  bottom: 9px;
+  color: #2a3647;
+}
+
+.accept {
+  height: 40px;
 }
 
 .cancelX {

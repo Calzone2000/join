@@ -180,6 +180,21 @@
                     src="../asset/img/icon/add.svg"
                     onclick="showAddAndDeleteSubTask()"
                   />
+                  <div class="addTaskCheckDel" id="addTaskCheckDel">
+                    <img
+                      id="delSubtask"
+                      src="./img/icon/close.png"
+                      alt=""
+                      onclick="delSubtask()"
+                      class="delContent d-none"
+                    />
+                    <img
+                      id="check"
+                      src="./img/icon/check.svg"
+                      onclick="addNewSubTask()"
+                      class="accept d-none"
+                    />
+                  </div>
 
                   <input
                     class="addTaskSubs addTaskInput"
@@ -187,7 +202,6 @@
                     placeholder="Add new subtask"
                     type="text"
                   />
-
                   <img
                     id="delSubtask"
                     src="../asset/img/icon/close.svg"
@@ -217,7 +231,8 @@
 
             <div class="BTNFooter">
               <button class="clearBTNFooter">
-                Clear <img src="../asset/img/icon/close.svg" alt="" class="cancelX" />
+                Clear
+                <img src="../asset/img/icon/close.svg" alt="" class="cancelX" />
               </button>
               <button class="creatingBTNFooter">
                 Create Task
