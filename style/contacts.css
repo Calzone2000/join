@@ -184,3 +184,62 @@ body {
   justify-content: flex-end;
   align-items: start;
 }
+
+.divider {
+  width: 0px;
+  height: 59px;
+  border: 3px solid #29abe2;
+}
+
+.contacts-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: 62px;
+  margin-top: 96px;
+}
+
+.contacts-header h1 {
+  font-family: "figtree";
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 73.2px;
+  text-align: left;
+  margin: 0;
+}
+
+.contacts-header p {
+  font-family: "figtree";
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 32.4px;
+  text-align: left;
+  margin: 0;
+}
+
+.content {
+  margin: 0;
+}
+
+.contacts-container {
+  max-width: 400px;
+  margin-left: 28px;
+  padding: 32px 24px 32px 24px;
+  max-width: 456px;
+  width: 100%;
+}
+
+.contacts-container button{
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  max-width: 352px;
+  width: 100%;
+  padding: 12px 0px 12px 0px;
+
+
+}
+
+.contacts-main {
+  display: flex;
+}
