@@ -47,7 +47,7 @@ body {
   position: relative;
   width: 278px;
   height: 73px;
-  top: 206px;
+  /* top: 206px; */
   left: 328px;
   font-size: clamp(47px, 4vw, 61px);
   font-weight: 700;

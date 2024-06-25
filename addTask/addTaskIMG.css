@@ -1,19 +1,25 @@
 .choosingContact img {
   position: absolute;
-  top: 15px;
+  top: 20px;
   right: 16px;
 }
 
 .addTaskPlus img {
   position: absolute;
-  top: 15px;
+  top: 18px;
   right: 16px;
 }
 
 /* IMG Footer */
 .check {
+  width: 25px;
+  height: 25px;
+}
+
+.cancelX {
   width: 20px;
   height: 20px;
+  padding-top: 5px;
 }
 
 .clsX {
@@ -74,10 +80,4 @@
 
 .accept {
   height: 40px;
-}
-
-.cancelX {
-  position: absolute;
-  right: 200px;
-  top: 12px;
 }

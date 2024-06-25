@@ -16,232 +16,268 @@
     <link rel="stylesheet" href="addTaskIMG.css" />
 
     <!-- Icon -->
-    <link rel="icon" href="../asset/img/icon/join_logo.svg" />
+    <link rel="icon" href="../assets/img/icon/join_logo.svg" />
+    <link rel="icon" href="../assets/img/icon/join_logo.svg" />
+    <link rel="stylesheet" href="../style/addTask.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/img/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../assets/img/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="../assets/img/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
 
     <link rel="stylesheet" href="addTask.css" />
     <script src="addTask.js"></script>
+
     <title>Add Task</title>
   </head>
 
-  <body>
-    <section>
-      <div>
-        <h1 class="titleTask">Add Task</h1>
+  <body onload="init()">
+    <div id="slide-out" class="slide-out">
+      <a href="legal.html">Legal Notice</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="#">Logout</a>
+    </div>
 
-        <form action="" id="myForm" class="" onsubmit="">
-          <div class="addTaskForm">
-            <div class="addTaskLeft addTaskWidth">
-              <!-- Title -->
-              <div class="addTaskTitle formRow">
-                <label for="" class="titleAddTask">
-                  Title<b class="required">*</b></label
-                >
-                <input
-                  type="text"
-                  name="title"
-                  id="taskTitle"
-                  class="addTaskInput"
-                  placeholder="Enter a Title"
-                  required
-                />
-              </div>
+    <section class="rightSection">
+      <section class="sidebar" w3-include-html="../tpl/sidebar.html"></section>
+      <header w3-include-html="../tpl/top.html"></header>
 
-              <!-- Description -->
-              <div class="addTaskDescription formRow">
-                <label class="lblDescription" for=""
-                  >Description<b class="required">*</b></label
-                >
-                <div class="addTaskTextArea">
-                  <textarea
-                    name="description"
-                    id="taskDescriptionArea"
-                    class="DescriptionTXTArea"
-                    cols="30"
-                    rows="10"
-                    placeholder="Enter a Description"
-                    required
-                  ></textarea>
-                </div>
-              </div>
+      <section class="content">
+        <div>
+          <h1 class="titleTask">Add Task</h1>
 
-              <!-- Assigned to -->
-              <div class="addTaskAssigned formRow">
-                <label class="lblAssigned">Assigned to</label>
-                <div class="choosingContact">
-                  <img src="../asset/img/icon/arrow_drop_down.svg" alt="" />
+          <form action="" id="myForm" class="" onsubmit="">
+            <div class="addTaskForm">
+              <div class="addTaskLeft addTaskWidth">
+                <!-- Title -->
+                <div class="addTaskTitle formRow">
+                  <label for="" class="titleAddTask">
+                    Title<b class="required">*</b></label
+                  >
                   <input
                     type="text"
-                    name="assignedTo"
-                    class="AssignedToContact addTaskInput"
-                    id="taskAssignedTo"
-                    placeholder="Select option"
-                    onkeydown="chooseContact()"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="addTaskLine"></div>
-
-            <div class="addTaskRight addTaskWidth">
-              <!-- Due Date -->
-              <div class="addTaskDueDate formRow">
-                <label for="" class="addTaskDate"
-                  >Due date<b class="required">*</b></label
-                >
-                <div class="taskCalender">
-                  <input
-                    for=""
-                    id="taskDate"
-                    class="addDate addTaskInput"
-                    type="date"
+                    name="title"
+                    id="taskTitle"
+                    class="addTaskInput"
+                    placeholder="Enter a Title"
                     required
                   />
                 </div>
-              </div>
 
-              <!-- Prio -->
-              <div class="addTaskPrio formRow">
-                <label for="">Prio</label>
-                <div class="prioBTNS">
-                  <button
-                    id="urgent"
-                    type="button"
-                    class="addTaskBTN addTaskHover urgents"
-                    value="1"
-                    onclick="getTaskPrio('urgent')"
+                <!-- Description -->
+                <div class="addTaskDescription formRow">
+                  <label class="lblDescription" for=""
+                    >Description<b class="required">*</b></label
                   >
-                    Urgent
-                    <div class="addTaskBTNImg">
-                      <img
-                        src="../asset/img/icon/vector_red.svg"
-                        alt=""
-                        class="urgentIMG"
-                      />
-                    </div>
-                  </button>
+                  <div class="addTaskTextArea">
+                    <textarea
+                      name="description"
+                      id="taskDescriptionArea"
+                      class="DescriptionTXTArea"
+                      cols="30"
+                      rows="10"
+                      placeholder="Enter a Description"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
 
-                  <button
-                    id="medium"
-                    type="button"
-                    class="addTaskBTN addTaskHover mediums"
-                    value="1"
-                    onclick="getTaskPrio('medium')"
-                  >
-                    Medium
-                    <div class="addTaskBTNImg">
-                      <img
-                        src="../asset/img/icon/vector_strich.svg"
-                        alt=""
-                        class="mediumIMG"
-                      />
-                    </div>
-                  </button>
-
-                  <button
-                    id="low"
-                    type="button"
-                    class="addTaskBTN addTaskHover lows"
-                    value="1"
-                    onclick="getTaskPrio('low')"
-                  >
-                    Low
-                    <div class="addTaskBTNImg">
-                      <img
-                        src="../asset/img/icon/vector_green.svg"
-                        alt=""
-                        class="lowIMG"
-                      />
-                    </div>
-                  </button>
+                <!-- Assigned to -->
+                <div class="addTaskAssigned formRow">
+                  <label class="lblAssigned">Assigned to</label>
+                  <div class="choosingContact">
+                    <img src="../assets/img/icon/arrow_drop_down.svg" alt="" />
+                    <input
+                      type="text"
+                      name="assignedTo"
+                      class="AssignedToContact addTaskInput"
+                      id="taskAssignedTo"
+                      placeholder="Select option"
+                      onkeydown="chooseContact()"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div class="addTaskCategory formRow">
-                <label class="lblCategory" for=""
-                  >Category<b class="required">*</b></label
-                >
-                <select
-                  id="task_category"
-                  class="taskCategorySelection"
-                  required
-                >
-                  <option value="" hidden>Select task category</option>
-                  <option value="technicalTask">Technical Task</option>
-                  <option value="userStory">User Story</option>
-                </select>
-              </div>
+              <div class="addTaskLine"></div>
 
-              <!-- Subtasks -->
-              <div class="addTaskSubtasks formRow">
-                <label class="lblSubtasks">Subtasks</label>
-                <div class="addTaskPlus" id="addTaskBTNPlus">
-                  <img
-                    src="../asset/img/icon/add.svg"
-                    onclick="showAddAndDeleteSubTask()"
-                  />
-                  <div class="addTaskCheckDel" id="addTaskCheckDel">
+              <div class="addTaskRight addTaskWidth">
+                <!-- Due Date -->
+                <div class="addTaskDueDate formRow">
+                  <label for="" class="addTaskDate"
+                    >Due date<b class="required">*</b></label
+                  >
+                  <div class="taskCalender">
+                    <input
+                      for=""
+                      id="taskDate"
+                      class="addDate addTaskInput"
+                      type="date"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <!-- Prio -->
+                <div class="addTaskPrio formRow">
+                  <label for="">Prio</label>
+                  <div class="prioBTNS">
+                    <button
+                      id="urgent"
+                      type="button"
+                      class="addTaskBTN addTaskHover urgents"
+                      value="1"
+                      onclick="getTaskPrio('urgent')"
+                    >
+                      Urgent
+                      <div class="addTaskBTNImg">
+                        <img
+                          src="../assets/img/prio-high.svg"
+                          alt=""
+                          class="urgentIMG"
+                        />
+                      </div>
+                    </button>
+
+                    <button
+                      id="medium"
+                      type="button"
+                      class="addTaskBTN addTaskHover mediums"
+                      value="1"
+                      onclick="getTaskPrio('medium')"
+                    >
+                      Medium
+                      <div class="addTaskBTNImg">
+                        <img
+                          src="../assets/img/prio-medium.svg"
+                          alt=""
+                          class="mediumIMG"
+                        />
+                      </div>
+                    </button>
+
+                    <button
+                      id="low"
+                      type="button"
+                      class="addTaskBTN addTaskHover lows"
+                      value="1"
+                      onclick="getTaskPrio('low')"
+                    >
+                      Low
+                      <div class="addTaskBTNImg">
+                        <img
+                          src="../assets/img/prio-low.svg"
+                          alt=""
+                          class="lowIMG"
+                        />
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="addTaskCategory formRow">
+                  <label class="lblCategory" for=""
+                    >Category<b class="required">*</b></label
+                  >
+                  <select
+                    id="task_category"
+                    class="taskCategorySelection"
+                    required
+                  >
+                    <option value="" hidden>Select task category</option>
+                    <option value="technicalTask">Technical Task</option>
+                    <option value="userStory">User Story</option>
+                  </select>
+                </div>
+
+                <!-- Subtasks -->
+                <div class="addTaskSubtasks formRow">
+                  <label class="lblSubtasks">Subtasks</label>
+                  <div class="addTaskPlus" id="addTaskBTNPlus">
+                    <img
+                      id="addNewTask"
+                      src="../assets/img/icon/add.svg"
+                      onclick="showAddAndDeleteSubTask()"
+                    />
+                    <div class="addTaskCheckDel" id="addTaskCheckDel">
+                      <img
+                        id="delSubtask"
+                        src="../assets/img/icon/close.svg"
+                        alt=""
+                        onclick="delSubtask()"
+                        class="delContent d-none"
+                      />
+                      <img
+                        id="check"
+                        src="../assets/img/icon/check.svg"
+                        onclick="addNewSubTask()"
+                        class="accept d-none"
+                      />
+                    </div>
+
+                    <input
+                      class="addTaskSubs addTaskInput"
+                      id="taskSubtasks"
+                      placeholder="Add new subtask"
+                      type="text"
+                    />
                     <img
                       id="delSubtask"
-                      src="./img/icon/close.png"
+                      src="../assets/img/icon/close.svg"
                       alt=""
                       onclick="delSubtask()"
                       class="delContent d-none"
                     />
-                    <img
-                      id="check"
-                      src="./img/icon/check.svg"
-                      onclick="addNewSubTask()"
-                      class="accept d-none"
-                    />
                   </div>
-
-                  <input
-                    class="addTaskSubs addTaskInput"
-                    id="taskSubtasks"
-                    placeholder="Add new subtask"
-                    type="text"
-                  />
-                  <img
-                    id="delSubtask"
-                    src="../asset/img/icon/close.svg"
-                    alt=""
-                    onclick="delSubtask()"
-                    class="delContent"
-                  />
                 </div>
-                <div class="addTaskCheckDel" id="addTaskCheckDel">
-                  <!-- <img
-                    id="check"
-                    src="./img/icon/check.svg"
-                    onclick="addNewSubTask()"
-                    class="accept"
-                  /> -->
-                </div>
-
-                <div></div>
               </div>
             </div>
-          </div>
 
-          <div class="addTaskFooter">
-            <p class="requiring">
-              <b class="required">*</b>This field is required
-            </p>
+            <div class="addTaskFooter">
+              <p class="requiring">
+                <b class="required">*</b>This field is required
+              </p>
 
-            <div class="BTNFooter">
-              <button class="clearBTNFooter">
-                Clear
-                <img src="../asset/img/icon/close.svg" alt="" class="cancelX" />
-              </button>
-              <button class="creatingBTNFooter">
-                Create Task
-                <img src="../asset/img/icon/check.svg" alt="" class="check" />
-              </button>
+              <div class="BTNFooter">
+                <button class="clearBTNFooter">
+                  Clear
+                  <img
+                    src="../assets/img/icon/close.svg"
+                    alt=""
+                    class="cancelX"
+                  />
+                </button>
+                <button class="creatingBTNFooter">
+                  Create Task
+                  <img
+                    src="../assets/img/icon/check.svg"
+                    alt=""
+                    class="check"
+                  />
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </section>
     </section>
   </body>
 </html>
