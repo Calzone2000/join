@@ -40,6 +40,24 @@
   justify-content: center;
 }
 
+.addTaskBTN#urgent.active {
+  background-color: red;
+  border: red;
+  color: white;
+}
+
+.addTaskBTN#medium.active {
+  background-color: #ffa800;
+  border: #ffa800;
+  color: white;
+}
+
+.addTaskBTN#low.active {
+  background-color: #7ae229;
+  border: #7ae229;
+  color: white;
+}
+
 /* .mediums {
   font-size: clamp(17px, 1.3vw, 30px);
   font-weight: 400;

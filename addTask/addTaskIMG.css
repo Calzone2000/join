@@ -47,7 +47,7 @@
   filter: brightness(0) invert(1);
 }
 
-.addTaskBTNp#medium.active .addTaskBTNImg img {
+.addTaskBTN#medium.active .addTaskBTNImg img {
   filter: brightness(0) invert(1);
 }
 

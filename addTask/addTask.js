@@ -12,14 +12,21 @@ let toDo = "to-do";
 /* Tasks den Kontakten zu weisen */
 function chooseContact() {}
 
-/* Task auf Urgent setzen
-function getTaskPrio('urgent') {} */
+/* Task Priorisieren */
+function getTaskPrio(id) {
+  const button = document.getElementById(id);
 
-/* Task auf medium setzen
-function getTaskPrio('medium') {} */
+  if (button.classList.contains("active")) {
+    button.classList.remove("active");
+  } else {
+    document.querySelectorAll(".addTaskBTN").forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    button.classList.add("active");
 
-/* Task auf low setzen
-function getTaskPrio('low') {} */
+    userPriotity = button.innerText.trim();
+  }
+}
 
 /**
  * Task hinzufügen
@@ -42,3 +49,13 @@ function delSubtask() {
 function addNewSubTask() {
   document.getElementById("check").classList.remove("d-none");
 }
+
+/**
+ * Die Eingegebenen Inhalt wird gelöscht
+ */
+function clearContent() {}
+
+/**
+ * Task wird erstellt und auf Board angezeigt werden
+ */
+function createTask() {}
