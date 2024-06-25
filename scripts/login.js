@@ -5,7 +5,7 @@ async function createNewUser() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
-    const acceptPrivacyPolicyCheckbox = document.getElementById('acceptPrivacyPolicyCheckbox').checked;
+    const acceptPrivacyPolicyCheckbox = document.getElementById('acceptPrivacyPolicyCheckbox');
 
     if (!name || !email) {
         alert("Please fill out all fields!")
@@ -17,10 +17,10 @@ async function createNewUser() {
         return;
     }
 
-    // if (!acceptPrivacyPolicyCheckbox) {
-    //     alert("Please accept the Privacy Policy!")
-    //     return;
-    // }
+    if (!acceptPrivacyPolicyCheckbox.checked) {
+        alert("Please accept the Privacy Policy!")
+        return;
+    }
 
         let data = {
             name: name,
