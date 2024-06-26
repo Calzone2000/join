@@ -8,6 +8,7 @@
     <script src="./scripts/include.js"></script>
     <script src="./scripts/navigation.js"></script>
     <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/contacts.css">
     <link rel="stylesheet" href="./style/fonts.css" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
@@ -26,11 +27,25 @@
     </div>
     
     <div class="body">
-        <section class="sidebar" w3-include-html="./tpl/sidebar.html"></section>
+        <section class="sidebar" w3-include-html="/tpl/sidebar.html"></section>
         <section class="right-section">
-            <header w3-include-html="./tpl/top.html"></header>
+            <header w3-include-html="/tpl/top.html"></header>
             <section class="content">
-                <!-- Insert your code here -->
+                <div class="contacts-main">
+                    <div class="contacts-container">
+                        <button class="btn-dark btn" style="font-size: 21px">
+                            <div>Add new contact</div>
+                            <img src="./assets/img/icon/person_add.svg" alt="">
+                          </button>
+                    </div>
+                    <div>
+                        <div class="contacts-header">
+                            <h1>Contacts</h1>
+                            <div class="divider"></div>
+                            <p>Better with a team</p>
+                        </div>
+                    </div>
+                </div>
             </section>
         </section>
     </div>
