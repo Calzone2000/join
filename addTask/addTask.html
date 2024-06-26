@@ -45,6 +45,7 @@
 
     <link rel="stylesheet" href="addTask.css" />
     <script src="addTask.js"></script>
+    <script src="addTask_HTML.js"></script>
 
     <title>Add Task</title>
   </head>
@@ -219,31 +220,30 @@
                       src="../assets/img/icon/add.svg"
                       onclick="showAddAndDeleteSubTask()"
                     />
-                    <div class="addTaskCheckDel" id="addTaskCheckDel">
-                      <img
-                        id="delSubtask"
-                        src="../assets/img/icon/close.svg"
-                        alt=""
-                        onclick="delSubtask()"
-                        class="delContent d-none"
-                      />
-                      <img
-                        id="check"
-                        src="../assets/img/check.svg"
-                        onclick="addNewSubTask()"
-                        class="accept d-none"
-                      />
-                    </div>
-
-                    <input
-                      class="addTaskSubs addTaskInput"
-                      id="taskSubtasks"
-                      placeholder="Add new subtask"
-                      type="text"
+                  </div>
+                  <div class="addTaskCheckDel" id="addTaskCheckDel">
+                    <img
+                      id="delSubtasks"
+                      src="../assets/img/icon/close.svg"
+                      alt=""
+                      onclick="delTask()"
+                      class="delContent"
+                    />
+                    <img
+                      id="check"
+                      src="../assets/img/check.svg"
+                      onclick="addNewSubTask()"
+                      class="accept"
                     />
                   </div>
-                  <div class="getSubtask" id="getSubtask"></div>
+                  <input
+                    class="addTaskSubs addTaskInput"
+                    id="taskSubtasks"
+                    placeholder="Add new subtask"
+                    type="text"
+                  />
                 </div>
+                <div class="getSubtask" id="getSubtask"></div>
               </div>
             </div>
 

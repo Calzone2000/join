@@ -30,31 +30,59 @@ function getTaskPrio(id) {
  * add Task
  */
 function showAddAndDeleteSubTask() {
-  document.getElementById("addNewTask").classList.add("d-none");
-  document.getElementById("delSubtask").classList.remove("d-none");
-  document.getElementById("check").classList.remove("d-none");
+  let BTNPlus = document.getElementById("addTaskBTNPlus");
+  let del = document.getElementById("delSubtasks");
+  let check = document.getElementById("check");
 
-  let taskSubtask = document.getElementById("taskSubtask");
+  BTNPlus.style.visibility = "hidden";
+  del.style.display = "inline";
+  check.style.display = "inline";
 }
 
 /**
- * Task löschen / Inputfeld leeren
+ * del Task / clear inputfield
  */
-function delSubtask() {
-  document.getElementById("taskSubtasks").value = "";
+function delTask() {
+  let BTNPlus = document.getElementById("addTaskBTNPlus");
+  let del = document.getElementById("delSubtasks");
+  let check = document.getElementById("check");
+  let subtask = document.getElementById("taskSubtasks");
 
-  document.getElementById("addNewTask").classList.remove("d-none");
-  document.getElementById("delSubtask").classList.add("d-none");
-  document.getElementById("check").classList.add("d-none");
+  subtask.value = "";
+  check.style.display = "none";
+  del.style.display = "none";
+  BTNPlus.style.visibility = "initial";
 }
 
 /**
- * Task hinzufügen
+ * add Task
  */
 function addNewSubTask() {
-  document.getElementById("addNewTask").classList.remove("d-none");
-  document.getElementById("delSubtask").classList.add("d-none");
-  document.getElementById("check").classList.add("d-none");
+  let subtask = document.getElementById("taskSubtasks");
+  let BTNPlus = document.getElementById("addTaskBTNPlus");
+  let del = document.getElementById("delSubtasks");
+  let check = document.getElementById("check");
+
+  if (subtask.value) {
+    subtask.push(subtask.value);
+  }
+  getSubTaskAddTask();
+  check.style.display = "none";
+  del.style.display = "none";
+  BTNPlus.style.visibility = "initial";
+  subtask.value = "";
+}
+
+function getSubTaskAddTask() {
+  let getSubtask = document.getElementById("getSubtask");
+  getSubtask.innerHTML = "";
+
+  if (subtask) {
+    for (let i = 0; i < subtask.length; i++) {
+      const element = subtask[i];
+      getSubtask.innerHTML += renderGetSubtasks(i, element);
+    }
+  }
 }
 
 /**
