@@ -15,25 +15,9 @@ function moveTaskTo(state = "to-do") {
 }
 
 function generateUpdatedTaskAsJson() {
-    let assignetTo = task[currentDraggedTask].assignetTo;
-    if (Array.isArray(assignetTo)) {
-        let assignetToStr = "[";
-        for (let i = 0; i < assignetTo.length; i++) {
-            assignetToStr += "`" +assignetTo[i] +"`";
-            if (i < assignetTo.length-1) {
-                 assignetToStr += ","
-            }else {
-                assignetToStr += "]";
-            }
-        }
-        alert(assignetToStr);
-        assignetTo = assignetToStr;
-    } 
-    
-    
-    let updatedTask = {
-        //assignetTo: `${task[currentDraggedTask].assignetTo}`,
-        assignetTo: `${assignetTo}`,
+    let assignetTo = task[currentDraggedTask].assignetTo;   
+    let updatedTask = {        
+        assignetTo: assignetTo,
         category: `${task[currentDraggedTask].category}`,
         currentState: `${task[currentDraggedTask].currentState}`,
         description: `${task[currentDraggedTask].description}`,
@@ -59,11 +43,6 @@ function generateDemoTasks() {
     return demoTask;
 }
 
-function uploadDemoTask() {
-    let newTask = generateDemoTasks();
-    createNewTaskInStorage(newTask);
-}
-
 function getInitials(name) {        
     name = name.trim();    
     let spaceIndex = name.indexOf(' ');    
@@ -77,4 +56,34 @@ function getInitials(name) {
         return initials;
     }    
 }
+
+
+function generateTest() {
+    return {
+        array: [`value_1`, `value_2`, `value_3`]
+    }
+}
+
+function generateTestUpdate() {
+    return {
+        array: [`value_4`, `value_5`, `value_6`]
+    }
+}
+
+function updateTest() {
+    let newTestUpdate = generateTestUpdate();
+    updateTestInStorage(newTestUpdate);
+}
+
+function uploadTest() {
+    let newTest = generateTest();
+    createTestInStorage(newTest);
+}
+
+function uploadDemoTask() {
+    let newTask = generateDemoTasks();
+    createNewTaskInStorage(newTask);
+}
+
+
 

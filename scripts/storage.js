@@ -46,3 +46,29 @@ async function createNewTaskInStorage(data={}) {
         body: JSON.stringify(data)
     });
 }
+
+
+
+async function createTestInStorage(data={}) {
+    
+    path = "test/.json";
+        let response = await fetch(BASE_URL + path, {
+        method:"POST",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+}
+
+async function updateTestInStorage(data={}) {
+    path = "test/-O0NzSEsE4_jJFMmF6g4/.json";
+    //data = {title:"neuer Titel"};
+    let response = await fetch(BASE_URL + path, {
+        method:"PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+}
