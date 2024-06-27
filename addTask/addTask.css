@@ -13,13 +13,17 @@ body {
   color: #2a3647;
 }
 
+.addTaskHTMLBody {
+  overflow: hidden;
+}
+
 #myForm {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 210px;
-  left: 328px;
-  width: 1750px;
+  top: 150px;
+  left: 250px;
+  width: 1500px;
 }
 
 .addTaskForm {
@@ -47,8 +51,8 @@ body {
   position: relative;
   width: 278px;
   height: 73px;
-  /* top: 206px; */
-  left: 328px;
+  top: 150px;
+  left: 250px;
   font-size: clamp(47px, 4vw, 61px);
   font-weight: 700;
   color: #000000;
@@ -289,3 +293,56 @@ body {
   line-height: 24px;
   text-align: left;
 }
+
+/* SubTask edit / delete */
+.editSubtasks_delEdit {
+  margin: 2px;
+  padding-left: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.showTask {
+  font-size: 25px;
+}
+
+.showSubTask {
+  display: flex;
+  height: 30px;
+}
+
+.crossLine {
+  background-color: #2a3647;
+  width: 1px;
+  height: 30px;
+  margin: 0px 10px 10px;
+}
+
+.editingDeleting {
+  display: flex;
+}
+
+.showTaskSubtaskEditBTN {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  width: 100%;
+  align-content: center;
+  display: none;
+}
+
+.showTaskSubtaskEditBTN input {
+  width: 80%;
+  border: 0;
+  font-size: 20px;
+  border-bottom: 1px solid #29abe2;
+  padding-left: 15px;
+}
+
+/* .showTaskSubtaskEditBTN:focus {
+  border: 1px solid #29abe2;
+  outline: none;
+} */

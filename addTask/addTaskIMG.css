@@ -80,9 +80,10 @@
 .accept {
   height: 40px;
   position: relative;
-  top: 6px;
+  top: 7px;
   bottom: 0px;
-  left: 135px;
+  left: 120px;
+  display: none;
 }
 
 .accept:hover {
@@ -94,10 +95,24 @@
   height: 20px;
   position: absolute;
   bottom: 0px;
-  left: 90px;
+  left: 80px;
+  display: none;
 }
 
 .delContent:hover {
   filter: invert(43%) sepia(76%) saturate(438%) hue-rotate(157deg)
     brightness(96%) contrast(97%);
+}
+
+/* Subtask */
+.subtaskTakeover {
+  height: 40px;
+}
+
+.delSubtask {
+  height: 30px;
+}
+
+.showTaskSubtaskEditBTN img {
+  width: 55px;
 }
