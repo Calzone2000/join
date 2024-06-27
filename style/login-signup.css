@@ -277,3 +277,9 @@ main {
         margin-left: 0;
     }
 }
+
+.confirm-registration:hover {
+    background-color: rgb(42, 54, 71);
+    box-shadow: none;
+    cursor: auto;
+}

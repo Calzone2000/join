@@ -25,11 +25,15 @@ async function createNewUser() {
 
     try {
         const response = await postNewUser("/user", data);
-        alert('User created successfully!');
+        confirmRegistration();
     } catch (error) {
         console.error("Error creating user:", error);
         alert('There was an error creating the user.');
     }
+}
+
+function confirmRegistration() {
+    document.getElementById('logInBtns').innerHTML = '<button class="btn-dark btn confirm-registration" style="font-size: 21px;" disabled><p>You Signed Up successfully</p></button>';
 }
 
 async function postNewUser(path = "", data = {}) {
