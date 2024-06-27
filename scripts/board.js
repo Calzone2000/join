@@ -7,7 +7,6 @@ function allowDrop(ev) {
 }
 
 function moveTaskTo(state = "to-do") {
-    //alert(state);
     task[currentDraggedTask].currentState = state;
     let updatedTask = generateUpdatedTaskAsJson();
     updateTaskInStorage(updatedTask);
@@ -15,7 +14,8 @@ function moveTaskTo(state = "to-do") {
 }
 
 function generateUpdatedTaskAsJson() {
-    let assignetTo = task[currentDraggedTask].assignetTo;   
+    let assignetTo = task[currentDraggedTask].assignetTo;
+    let subTask = task[currentDraggedTask].subtask;
     let updatedTask = {        
         assignetTo: assignetTo,
         category: `${task[currentDraggedTask].category}`,
@@ -23,7 +23,8 @@ function generateUpdatedTaskAsJson() {
         description: `${task[currentDraggedTask].description}`,
         dueDate: `${task[currentDraggedTask].dueDate}`,
         priority: `${task[currentDraggedTask].priority}`,
-        title: `${task[currentDraggedTask].title}`
+        title: `${task[currentDraggedTask].title}`,
+        subtask: subTask
     };
     return updatedTask;
 }

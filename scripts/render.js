@@ -16,17 +16,14 @@ function renderKanbanCard(state = "to-do") {
         if (task[taskId[i]].currentState == state) {
             countTasks++;
             currentColumnContent += renderCardHeader(taskId[i]);
-            currentColumnContent += renderCardProgress(taskId[i]);
+            currentColumnContent += renderCardSubtasks(taskId[i]);
             currentColumnContent += renderCardFooter(taskId[i]);
         }
-    }
-    //if (countTasks > 0) {
-    currentColumn.innerHTML = currentColumnContent;
-    //}
+    }    
+    currentColumn.innerHTML = currentColumnContent;    
 }
 
-function renderCardHeader(index) {
-    //alert(index);
+function renderCardHeader(index) {    
     let cardHeader = `<div id="${index}" draggable="true" ondragstart="dragThisTask('${index}')" class="task-info">
                         <div class="task-cat ${task[index].category}">${task[index].category}</div>
                         <h4>${task[index].title}</h4>
@@ -34,13 +31,28 @@ function renderCardHeader(index) {
     return cardHeader;
 }
 
-// Hier muss noch überprüft werden, ob Subtasks vorhanden sind, sobald Datenstruktur steht
-function renderCardProgress(index) {
-    let cardProgress = `<div class="progress">
-                            <div class="progress-bar"></div>
-                            <div class="progress-counter">1/2 subtasks</div>
-                        </div>`;
+function renderCardSubtasks(index) {    
+    let cardProgress = '<div class="progress">';
+    if (task[index].subtask) {        
+        cardProgress += renderProgress(index);        
+    }
+    cardProgress += `</div>`;
     return cardProgress;
+}
+
+function renderProgress(index) {    
+    let subtasksCompleted = 0;    
+    let subtasksTotal = task[index].subtask.length;
+    for (let i = 0; i < subtasksTotal; i++) {
+        if (task[index].subtask[i].status == true) {
+            subtasksCompleted++;
+        }
+    }
+    let percentage = 100 * (subtasksCompleted / subtasksTotal);    
+    return `<div class="progress-bar">
+                <div class="current-progress" style="width: ${percentage}%;"></div>
+            </div>
+            <div class="progress-counter">${subtasksCompleted}/${subtasksTotal} subtasks</div>`;  
 }
 
 function renderCardFooter(index) {
@@ -55,32 +67,9 @@ function renderCardFooter(index) {
     return cardFooter;
 }
 
-/*
-function renderParticipants(index) {
-    let participiantId = task[index].assignetTo;
-    let participiantHTML="";
-    if (!Array.isArray(participiantId)) {
-        //let participiantName = "Frank Kessler"
-        let participiantName = contact[participiantId].name;
-        let participiantInitials = getInitials(participiantName);
-        let participiantColor = contact[participiantId].color;
-        //let participiantColor = "#FFFFFF";
-        participiantHTML += `<span style="background-color: ${participiantColor}" class="user-in">${participiantInitials}</span>`;
-    } else {
-        for (let i = 0; i < participiantId.length; i++) {
-            let participiantName = contact[participiantId[i]].name;
-            let participiantInitials = getInitials(participiantName);
-            let participiantColor = contact[participiantId[i]].color;
-            participiantHTML += `<span style="background-color: ${participiantColor}" class="user-in">${participiantInitials}</span>`;
-        }
-    }
-    return participiantHTML;
-}*/
-
 function renderParticipants(index) {
     let participiantId = task[index].assignetTo;
     let participiantHTML = "";
-
     if (!Array.isArray(participiantId)) {
         let participiantData = contact[participiantId];
         if (participiantData) {

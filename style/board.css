@@ -105,3 +105,28 @@
 .story {
     background-color:#0038FF;
 }
+
+.progress {
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap:10px;
+}
+
+.progress-bar {
+    width: 60%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+}
+
+.current-progress {
+    height: 100%;
+    width: 50%; 
+    background-color: #76c7c0;
+    text-align: center;
+    line-height: 30px; 
+    color: white;
+    font-weight: bold;
+}
