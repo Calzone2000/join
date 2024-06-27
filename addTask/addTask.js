@@ -163,7 +163,7 @@ function EditNewSubTask(i) {
   let showInputSubtask = document.getElementById(
     `showTaskSubtaskEditInput${i}`
   );
-  showInputSubtask.value = subtasks[i];
+  showInputSubtask.value = subtask[i];
 }
 
 /* The above code is a JavaScript function named `deleteNewSubTask` that takes an index `i` as a
