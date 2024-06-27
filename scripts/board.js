@@ -29,6 +29,17 @@ function generateUpdatedTaskAsJson() {
     return updatedTask;
 }
 
+function filterTasks() {    
+    let searchString = document.getElementById('filter-tasks').value.toLowerCase();    
+    for (let i = 0; i < taskId.length; i++) {
+        if (!task[taskId[i]].title.toLowerCase().includes(searchString)) {                        
+            document.getElementById(`${taskId[i]}`).classList.add('d-none');            
+        } else {            
+            document.getElementById(`${taskId[i]}`).classList.remove('d-none');            
+        }
+    }
+}
+
 
 // Funktion zum Speichern von Demo-Tasks
 function generateDemoTasks() {
