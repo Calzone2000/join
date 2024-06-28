@@ -49,12 +49,18 @@
     <title>Add Task</title>
   </head>
 
-  <body onload="init(); includeHTML()" class="addTaskHTMLBody">
+  <body onload="includeHTML()" class="addTaskHTMLBody">
     <div id="slide-out" class="slide-out">
       <a href="legal.html">Legal Notice</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="#">Logout</a>
     </div>
+
+    <div
+      id="slide-out"
+      class="slide-out"
+      w3-include-html="./tpl/flyout.html"
+    ></div>
 
     <div class="body">
       <section class="sidebar" w3-include-html="./tpl/sidebar.html"></section>
