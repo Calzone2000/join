@@ -49,12 +49,12 @@
     <title>Add Task</title>
   </head>
 
-  <body onload="includeHTML()" class="addTaskHTMLBody">
-    <div id="slide-out" class="slide-out">
+  <body onload="includeHTML()">
+    <!-- <div id="slide-out" class="slide-out">
       <a href="legal.html">Legal Notice</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="#">Logout</a>
-    </div>
+    </div> -->
 
     <div
       id="slide-out"
@@ -228,21 +228,21 @@
                         <img
                           class="addTaskPlusIMG"
                           id="addNewTask"
-                          src="../assets/img/icon/add.svg"
+                          src="./assets/img/icon/add.svg"
                           onclick="showAddAndDeleteSubTask()"
                         />
                       </div>
                       <div class="addTaskCheckDel" id="addTaskCheckDel">
                         <img
                           id="delSubtasks"
-                          src="../assets/img/icon/close.svg"
+                          src="./assets/img/icon/close.svg"
                           alt=""
                           onclick="delTask()"
                           class="delContent"
                         />
                         <img
                           id="check"
-                          src="../assets/img/check.svg"
+                          src="./assets/img/check.svg"
                           onclick="addNewSubTask()"
                           class="accept"
                         />
@@ -267,7 +267,7 @@
                     <button class="clearBTNFooter" onclick="clearContent()">
                       Clear
                       <img
-                        src="../assets/img/icon/close.svg"
+                        src="./assets/img/icon/close.svg"
                         alt=""
                         class="cancelX"
                       />
@@ -275,7 +275,7 @@
                     <button class="creatingBTNFooter" onclick="createTask()">
                       Create Task
                       <img
-                        src="../assets/img/icon/check.svg"
+                        src="./assets/img/icon/check.svg"
                         alt=""
                         class="check"
                       />
