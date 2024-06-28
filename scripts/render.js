@@ -6,6 +6,19 @@ function renderKanbanBoard() {
     renderKanbanCard("in-progress");
     renderKanbanCard("await-feedback");
     renderKanbanCard("done");
+    //checkEmptyColumns();
+}
+
+function markEmptyColumns(state) {
+    
+    for (let i=0; i < taskId.length; i++) {
+        if (task[taskId[i]].currentState == state) {
+            document.getElementById(`no-task-${state}`).classList.add('d-none');
+            return 0;
+        }    
+    }
+    document.getElementById(`no-task-${state}`).classList.remove('d-none');
+    
 }
 
 function renderKanbanCard(state = "to-do") {
@@ -20,11 +33,12 @@ function renderKanbanCard(state = "to-do") {
             currentColumnContent += renderCardFooter(taskId[i]);
         }
     }    
-    currentColumn.innerHTML = currentColumnContent;    
+    currentColumn.innerHTML = currentColumnContent;
+    markEmptyColumns(`${state}`);
 }
 
 function renderCardHeader(index) {    
-    let cardHeader = `<div id="${index}" draggable="true" ondragstart="dragThisTask('${index}')" ondragend="shakeTask('${index}')"class="task-info">
+    let cardHeader = `<div id="${index}" draggable="true" ondragstart="dragThisTask('${index}')" ondragend="shakeTask('${index}') "class="task-info">
                         <div class="task-cat ${task[index].category}">${task[index].category}</div>
                         <h4>${task[index].title}</h4>
                         <span>${task[index].description}</span>`;

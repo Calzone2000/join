@@ -1,6 +1,5 @@
 function dragThisTask(index) {
-    
-    currentDraggedTask = index;
+        currentDraggedTask = index;
 }
 
 function shakeTask(index) {
