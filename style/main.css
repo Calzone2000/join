@@ -4,6 +4,7 @@ body {
     font-family: "Figtree", sans-serif;
     font-weight: 400;
     font-style: normal;
+    /*height: 100%;*/
 }
 
 /* General classes */
@@ -12,7 +13,7 @@ a:hover  {
 }
 
 .d-none {
-    display:none;
+    display:none !important;
 }
 
 img.logo-light {
@@ -53,6 +54,7 @@ a.logo-big{
     border-bottom-left-radius: 20px; 
     border-bottom-right-radius: 20px;
     transition: right 0.5s ease;
+    z-index:100;
 }
 
 .slide-out.show {
@@ -68,6 +70,8 @@ a.logo-big{
 /* Body container*/
 .body{
     display:flex;
+    min-height:100vh;
+    
 }
 
 
@@ -77,8 +81,7 @@ a.logo-big{
     height: 100vh;
     min-width: 225px;
     display: flex;
-    flex-direction: column;
-    /*align-items: center;*/
+    flex-direction: column;    
     justify-content: space-between;
     flex:1;
     position:sticky;
@@ -203,6 +206,7 @@ header {
 /* Content section */
 .content {
     margin:30px;
+    overflow-y:visible;
 }
 
 h1 {

@@ -25,8 +25,9 @@
 </head>
 
 <body onload="includeHTML(); initBoard();">
-    <!--<div id="slide-out" class="slide-out" w3-include-html="./tpl/flyout.html"></div>-->
-    <div id="slide-out" class="slide-out"></div>
+
+    <div class="preview-task" id="preview-task-area"></div>
+    <div id="slide-out" class="slide-out" w3-include-html="./tpl/flyout.html"></div>    
     <div class="body">
         <section class="sidebar" w3-include-html="./tpl/sidebar.html"></section>
         <section class="right-section">
@@ -35,17 +36,22 @@
                 <div class="board-header">
                     <h1>Board</h1>
                     <div class="board-functions">
-                        <form id="search-task" class="search-task">
-                            <input type="text">
-                        </form>
-                        <button>Add Task</button>
+                        <div id="search-task" class="search-task">
+                            <input type="text" id="filter-tasks" class="filter-tasks-field" placeholder="Find Task" onkeyup="filterTasks()">
+                            <div class="search-seperator"></div>
+                            <img src="./assets/img/spyglass-black.svg" id="spyglass-black" class="spyglass"></img>
+                        </div>
+                        <div class="btn-add-task">
+                            <span>Add Task</span>
+                            <img src="./assets/img/plus_white.svg">
+                        </div>
                     </div>
                 </div>
                 <section class="kanban-board">
                     <div id="col-to-do" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>To Do</h3>
-                            <img src="./assets/img/plus_b.svg" alt="Add">
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add">
                         </div>
                         <div id="kb-task-to-do" class="kanban-tasks" ondragover="allowDrop(event)" ondrop="moveTaskTo('to-do')">
                             <div class="no-task-info">No tasks to do</div>
@@ -54,7 +60,7 @@
                     <div id="col-in-progress" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>In Progress</h3>
-                            <img src="./assets/img/plus_b.svg" alt="Add">
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add">
                         </div>
                         <div id="kb-task-in-progress" class="kanban-tasks" ondragover="allowDrop(event)" ondrop="moveTaskTo('in-progress')">
                             <div class="no-task-info">No tasks to do</div>
@@ -63,7 +69,7 @@
                     <div id="col-await-feedback" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>Await Feedback</h3>
-                            <img src="./assets/img/plus_b.svg" alt="Add">
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add">
                         </div>
                         <div id="kb-task-await-feedback"class="kanban-tasks" ondragover="allowDrop(event)" ondrop="moveTaskTo('await-feedback')">
                             <div class="no-task-info">No tasks to do</div>
@@ -72,7 +78,7 @@
                     <div id="col-done" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>Done</h3>
-                            <img src="./assets/img/plus_b.svg" alt="Add">
+                            <img class="btn-add-task-to-column d-none" src="./assets/img/plus_b.svg" alt="Add">
                         </div>
                         <div id="kb-task-done" class="kanban-tasks" ondragover="allowDrop(event)" ondrop="moveTaskTo('done')">
                             <div class="no-task-info">No tasks to do</div>

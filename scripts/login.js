@@ -1,5 +1,8 @@
 const BASE_URL = 'https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/'
 
+let userIDs = [];
+let userData = [];
+
 async function createNewUser() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -45,4 +48,19 @@ async function postNewUser(path = "", data = {}) {
         body: JSON.stringify(data)
     });
     return responseToJSON = await response.json();
+}
+
+async function loadDataFromFB() {
+    // loadUserID();
+    loadUserData('/user');
+
+    let userResponse = await loadUserData('/user');
+    let userKeysArray = Object.keys(userResponse);
+    console.log(userKeysArray);
+}
+
+async function loadUserData(path='') {
+    let response = await fetch(BASE_URL + path + '.json');
+    let responseToJSON = await response.json();
+    // console.log(responseToJSON);
 }
