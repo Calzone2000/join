@@ -24,7 +24,7 @@ function renderKanbanCard(state = "to-do") {
 }
 
 function renderCardHeader(index) {    
-    let cardHeader = `<div id="${index}" draggable="true" ondragstart="dragThisTask('${index}')" class="task-info">
+    let cardHeader = `<div id="${index}" draggable="true" ondragstart="dragThisTask('${index}')" ondragend="shakeTask('${index}')"class="task-info">
                         <div class="task-cat ${task[index].category}">${task[index].category}</div>
                         <h4>${task[index].title}</h4>
                         <span>${task[index].description}</span>`;

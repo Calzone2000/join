@@ -1,5 +1,10 @@
 function dragThisTask(index) {
+    
     currentDraggedTask = index;
+}
+
+function shakeTask(index) {
+    document.getElementById(`${index}`).classList.add('shake');
 }
 
 function allowDrop(ev) {
@@ -11,6 +16,15 @@ function moveTaskTo(state = "to-do") {
     let updatedTask = generateUpdatedTaskAsJson();
     updateTaskInStorage(updatedTask);
     renderKanbanBoard();
+    dishighlight(state);
+}
+
+function highlight(state) {
+    document.getElementById(`kb-task-${state}`).classList.add('kanban-tasks-highlight');
+}
+
+function dishighlight(state) {
+    document.getElementById(`kb-task-${state}`).classList.remove('kanban-tasks-highlight');
 }
 
 function generateUpdatedTaskAsJson() {
@@ -40,7 +54,6 @@ function filterTasks() {
     }
 }
 
-
 // Funktion zum Speichern von Demo-Tasks
 function generateDemoTasks() {
     let demoTask = {
@@ -68,7 +81,6 @@ function getInitials(name) {
         return initials;
     }    
 }
-
 
 function generateTest() {
     return {

@@ -83,7 +83,7 @@ a.logo-big{
     display: flex;
     flex-direction: column;    
     justify-content: space-between;
-    flex:1;
+    /*flex:1;*/
     position:sticky;
     top:0;
     left:0;
@@ -154,7 +154,9 @@ img.nav-icon-w, img.nav-icon-g {
 
 /* Right section*/
 .right-section {
-    width:100%;
+    height:100vh;
+    flex-grow: 1; 
+    overflow-y: auto;
 }
 
 .header-text {
