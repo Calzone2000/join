@@ -1,3 +1,6 @@
+let BASE_URL =
+  "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/";
+
 let BASE_URL_addTask =
   "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task";
 
@@ -26,14 +29,20 @@ let contactColors = [
   "#FF4646",
   "#FFBB2B",
 ];
-let colorIndex = 0;
+/* let colorIndex = 0;
 let popUpAction = false;
 let user = {
   name: "Gast",
   email: "gast@join.com",
   initials: "G",
   color: "#FC71FF",
-};
+}; */
+
+let show = true;
+let guesteArray = [];
+let userPriotity;
+let imgPriority;
+let statusSubtask = false;
 
 /* Tasks den Kontakten zu weisen */
 function chooseContact() {}
