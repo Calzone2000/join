@@ -54,13 +54,22 @@ async function loadDataFromFB() {
     // loadUserID();
     loadUserData('/user');
 
+    
     let userResponse = await loadUserData('/user');
+    console.log(userResponse)
+
     let userKeysArray = Object.keys(userResponse);
-    console.log(userKeysArray);
+
+    userKeysArray.forEach(key => {
+        userIDs.push(key)
+        userData.push(userResponse[key].email)
+    });
+
 }
 
 async function loadUserData(path='') {
     let response = await fetch(BASE_URL + path + '.json');
     let responseToJSON = await response.json();
+    return responseToJSON;
     // console.log(responseToJSON);
 }
