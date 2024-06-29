@@ -26,6 +26,14 @@ function dishighlight(state) {
     document.getElementById(`kb-task-${state}`).classList.remove('kanban-tasks-highlight');
 }
 
+function closePreview() {
+    document.getElementById('preview-task-area').classList.add('d-none');
+}
+
+function openPreview(index) {
+    document.getElementById('preview-task-area').classList.remove('d-none');
+}
+
 function generateUpdatedTaskAsJson() {
     let assignetTo = task[currentDraggedTask].assignetTo;
     let subTask = task[currentDraggedTask].subtask;
