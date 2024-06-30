@@ -31,24 +31,24 @@ let priority = [
 ];
 
 /** --> Funktion Ändern!!!! Extrem Wichtig
- * The function `renderHtmlGenerateCheckBox` generates HTML code for a checkbox element with user
+ * The function `renderGenerateCheckBox` generates HTML code for a checkbox element with user
  * initials and name.
- * @param element - The `element` parameter in the `renderHtmlGenerateCheckBox` function seems to
+ * @param element - The `element` parameter in the `renderGenerateCheckBox` function seems to
  * represent an object with properties like `name`, `color`, and possibly other properties. The
  * function generates HTML markup for a checkbox element based on the properties of this `element`
  * object.
- * @param i - The `i` parameter in the `renderHtmlGenerateCheckBox` function is used as an index or
+ * @param i - The `i` parameter in the `renderGenerateCheckBox` function is used as an index or
  * identifier for the element being rendered. It is typically used to uniquely identify elements in a
  * list or array, such as when generating checkboxes dynamically in a loop.
- * @returns The function `renderHtmlGenerateCheckBox` is returning an HTML template string that
+ * @returns The function `renderGenerateCheckBox` is returning an HTML template string that
  * generates a checkbox element with a label, user initials, and a name based on the input element and
  * index `i`.
  */
-function renderHtmlGenerateCheckBox(element, i) {
+function renderGenerateCheckBox(element, i) {
   let initial = element.name;
   return /*html*/ `        
     <label>
-        <div class="board_task_check_box_name">
+        <div class="board_task_check_box_name"> <!-- Klasse anpassen -->
             <div class="board_task_user_initial check_box_initial" style="background-color:${
               element.color
             }">${getInitials(initial)}</div>
@@ -57,7 +57,7 @@ function renderHtmlGenerateCheckBox(element, i) {
         <div class="checkbox-wrapper-27">
             <label class="checkbox">
                 <input type="checkbox" name="optionen" value="${element.name}">
-                <span class="checkbox__icon"></span>
+                <span class="checkboxIcon"></span>
             </label>
         </div>
     </label>
@@ -110,17 +110,17 @@ function renderGetSubtasks(i, element) {
     <div class="showTaskSubtaskEditBTN" id="showTaskSubtaskEditBTN${i}">
         <input type="text" id="showTaskSubtaskEditInput${i}" value="${element}">
         <div class="editingDeleting">
-            <img src="../assets/img/delete.svg" alt="" onclick="delNewTask(${i})" class="delSubtask">
-            <img src="../assets/img/check.svg" alt="" onclick="saveEditNewTask(${i})" class="subtaskTakeover">
+            <img src="./assets/img/delete.svg" alt="" onclick="delNewTask(${i})" class="delSubtask">
+            <img src="./assets/img/check.svg" alt="" onclick="saveEditNewTask(${i})" class="subtaskTakeover">
         </div>
     </div>
 
     <div class="editSubtasks_delEdit">
         <div class="showTask"><li>${element}</li></div>
         <div class="showSubTask">
-            <img class="imgHoverBTN" src="../assets/img/edit.svg" onclick="EditNewSubTask(${i})">
+            <img class="imgHoverBTN" src="./assets/img/edit.svg" onclick="EditNewSubTask(${i})">
             <div class="crossLine"></div>
-            <img class="imgHoverBTN" src="../assets/img/delete.svg"  onclick="delNewTask(${i})">
+            <img class="imgHoverBTN" src="./assets/img/delete.svg"  onclick="delNewTask(${i})">
         </div>
     </div>
     `;

@@ -117,9 +117,12 @@
                     <!-- Assigned to -->
                     <div class="addTaskAssigned formRow">
                       <label class="lblAssigned">Assigned to</label>
-                      <div class="choosingContact">
+                      <div
+                        class="choosingContact"
+                        onclick="togglecheckboxes(event)"
+                      >
                         <img
-                          src="../assets/img/icon/arrow_drop_down.svg"
+                          src="./assets/img/icon/arrow_drop_down.svg"
                           alt=""
                         />
                         <input
@@ -127,9 +130,19 @@
                           name="assignedTo"
                           class="AssignedToContact addTaskInput"
                           id="taskAssignedTo"
-                          placeholder="Select option"
-                          onkeydown="chooseContact()"
+                          placeholder="Select options"
                         />
+                      </div>
+
+                      <div
+                        class="checkboxName"
+                        id="checkBoxes"
+                        onclick="event.stopPropagation()"
+                      >
+                        <div
+                          class="dropdownUsername"
+                          id="checkboxUsername"
+                        ></div>
                       </div>
                     </div>
                     <div class="showCheck" id="showCheck"></div>

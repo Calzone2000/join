@@ -29,6 +29,7 @@ let contactColors = [
   "#FF4646",
   "#FFBB2B",
 ];
+
 /* let colorIndex = 0;
 let popUpAction = false;
 let user = {
@@ -43,9 +44,13 @@ let guesteArray = [];
 let userPriotity;
 let imgPriority;
 let statusSubtask = false;
+let addTaskProcess = false;
 
-/* Tasks den Kontakten zu weisen */
-function chooseContact() {}
+async function loadGestFromServer() {
+  try {
+    const response = await fetch(`${BASE_URL_Contacts}`);
+  } catch (error) {}
+}
 
 /* Task Priorisieren */
 function getTaskPrio(id) {
@@ -175,13 +180,42 @@ function EditNewSubTask(i) {
   showInputSubtask.value = subtask[i];
 }
 
-/* The above code is a JavaScript function named `deleteNewSubTask` that takes an index `i` as a
-parameter. Inside the function, it uses the `splice` method to remove one element at the specified
-index `i` from the `subtasks` array. After removing the element, the function then calls another
-function `getSubTaskAddTask()`. */
+/**
+ * The above code is a JavaScript function named `deleteNewSubTask` that takes an index `i` as a
+ * parameter. Inside the function, it uses the `splice` method to remove one element at the specified
+ * index `i` from the `subtasks` array. After removing the element, the function then calls another
+ * function `getSubTaskAddTask()`. */
 function delNewTask(i) {
   subtask.splice(i, 1);
   getSubTaskAddTask();
+}
+
+/** --> Muss Geändert werden!!!!
+ * The function generates checkboxes based on elements in an array and hides the checkboxes when
+ * clicking outside the select box.
+ */
+function generateCheckBox() {
+  let id = document.getElementById("checkboxUsername");
+  if (id) {
+    id.innerHTML = "";
+    for (let i = 0; i < guesteArray.length; i++) {
+      const element = guesteArray[i];
+      id.innerHTML += renderGenerateCheckBox(element, i);
+    }
+
+    // Überprüfe, ob das Element 'checkBoxes' vorhanden ist, bevor du darauf zugreifst
+    let checkboxes = document.getElementById("checkBoxes");
+    if (checkboxes) {
+      document.addEventListener("click", function (event) {
+        let selectBox = document.querySelector(".selectBox");
+
+        if (selectBox && !selectBox.contains(event.target)) {
+          checkboxes.style.visibility = "hidden";
+          show = true;
+        }
+      });
+    }
+  }
 }
 
 /**
@@ -196,4 +230,25 @@ function saveEditNewTask(i) {
   );
   subtask[i] = showTaskSubtaskEditInput.value;
   getSubTaskAddTask();
+}
+
+/**
+ * The function `toggleCheckboxes` toggles the visibility of checkboxes and clears the value of an
+ * input field based on a boolean variable `show`.
+ * @param event - The `event` parameter is an object that represents an event that occurs in the DOM
+ * (Document Object Model), such as a click, keypress, or mouse movement. In this context, it is likely
+ * being used to handle an event triggered by a user action, such as clicking on a checkbox or
+ */
+function toggleCheckboxes(event) {
+  event.stopPropagation();
+  let idInput = document.getElementById("taskAssignedTo");
+  let checkbox = document.getElementById("checkBoxes");
+  if (show) {
+    checkbox.style.visibility = "initial";
+    show = false;
+  } else {
+    checkbox.style.visibility = "hidden";
+    show = true;
+    idInput.value = "";
+  }
 }
