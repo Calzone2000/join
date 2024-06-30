@@ -8,7 +8,6 @@ async function createNewUser() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
-    const acceptPrivacyPolicyCheckbox = document.getElementById('acceptPrivacyPolicyCheckbox');
 
     if (password !== confirmPassword) {
         document.getElementById('password').style.border = 'solid 2px rgb(252, 3, 3)';
@@ -19,6 +18,12 @@ async function createNewUser() {
         document.getElementById('confirm-password').style.border = '';
     }
 
+    await loadDataFromFB();
+
+    if (userData.includes(email)) {
+        alert('Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.');
+        return;
+    }
 
     let data = {
         name: name,
@@ -47,29 +52,26 @@ async function postNewUser(path = "", data = {}) {
         },
         body: JSON.stringify(data)
     });
-    return responseToJSON = await response.json();
+    return await response.json();
 }
 
 async function loadDataFromFB() {
-    // loadUserID();
-    loadUserData('/user');
-
-    
     let userResponse = await loadUserData('/user');
-    console.log(userResponse)
 
-    let userKeysArray = Object.keys(userResponse);
+    if (userResponse) {
+        let userKeysArray = Object.keys(userResponse);
 
-    userKeysArray.forEach(key => {
-        userIDs.push(key)
-        userData.push(userResponse[key].email)
-    });
-
+        userKeysArray.forEach(key => {
+            userIDs.push(key)
+            userData.push(userResponse[key].email)
+        });
+    } else {
+        console.error('Keine Benutzerdaten gefunden');
+    }
 }
 
-async function loadUserData(path='') {
+async function loadUserData(path = '') {
     let response = await fetch(BASE_URL + path + '.json');
     let responseToJSON = await response.json();
     return responseToJSON;
-    // console.log(responseToJSON);
 }
