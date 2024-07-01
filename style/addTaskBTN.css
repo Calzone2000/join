@@ -63,10 +63,12 @@
   display: flex;
   justify-content: end;
   position: absolute;
-  width: 100%;
+  width: 92.5%;
   height: 56px;
-  top: 550px;
+  top: 850px;
   gap: 16px;
+  left: 0;
+  margin-right: 500px;
 }
 
 .clearBTNFooter {

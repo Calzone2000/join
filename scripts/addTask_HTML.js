@@ -49,48 +49,47 @@ function renderGenerateCheckBox(element, i) {
   return /*html*/ `        
     <label>
         <div class="board_task_check_box_name"> <!-- Klasse anpassen -->
-            <div class="board_task_user_initial check_box_initial" style="background-color:${
+            <div class="boardTask_userInitial checkboxInitial" style="background-color:${
               element.color
             }">${getInitials(initial)}</div>
             <p id="${i}">${element.name}</p>
         </div>
-        <div class="checkbox-wrapper-27">
+        <div class="checkboxWrapper27">
             <label class="checkbox">
                 <input type="checkbox" name="optionen" value="${element.name}">
                 <span class="checkboxIcon"></span>
             </label>
         </div>
     </label>
-`;
+  `;
 }
 
 /** --> Funktion Ändern!!!! Extrem Wichtig
- * The function `rendersearchNameFromGuestList` generates HTML markup for displaying a guest's name and
+ * The function `renderSearchNameFromList` generates HTML markup for displaying a guest's name and
  * initial with a checkbox.
- * @param element - The `element` parameter in the `rendersearchNameFromGuestList` function represents
+ * @param element - The `element` parameter in the `renderSearchNameFromList` function represents
  * an object containing information about a guest. It likely has properties such as `name`, `color`,
  * and other relevant details.
- * @param initial - The `initial` parameter in the `rendersearchNameFromGuestList` function represents
+ * @param initial - The `initial` parameter in the `renderSearchNameFromList` function represents
  * the initial of a guest's name. It is used to display the initial inside a colored box next to the
  * guest's full name in the rendered HTML output.
- * @returns The function `rendersearchNameFromGuestList` returns an HTML template string that includes
+ * @returns The function `renderSearchNameFromList` returns an HTML template string that includes
  * a label element containing the guest's name and initial, along with a checkbox input element.
  */
-function rendersearchNameFromGuestList(element, initial) {
-  return /*html*/ `        
-        <label>
-        <div class="board_task_check_box_name">
-            <div class="board_task_user_initial check_box_initial" style="background-color:${element.color}">${initial}</div>
-            <p>${element.name}</p>
-        </div>
-        <div class="checkbox-wrapper-27">
-            <label class="checkbox">
-                <input type="checkbox" name="optionen" value="${element.name}">
-                <span class="checkbox__icon"></span>
-            </label>
-        </div>
-    </label>
-`;
+function searchNameFromGuestList() {
+  let idInput = document.getElementById("taskAssignedTo").value;
+  idInput = idInput.toLowerCase();
+
+  let id = document.getElementById("checkboxUsername");
+
+  id.innerHTML = "";
+  for (let i = 0; i < guesteArray.length; i++) {
+    const element = guesteArray[i];
+    let initial = getInitials(element.name);
+    if (element.name.toLowerCase().includes(idInput)) {
+      id.innerHTML += renderSearchNameFromList(element, initial);
+    }
+  }
 }
 
 /**
