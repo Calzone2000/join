@@ -9,11 +9,12 @@ async function logIn() {
     
     await loadDataFromFB();
     
-    const user = userData.find(user => user.email === email && user.password === password);
+    const user = userData.find(user => user.email == email && user.password == password);
 
 
     if (user) {
         console.log('right');
+        window.location.href = 'summary.html';
     } else {
         console.log('wrong');
         return;
