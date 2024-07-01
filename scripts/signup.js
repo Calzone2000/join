@@ -3,6 +3,23 @@ const BASE_URL = 'https://join-6878f-default-rtdb.europe-west1.firebasedatabase.
 let userIDs = [];
 let userData = [];
 
+async function logIn() {
+    const email = document.getElementById('logInEmail').value;
+    const password = document.getElementById('logInPassword').value;
+    
+    await loadDataFromFB();
+    
+    const user = userData.find(user => user.email === email && user.password === password);
+
+
+    if (user) {
+        console.log('right');
+    } else {
+        console.log('wrong');
+        return;
+    }
+}
+
 async function createNewUser() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -62,8 +79,11 @@ async function loadDataFromFB() {
         let userKeysArray = Object.keys(userResponse);
 
         userKeysArray.forEach(key => {
-            userIDs.push(key)
-            userData.push(userResponse[key].email)
+            userIDs.push(key);
+            userData.push({
+                email: userResponse[key].email,
+                password: userResponse[key].password
+            });
         });
     } else {
         console.error('Keine Benutzerdaten gefunden');

@@ -7,7 +7,7 @@
     <title>Join Log-in</title>
 
     <link rel="stylesheet" href="./style/login-signup.css">
-    <script src="./scripts/login.js"></script>
+    <script src="./scripts/signup.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -38,24 +38,25 @@
                 <div class="underline"></div>
             </div>
 
-            <form class="mail-and-password">
+            <form class="mail-and-password" onsubmit="logIn(); return false;">
                 <div class="input-fields">
-                    <input class="log-in-input" type="text" placeholder="Email" required>
+                    <input id="logInEmail" class="log-in-input" type="text" placeholder="Email" required>
                     <img class="input-icon" src="./assets/img/icon/mail.svg" alt="Icon">
                 </div>
 
                 <div class="input-fields">
-                    <input class="log-in-input" type="text" placeholder="Password" required>
+                    <input id="logInPassword" class="log-in-input" type="password" placeholder="Password" required>
                     <img class="input-icon" src="./assets/img/icon/lock.svg" alt="Icon">
                 </div>
 
                 <label class="checkbox"><input type="checkbox"><span>Remember me</span></label>
+
+                <section class="log-in-btns">
+                    <a href="summary.html"><button id="logInBtn" class="btn-dark btn" style="font-size: 21px;">Log in</button></a>
+                    <a href="summary.html"><button class="btn-bright btn" style="font-size: 21px;">Guest Log in</button></a>
+                </section>
             </form>
 
-            <section class="log-in-btns">
-                <button class="btn-dark btn" style="font-size: 21px;">Log in</button>
-                <a href="summary.html"><button class="btn-bright btn" style="font-size: 21px;">Guest Log in</button></a>
-            </section>
         </section>
 
         <section class="sign-up-section sign-up-2">
