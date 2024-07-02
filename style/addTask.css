@@ -428,3 +428,70 @@ header {
   transition: right 0.5s ease;
   z-index: 100;
 }
+
+.checkboxName {
+  visibility: hidden;
+  z-index: 99;
+  position: absolute;
+  top: 460px;
+  width: 48%;
+}
+
+.showCheck {
+  width: 100%;
+}
+
+.dropdownUsername {
+  background-color: white;
+  max-height: 190px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 10px;
+  word-wrap: break-word;
+  -webkit-box-shadow: 0px 6px 7px -3px rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 0px 6px 7px -3px rgba(0, 0, 0, 0.37);
+  box-shadow: 0px 6px 7px -3px rgba(0, 0, 0, 0.37);
+}
+
+.lblCheckbox {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  word-wrap: break-word;
+  padding: 8px;
+  border-radius: 10px;
+  font-size: 20px;
+  position: relative;
+}
+
+.boardTask_checkboxName {
+  display: flex;
+  width: 100%;
+  /* justify-content: space-between; */
+  align-items: center;
+  word-wrap: break-word;
+  padding: 8px;
+  border-radius: 10px;
+  font-size: 20px;
+  position: relative;
+  gap: 10px;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
+.boardTask_userInitial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;
+  height: 32px;
+  border-radius: 45px;
+  border: 1px solid white;
+  color: white;
+  font-size: 14px;
+  gap: 10px;
+}

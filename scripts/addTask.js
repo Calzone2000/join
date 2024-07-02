@@ -282,6 +282,7 @@ async function generateCheckBox() {
     console.error("Error fetching data: ", error);
   }
 }
+
 /**
  * The function `searchNameFromGuestList` searches for a name from a guest list based on user input and
  * renders the results.
@@ -351,8 +352,8 @@ function checkGuestsName(checkedValues) {
       const element = selectedGuests[index];
       let initial = getInitials(element.name);
       add_task_show_check.innerHTML += /* html */ `
-                  <div class="addTask_checkboxName boardTask_userInitial showTask_userInitial" style="background-color: ${element.color};">${initial}</div>
-              `;
+        <div class="addTask_checkboxName boardTask_userInitial showTask_userInitial" style="background-color: ${element.color};">${initial}</div>
+      `;
     }
   }
 }

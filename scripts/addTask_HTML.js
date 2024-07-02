@@ -30,7 +30,7 @@ let priority = [
   },
 ];
 
-/** --> Funktion Ändern!!!! Extrem Wichtig
+/**
  * The function `renderGenerateCheckBox` generates HTML code for a checkbox element with user
  * initials and name.
  * @param element - The `element` parameter in the `renderGenerateCheckBox` function seems to
@@ -47,8 +47,8 @@ let priority = [
 function renderGenerateCheckBox(element, i) {
   let initial = element.name;
   return /*html*/ `        
-    <label>
-        <div class="board_task_check_box_name"> <!-- Klasse anpassen -->
+    <label class="lblCheckbox">
+        <div class="boardTask_checkboxName"> <!-- Klasse anpassen -->
             <div class="boardTask_userInitial checkboxInitial" style="background-color:${
               element.color
             }">${getInitials(initial)}</div>
@@ -64,7 +64,7 @@ function renderGenerateCheckBox(element, i) {
   `;
 }
 
-/** --> Funktion Ändern!!!! Extrem Wichtig
+/**
  * The function `renderSearchNameFromList` generates HTML markup for displaying a guest's name and
  * initial with a checkbox.
  * @param element - The `element` parameter in the `renderSearchNameFromList` function represents
