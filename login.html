@@ -43,13 +43,17 @@
 
             <form class="mail-and-password" onsubmit="logIn(); return false;">
                 <div class="input-fields">
-                    <input id="logInEmail" class="log-in-input" type="text" placeholder="Email" required>
+                    <input id="logInEmail" class="log-in-input" type="email" placeholder="Email" required>
                     <img class="input-icon" src="./assets/img/icon/mail.svg" alt="Icon">
                 </div>
 
                 <div class="input-fields">
                     <input id="logInPassword" class="log-in-input" type="password" placeholder="Password" required>
                     <img class="input-icon" src="./assets/img/icon/lock.svg" alt="Icon">
+                </div>
+                
+                <div id="wrongPassword" class="notification">
+                    <p>Email address or password is incorrect</p>
                 </div>
 
                 <label class="checkbox"><input type="checkbox"><span>Remember me</span></label>

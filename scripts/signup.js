@@ -12,6 +12,8 @@ async function logIn() {
             localStorage.setItem('user', userIDs[i]);
             window.location.href = 'summary.html';
             break;
+        } else {
+            document.getElementById('wrongPassword').style.display = 'block';
         }
     }
 }
