@@ -34,6 +34,7 @@ async function createNewUser() {
     } else {
         document.getElementById('password').style.border = '';
         document.getElementById('confirm-password').style.border = '';
+        document.getElementById('passwordsDontMatchNotification').style.display = '';
     }
 
     await loadDataFromFB();
