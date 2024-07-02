@@ -44,6 +44,7 @@ body {
     color: rgb(42, 54, 71);
     border: solid 1px rgb(42, 54, 71);
     margin-left: 35px;
+    text-decoration: none;
 }
 
 .btn-dark:hover {
