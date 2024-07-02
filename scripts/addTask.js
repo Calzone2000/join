@@ -160,19 +160,76 @@ function clearContent() {
 /**
  * Task wird erstellt und auf Board angezeigt werden
  */
-function createTask() {}
+async function createTask() {
+  const title = document.getElementById("taskTitle").value.trim();
+  const description = document
+    .getElementById("taskDescriptionArea")
+    .value.trim();
+  const assignedTo = document.getElementById("taskAssignedTo").value.trim();
+  const dueDate = document.getElementById("taskDate").value.trim();
+  const category = document.getElementById("task_category").value.trim();
+  const subtasks = document.querySelectorAll(".subtaskInput"); // Assuming subtask inputs have this class
 
-/* async function createNewTaskInStorage(data={}) {
+  if (!title || !description || !dueDate || !category) {
+    return; // Fields are required, no need to proceed if any are empty
+  }
+
+  // Collect subtasks
+  const subtaskArray = [];
+  subtasks.forEach((subtask) => {
+    const subtaskValue = subtask.value.trim();
+    if (subtaskValue) {
+      subtaskArray.push({ title: subtaskValue });
+    }
+  });
+
+  const task = {
+    title: title,
+    description: description,
+    assignedTo: assignedTo,
+    dueDate: dueDate,
+    category: category,
+    subtasks: subtaskArray, // Add subtasks to the task object
+  };
+
+  const databaseUrl =
+    "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task.json";
+
+  try {
+    const response = await fetch(databaseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    });
+
+    if (response.ok) {
+      showLoadingOverlay(); // Show loading overlay
+
+      // Redirect to board.html after a short delay to show the loading indicator
+      setTimeout(() => {
+        window.location.href = "board.html";
+      }, 1000);
+    } else {
+      console.error("Failed to create task");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function createNewTaskInStorage(data = {}) {
   path = "task/.json";
   //data = {title:"neuer Titel"};
   let response = await fetch(BASE_URL + path, {
-      method:"POST",
-      header: {
-          "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data)
+    method: "POST",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   });
-} */
+}
 
 /**
  * The function `EditNewSubTask` displays an edit button and input field for a specific subtask
