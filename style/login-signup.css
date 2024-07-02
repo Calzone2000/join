@@ -283,3 +283,8 @@ main {
     box-shadow: none;
     cursor: auto;
 }
+
+.email-notification {
+    display: none;
+    color: red;
+}

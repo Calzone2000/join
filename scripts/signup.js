@@ -7,7 +7,7 @@ async function logIn() {
     const email = document.getElementById('logInEmail').value;
     const password = document.getElementById('logInPassword').value;      
     await loadDataFromFB();
-    for (let i=0; i < userData.length; i++) {
+    for (let i = 0; i < userData.length; i++) {
         if (userData[i].email == email && userData[i].password == password) {
             localStorage.setItem('user', userIDs[i]);
             window.location.href = 'summary.html';
@@ -37,10 +37,12 @@ async function createNewUser() {
 
     await loadDataFromFB();
 
-    if (userData.includes(email)) {
-        alert('Ein Benutzer mit dieser E-Mail-Adresse existiert bereits.');
+    if (userData.some(user => user.email === email)) {
+        document.getElementById('emailAlreadyExistsNotification').style.display = 'block';
         return;
     }
+
+    document.getElementById('emailAlreadyExistsNotification').style.display = '';
 
     let data = {
         name: name,
@@ -91,7 +93,7 @@ async function loadDataFromFB() {
     }
 }
 
-async function loadUserData(path = '') {
+async function loadUserData(path = "") {
     let response = await fetch(BASE_URL + path + '.json');
     let responseToJSON = await response.json();
     return responseToJSON;
