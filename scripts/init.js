@@ -7,3 +7,9 @@ async function initBoard() {
     await loadContacts();
     renderKanbanBoard();
 }
+
+async function initSummary() {
+    await loadTasks();
+    await loadContacts();
+    renderSummary();
+}

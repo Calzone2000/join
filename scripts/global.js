@@ -20,3 +20,6 @@ let currentDraggedTask;
 /** Contact Data */
 let contact = [];
 let contactId = [];
+
+/** Current User */
+let currentUserName = "Guest User";

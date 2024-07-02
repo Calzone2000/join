@@ -1,24 +1,26 @@
-const BASE_URL = 'https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/'
+//const BASE_URL = 'https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/'
 
 let userIDs = [];
 let userData = [];
 
-async function logIn() {
+async function logIn() {    
     const email = document.getElementById('logInEmail').value;
     const password = document.getElementById('logInPassword').value;
-    
+   
     await loadDataFromFB();
-    
+        
     const user = userData.find(user => user.email == email && user.password == password);
-
-
-    if (user) {
-        console.log('right');
+    
+    if (user) {    
+        currentUserName = user.name;
         window.location.href = 'summary.html';
-    } else {
-        console.log('wrong');
+    } else {        
         return;
     }
+}
+
+async function updateCurrentUser(newUser) {
+    currentUserName = newUser
 }
 
 async function createNewUser() {
@@ -83,7 +85,8 @@ async function loadDataFromFB() {
             userIDs.push(key);
             userData.push({
                 email: userResponse[key].email,
-                password: userResponse[key].password
+                password: userResponse[key].password,
+                name: userResponse[key].name
             });
         });
     } else {
