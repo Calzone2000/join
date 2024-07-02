@@ -1,5 +1,31 @@
-/** Render functions
- */
+/** top.html */
+function renderInitials() {
+    document.getElementById('user-initials').innerHTML = getInitials(currentUserName);
+}
+
+/** summary.html */
+
+function renderSummary() {
+    renderStates();
+    renderGreeting();
+}
+
+function renderStates() {
+    document.getElementById('sum-tasks-open').innerHTML = countStateOccurrences("to-do");
+    document.getElementById('sum-tasks-done').innerHTML = countStateOccurrences("done");
+    document.getElementById('sum-tasks-total').innerHTML = taskId.length;
+    document.getElementById('sum-tasks-in-progress').innerHTML = countStateOccurrences("in-progress");
+    document.getElementById('sum-tasks-await-feedback').innerHTML = countStateOccurrences("await-feedback");
+    document.getElementById('sum-tasks-urgent').innerHTML = countUrgency();
+    document.getElementById('greeting-depends-on-time').innerHTML = generateGreeting();
+}
+
+function renderGreeting() {
+    document.getElementById('greeted-person').innerHTML = currentUserName;
+}
+
+
+/** board.html */
 
 function renderKanbanBoard() {
     renderKanbanCard("to-do");
@@ -9,7 +35,6 @@ function renderKanbanBoard() {
 }
 
 function markEmptyColumns(state) {
-
     for (let i = 0; i < taskId.length; i++) {
         if (task[taskId[i]].currentState == state) {
             document.getElementById(`no-task-${state}`).classList.add('d-none');
@@ -190,7 +215,7 @@ function OLD_renderPreviewCardSubtasks(index) {
             previewCardHTML += `<div class="preview-card-subtask">
                                     <img src="./assets/img/check_${task[index].subtask[i].status}.svg" alt="Open">
                                     <div>${task[index].subtask[i].description}</div>
-                                </div>`;            
+                                </div>`;
         }
     }
     previewCardHTML += `</div></div>`;
@@ -198,15 +223,15 @@ function OLD_renderPreviewCardSubtasks(index) {
 }
 
 function renderPreviewCardSubtasks(index) {
-    let previewCardHTML = ``;    
+    let previewCardHTML = ``;
     if (task[index].subtask) {
         previewCardHTML += `<span class="preview-card-sub-hl">Subtasks</span>
-                                <div class="preview-card-subtasks">`;    
+                                <div class="preview-card-subtasks">`;
         for (let i = 0; i < task[index].subtask.length; i++) {
             previewCardHTML += `<div class="preview-card-subtask">
                                     <img src="./assets/img/check_${task[index].subtask[i].status}.svg" alt="Open">
                                     <div>${task[index].subtask[i].description}</div>
-                                </div>`;            
+                                </div>`;
         }
     } else {
         previewCardHTML += `<span class="preview-card-sub-hl">No subtasks</span>`;
@@ -215,3 +240,31 @@ function renderPreviewCardSubtasks(index) {
     return previewCardHTML;
 }
 
+/** Mandatory functions for rendering */
+
+function getInitials(name) {
+    name = name.trim();
+    let spaceIndex = name.indexOf(' ');
+    if (spaceIndex !== -1) {
+        let firstWord = name.slice(0, spaceIndex).trim();
+        let secondWord = name.slice(spaceIndex + 1).trim();
+        let initials = firstWord.charAt(0).toUpperCase() + secondWord.charAt(0).toUpperCase();
+        return initials;
+    } else {
+        let initials = name.slice(0, 2).toUpperCase();
+        return initials;
+    }
+}
+
+function generateGreeting() {
+    let currentHour = new Date().getHours();
+    if (currentHour >= 0 && currentHour < 12) {
+        return "Good Morning";
+    } else if (currentHour >= 12 && currentHour < 18) {
+        return "Good Afternoon";
+    } else if (currentHour >= 18 && currentHour < 24) {
+        return "Good Evening";
+    } else {
+        return "Hello";
+    }
+}

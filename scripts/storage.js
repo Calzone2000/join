@@ -23,8 +23,7 @@ async function loadContacts(path="contact") {
 }
 
 async function updateTaskInStorage(data={}) {
-    path = "task/" + currentDraggedTask + ".json";
-    //data = {title:"neuer Titel"};
+    path = "task/" + currentDraggedTask + ".json";    
     let response = await fetch(BASE_URL + path, {
         method:"PUT",
         header: {
@@ -34,10 +33,8 @@ async function updateTaskInStorage(data={}) {
     });
 }
 
-
 async function createNewTaskInStorage(data={}) {
-    path = "task/.json";
-    //data = {title:"neuer Titel"};
+    path = "task/.json";    
     let response = await fetch(BASE_URL + path, {
         method:"POST",
         header: {
@@ -47,10 +44,7 @@ async function createNewTaskInStorage(data={}) {
     });
 }
 
-
-
-async function createTestInStorage(data={}) {
-    
+async function createTestInStorage(data={}) {    
     path = "test/.json";
         let response = await fetch(BASE_URL + path, {
         method:"POST",
@@ -62,8 +56,7 @@ async function createTestInStorage(data={}) {
 }
 
 async function updateTestInStorage(data={}) {
-    path = "test/-O0NzSEsE4_jJFMmF6g4/.json";
-    //data = {title:"neuer Titel"};
+    path = "test/-O0NzSEsE4_jJFMmF6g4/.json";    
     let response = await fetch(BASE_URL + path, {
         method:"PUT",
         header: {
@@ -71,4 +64,34 @@ async function updateTestInStorage(data={}) {
         },
         body: JSON.stringify(data)
     });
+}
+
+function setCurrentUser() {
+    loggedInUserId = localStorage.getItem('user');
+    setCurrentUserName();
+}
+
+function setCurrentUserName(uid) {
+    currentUID = localStorage.getItem('user');    
+    if (currentUID) {
+        currentUserName = user[currentUID].name;
+    }
+}
+
+function logoutCurrentUser() {
+    localStorage.removeItem('user');
+    loggedInUserId = "";
+    window.location.href = 'login.html';
+}
+
+async function loadUserData(path="user") {
+    try {
+        let response = await fetch(BASE_URL + path + ".json");        
+        user = await response.json();
+        Object.keys(user).forEach(id => {        
+            uid.push(id); 
+        });
+    } catch (error) {
+        console.error('Fehler beim Laden der Daten:', error);
+    }
 }

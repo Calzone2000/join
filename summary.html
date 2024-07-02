@@ -26,12 +26,7 @@
 </head>
 
 <body onload="includeHTML();initSummary()">
-    <div id="slide-out" class="slide-out">
-        <a href="legal.html">Legal Notice</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="#">Logout</a>
-    </div>
-
+    <div id="slide-out" class="slide-out" w3-include-html="./tpl/flyout.html"></div>
     <div class="body">
         <section class="sidebar" w3-include-html="/tpl/sidebar.html"></section>
         <section class="right-section">

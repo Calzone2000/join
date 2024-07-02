@@ -5,22 +5,19 @@ let userData = [];
 
 async function logIn() {    
     const email = document.getElementById('logInEmail').value;
-    const password = document.getElementById('logInPassword').value;
-   
+    const password = document.getElementById('logInPassword').value;      
     await loadDataFromFB();
-        
-    const user = userData.find(user => user.email == email && user.password == password);
-    
-    if (user) {    
-        currentUserName = user.name;
-        window.location.href = 'summary.html';
-    } else {        
-        return;
+    for (let i=0; i < userData.length; i++) {
+        if (userData[i].email == email && userData[i].password == password) {
+            localStorage.setItem('user', userIDs[i]);
+            window.location.href = 'summary.html';
+            break;
+        }
     }
 }
 
 async function updateCurrentUser(newUser) {
-    currentUserName = newUser
+    currentUserName = newUser;
 }
 
 async function createNewUser() {
@@ -86,7 +83,7 @@ async function loadDataFromFB() {
             userData.push({
                 email: userResponse[key].email,
                 password: userResponse[key].password,
-                name: userResponse[key].name
+                name: userResponse[key].name                
             });
         });
     } else {
