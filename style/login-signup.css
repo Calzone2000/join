@@ -284,7 +284,7 @@ main {
     cursor: auto;
 }
 
-.email-notification {
+.notification {
     display: none;
     color: red;
 }

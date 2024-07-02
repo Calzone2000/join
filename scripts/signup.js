@@ -29,6 +29,7 @@ async function createNewUser() {
     if (password !== confirmPassword) {
         document.getElementById('password').style.border = 'solid 2px rgb(252, 3, 3)';
         document.getElementById('confirm-password').style.border = 'solid 2px rgb(252, 3, 3)';
+        document.getElementById('passwordsDontMatchNotification').style.display = 'block';
         return;
     } else {
         document.getElementById('password').style.border = '';
@@ -39,10 +40,13 @@ async function createNewUser() {
 
     if (userData.some(user => user.email === email)) {
         document.getElementById('emailAlreadyExistsNotification').style.display = 'block';
+        document.getElementById('email').style.border = 'solid 2px rgb(252, 3, 3)';
         return;
+    } else {
+        document.getElementById('emailAlreadyExistsNotification').style.display = '';
+        document.getElementById('email').style.border = '';
     }
 
-    document.getElementById('emailAlreadyExistsNotification').style.display = '';
 
     let data = {
         name: name,
