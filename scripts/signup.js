@@ -3,18 +3,30 @@
 let userIDs = [];
 let userData = [];
 
-async function logIn() {    
+let rememberMeCheck = false;
+
+async function logIn() {   
     const email = document.getElementById('logInEmail').value;
     const password = document.getElementById('logInPassword').value;      
     await loadUserDataFromFB();
     for (let i = 0; i < userData.length; i++) {
         if (userData[i].email == email && userData[i].password == password) {
             localStorage.setItem('user', userIDs[i]);
+            localStorage.setItem('password', userData[i].password);
             window.location.href = 'summary.html';
             break;
         } else {
             document.getElementById('wrongPassword').style.display = 'block';
         }
+    }
+}
+
+function rememberMe() {
+    const rememberMe = document.getElementById('rememberMe');
+    if (rememberMe.checked) {
+        console.log('check')
+    } else {
+        console.log('no check');
     }
 }
 
