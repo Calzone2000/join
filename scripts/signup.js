@@ -6,7 +6,7 @@ let userData = [];
 async function logIn() {    
     const email = document.getElementById('logInEmail').value;
     const password = document.getElementById('logInPassword').value;      
-    await loadDataFromFB();
+    await loadUserDataFromFB();
     for (let i = 0; i < userData.length; i++) {
         if (userData[i].email == email && userData[i].password == password) {
             localStorage.setItem('user', userIDs[i]);
@@ -39,7 +39,7 @@ async function createNewUser() {
         document.getElementById('passwordsDontMatchNotification').style.display = '';
     }
 
-    await loadDataFromFB();
+    await loadUserDataFromFB();
 
     if (userData.some(user => user.email === email)) {
         document.getElementById('emailAlreadyExistsNotification').style.display = 'block';
@@ -81,7 +81,7 @@ async function postNewUser(path = "", data = {}) {
     return await response.json();
 }
 
-async function loadDataFromFB() {
+async function loadUserDataFromFB() {
     let userResponse = await loadUserData('/user');
 
     if (userResponse) {
