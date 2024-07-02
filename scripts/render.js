@@ -182,7 +182,7 @@ function renderPreviewResponsibles(index) {
     return previewCardHTML;
 }
 
-function renderPreviewCardSubtasks(index) {
+function OLD_renderPreviewCardSubtasks(index) {
     let previewCardHTML = `<span class="preview-card-sub-hl">Subtasks</span>
                                 <div class="preview-card-subtasks">`;
     if (task[index].subtask) {
@@ -192,6 +192,24 @@ function renderPreviewCardSubtasks(index) {
                                     <div>${task[index].subtask[i].description}</div>
                                 </div>`;            
         }
+    }
+    previewCardHTML += `</div></div>`;
+    return previewCardHTML;
+}
+
+function renderPreviewCardSubtasks(index) {
+    let previewCardHTML = ``;    
+    if (task[index].subtask) {
+        previewCardHTML += `<span class="preview-card-sub-hl">Subtasks</span>
+                                <div class="preview-card-subtasks">`;    
+        for (let i = 0; i < task[index].subtask.length; i++) {
+            previewCardHTML += `<div class="preview-card-subtask">
+                                    <img src="./assets/img/check_${task[index].subtask[i].status}.svg" alt="Open">
+                                    <div>${task[index].subtask[i].description}</div>
+                                </div>`;            
+        }
+    } else {
+        previewCardHTML += `<span class="preview-card-sub-hl">No subtasks</span>`;
     }
     previewCardHTML += `</div></div>`;
     return previewCardHTML;

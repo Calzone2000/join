@@ -237,6 +237,8 @@ h1, h2, h3, .join {
         font-size: large;
         margin-left:30px
     }
+
+
 }
 
 @media (max-width:600px) {
