@@ -47,8 +47,8 @@ let priority = [
 function renderGenerateCheckBox(element, i) {
   let initial = element.name;
   return /*html*/ `        
-    <label class="lblCheckbox">
-        <div class="boardTask_checkboxName"> <!-- Klasse anpassen -->
+    <label>
+        <div class="checkboxName"> <!-- Klasse anpassen -->
             <div class="boardTask_userInitial checkboxInitial" style="background-color:${
               element.color
             }">${getInitials(initial)}</div>

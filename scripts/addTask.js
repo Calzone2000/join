@@ -193,8 +193,9 @@ async function createTask() {
     dueDate: dueDate,
     category: category,
     priority: priority,
-    assignedTo: assignedTo ? assignedTo : "", // Assign to empty string if not provided
+    assignetTo: assignedTo ? assignedTo : "", // Assign to empty string if not provided
     subtasks: subtaskArray.length > 0 ? subtaskArray : [], // Add subtasks if any
+    currentState: "to-do",
   };
 
   const databaseUrl =
