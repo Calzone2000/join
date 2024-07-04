@@ -158,7 +158,7 @@ function clearContent() {
 }
 
 /**
- * Task wird erstellt und auf Board angezeigt werden
+ * create Task and switching to the Board.
  */
 async function createTask() {
   const title = document.getElementById("taskTitle").value.trim();
@@ -168,34 +168,41 @@ async function createTask() {
   const assignedTo = document.getElementById("taskAssignedTo").value.trim();
   const dueDate = document.getElementById("taskDate").value.trim();
   const category = document.getElementById("task_category").value.trim();
-  const subtasks = document.querySelectorAll(".subtaskInput"); // Assuming subtask inputs have this class
+  const subtaskElements = document.querySelectorAll(
+    "#getSubtask .subtaskInput"
+  );
+  const priorityElement = document.querySelector(".prioBTNS .active"); // Find the active priority button
+  const priority = priorityElement ? priorityElement.id : "";
 
-  if (!title || !description || !dueDate || !category) {
-    return; // Fields are required, no need to proceed if any are empty
+  if (!title || !description || !dueDate || !category || !priority) {
+    return; // Required fields are missing
   }
 
   // Collect subtasks
   const subtaskArray = [];
-  subtasks.forEach((subtask) => {
+  subtaskElements.forEach((subtask) => {
     const subtaskValue = subtask.value.trim();
     if (subtaskValue) {
-      subtaskArray.push({ title: subtaskValue });
+      subtaskArray.push({ title: subtaskValue, status: "pending" });
     }
   });
 
   const task = {
     title: title,
     description: description,
-    assignedTo: assignedTo,
     dueDate: dueDate,
     category: category,
-    subtasks: subtaskArray, // Add subtasks to the task object
+    priority: priority,
+    assignedTo: assignedTo ? assignedTo : "", // Assign to empty string if not provided
+    subtasks: subtaskArray.length > 0 ? subtaskArray : [], // Add subtasks if any
   };
 
   const databaseUrl =
     "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task.json";
 
   try {
+    showLoadingOverlay(); // Show loading overlay before making the request
+
     const response = await fetch(databaseUrl, {
       method: "POST",
       headers: {
@@ -205,17 +212,17 @@ async function createTask() {
     });
 
     if (response.ok) {
-      showLoadingOverlay(); // Show loading overlay
-
       // Redirect to board.html after a short delay to show the loading indicator
       setTimeout(() => {
         window.location.href = "board.html";
       }, 1000);
     } else {
       console.error("Failed to create task");
+      removeLoadingOverlay(); // Remove loading overlay if there is an error
     }
   } catch (error) {
     console.error("Error:", error);
+    removeLoadingOverlay(); // Remove loading overlay if there is an error
   }
 }
 
@@ -404,11 +411,11 @@ function checkGuestsName(checkedValues) {
         });
       }
     });
-    add_task_show_check.innerHTML = "";
+    showCheck.innerHTML = "";
     for (let index = 0; index < selectedGuests.length; index++) {
       const element = selectedGuests[index];
       let initial = getInitials(element.name);
-      add_task_show_check.innerHTML += /* html */ `
+      showCheck.innerHTML += /* html */ `
         <div class="addTask_checkboxName boardTask_userInitial showTask_userInitial" style="background-color: ${element.color};">${initial}</div>
       `;
     }

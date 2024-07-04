@@ -139,6 +139,7 @@ function showLoadingOverlay() {
   overlay.style.justifyContent = "center";
   overlay.style.alignItems = "center";
   overlay.innerHTML =
+    /* html */
     '<div style="color: white; font-size: 24px;">Loading...</div>';
   document.body.appendChild(overlay);
 }
