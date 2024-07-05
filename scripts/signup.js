@@ -3,16 +3,31 @@
 let userIDs = [];
 let userData = [];
 
-let rememberMeCheck = false;
+function setGuestUser() {
+    sessionStorage.setItem('user', 'guest user');
+}
 
-async function logIn() {   
+async function logIn() {
     const email = document.getElementById('logInEmail').value;
-    const password = document.getElementById('logInPassword').value;      
+    const password = document.getElementById('logInPassword').value;
+    const rememberMeCheckbox = document.getElementById('rememberMe');
+    const rememberMe = rememberMeCheckbox.checked;
+
     await loadUserDataFromFB();
+
     for (let i = 0; i < userData.length; i++) {
         if (userData[i].email == email && userData[i].password == password) {
             localStorage.setItem('user', userIDs[i]);
-            localStorage.setItem('password', userData[i].password);
+
+            if (rememberMe) {
+                localStorage.setItem('password', userData[i].password);
+                localStorage.setItem('email', userData[i].email);
+            } else {
+                sessionStorage.setItem('password', userData[i].password);
+                sessionStorage.setItem('email', userData[i].email);
+                localStorage.removeItem('password');
+                localStorage.removeItem('email');
+            }
             window.location.href = 'summary.html';
             break;
         } else {
@@ -21,14 +36,6 @@ async function logIn() {
     }
 }
 
-function rememberMe() {
-    const rememberMe = document.getElementById('rememberMe');
-    if (rememberMe.checked) {
-        console.log('check')
-    } else {
-        console.log('no check');
-    }
-}
 
 async function updateCurrentUser(newUser) {
     currentUserName = newUser;
@@ -104,7 +111,7 @@ async function loadUserDataFromFB() {
             userData.push({
                 email: userResponse[key].email,
                 password: userResponse[key].password,
-                name: userResponse[key].name                
+                name: userResponse[key].name
             });
         });
     } else {
