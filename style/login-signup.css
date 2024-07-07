@@ -22,13 +22,17 @@ body {
 }
 
 .btn {
+    display: flex;
+    justify-content: center;
     font-weight: 400;
     border-radius: 8px;
     font-size: 20px;
     padding: 15px 16px 15px 16px;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 
-.btn img{
+.btn img {
     height: 24px;
     width: 24px;
 }
@@ -37,6 +41,7 @@ body {
     background-color: rgb(42, 54, 71);
     color: white;
     border: none;
+    text-decoration: none;
 }
 
 .btn-bright {
@@ -174,6 +179,7 @@ main {
         top: 50%;
         left: 50%;
     }
+
     100% {
         top: 37px;
         left: 38px;
@@ -187,10 +193,17 @@ main {
     0% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
         z-index: -1;
     }
+}
+
+.log-in-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bottom {
@@ -198,7 +211,7 @@ main {
     justify-content: center;
     align-items: center;
     color: rgba(168, 168, 168, 1);
-    margin: 142px 0 64px 0;   
+    margin: 142px 0 64px 0;
 }
 
 .bottom-links {
@@ -236,14 +249,17 @@ main {
     .log-in-section {
         margin-top: 32px;
     }
+
     .sign-up-1 {
         display: none;
     }
+
     .sign-up-2 {
         display: block;
         margin-top: 32px;
     }
-    .d-flex {
+
+    .d-none {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -261,9 +277,11 @@ main {
     .log-in-headline p {
         font-size: 40px;
     }
+
     .back-to-log-in {
         left: -50px;
     }
+
     .log-in-btns {
         display: flex;
         flex-direction: column;
@@ -271,11 +289,17 @@ main {
         justify-content: center;
         gap: 21px;
     }
+
     .btn {
         width: 200px;
     }
+
     .btn-bright {
         margin-left: 0;
+    }
+
+    .d-none {
+        gap: 20px;
     }
 }
 
