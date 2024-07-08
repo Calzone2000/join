@@ -10,16 +10,25 @@ body {
   background-color: #f6f7f8;
   font-family: "Inter", sans-serif;
   margin: 0px;
-  color: #2a3647;
+
+  /* color: #2a3647; */
+}
+
+.body {
+  display: flex;
+}
+
+.addTaskHTMLBody {
+  overflow: hidden;
 }
 
 #myForm {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 210px;
-  left: 328px;
-  width: 1750px;
+  top: 50px;
+  left: 50px;
+  width: 90%;
 }
 
 .addTaskForm {
@@ -47,8 +56,8 @@ body {
   position: relative;
   width: 278px;
   height: 73px;
-  /* top: 206px; */
-  left: 328px;
+  top: 50px;
+  left: 50px;
   font-size: clamp(47px, 4vw, 61px);
   font-weight: 700;
   color: #000000;
@@ -282,10 +291,121 @@ body {
   position: absolute;
   width: 350px;
   height: 27px;
-  top: 750px;
-
+  top: 650px;
   font-size: 30px;
   font-weight: 400;
   line-height: 24px;
   text-align: left;
+}
+
+/* SubTask edit / delete */
+.editSubtasks_delEdit {
+  margin: 2px;
+  padding-left: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.showTask {
+  font-size: 25px;
+}
+
+.showSubTask {
+  display: flex;
+  height: 30px;
+}
+
+.crossLine {
+  background-color: #2a3647;
+  width: 1px;
+  height: 30px;
+  margin: 0px 10px 10px;
+}
+
+.editingDeleting {
+  display: flex;
+}
+
+.showTaskSubtaskEditBTN {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  width: 100%;
+  align-content: center;
+  display: none;
+}
+
+.showTaskSubtaskEditBTN input {
+  width: 80%;
+  border: 0;
+  font-size: 20px;
+  border-bottom: 1px solid #29abe2;
+  padding-left: 15px;
+}
+
+/* .showTaskSubtaskEditBTN:focus {
+  border: 1px solid #29abe2;
+  outline: none;
+} */
+
+.getSubtask {
+  margin-top: 10px;
+}
+
+.slide-out {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #091931;
+  width: 150px;
+  position: fixed;
+  top: 110px;
+  right: -200px;
+  height: 240px;
+  width: 200px;
+  gap: 40px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: right 0.5s ease;
+}
+
+.sidebar {
+  background-color: #2a3647;
+  height: 100vh;
+  min-width: 225px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  flex: 1;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.right-section {
+  width: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  height: 110px;
+  width: 100%;
+  flex: 1;
+  z-index: 10;
+  -webkit-box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.12);
+}
+
+.content {
+  margin: 30px;
 }

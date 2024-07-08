@@ -1,5 +1,9 @@
 function dragThisTask(index) {
-    currentDraggedTask = index;
+        currentDraggedTask = index;
+}
+
+function shakeTask(index) {
+    document.getElementById(`${index}`).classList.add('shake');
 }
 
 function allowDrop(ev) {
@@ -7,43 +11,55 @@ function allowDrop(ev) {
 }
 
 function moveTaskTo(state = "to-do") {
-    //alert(state);
     task[currentDraggedTask].currentState = state;
     let updatedTask = generateUpdatedTaskAsJson();
     updateTaskInStorage(updatedTask);
     renderKanbanBoard();
+    dishighlight(state);
+}
+
+function highlight(state) {
+    document.getElementById(`kb-task-${state}`).classList.add('kanban-tasks-highlight');
+}
+
+function dishighlight(state) {
+    document.getElementById(`kb-task-${state}`).classList.remove('kanban-tasks-highlight');
+}
+
+function closePreview() {
+    document.getElementById('preview-task-area').classList.add('d-none');
+}
+
+function openPreview(index) {
+    document.getElementById('preview-task-area').classList.remove('d-none');
 }
 
 function generateUpdatedTaskAsJson() {
     let assignetTo = task[currentDraggedTask].assignetTo;
-    if (Array.isArray(assignetTo)) {
-        let assignetToStr = "[";
-        for (let i = 0; i < assignetTo.length; i++) {
-            assignetToStr += "`" +assignetTo[i] +"`";
-            if (i < assignetTo.length-1) {
-                 assignetToStr += ","
-            }else {
-                assignetToStr += "]";
-            }
-        }
-        alert(assignetToStr);
-        assignetTo = assignetToStr;
-    } 
-    
-    
-    let updatedTask = {
-        //assignetTo: `${task[currentDraggedTask].assignetTo}`,
-        assignetTo: `${assignetTo}`,
+    let subTask = task[currentDraggedTask].subtask;
+    let updatedTask = {        
+        assignetTo: assignetTo,
         category: `${task[currentDraggedTask].category}`,
         currentState: `${task[currentDraggedTask].currentState}`,
         description: `${task[currentDraggedTask].description}`,
         dueDate: `${task[currentDraggedTask].dueDate}`,
         priority: `${task[currentDraggedTask].priority}`,
-        title: `${task[currentDraggedTask].title}`
+        title: `${task[currentDraggedTask].title}`,
+        subtask: subTask
     };
     return updatedTask;
 }
 
+function filterTasks() {    
+    let searchString = document.getElementById('filter-tasks').value.toLowerCase();    
+    for (let i = 0; i < taskId.length; i++) {
+        if (!task[taskId[i]].title.toLowerCase().includes(searchString)) {                        
+            document.getElementById(`${taskId[i]}`).classList.add('d-none');            
+        } else {            
+            document.getElementById(`${taskId[i]}`).classList.remove('d-none');            
+        }
+    }
+}
 
 // Funktion zum Speichern von Demo-Tasks
 function generateDemoTasks() {
@@ -59,11 +75,6 @@ function generateDemoTasks() {
     return demoTask;
 }
 
-function uploadDemoTask() {
-    let newTask = generateDemoTasks();
-    createNewTaskInStorage(newTask);
-}
-
 function getInitials(name) {        
     name = name.trim();    
     let spaceIndex = name.indexOf(' ');    
@@ -77,4 +88,33 @@ function getInitials(name) {
         return initials;
     }    
 }
+
+function generateTest() {
+    return {
+        array: [`value_1`, `value_2`, `value_3`]
+    }
+}
+
+function generateTestUpdate() {
+    return {
+        array: [`value_4`, `value_5`, `value_6`]
+    }
+}
+
+function updateTest() {
+    let newTestUpdate = generateTestUpdate();
+    updateTestInStorage(newTestUpdate);
+}
+
+function uploadTest() {
+    let newTest = generateTest();
+    createTestInStorage(newTest);
+}
+
+function uploadDemoTask() {
+    let newTask = generateDemoTasks();
+    createNewTaskInStorage(newTask);
+}
+
+
 

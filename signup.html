@@ -7,20 +7,21 @@
     <title>Join Sign-up</title>
 
     <link rel="stylesheet" href="./style/login-signup.css">
-    <script src="./scripts/login.js"></script>
+    <script src="./scripts/global.js"></script>
+    <script src="./scripts/signup.js"></script>    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="../assets/img/icon/join_logo.svg" />
 </head>
 
-<body>
+<body onload="loadUserDataFromFB()">
 
     <div class="white-background"></div>
 
     <section class="upper-section">
         <!-- LOGO -->
-        <div class="join-logo">
+        <div>
             <img src="./assets/img/icon/join_logo.svg" alt="JOIN-LOGO">
         </div>
     </section>
@@ -37,33 +38,45 @@
                 <div class="underline"></div>
             </div>
 
-            <form class="mail-and-password">
+            <form class="mail-and-password" onsubmit="createNewUser(); return false;">
                 <div class="input-fields">
                     <input id="name" class="log-in-input" type="text" placeholder="Name" required>
                     <img class="input-icon" src="./assets/img/icon/person.svg" alt="Icon">
                 </div>
 
                 <div class="input-fields">
-                    <input id="email" class="log-in-input" type="text" placeholder="Email" required>
+                    <input id="email" class="log-in-input" type="email" placeholder="Email" required>
                     <img class="input-icon" src="./assets/img/icon/mail.svg" alt="Icon">
                 </div>
-                
+
                 <div class="input-fields">
                     <input id="password" class="log-in-input" type="password" placeholder="Password" required>
                     <img class="input-icon" src="./assets/img/icon/lock.svg" alt="Icon">
                 </div>
-                
+
                 <div class="input-fields">
-                    <input id="confirm-password" class="log-in-input" type="password" placeholder="Confirm Password" required>
+                    <input id="confirm-password" class="log-in-input" type="password" placeholder="Confirm Password"
+                        required>
                     <img class="input-icon" src="./assets/img/icon/lock.svg" alt="Icon">
                 </div>
+                
+                <div id="emailAlreadyExistsNotification" class="notification">
+                    <p>An account with this email address already exists</p>
+                </div>
+                
+                <div id="passwordsDontMatchNotification" class="notification">
+                    <p>The passwords don't match</p>
+                </div>
 
-                <label class="checkbox"><input id="acceptPrivacyPolicyCheckbox" type="checkbox" required><span>I accept the <span class="blue-font">Privacy policy</span></span></label>
+                <label class="checkbox"><input type="checkbox" required><span>I accept
+                        the <span class="blue-font">Privacy policy</span></span></label>
+
+                <section id="logInBtns" class="log-in-btns">
+                    <button class="btn-dark btn" style="font-size: 21px;"><p>Sign up</p></button>
+                    
+                </section>
             </form>
 
-            <section class="log-in-btns">
-                <button class="btn-dark btn" style="font-size: 21px;" onclick="createNewUser()">Sign up</button>
-            </section>
         </section>
     </main>
 
