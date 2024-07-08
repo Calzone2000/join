@@ -47,7 +47,7 @@ let priority = [
 function renderGenerateCheckBox(element, i) {
   let initial = element.name;
   return /*html*/ `        
-    <label>
+    <label class="lblCheckBox" onclick="addOrRemoveCheckboxLabelColor(event)">
         <div class="checkboxName"> <!-- Klasse anpassen -->
             <div class="boardTask_userInitial checkboxInitial" style="background-color:${
               element.color
@@ -57,7 +57,7 @@ function renderGenerateCheckBox(element, i) {
         <div class="checkboxWrapper27">
             <label class="checkbox">
                 <input type="checkbox" name="optionen" value="${element.name}">
-                <span class="checkboxIcon"></span>
+                <span class="checkboxIcon paddingRight"></span>
             </label>
         </div>
     </label>
@@ -138,8 +138,6 @@ function showLoadingOverlay() {
   overlay.style.display = "flex";
   overlay.style.justifyContent = "center";
   overlay.style.alignItems = "center";
-  overlay.innerHTML =
-    /* html */
-    '<div style="color: white; font-size: 24px;">Loading...</div>';
+  overlay.innerHTML = `<div style="color: white; font-size: 24px;">Loading...</div>`;
   document.body.appendChild(overlay);
 }

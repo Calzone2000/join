@@ -40,7 +40,7 @@
   justify-content: center;
 }
 
-.addTaskBTN#urgent.active {
+.addTaskBTN#high.active {
   background-color: red;
   border: red;
   color: white;

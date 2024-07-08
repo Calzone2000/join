@@ -30,15 +30,6 @@ let contactColors = [
   "#FFBB2B",
 ];
 
-/* let colorIndex = 0;
-let popUpAction = false;
-let user = {
-  name: "Gast",
-  email: "gast@join.com",
-  initials: "G",
-  color: "#FC71FF",
-}; */
-
 let show = true;
 let guesteArray = [];
 let userPriotity;
@@ -279,7 +270,6 @@ function saveEditNewTask(i) {
   getSubTaskAddTask();
 }
 
-// Kommende Funktionen müssen angepasst werden
 /**
  * The function `toggleCheckboxes` toggles the visibility of checkboxes and clears the value of an
  * input field based on a boolean variable `show`.
@@ -289,12 +279,23 @@ function saveEditNewTask(i) {
  */
 async function toggleCheckboxes(event) {
   event.preventDefault();
+  event.stopPropagation();
+
+  let assignedToInput = document.getElementById("taskAssignedTo");
   const checkboxes = document.getElementById("checkboxUsername");
   checkboxes.innerHTML = ""; // Clear existing checkboxes
 
+  if (show) {
+    assignedToInput.style.visibility = "initial";
+  } else {
+    assignedToInput.style.visibility = "hidden";
+    show = true;
+    assignedToInput.value = "";
+  }
+
   try {
     const response = await fetch(`${BASE_URL_Contacts}.json`);
-    if (!response.ok) {
+    if (!response.ok && show) {
       throw new Error("Netzwerkantwort war nicht ok.");
     }
     const snapshot = await response.json();
