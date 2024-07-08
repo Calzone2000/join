@@ -17,9 +17,11 @@
     <link rel="mask-icon" href="./assets/img/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <script src="./scripts/contacts.js"></script>
+    <script src="./scripts/global.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); onloadFunc()">
     <div id="slide-out" class="slide-out">
         <a href="legal.html">Legal Notice</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -30,19 +32,36 @@
         <section class="sidebar" w3-include-html="/tpl/sidebar.html"></section>
         <section class="right-section">
             <header w3-include-html="/tpl/top.html"></header>
-            <section class="content">
+
+            <div id="contact-form-modal-add" class="modal" style="display:none;">
+                
+                    <div w3-include-html="add_contact.html"></div>
+
+            </div>
+
+            <div id="contact-form-modal-edit" class="modal" style="display:none;">
+                
+                <div w3-include-html="edit_contact.html"></div>
+
+        </div>
+            
+            <section class="content" id="content">
                 <div class="contacts-main">
                     <div class="contacts-container">
-                        <button class="btn-dark btn" style="font-size: 21px">
-                            <div>Add new contact</div>
+                        <button class="btn-dark btn" style="font-size: 21px" onclick="openModalAdd()">
+                            Add new contact
                             <img src="./assets/img/icon/person_add.svg" alt="">
-                          </button>
+                        </button>
+                        <div id="contact-list"></div>
                     </div>
                     <div>
                         <div class="contacts-header">
                             <h1>Contacts</h1>
-                            <div class="divider"></div>
+                            <img src="./assets/img/icon/divider.svg">
                             <p>Better with a team</p>
+                        </div>
+                        <div id="selected-contact">
+
                         </div>
                     </div>
                 </div>

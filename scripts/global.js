@@ -8,9 +8,9 @@ const BASE_URL = "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.
 /** Available Avatar Colors */
 const AVATAR_COLOR = ["#ff7a00", "#ff5eb3", "#6e52ff",
                       "#9327ff", "#00bee8", "#1fd7c1",
-                      "#ff745e", "#ffa35e", "#fc71ff",
+                      "ff745e#", "#ffa35e", "#fc71ff",
                       "#ffdc00", "#0038ff", "#c3ff2b",
-                      "#ffe62b", "#ff4646", "#ffbb2b"]
+                      "#ffe62b", "#ff4646"]
 
 /** Tasks for Kanban Board */
 let task = [];
