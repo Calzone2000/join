@@ -1,10 +1,10 @@
 let contacts = [];
 let namesFirstLetters = [];
 let initials = [];
-let currentName = '';
-let currentEmail = '';
-let currentPhone = '';
-let currentElement = '';
+let currentName = "";
+let currentEmail = "";
+let currentPhone = "";
+let currentElement = "";
 
 async function onloadFunc() {
   let contactResponse = await getAllContacts("");
@@ -15,7 +15,11 @@ async function onloadFunc() {
     let contactId = contactsKeys[i];
     let initials = contactResponse["contact"][contactId]["name"].split(" ");
     let firstInitial = initials[0][0].toUpperCase();
-    let secondInitial = initials[1][0].toUpperCase();
+    let secondInitial = '';
+    if(initials.length > 1){
+        secondInitial = initials[1][0].toUpperCase();
+    }
+
     contacts.push({
       color: contactResponse["contact"][contactId]["color"],
       email: contactResponse["contact"][contactId]["email"],
@@ -58,14 +62,23 @@ function renderContacts() {
   }
 }
 
+function closeShownContact(){
+    document.getElementById('right-container').classList.add('hide-800');
+  document.getElementById('contacts-container').classList.remove('hide-800');
+  document.getElementById('shown-contact-close').classList.add('hide');
+}
+
 function showContact(i) {
   document.getElementById("selected-contact").innerHTML = "";
-  currentName = contacts[i]['name'];
-  currentEmail = contacts[i]['email'];
-  currentPhone = contacts[i]['phone'];
-    currentElement = i;
+  currentName = contacts[i]["name"];
+  currentEmail = contacts[i]["email"];
+  currentPhone = contacts[i]["phone"];
+  currentElement = i;
 
-  document.getElementById("selected-contact").innerHTML += /*html*/ `
+  document.getElementById('right-container').classList.remove('hide-800');
+  document.getElementById('contacts-container').classList.add('hide-800');
+  document.getElementById('shown-contact-close').classList.remove('hide');
+  document.getElementById('selected-contact').innerHTML += /*html*/ `
         <div class="selected-contact">
             <div class="selected-contact-top">
                 <div class="profile-badge-big" style="background-color: ${contacts[i]["color"]}">${contacts[i]["firstInitial"]}${contacts[i]["secondInitial"]}</div>
@@ -74,11 +87,11 @@ function showContact(i) {
                     <div class="selected-contact-top-right-btns">
                         <button class="contact-buttons" onclick="openModalEdit(${i})">
                             <img src="../assets/img/edit.svg" alt="">
-                            Edit
+                            <p class="contact-button-p">Edit</p>
                         </button>
                         <button class="contact-buttons" onclick="deleteContact(${i})">
                             <img src="../assets/img/delete.svg" alt="">
-                            Delete
+                            <p class="contact-button-p">Delete</p>
                         </button>
                     </div>
                 </div>
@@ -96,32 +109,31 @@ function showContact(i) {
     `;
 }
 
-async function deleteContact(){
-    if (currentElement < 0 || currentElement >= contacts.length) {
-        console.log("Index out of bounds");
-        return;
-    }
+async function deleteContact() {
+  if (currentElement < 0 || currentElement >= contacts.length) {
+    console.log("Index out of bounds");
+    return;
+  }
 
-    let contactId = contacts[currentElement]['id']; 
-    try {
-        let response = await fetch(BASE_URL + 'contact/' + contactId + '.json', {
-            method: "DELETE",
-        });
-        
-        if (response.ok) {
-            contacts.splice(currentElement, 1);
-            console.log("Kontakt erfolgreich gelöscht");
-        } else {
-            console.error("Fehler beim Löschen des Kontakts", response.statusText);
-        }
-    } catch (error) {
-        console.error("Fehler beim Löschen des Kontakts", error);
-    }
+  let contactId = contacts[currentElement]["id"];
+  try {
+    let response = await fetch(BASE_URL + "contact/" + contactId + ".json", {
+      method: "DELETE",
+    });
 
-    location.reload();
-    renderContacts();
+    if (response.ok) {
+      contacts.splice(currentElement, 1);
+      console.log("Kontakt erfolgreich gelöscht");
+    } else {
+      console.error("Fehler beim Löschen des Kontakts", response.statusText);
+    }
+  } catch (error) {
+    console.error("Fehler beim Löschen des Kontakts", error);
+  }
+
+  location.reload();
+  renderContacts();
 }
-
 
 function getFirstLetters() {
   namesFirstLetters.push(contacts[0]["name"][0]);
@@ -183,16 +195,16 @@ function getInput() {
 }
 
 function getInputEdit() {
-    let name = document.getElementById("name-input-edit").value;
-    let email = document.getElementById("email-input-edit").value;
-    let phone = document.getElementById("phone-input-edit").value;
-  
-    return {
-      name: name,
-      email: email,
-      phone: phone,
-    };
-  }
+  let name = document.getElementById("name-input-edit").value;
+  let email = document.getElementById("email-input-edit").value;
+  let phone = document.getElementById("phone-input-edit").value;
+
+  return {
+    name: name,
+    email: email,
+    phone: phone,
+  };
+}
 
 function clearInput() {
   document.getElementById("name-input").value = "";
@@ -201,10 +213,10 @@ function clearInput() {
 }
 
 function clearInputEdit() {
-    document.getElementById("name-input-edit").value = "";
-    document.getElementById("email-input-edit").value = "";
-    document.getElementById("phone-input-edit").value = "";
-  }
+  document.getElementById("name-input-edit").value = "";
+  document.getElementById("email-input-edit").value = "";
+  document.getElementById("phone-input-edit").value = "";
+}
 
 function openModalAdd() {
   document.getElementById("contact-form-modal-add").style.display = "block";
@@ -217,12 +229,12 @@ function closeModalAdd() {
   document.body.classList.remove("no-scroll");
 }
 
-async function openModalEdit(i) {
+async function openModalEdit() {
   document.getElementById("contact-form-modal-edit").style.display = "block";
   document.body.classList.add("no-scroll");
-  document.getElementById('name-input-edit').value = currentName;
-  document.getElementById('email-input-edit').value = currentEmail;
-  document.getElementById('phone-input-edit').value = currentPhone;
+  document.getElementById("name-input-edit").value = currentName;
+  document.getElementById("email-input-edit").value = currentEmail;
+  document.getElementById("phone-input-edit").value = currentPhone;
   includeHTML();
 }
 

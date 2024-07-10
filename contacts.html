@@ -44,21 +44,23 @@
                 <div w3-include-html="edit_contact.html"></div>
 
         </div>
-            
             <section class="content" id="content">
                 <div class="contacts-main">
-                    <div class="contacts-container">
+                    <div class="contacts-container" id="contacts-container">
                         <button class="btn-dark btn" style="font-size: 21px" onclick="openModalAdd()">
                             Add new contact
                             <img src="./assets/img/icon/person_add.svg" alt="">
                         </button>
                         <div id="contact-list"></div>
                     </div>
-                    <div>
+                    <div id="right-container" class="hide-800">
+                        <div id="shown-contact-close" class="hide close-svg" onclick="closeShownContact()">
+                            <img src="./assets/img/close.svg" alt="">
+                        </div>
                         <div class="contacts-header">
                             <h1>Contacts</h1>
-                            <img src="./assets/img/icon/divider.svg">
-                            <p>Better with a team</p>
+                            <img id="contacts-header-img" src="./assets/img/icon/divider.svg">
+                            <p id="contacts-header-paragraph">Better with a team</p>
                         </div>
                         <div id="selected-contact">
 
