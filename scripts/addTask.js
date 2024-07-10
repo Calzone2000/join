@@ -281,7 +281,7 @@ async function toggleCheckboxes(event) {
   event.preventDefault();
   event.stopPropagation();
 
-  let assignedToInput = document.getElementById("taskAssignedTo");
+  let assignedToInput = document.getElementById("checkBoxes");
   const checkboxes = document.getElementById("checkboxUsername");
   checkboxes.innerHTML = ""; // Clear existing checkboxes
 
@@ -300,11 +300,12 @@ async function toggleCheckboxes(event) {
   }
 
   if (show) {
-    assignedToInput.style.visibility = "initial";
+    assignedToInput.style.display = "block";
+    show = false;
   } else {
-    assignedToInput.style.visibility = "hidden";
+    assignedToInput.style.display = "";
     show = true;
-    assignedToInput.value = "";
+    // assignedToInput.value = "";
   }
 }
 

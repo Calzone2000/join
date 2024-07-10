@@ -183,11 +183,6 @@ span.join-slogan {
 }
 
 @media (max-width:450px) {
-    .task-overview-card {
-
-
-    }
-
     .task-overview-area {
         align-items: center;
     }
