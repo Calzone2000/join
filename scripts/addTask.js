@@ -285,14 +285,6 @@ async function toggleCheckboxes(event) {
   const checkboxes = document.getElementById("checkboxUsername");
   checkboxes.innerHTML = ""; // Clear existing checkboxes
 
-  if (show) {
-    assignedToInput.style.visibility = "initial";
-  } else {
-    assignedToInput.style.visibility = "hidden";
-    show = true;
-    assignedToInput.value = "";
-  }
-
   try {
     const response = await fetch(`${BASE_URL_Contacts}.json`);
     if (!response.ok && show) {
@@ -305,6 +297,14 @@ async function toggleCheckboxes(event) {
     });
   } catch (error) {
     console.error("Error fetching data: ", error);
+  }
+
+  if (show) {
+    assignedToInput.style.visibility = "initial";
+  } else {
+    assignedToInput.style.visibility = "hidden";
+    show = true;
+    assignedToInput.value = "";
   }
 }
 

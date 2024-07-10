@@ -430,7 +430,7 @@ header {
 }
 
 #checkBoxes {
-  /* visibility: hidden; */
+  visibility: hidden;
   z-index: 99;
 }
 
