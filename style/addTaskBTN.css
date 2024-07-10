@@ -62,10 +62,10 @@
 .BTNFooter {
   display: flex;
   justify-content: end;
-  position: absolute;
+  position: relative;
   width: 92.5%;
   height: 56px;
-  top: 850px;
+  top: 50px;
   gap: 16px;
   left: 0;
   margin-right: 500px;
