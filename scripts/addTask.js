@@ -9,7 +9,8 @@ let BASE_URL_Contacts =
 
 let task = [];
 let taskID = [];
-let subtask = []; // Stellt sicher, dass subtask global definiert ist
+let subtask = [];
+let assigningTo = [];
 let data = [];
 let path = "contacts";
 let contactColors = [
@@ -151,44 +152,29 @@ function clearContent() {
 /**
  * create Task and switching to the Board.
  */
-async function createTask() {
-  const title = document.getElementById("taskTitle").value.trim();
-  const description = document
-    .getElementById("taskDescriptionArea")
-    .value.trim();
-  const assignedTo = document.getElementById("taskAssignedTo").value.trim();
-  const dueDate = document.getElementById("taskDate").value.trim();
-  const category = document.getElementById("task_category").value.trim();
-  const subtaskElements = document.querySelectorAll(
-    "#getSubtask .subtaskInput"
-  );
+function getValue(id) {
+  return document.getElementById(id).value.trim();
+}
+
+function getTaskFromForm() {
   const priorityElement = document.querySelector(".prioBTNS .active"); // Find the active priority button
   const priority = priorityElement ? priorityElement.id : "";
 
-  if (!title || !description || !dueDate || !category || !priority) {
-    return; // Required fields are missing
-  }
-
-  // Collect subtasks
-  const subtaskArray = [];
-  subtaskElements.forEach((subtask) => {
-    const subtaskValue = subtask.value.trim();
-    if (subtaskValue) {
-      subtaskArray.push({ title: subtaskValue, status: "pending" });
-    }
-  });
-
   const task = {
-    title: title,
-    description: description,
-    dueDate: dueDate,
-    category: category,
-    priority: priority,
-    assignetTo: assignedTo ? assignedTo : "", // Assign to empty string if not provided
-    subtasks: subtaskArray.length > 0 ? subtaskArray : [], // Add subtasks if any
+    title: getValue("taskTitle"),
+    description: getValue("taskDescriptionArea"),
+    dueDate: getValue("taskDate"),
+    category: getValue("task_category"),
+    priority,
+    assignetTo: assigningTo,
+    subtasks: subtask,
     currentState: "to-do",
   };
+  return task;
+}
 
+async function createTask() {
+  const task = getTaskFromForm();
   const databaseUrl =
     "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task.json";
 
