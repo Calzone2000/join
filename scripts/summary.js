@@ -56,6 +56,7 @@ async function loadUrgentTasksDeadline() {
             taskIDs.push(key);
             taskPriorityArray.push({
                 priority: taskPriorities[key].priority,
+                dueDate: taskPriorities[key].dueDate
             });
         });
 
