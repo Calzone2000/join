@@ -1,9 +1,10 @@
 /*
 let task = [];
-let taskId = [];
+
 */
 
 let taskIDs = [];
+let nextUrgentTask = [];
 let taskPriorityArray = [];
 
 
@@ -22,7 +23,7 @@ function renderStates() {
 }
 
 function renderGreeting() {
-    document.getElementById('greeted-person').innerHTML = currentUserName;
+    document.getElementById('greeted-person').innerHTML = ',' + currentUserName;
 }
 
 function countStateOccurrences(searchString) {
@@ -46,26 +47,68 @@ function countUrgency(priority = "high") {
 }
 
 async function loadUrgentTasksDeadline() {
-    let taskPriorities = await getUrgendDeadline('/task');
-    console.log(taskPriorities);
+    let nextDeadline = document.getElementById('next-deadline');
+    let allTasks = await fetchAllTasks('/task');
+    // console.log(allTasks);
 
-    if (taskPriorities) {
-        let taskKeysArray = Object.keys(taskPriorities);
-
-        taskKeysArray.forEach(key => {
-            taskIDs.push(key);
-            taskPriorityArray.push({
-                priority: taskPriorities[key].priority,
-                dueDate: taskPriorities[key].dueDate
-            });
-        });
-
-        console.log(taskIDs);
-        console.log(taskPriorityArray);
+    if (!allTasks) {
+        return;
     }
+
+    let taskKeysArray = Object.keys(allTasks);
+    let priority = 'high';
+
+    let tasksByPriority = await fetchTasksByPriority(taskKeysArray, priority);
+
+    if (tasksByPriority.length == 0) {
+        priority = 'medium';
+        tasksByPriority = await fetchTasksByPriority(taskKeysArray, priority);
+    }
+
+    if (tasksByPriority.length == 0) {
+        priority = 'low';
+        tasksByPriority = await fetchTasksByPriority(taskKeysArray, priority);
+    }
+
+    // console.log(taskPriorityArray);
+    // console.log(taskIDs[0]);
+    let nextUrgentDate = allTasks[taskIDs[0]].dueDate;
+    // console.log(nextUrgentDate);
+
+    if (tasksByPriority.length == 1) {
+        nextDeadline.innerHTML = nextUrgentDate;
+        return;
+    }
+
+
+    for (let index = 1; index < tasksByPriority.length; index++) {
+        const currentElement = tasksByPriority[index];
+        // console.log(currentElement);
+        if (currentElement.dueDate <= nextUrgentDate) {
+            nextUrgentDate = currentElement.dueDate;
+        }    
+    }
+    // console.log(nextUrgentDate);
+
+    nextDeadline.innerHTML = nextUrgentDate;
 }
 
-async function getUrgendDeadline(path = "") {
+async function fetchTasksByPriority(taskKeysArray, priority) {
+    let allTasks = await fetchAllTasks('/task');
+
+    taskKeysArray.forEach(key => {
+        if (allTasks[key].priority == priority) {
+            taskIDs.push(key);
+            taskPriorityArray.push({
+                priority: allTasks[key].priority,
+                dueDate: allTasks[key].dueDate
+            });
+        } 
+    });
+    return taskPriorityArray;
+}
+
+async function fetchAllTasks(path = "") {
     let response = await fetch(BASE_URL + path + '.json');
     let responseToJSON = await response.json();
     return responseToJSON;
