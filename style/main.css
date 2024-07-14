@@ -1,3 +1,7 @@
+html {
+    overflow: hidden;
+}
+
 body {
     background-color: #f6f7f8;
     margin: 0;
@@ -283,7 +287,7 @@ h1, h2, h3, .join {
         height:82px;
         flex:none;
         position:sticky;
-        bottom:0;
+        bottom: 82px;
         z-index:1000;
     }
 
