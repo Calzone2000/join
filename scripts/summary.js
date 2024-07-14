@@ -72,6 +72,7 @@ async function getUrgendDeadline(path = "") {
 }
 
 function onload() {
+    initSummary();
     includeHTML();
     loadUrgentTasksDeadline();
 }
