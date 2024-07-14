@@ -11,10 +11,11 @@ async function loadTasks(path="task") {
 }
 
 async function loadContacts(path="contact") {
+    contactId.length=0;
     try {
         let response = await fetch(BASE_URL + path + ".json");        
         contact = await response.json();
-        Object.keys(task).forEach(id => {        
+        Object.keys(contact).forEach(id => {        
             contactId.push(id); 
         });
     } catch (error) {

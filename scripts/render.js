@@ -149,7 +149,7 @@ function renderPreviewCardFooter(index) {
                     <img src="./assets/img/delete.svg" alt="Delete Task">
                     <span>Delete</span>
                 </div>
-                <div class="preview-card-action">
+                <div class="preview-card-action" onclick="renderEditCard('${index}')">
                     <img src="./assets/img/edit.svg" alt="Edit Task">
                     <span>Edit</span>
                 </div>
@@ -159,7 +159,6 @@ function renderPreviewCardFooter(index) {
 }
 
 function renderPreviewCardContent(index) {
-
     let previewCardHTML = `<div class="preview-card-content">`
     previewCardHTML += renderPreviewCardTitleDescription(index);
     previewCardHTML += renderPreviewCardTable(index);
@@ -195,7 +194,6 @@ function renderPreviewCardTable(index) {
 }
 
 function renderPreviewResponsibles(index) {
-
     let previewCardHTML = `<span class="preview-card-sub-hl">Assignet to:</span>
                            <div id="preview-card-responsibles">`;
     if (task[index].assignetTo) {
@@ -219,23 +217,6 @@ function renderPreviewResponsibles(index) {
     return previewCardHTML;
 }
 
-/*
-function OLD_renderPreviewCardSubtasks(index) {
-    let previewCardHTML = `<span class="preview-card-sub-hl">Subtasks</span>
-                                <div class="preview-card-subtasks">`;
-    if (task[index].subtask) {
-        for (let i = 0; i < task[index].subtask.length; i++) {
-            previewCardHTML += `<div class="preview-card-subtask">
-                                    <img src="./assets/img/check_${task[index].subtask[i].status}.svg" alt="Open">
-                                    <div>${task[index].subtask[i].description}</div>
-                                </div>`;
-        }
-    }
-    previewCardHTML += `</div></div>`;
-    return previewCardHTML;
-}
-*/
-
 function renderPreviewCardSubtasks(index) {
 
     let previewCardHTML = ``;
@@ -253,6 +234,91 @@ function renderPreviewCardSubtasks(index) {
     }
     previewCardHTML += `</div></div>`;
     return previewCardHTML;
+}
+
+async function renderEditCard(index) {
+    await loadContacts();
+    renderEditCard2(index);
+}
+
+
+function renderEditCard2(index) {
+    
+    document.getElementById('edit-task-area').classList.remove('d-none');
+    document.getElementById('preview-task-area').classList.add('d-none');
+    let editCard = document.getElementById('edit-card');
+    let editCardForm = `<h2>Edit Task</h2>
+                        <form>
+                            <div>
+                            </div>
+                            <div>                        
+                                <label for="task-title">Titel</label>
+                                <input type="text" id="task-title" value="${task[index].title}">
+                            </div>
+                            <div>
+                                <label for="task-description">Description</label>
+                                <input type="text" id="task-description" value="${task[index].description}">
+                            </div>
+                            <div>
+                                <label for "task-category">Category</label>
+                                <select id="task-category" requried>`;
+    if (task[index].category == "technical") {
+        editCardForm +=             `<option value="technical" selected>Technical Task</option>
+                                    <option value="story">User Story</option>`;
+    } else {
+        editCardForm +=             `<option value="story" selected>User story</option>
+                                    <option value="technical">Technical Task</option>`;
+    }    
+    editCardForm +=            `</select>
+                            </div>`;
+    
+    editCardForm +=         `<div>
+                                <label for "task-due-date">Due Date</label>
+                                <input type="date" id="task-due-date" value="${task[index].dueDate}"></input>
+                             </div>`;
+
+    editCardForm +=         `<div class="task-participiants-dropdown">
+                                <label="task-participiants">
+                                    <button type="button" class="dropdown-btn">Assign contacts</button>`;
+                                    
+   
+    for (let i=0; i < contactId.length; i++) {
+        let contactIsAssignet = false;
+        for (let j=0; j<task[index].assignetTo.length; j++) {
+            if (contactId[i] == task[index].assignetTo[j]) {
+                contactIsAssignet = true;
+            }
+        }        
+        if (contactIsAssignet == true) {
+            editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}" checked>${contact[contactId[i]].name}</label>`;
+        } else {
+            editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}">${contact[contactId[i]].name}</label>`;
+        }
+        editCardForm += `<br>`                ;
+    }
+   
+
+
+    /*
+    for (let j=0; j<task[index].assignetTo.length; j++) {
+        for (let i=0; i < contactId.length; i++) {
+            if (contactId[i] == task[index].assignetTo[j]) {
+                editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}" checked>${i} ${j} ${contact[contactId[i]].name}</label>`;
+            } else {
+               editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}">${i} ${j} ${contact[contactId[i]].name}</label>`;
+            }   
+            editCardForm += `<br>`                ;
+        }                             
+    }
+    */
+    editCardForm += `</label></div>`;
+           
+                            
+
+    editCardForm += `</form>`;
+    editCard.innerHTML = editCardForm;
+
+
 }
 
 /** Mandatory functions for rendering */

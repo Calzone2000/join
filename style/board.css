@@ -202,7 +202,8 @@ img.spyglass {
     background-color: #091931;
 }
 
-.preview-task-area {
+.preview-task-area, 
+.edit-task-area{
     position: fixed;
     top: 0;
     left: 0;
@@ -215,7 +216,8 @@ img.spyglass {
     align-items: center;
 }
 
-.preview-card {
+.preview-card, 
+.edit-card {
     max-height: 80vh;
     width: 400px;
     border-radius: 30px;
