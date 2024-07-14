@@ -48,7 +48,7 @@ function renderGenerateCheckBox(element, i) {
   let initial = element.name;
   return /*html*/ `        
     <label class="lblCheckBox" onclick="addOrRemoveCheckboxLabelColor(event)">
-        <div class="checkboxName"> <!-- Klasse anpassen -->
+        <div class="checkboxName">
             <div class="boardTask_userInitial checkboxInitial" style="background-color:${
               element.color
             }">${getInitials(initial)}</div>
