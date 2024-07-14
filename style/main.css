@@ -3,8 +3,7 @@ body {
     margin: 0;
     font-family: "Figtree", sans-serif;
     font-weight: 400;
-    font-style: normal;
-    /*height: 100%;*/
+    font-style: normal;    
 }
 
 /* General classes */
@@ -70,10 +69,8 @@ a.logo-big{
 /* Body container*/
 .body{
     display:flex;
-    min-height:100vh;
-    
+    min-height:100vh;    
 }
-
 
 /* Navigation bar */
 .sidebar {
@@ -82,8 +79,7 @@ a.logo-big{
     min-width: 225px;
     display: flex;
     flex-direction: column;    
-    justify-content: space-between;
-    /*flex:1;*/
+    justify-content: space-between;    
     position:sticky;
     top:0;
     left:0;
@@ -182,27 +178,28 @@ header {
 .right-top {
     display:flex;
     align-items: center;
-    gap:12px;
+    gap:5px;
     margin-right:50px;
 }
 
 .initials {
-    display:flex;
+    display:inline-flex;
     justify-content:center;
-    align-items:center;
-    padding:10px;
+    align-items:center;        
     border: solid;
-    border-radius: 50%;
-    width:35px;
-    height:35px;
-    border-width: 3px;
-    border-spacing: 34px;
-    border-color: #091931;
-    color: #29abe2;
+    border-radius: 50%;    
+    height:57px;
+    width:57px;
     font-size: x-large;
-    font-weight: bold;
-    padding:8px;
+    font-weight: bold;    
     cursor: pointer;
+    color: #29abe2;
+    border-color: #091931;
+    
+    box-sizing: border-box;
+    
+    
+    */
 }
 
 /* Content section */

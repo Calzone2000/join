@@ -223,8 +223,6 @@ img.spyglass {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
-
 }
 
 .preview-card-header {
@@ -251,9 +249,7 @@ img.spyglass {
 }
 
 .preview-card-menu {
-    position: sticky;
-    /*background-color: rgba(255, 255, 255, 0.5);*/
-
+    position: sticky;    
     padding: 20px;
 }
 
@@ -265,7 +261,6 @@ img.spyglass {
     margin-top: 30px;
     position: relative;
     bottom: 0;
-
 }
 
 .preview-card-sub-hl {
@@ -299,8 +294,6 @@ img.spyglass {
     margin-left: 15px;
     margin-top: 1px;
 }
-
-
 
 @keyframes shake {
 
