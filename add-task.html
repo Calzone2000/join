@@ -47,9 +47,8 @@
     <link rel="stylesheet" href="./style/addTask.css" />
     <script src="./scripts/addTask.js"></script>
     <script src="./scripts/addTask_HTML.js"></script>
-    <script src="./scripts/board.js"></script>
-    <script src="./scripts/navigation.js"></script>
-
+    <script src="./scripts/board.js"></script>    
+    <script src="./scripts/general.js"></script>
 
     <!-- <script src="./scripts/init.js"></script> -->
 
@@ -60,11 +59,7 @@
   </head>
 
   <body onload="includeHTML(); generateCheckBox()">
-    <div id="slide-out" class="slide-out">
-      <a href="legal.html">Legal Notice</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="#">Logout</a>
-    </div>
+    <div id="slide-out" class="slide-out" w3-include-html="./tpl/flyout.html"></div>
 
     
     <div

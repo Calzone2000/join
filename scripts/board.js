@@ -10,11 +10,6 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-function openAddTask(currentState="to-do") {
-    window.name = currentState;
-    window.location.href = 'add-task.html';
-}
-
 function addTaskFromBoard(currentState="to-do") {
     window.name = currentState;
     window.location.href = 'add-task.html';
@@ -30,12 +25,16 @@ function moveTaskTo(state = "to-do") {
 
 function highlight(state) {
     document.getElementById(`kb-task-${state}`).classList.add('kanban-tasks-highlight');
-    document.getElementById(`no-task-to-do-${state}`).classList.add('d-none');
+    if (document.getElementById(`no-task-to-do-${state}`)) {
+        document.getElementById(`no-task-to-do-${state}`).classList.add('d-none');
+    }
 }
 
 function dishighlight(state) {
     document.getElementById(`kb-task-${state}`).classList.remove('kanban-tasks-highlight');
-    document.getElementById(`no-task-to-do-${state}`).classList.remove('d-none');
+    if (document.getElementById(`no-task-to-do-${state}`)) {
+        document.getElementById(`no-task-to-do-${state}`).classList.remove('d-none');
+    }
 }
 
 function closePreview() {
@@ -72,61 +71,3 @@ function filterTasks() {
         }
     }
 }
-
-// Funktion zum Speichern von Demo-Tasks
-function generateDemoTasks() {
-    let demoTask = {
-        assignetTo: [`-O-zxrQASTyx_kpyyE1j`, `-O-zxdfpYCqeU0sSbc3v`],
-        category: `technical`,
-        currentState: `await-feedback`,
-        description: `Gruppenarbeit: Programmieren eines Kanban Boards`,
-        dueDate: `10.07.2024`,
-        priority: `high`,
-        title: `Programmieren`
-    };
-    return demoTask;
-}
-
-function getInitials(name) {        
-    name = name.trim();    
-    let spaceIndex = name.indexOf(' ');    
-    if (spaceIndex !== -1) {
-        let firstWord = name.slice(0, spaceIndex).trim();        
-        let secondWord = name.slice(spaceIndex + 1).trim();        
-        let initials = firstWord.charAt(0).toUpperCase() + secondWord.charAt(0).toUpperCase();                
-        return initials;    
-    } else {        
-        let initials = name.slice(0, 2).toUpperCase();                
-        return initials;
-    }    
-}
-
-function generateTest() {
-    return {
-        array: [`value_1`, `value_2`, `value_3`]
-    }
-}
-
-function generateTestUpdate() {
-    return {
-        array: [`value_4`, `value_5`, `value_6`]
-    }
-}
-
-function updateTest() {
-    let newTestUpdate = generateTestUpdate();
-    updateTestInStorage(newTestUpdate);
-}
-
-function uploadTest() {
-    let newTest = generateTest();
-    createTestInStorage(newTest);
-}
-
-function uploadDemoTask() {
-    let newTask = generateDemoTasks();
-    createNewTaskInStorage(newTask);
-}
-
-
-
