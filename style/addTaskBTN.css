@@ -66,8 +66,7 @@
   width: 92.5%;
   height: 56px;
   gap: 16px;
-  left: 0;
-  margin-right: 500px;
+  right: 0;
 }
 
 .clearBTNFooter {
@@ -75,7 +74,7 @@
   justify-content: space-between;
   right: 10px;
   padding: 16px;
-  gap: 8px;
+  gap: 16px;
   border-radius: 10px;
   border: 1px solid #d1d1d1;
   font-size: 20px;
@@ -83,6 +82,10 @@
   line-height: 24px;
   text-align: left;
   width: 100px;
+  box-sizing: border-box;
+  align-items: center;
+  width: auto;
+  white-space: nowrap;
 }
 
 .clearBTNFooter:hover {
@@ -100,10 +103,9 @@
 .creatingBTNFooter {
   display: flex;
   justify-content: space-between;
-  width: 183px;
   height: 56px;
   padding: 16px;
-  gap: 4px;
+  gap: 16px;
   border-radius: 10px;
   font-size: 20px;
   line-height: 25.2px;
@@ -111,6 +113,10 @@
   border: 1px solid #d1d1d1;
   background: #2a3647;
   color: white;
+  box-sizing: border-box;
+  align-items: center;
+  width: auto;
+  white-space: nowrap;
 }
 
 .creatingBTNFooter:hover {
