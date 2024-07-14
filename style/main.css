@@ -194,12 +194,8 @@ header {
     font-weight: bold;    
     cursor: pointer;
     color: #29abe2;
-    border-color: #091931;
-    
-    box-sizing: border-box;
-    
-    
-    */
+    border-color: #091931;    
+    box-sizing: border-box;    
 }
 
 /* Content section */
