@@ -160,6 +160,10 @@ function getTaskFromForm() {
   const priorityElement = document.querySelector(".prioBTNS .active"); // Find the active priority button
   const priority = priorityElement ? priorityElement.id : "";
 
+  if (window.name) {
+    currentState=window.name;
+  }
+
   const task = {
     title: getValue("taskTitle"),
     description: getValue("taskDescriptionArea"),
@@ -168,7 +172,7 @@ function getTaskFromForm() {
     priority,
     assignetTo: assigningTo,
     subtasks: subtask,
-    currentState: "to-do",
+    currentState: currentState,
   };
   return task;
 }

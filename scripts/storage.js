@@ -22,6 +22,25 @@ async function loadContacts(path="contact") {
     }
 }
 
+async function deleteThisTask(index) {    
+    let confirmDelete = confirm("Do you really want to delete this task?");
+    if (confirmDelete) {
+        let path = "task/" + index + ".json";    
+        let response = await fetch(BASE_URL + path, {
+            method:"DELETE",
+            header: {
+                "Content-Type": "application/json",
+            }            
+        });
+    document.getElementById('preview-task-area').classList.add('d-none');
+    task.length = 0;
+    taskId.length = 0;
+    await loadTasks();
+    renderKanbanBoard();
+    }
+}
+
+
 async function updateTaskInStorage(data={}) {
     path = "task/" + currentDraggedTask + ".json";    
     let response = await fetch(BASE_URL + path, {

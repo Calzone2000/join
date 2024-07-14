@@ -34,17 +34,6 @@ function renderKanbanBoard() {
     renderKanbanCard("done");
 }
 
-function markEmptyColumns(state) {
-    for (let i = 0; i < taskId.length; i++) {
-        if (task[taskId[i]].currentState == state) {
-            document.getElementById(`no-task-${state}`).classList.add('d-none');
-            return 0;
-        }
-    }
-    document.getElementById(`no-task-${state}`).classList.remove('d-none');
-
-}
-
 function renderKanbanCard(state = "to-do") {
     let currentColumn = document.getElementById(`kb-task-${state}`);
     let currentColumnContent = "";
@@ -57,8 +46,11 @@ function renderKanbanCard(state = "to-do") {
             currentColumnContent += renderCardFooter(taskId[i]);
         }
     }
+    if (countTasks > 0) {
     currentColumn.innerHTML = currentColumnContent;
-    markEmptyColumns(`${state}`);
+    } else {
+        currentColumn.innerHTML = `<div id="no-task-to-do-${state}" class="no-task-info">No tasks to do</div>`;
+    }
 }
 
 function renderCardHeader(index) {
@@ -107,17 +99,21 @@ function renderCardFooter(index) {
 
 function renderParticipants(index) {
     let participiantId = task[index].assignetTo;
-    let participiantHTML = "";
-    for (let i = 0; i < participiantId.length; i++) {
-        let participiantData = contact[participiantId[i]];
-        if (participiantData) {
-            let participiantName = participiantData.name;
-            let participiantInitials = getInitials(participiantName);
-            let participiantColor = participiantData.color;
-            participiantHTML += `<span style="background-color: ${participiantColor}" class="user-in">${participiantInitials}</span>`;
+    if (participiantId) {
+        let participiantHTML = "";
+        for (let i = 0; i < participiantId.length; i++) {
+            let participiantData = contact[participiantId[i]];
+            if (participiantData) {
+                let participiantName = participiantData.name;
+                let participiantInitials = getInitials(participiantName);
+                let participiantColor = participiantData.color;
+                participiantHTML += `<span style="background-color: ${participiantColor}" class="user-in">${participiantInitials}</span>`;
+            }
         }
+        return participiantHTML;
+    } else {
+        return `<span style="background-color: red; color: black!important; font-weight: bold;" class="user-in">??</span>`;
     }
-    return participiantHTML;
 }
 
 /**
@@ -136,6 +132,7 @@ function renderPreviewCard(index) {
 }
 
 function renderPreviewCardHeader(index) {
+
     let previewCardHTML =
         `<div class="preview-card-header preview-card-menu">
                 <div class="task-cat ${task[index].category}">${task[index].category}</div>
@@ -145,9 +142,10 @@ function renderPreviewCardHeader(index) {
 }
 
 function renderPreviewCardFooter(index) {
+
     let previewCardHTML = `
                 <div class="preview-card-footer preview-card-menu">
-                <div class="preview-card-action">
+                <div class="preview-card-action" onclick="deleteThisTask('${index}')">
                     <img src="./assets/img/delete.svg" alt="Delete Task">
                     <span>Delete</span>
                 </div>
@@ -161,6 +159,7 @@ function renderPreviewCardFooter(index) {
 }
 
 function renderPreviewCardContent(index) {
+
     let previewCardHTML = `<div class="preview-card-content">`
     previewCardHTML += renderPreviewCardTitleDescription(index);
     previewCardHTML += renderPreviewCardTable(index);
@@ -171,12 +170,14 @@ function renderPreviewCardContent(index) {
 }
 
 function renderPreviewCardTitleDescription(index) {
+
     let previewCardHTML = `<h2 class="preview-card-title">${task[index].title}</h2>
                            <span class="preview-card-description">${task[index].description}</span>`;
     return previewCardHTML;
 }
 
 function renderPreviewCardTable(index) {
+
     let previewCardHTML = `<table>
                     <tr style="height: 60px;">
                         <td class="preview-card-sub-hl" style="width: 100px;">Due Date:</td>
@@ -194,19 +195,31 @@ function renderPreviewCardTable(index) {
 }
 
 function renderPreviewResponsibles(index) {
+
     let previewCardHTML = `<span class="preview-card-sub-hl">Assignet to:</span>
                            <div id="preview-card-responsibles">`;
-    for (let i = 0; i < task[index].assignetTo.length; i++) {
-        let participiantInitials = getInitials(contact[task[index].assignetTo[i]].name);
-        previewCardHTML += `<div class="user-preview">
+    if (task[index].assignetTo) {
+        for (let i = 0; i < task[index].assignetTo.length; i++) {
+            if (contact[task[index].assignetTo[i]]) {
+                let participiantInitials = getInitials(contact[task[index].assignetTo[i]].name);
+                previewCardHTML += `<div class="user-preview">                                
                                 <div style="background-color: ${contact[task[index].assignetTo[i]].color}" class="user-in left-20">${participiantInitials}</div>
                                 <div>${contact[task[index].assignetTo[i]].name}</div>
                             </div>`;
-    }
+            } else {
+                previewCardHTML += `<div class="user-preview">                                
+                                <div style="background-color: red; color: black!important; font-weight:bold" class="user-in left-20">??</div>
+                                <div>Unknown User</div>
+                            </div>`;
+            }
+        }
+    } 
+
     previewCardHTML += `</div>`;
     return previewCardHTML;
 }
 
+/*
 function OLD_renderPreviewCardSubtasks(index) {
     let previewCardHTML = `<span class="preview-card-sub-hl">Subtasks</span>
                                 <div class="preview-card-subtasks">`;
@@ -221,8 +234,10 @@ function OLD_renderPreviewCardSubtasks(index) {
     previewCardHTML += `</div></div>`;
     return previewCardHTML;
 }
+*/
 
 function renderPreviewCardSubtasks(index) {
+
     let previewCardHTML = ``;
     if (task[index].subtask) {
         previewCardHTML += `<span class="preview-card-sub-hl">Subtasks</span>

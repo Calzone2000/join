@@ -10,6 +10,16 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+function openAddTask(currentState="to-do") {
+    window.name = currentState;
+    window.location.href = 'add-task.html';
+}
+
+function addTaskFromBoard(currentState="to-do") {
+    window.name = currentState;
+    window.location.href = 'add-task.html';
+}
+
 function moveTaskTo(state = "to-do") {
     task[currentDraggedTask].currentState = state;
     let updatedTask = generateUpdatedTaskAsJson();
@@ -20,10 +30,12 @@ function moveTaskTo(state = "to-do") {
 
 function highlight(state) {
     document.getElementById(`kb-task-${state}`).classList.add('kanban-tasks-highlight');
+    document.getElementById(`no-task-to-do-${state}`).classList.add('d-none');
 }
 
 function dishighlight(state) {
     document.getElementById(`kb-task-${state}`).classList.remove('kanban-tasks-highlight');
+    document.getElementById(`no-task-to-do-${state}`).classList.remove('d-none');
 }
 
 function closePreview() {

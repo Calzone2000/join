@@ -45,7 +45,7 @@
                             <div class="search-seperator"></div>
                             <img src="./assets/img/spyglass-black.svg" id="spyglass-black" class="spyglass"></img>
                         </div>
-                        <div class="btn-add-task" onclick="openAddTask('to-do')">
+                        <div class="btn-add-task">
                             <span>Add Task</span>
                             <img src="./assets/img/plus_white.svg">
                         </div>
@@ -55,30 +55,28 @@
                     <div id="col-to-do" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>To Do</h3>
-                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add" onclick="openAddTask('to-do')">
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add">
                         </div>
-                        <div id="kb-task-to-do" class="kanban-tasks" 
-                             ondragleave="dishighlight('to-do')"
-                             ondragover="allowDrop(event); highlight('to-do')" 
-                             ondrop="moveTaskTo('to-do')">
-                        </div>
+                        <div id="no-task-to-do" class="no-task-info">No tasks to do</div>
+                        <div id="kb-task-to-do" class="kanban-tasks" ondragleave="dishighlight('to-do')"
+                            ondragover="allowDrop(event); highlight('to-do')" ondrop="moveTaskTo('to-do')"></div>
                     </div>
                     <div id="col-in-progress" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>In Progress</h3>
-                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add" onclick="openAddTask('in-progress')">
-                        </div>                        
-                        <div id="kb-task-in-progress" class="kanban-tasks" 
-                             ondragleave="dishighlight('in-progress')"
-                             ondragover="allowDrop(event); highlight('in-progress')" 
-                             ondrop="moveTaskTo('in-progress')">
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add">
+                        </div>
+                        <div id="no-task-in-progress" class="no-task-info">No tasks to do</div>
+                        <div id="kb-task-in-progress" class="kanban-tasks" ondragleave="dishighlight('in-progress')"
+                            ondragover="allowDrop(event); highlight('in-progress')" ondrop="moveTaskTo('in-progress')">
                         </div>
                     </div>
                     <div id="col-await-feedback" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>Await Feedback</h3>
-                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add" onclick="openAddTask('await-feedback')">
-                        </div>                        
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add">
+                        </div>
+                        <div id="no-task-await-feedback" class="no-task-info">No tasks to do</div>
                         <div id="kb-task-await-feedback" class="kanban-tasks"
                             ondragleave="dishighlight('await-feedback')"
                             ondragover="allowDrop(event); highlight('await-feedback')"
@@ -88,11 +86,10 @@
                         <div class="kanban-col-hl">
                             <h3>Done</h3>
                             <img class="btn-add-task-to-column d-none" src="./assets/img/plus_b.svg" alt="Add">
-                        </div>                        
-                        <div id="kb-task-done" class="kanban-tasks" 
-                             ondragleave="dishighlight('done')"
-                             ondragover="allowDrop(event); highlight('done')" 
-                             ondrop="moveTaskTo('done')"></div>
+                        </div>
+                        <div id="no-task-done" class="no-task-info">No tasks to do</div>
+                        <div id="kb-task-done" class="kanban-tasks" ondragleave="dishighlight('done')"
+                            ondragover="allowDrop(event); highlight('done')" ondrop="moveTaskTo('done')"></div>
                     </div>
                 </section>
             </section>

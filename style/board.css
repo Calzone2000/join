@@ -27,7 +27,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-height: calc(100% + 200px);
+    min-height: calc(100% + 125px);
 }
 
 .kanban-tasks-highlight {
@@ -60,9 +60,9 @@
     color: black;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
-    -webkit-box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
-    -moz-box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 .task-info span {
@@ -361,12 +361,78 @@ img.spyglass {
 
 
 
-@media (max-width:920px) {
+@media (max-width:1100px) {
+    #kb-task-done {
+        margin-bottom:120px;
+    }
+
+    .kanban-col-hl {
+        justify-content: flex-start;
+        gap:30px;
+        width:90vw;
+    }
+
     .kanban-board {
         flex-direction: column;
         justify-content: space-between;
     }
 
+    .kanban-tasks {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;                
+        width:90vw;
+        padding:20px 2px;
+        margin-right:100px;       
+        overflow-x:auto;
+        min-height: 100px;
+    }
 
+    .right-section {
+        overflow-x: hidden;
+        
+    }
 
+    .task-info {
+        min-width:200px;
+        max-width:200px;
+    }
+
+    .no-task-info {
+        width:200px;
+    }
+
+    .board-header {
+        flex-direction: column;
+    }
+
+    .btn-add-task {
+        min-width:120px;
+        font-size:medium;
+    }
+    .progress {
+        flex-direction: column;
+    }
+}
+
+@media (max-width:580px) {
+    .board-functions {
+        flex-direction: column;
+        gap:10px;
+        align-items: center;
+    }
+    
+    .btn-add-task {
+        height:56px;
+        min-width: 200px;       
+    }
+
+    .search-task {
+        width: 250px;
+    }
+
+    input.filter-tasks-field {
+        width: 170px;
+        font-size: 16px;
+    }
 }
