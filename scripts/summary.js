@@ -90,7 +90,7 @@ async function loadUrgentTasksDeadline() {
     }
     // console.log(nextUrgentDate);
 
-    nextDeadline.innerHTML = nextUrgentDate;
+    nextDeadline.innerHTML = formatDate(nextUrgentDate);
 }
 
 async function fetchTasksByPriority(taskKeysArray, priority) {
@@ -112,6 +112,12 @@ async function fetchAllTasks(path = "") {
     let response = await fetch(BASE_URL + path + '.json');
     let responseToJSON = await response.json();
     return responseToJSON;
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
 }
 
 function onload() {
