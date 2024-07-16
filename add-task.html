@@ -7,12 +7,13 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
-  
+
+    <link rel="stylesheet" href="./style/addTaskResponsiv.css" />
 
     <!-- Icon -->
     <link rel="icon" href="./assets/img/icon/join_logo.svg" />
@@ -47,8 +48,9 @@
     <link rel="stylesheet" href="./style/addTask.css" />
     <script src="./scripts/addTask.js"></script>
     <script src="./scripts/addTask_HTML.js"></script>
-    <script src="./scripts/board.js"></script>    
+    <script src="./scripts/board.js"></script>
     <script src="./scripts/general.js"></script>
+    <script src="./scripts/storage.js"></script>
 
     <!-- <script src="./scripts/init.js"></script> -->
 
@@ -59,15 +61,17 @@
   </head>
 
   <body onload="includeHTML(); generateCheckBox()">
-    <div id="slide-out" class="slide-out" w3-include-html="./tpl/flyout.html"></div>
-
-    
     <div
       id="slide-out"
       class="slide-out"
       w3-include-html="./tpl/flyout.html"
     ></div>
 
+    <div
+      id="slide-out"
+      class="slide-out"
+      w3-include-html="./tpl/flyout.html"
+    ></div>
 
     <div class="body">
       <section class="sidebar" w3-include-html="./tpl/sidebar.html"></section>
