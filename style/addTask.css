@@ -289,9 +289,9 @@ body {
   justify-content: space-between;
   gap: 16px;
   align-items: center;
-  bottom: 48px;
+  bottom: 60px;
   position: fixed;
-  width: 70vw;
+  width: 80%;
 }
 
 .requiring {
