@@ -6,6 +6,10 @@ let currentEmail = "";
 let currentPhone = "";
 let currentElement = "";
 
+/**
+ * this function gets all required data from the database and renders the page
+ */
+
 async function onloadFunc() {
   let contactResponse = await getAllContacts("");
   let contactKey = contactResponse["contact"];
@@ -15,9 +19,9 @@ async function onloadFunc() {
     let contactId = contactsKeys[i];
     let initials = contactResponse["contact"][contactId]["name"].split(" ");
     let firstInitial = initials[0][0].toUpperCase();
-    let secondInitial = '';
-    if(initials.length > 1){
-        secondInitial = initials[1][0].toUpperCase();
+    let secondInitial = "";
+    if (initials.length > 1) {
+      secondInitial = initials[1][0].toUpperCase();
     }
 
     contacts.push({
@@ -34,6 +38,10 @@ async function onloadFunc() {
   getFirstLetters();
   renderContacts();
 }
+
+/**
+ * this function renders all the contacts
+ */
 
 function renderContacts() {
   for (let index = 0; index < namesFirstLetters.length; index++) {
@@ -62,11 +70,20 @@ function renderContacts() {
   }
 }
 
-function closeShownContact(){
-    document.getElementById('right-container').classList.add('hide-800');
-  document.getElementById('contacts-container').classList.remove('hide-800');
-  document.getElementById('shown-contact-close').classList.add('hide');
+/**
+ * this funtion hides all the contact data, which which were displayed by clicking a contact
+ */
+
+function closeShownContact() {
+  document.getElementById("right-container").classList.add("hide-800");
+  document.getElementById("contacts-container").classList.remove("hide-800");
+  document.getElementById("shown-contact-close").classList.add("hide");
 }
+
+/**
+ * this function displays all the data from a contact by clicking the contact
+ * @param {index} i this parameter is there, to identify the current selected contact and to display the correct data
+ */
 
 function showContact(i) {
   document.getElementById("selected-contact").innerHTML = "";
@@ -75,10 +92,10 @@ function showContact(i) {
   currentPhone = contacts[i]["phone"];
   currentElement = i;
 
-  document.getElementById('right-container').classList.remove('hide-800');
-  document.getElementById('contacts-container').classList.add('hide-800');
-  document.getElementById('shown-contact-close').classList.remove('hide');
-  document.getElementById('selected-contact').innerHTML += /*html*/ `
+  document.getElementById("right-container").classList.remove("hide-800");
+  document.getElementById("contacts-container").classList.add("hide-800");
+  document.getElementById("shown-contact-close").classList.remove("hide");
+  document.getElementById("selected-contact").innerHTML += /*html*/ `
         <div class="selected-contact">
             <div class="selected-contact-top">
                 <div class="profile-badge-big" style="background-color: ${contacts[i]["color"]}">${contacts[i]["firstInitial"]}${contacts[i]["secondInitial"]}</div>
@@ -89,7 +106,7 @@ function showContact(i) {
                             <img src="../assets/img/edit.svg" alt="">
                             <p class="contact-button-p">Edit</p>
                         </button>
-                        <button class="contact-buttons" onclick="deleteContact(${i})">
+                        <button class="contact-buttons" onclick="deleteRequest()">
                             <img src="../assets/img/delete.svg" alt="">
                             <p class="contact-button-p">Delete</p>
                         </button>
@@ -108,6 +125,11 @@ function showContact(i) {
         </div>
     `;
 }
+
+/**
+ * this function is there to delete a contact by clicking the "delete" button, it deletes the data from the database and from the page, and renders the page again
+ * @returns is there to leave the if loop
+ */
 
 async function deleteContact() {
   if (currentElement < 0 || currentElement >= contacts.length) {
@@ -135,6 +157,26 @@ async function deleteContact() {
   renderContacts();
 }
 
+/**
+ * this function opens a window to ask if a contact should be deleted for sure
+ */
+
+function deleteRequest() {
+  document.getElementById("delete-request").style.display = "flex";
+}
+
+/**
+ * this function closes the window to ask if a contact should be deleted for sure
+ */
+
+function closeDeleteRequest() {
+  document.getElementById("delete-request").style.display = "none";
+}
+
+/**
+ * this function gets the first letters of all the contacts, in order to display a list with all the first letters
+ */
+
 function getFirstLetters() {
   namesFirstLetters.push(contacts[0]["name"][0]);
   for (let i = 0; i < contacts.length; i++) {
@@ -147,11 +189,22 @@ function getFirstLetters() {
   namesFirstLetters.sort();
 }
 
+/**
+ * this function is there to load all the data from the database
+ * @param {*} path gets the correct path of where the requested data is stored
+ * @returns returns the data as a json
+ */
+
 async function getAllContacts(path) {
   let response = await fetch(BASE_URL + path + ".json");
   let responseToJson = await response.json();
   return responseToJson;
 }
+
+/**
+ * updates data in the database
+ * @param {*} functionType allows to use the input data with different function types
+ */
 
 function pushAllData(functionType) {
   const input = functionType;
@@ -170,6 +223,13 @@ function pushAllData(functionType) {
     });
 }
 
+/**
+ * pushes new data to the database
+ * @param {*} path gets the correct path of where the requested data is stored
+ * @param {*} data gets the correct file, so that the correct file will be updated
+ * @returns returns the data as a json
+ */
+
 async function postData(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
@@ -181,6 +241,11 @@ async function postData(path = "", data = {}) {
   let responseToJson = await response.json();
   return responseToJson;
 }
+
+/**
+ * gets the input values from all the input fields of the create contact window
+ * @returns returns a json with all input values
+ */
 
 function getInput() {
   let name = document.getElementById("name-input").value;
@@ -194,6 +259,11 @@ function getInput() {
   };
 }
 
+/**
+ * gets the input values from the edit contact window
+ * @returns returns a json with all input values
+ */
+
 function getInputEdit() {
   let name = document.getElementById("name-input-edit").value;
   let email = document.getElementById("email-input-edit").value;
@@ -206,11 +276,19 @@ function getInputEdit() {
   };
 }
 
+/**
+ *clears all input fields from the create contact window
+ */
+
 function clearInput() {
   document.getElementById("name-input").value = "";
   document.getElementById("email-input").value = "";
   document.getElementById("phone-input").value = "";
 }
+
+/**
+ *clears all input fields from the edit contact window
+ */
 
 function clearInputEdit() {
   document.getElementById("name-input-edit").value = "";
@@ -218,16 +296,28 @@ function clearInputEdit() {
   document.getElementById("phone-input-edit").value = "";
 }
 
+/**
+ * includes add_contact.html file in the document und displays window to create new contact
+ */
+
 function openModalAdd() {
   document.getElementById("contact-form-modal-add").style.display = "block";
   document.body.classList.add("no-scroll");
   includeHTML();
 }
 
+/**
+ * hides window to create new contact
+ */
+
 function closeModalAdd() {
   document.getElementById("contact-form-modal-add").style.display = "none";
   document.body.classList.remove("no-scroll");
 }
+
+/**
+ * includes edit_contact.html file in the document und displays window to create new contact
+ */
 
 async function openModalEdit() {
   document.getElementById("contact-form-modal-edit").style.display = "block";
@@ -237,6 +327,10 @@ async function openModalEdit() {
   document.getElementById("phone-input-edit").value = currentPhone;
   includeHTML();
 }
+
+/**
+ * hides window to edit contact
+ */
 
 function closeModalEdit() {
   document.getElementById("contact-form-modal-edit").style.display = "none";
