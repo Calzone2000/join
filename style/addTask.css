@@ -574,3 +574,67 @@ header {
 .lblCheckBox:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 1500px) {
+  .addTaskFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    bottom: 80px;
+    position: fixed;
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .addTaskFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    bottom: 100px;
+    position: fixed;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .addTaskForm {
+    display: block;
+    font-size: 30px;
+    line-height: 24px;
+    font-weight: 400;
+    max-height: 800px;
+    color: #2a3647;
+    cursor: pointer;
+    margin-top: 5%;
+  }
+
+  .addTaskLine {
+    display: none;
+  }
+
+  .addTaskRight {
+    position: relative;
+    top: 50px;
+  }
+
+  .addTaskWidth {
+    display: block;
+    width: 100%;
+  }
+
+  .addTaskRight {
+    height: 500px;
+  }
+}
+
+/* @media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 450px) {
+}
+
+@media screen and (max-width: 320px) {
+} */
