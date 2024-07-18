@@ -126,3 +126,15 @@
   border: transparent;
   box-shadow: 0px 6px 7px rgba(0, 0, 0, 0.37);
 }
+
+@media screen and (max-width: 1100px) {
+  .BTNFooter {
+    display: flex;
+    justify-content: start;
+    position: relative;
+    width: 90%;
+    height: 56px;
+    gap: 16px;
+    right: 0;
+  }
+}
