@@ -276,27 +276,30 @@ async function toggleCheckboxes(event) {
   checkboxes.innerHTML = ""; // Clear existing checkboxes
 
   try {
-    const response = await fetch(`${BASE_URL_Contacts}.json`);
-    if (!response.ok && show) {
-      throw new Error("Netzwerkantwort war nicht ok.");
-    }
-    const snapshot = await response.json();
-    Object.keys(snapshot).forEach((key) => {
-      const data = snapshot[key];
-      checkboxes.innerHTML += renderGenerateCheckBox(data, key);
-    });
+      const response = await fetch(`${BASE_URL_Contacts}.json`);
+      if (!response.ok && show) {
+          throw new Error("Netzwerkantwort war nicht ok.");
+      }
+      const snapshot = await response.json();
+      Object.keys(snapshot).forEach((key) => {
+          const data = snapshot[key];
+          checkboxes.innerHTML += renderGenerateCheckBox(data, key);
+      });
   } catch (error) {
-    console.error("Error fetching data: ", error);
+      console.error("Error fetching data: ", error);
   }
 
   if (show) {
-    assignedToInput.style.display = "block";
-    show = false;
+      assignedToInput.style.display = "block";
+      show = false;
   } else {
-    assignedToInput.style.display = "";
-    show = true;
-    // assignedToInput.value = "";
+      assignedToInput.style.display = "";
+      show = true;
   }
+}
+
+function getInitials(name) {
+  return name.split(' ').map(word => word[0]).join('');
 }
 
 /**

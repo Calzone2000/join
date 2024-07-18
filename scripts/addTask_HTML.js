@@ -44,25 +44,46 @@ let priority = [
  * generates a checkbox element with a label, user initials, and a name based on the input element and
  * index `i`.
  */
+
 function renderGenerateCheckBox(element, i) {
   let initial = element.name;
-  return /*html*/ `        
-    <label class="lblCheckBox" onclick="addOrRemoveCheckboxLabelColor(event)">
-        <div class="checkboxName">
-            <div class="boardTask_userInitial checkboxInitial" style="background-color:${
-              element.color
-            }">${getInitials(initial)}</div>
-            <p id="${i}">${element.name}</p>
-        </div>
-        <div class="checkboxWrapper27">
-            <label class="checkbox">
-                <input type="checkbox" name="optionen" value="${element.name}">
-                <span class="checkboxIcon paddingRight"></span>
-            </label>
-        </div>
-    </label>
+  return /*html*/ `
+      <label class="lblCheckBox">
+          <div class="checkboxName">
+              <div class="boardTask_userInitial checkboxInitial" style="background-color:${
+                  element.color
+              }">${getInitials(initial)}</div>
+              <p id="${i}">${element.name}</p>
+          </div>
+          <div class="checkboxWrapper27">
+              <label class="checkbox">
+                  <input type="checkbox" name="optionen" value="${element.name}" onchange="handleCheckboxChange(event)">
+                  <span class="checkboxIcon paddingRight"></span>
+              </label>
+          </div>
+      </label>
   `;
 }
+
+
+function handleCheckboxChange(event) {
+  const value = event.target.value;
+
+  if (event.target.checked) {
+      // Wert zur Liste hinzufügen, wenn die Checkbox angeklickt ist
+      assigningTo.push(value);
+  } else {
+      // Wert aus der Liste entfernen, wenn die Checkbox abgewählt ist
+      const index = assigningTo.indexOf(value);
+      if (index > -1) {
+          assigningTo.splice(index, 1);
+      }
+  }
+
+  // Aktuellen Stand der Liste in der Konsole ausgeben
+  console.log(assigningTo);
+}
+
 
 /**
  * The function `renderSearchNameFromList` generates HTML markup for displaying a guest's name and
