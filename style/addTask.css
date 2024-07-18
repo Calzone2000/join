@@ -596,10 +596,15 @@ header {
     bottom: 100px;
     position: fixed;
     width: 90%;
+    background-color: #f6f7f8;
   }
 }
 
 @media screen and (max-width: 850px) {
+  #myForm {
+    margin-bottom: 400px;
+  }
+
   .addTaskForm {
     display: block;
     font-size: 30px;
@@ -609,6 +614,20 @@ header {
     color: #2a3647;
     cursor: pointer;
     margin-top: 5%;
+
+    background-color: #f6f7f8;
+  }
+
+  .addTaskFooter {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    bottom: 75px;
+    position: fixed;
+    width: 90%;
+    background-color: #f6f7f8;
+    height: 100px;
   }
 
   .addTaskLine {
@@ -627,6 +646,23 @@ header {
 
   .addTaskRight {
     height: 500px;
+  }
+
+  .delContent {
+    height: 20px;
+    position: absolute;
+    left: 0px;
+    bottom: 75px;
+    display: none;
+  }
+
+  .accept {
+    /* Position des Häckchens macht Probleme*/
+    height: 40px;
+    top: 0px;
+    bottom: 68px;
+    left: 50px;
+    display: none;
   }
 }
 
