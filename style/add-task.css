@@ -292,9 +292,10 @@ body {
   align-items: center;
   bottom: 0px;
   position: fixed;
-  width: 80%;
-  background-color: #f6f7f8;
+  width: 100%;
   height: 150px;
+  background: rgba(255, 255, 255, 0.8);
+  left: 225px;
 }
 
 .requiring {
@@ -308,6 +309,7 @@ body {
   margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
+  left: 50px;
 }
 
 /* SubTask edit / delete */
@@ -449,18 +451,6 @@ header {
   display: none;
   z-index: 99;
 }
-
-/* #checkBoxes label {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  word-wrap: break-word;
-  padding: 8px;
-  border-radius: 10px;
-  font-size: 20px;
-  position: relative;
-} */
 
 .showCheck {
   width: 100%;
