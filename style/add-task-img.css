@@ -117,16 +117,112 @@
   width: 55px;
 }
 
+@media screen and (max-width: 1500px) {
+  .addTaskCheckDel {
+    position: absolute;
+    top: 10px;
+    right: 150px;
+  }
+
+  .accept {
+    height: 40px;
+    position: relative;
+    top: 412px;
+    bottom: 0px;
+    left: 150px;
+    display: none;
+  }
+
+  .delContent {
+    height: 20px;
+    position: absolute;
+    bottom: 0px;
+    left: 110px;
+    display: none;
+  }
+}
+
 @media screen and (max-width: 1100px) {
   .imgHoverBTN {
     height: 20px;
   }
+
+  .addTaskCheckDel {
+    position: absolute;
+    top: 10px;
+    right: 150px;
+  }
+
+  .accept {
+    height: 40px;
+    position: relative;
+    top: 420px;
+    bottom: 0px;
+    left: 150px;
+    display: none;
+  }
+
+  .delContent {
+    height: 20px;
+    position: absolute;
+    bottom: 100px;
+    left: 105px;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .addTaskCheckDel {
+    position: absolute;
+    top: 10px;
+    right: 150px;
+  }
+
+  .accept {
+    height: 40px;
+    position: relative;
+    top: 375px;
+    bottom: 0px;
+    left: 150px;
+    display: none;
+  }
+
+  .delContent {
+    height: 20px;
+    position: absolute;
+    bottom: 75px;
+    left: 105px;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 450px) {
 }
 
 @media screen and (max-width: 320px) {
-  .cancelX {
-    width: 15px;
-    height: 15px;
-    padding-top: 0px;
+  .addTaskCheckDel {
+    position: absolute;
+    top: 10px;
+    right: 150px;
+  }
+
+  .accept {
+    height: 40px;
+    position: absolute;
+    top: 33px;
+    bottom: 0px;
+    left: 120px;
+    display: none;
+  }
+
+  .delContent {
+    height: 20px;
+    position: absolute;
+    bottom: 7px;
+    left: 105px;
+    display: none;
   }
 }
