@@ -7,7 +7,6 @@ let BASE_URL_addTask =
 let BASE_URL_Contacts =
   "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/contact";
 
-let task = [];
 let taskID = [];
 let subtask = [];
 let assigningTo = [];
@@ -273,50 +272,35 @@ async function toggleCheckboxes(event) {
 
   let assignedToInput = document.getElementById("checkBoxes");
   const checkboxes = document.getElementById("checkboxUsername");
+  checkboxes.innerHTML = ""; // Clear existing checkboxes
 
-  // Prüfen, ob das Dropdown-Menü geöffnet oder geschlossen wird
-  if (show) {
-    assignedToInput.style.display = "block"; // Dropdown öffnen
-    show = false;
-    if (checkboxes.innerHTML === "") {
-      await loadCheckboxes(checkboxes);
-    } else {
-      updateCheckboxes(checkboxes); // Aktualisiere die Markierungen, ohne neu zu laden
-    }
-  } else {
-    assignedToInput.style.display = "none"; // Dropdown schließen
-    show = true;
-  }
-}
-
-async function loadCheckboxes(checkboxes) {
   try {
-    const response = await fetch(`${BASE_URL_Contacts}.json`);
-    if (!response.ok) {
-      throw new Error("Netzwerkantwort war nicht ok.");
-    }
-    const snapshot = await response.json();
-    checkboxes.innerHTML = "";
-    Object.keys(snapshot).forEach((key) => {
-      const data = snapshot[key];
-      checkboxes.innerHTML += renderGenerateCheckBox(data, key);
-    });
+      const response = await fetch(`${BASE_URL_Contacts}.json`);
+      if (!response.ok && show) {
+          throw new Error("Netzwerkantwort war nicht ok.");
+      }
+      const snapshot = await response.json();
+      Object.keys(snapshot).forEach((key) => {
+          const data = snapshot[key];
+          console.log(data);
+          console.log(key);
+          checkboxes.innerHTML += renderGenerateCheckBox(data, key);
+      });
   } catch (error) {
-    console.error("Error fetching data: ", error);
+      console.error("Error fetching data: ", error);
   }
-}
 
-function updateCheckboxes(checkboxes) {
-  document.querySelectorAll('[name="optionen"]').forEach((checkbox) => {
-    checkbox.checked = assigningTo.includes(checkbox.value);
-  });
+  if (show) {
+      assignedToInput.style.display = "block";
+      show = false;
+  } else {
+      assignedToInput.style.display = "";
+      show = true;
+  }
 }
 
 function getInitials(name) {
-  return name
-    .split(" ")
-    .map((word) => word[0])
-    .join("");
+  return name.split(' ').map(word => word[0]).join('');
 }
 
 /**

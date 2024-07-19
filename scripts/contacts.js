@@ -6,6 +6,23 @@ let currentEmail = "";
 let currentPhone = "";
 let currentElement = "";
 
+const AVATAR_COLOR = [
+  "#ff7a00",
+  "#ff5eb3",
+  "#6e52ff",
+  "#9327ff",
+  "#00bee8",
+  "#1fd7c1",
+  "ff745e#",
+  "#ffa35e",
+  "#fc71ff",
+  "#ffdc00",
+  "#0038ff",
+  "#c3ff2b",
+  "#ffe62b",
+  "#ff4646",
+];
+
 /**
  * this function gets all required data from the database and renders the page
  */
@@ -132,27 +149,39 @@ function showContact(i) {
  */
 
 async function deleteContact() {
+  // Stelle sicher, dass currentElement korrekt gesetzt ist
   if (currentElement < 0 || currentElement >= contacts.length) {
-    console.log("Index out of bounds");
+    console.error("Index out of bounds");
     return;
   }
 
   let contactId = contacts[currentElement]["id"];
+
   try {
     let response = await fetch(BASE_URL + "contact/" + contactId + ".json", {
       method: "DELETE",
     });
 
     if (response.ok) {
+      // Entferne die ID aus dem assigningTo Array
+      const index = assigningTo.indexOf(contactId);
+      if (index > -1) {
+        assigningTo.splice(index, 1);
+        console.log("ID aus assigningTo entfernt");
+      }
+
+      // Entferne den Kontakt aus dem contacts Array
       contacts.splice(currentElement, 1);
       console.log("Kontakt erfolgreich gelöscht");
+
+      // Aktualisiere die Anzeige ohne Neuladen der Seite
+      renderContacts();
     } else {
-      console.error("Fehler beim Löschen des Kontakts", response.statusText);
+      console.error("Fehler beim Löschen des Kontakts: ", response.statusText);
     }
   } catch (error) {
-    console.error("Fehler beim Löschen des Kontakts", error);
+    console.error("Fehler beim Löschen des Kontakts: ", error);
   }
-
   location.reload();
   renderContacts();
 }

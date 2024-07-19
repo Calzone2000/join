@@ -49,9 +49,7 @@ function renderGenerateCheckBox(element, key) {
   return /*html*/ `        
     <label class="lblCheckBox">
         <div class="checkboxName">
-            <div class="boardTask_userInitial checkboxInitial" style="background-color:${
-              element.color
-            }">
+            <div class="boardTask_userInitial checkboxInitial" style="background-color:${element.color}">
                 ${getInitials(element.name)}
             </div>
             <p>${element.name}</p>
@@ -61,12 +59,18 @@ function renderGenerateCheckBox(element, key) {
                 <input type="checkbox" name="optionen" value="${key}" onchange="handleCheckboxChange(event)">
                 <span class="checkboxIcon paddingRight"></span>
             </label>
+            Key: ${key} <!-- Temporär, um den Wert zu sehen -->
         </div>
     </label>
   `;
 }
 
+
+
+
+
 function handleCheckboxChange(event) {
+  console.log("Checkbox Event triggered", event.target.value);
   const contactId = event.target.value;
 
   if (event.target.checked) {
@@ -85,6 +89,10 @@ function handleCheckboxChange(event) {
   // Ausgabe zum Debuggen
   console.log("Aktueller Zustand von assigningTo:", assigningTo);
 }
+
+
+
+
 
 /**
  * The function `renderSearchNameFromList` generates HTML markup for displaying a guest's name and
