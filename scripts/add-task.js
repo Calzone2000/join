@@ -7,36 +7,8 @@ let BASE_URL_addTask =
 let BASE_URL_Contacts =
   "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/contact";
 
-let task = [];
-let taskID = [];
 let subtask = [];
 let assigningTo = [];
-let data = [];
-let path = "contacts";
-let contactColors = [
-  "#FF7A00",
-  "#FF5EB3",
-  "#6E52FF",
-  "#9327FF",
-  "#00BEE8",
-  "#1FD7C1",
-  "#FF745E",
-  "#FFA35E",
-  "#FC71FF",
-  "#FFC701",
-  "#0038FF",
-  "#C3FF2B",
-  "#FFE62B",
-  "#FF4646",
-  "#FFBB2B",
-];
-
-let show = true;
-let guesteArray = [];
-let userPriotity;
-let imgPriority;
-let statusSubtask = false;
-let addTaskProcess = false;
 
 async function loadGestFromServer() {
   try {
