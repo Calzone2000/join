@@ -88,7 +88,6 @@
               <form
                 action=""
                 id="myForm"
-                class=""
                 onsubmit="createTask(); return false;"
               >
                 <div class="addTaskForm">
@@ -96,7 +95,7 @@
                     <!-- Title -->
                     <div class="addTaskTitle formRow">
                       <label for="" class="titleAddTask">
-                        Title<b class="required">*</b></label
+                        Title<b class="require">*</b></label
                       >
                       <input
                         type="text"
@@ -111,7 +110,7 @@
                     <!-- Description -->
                     <div class="addTaskDescription formRow">
                       <label class="lblDescription" for=""
-                        >Description<b class="required">*</b></label
+                        >Description<b class="require">*</b></label
                       >
                       <div class="addTaskTextArea">
                         <textarea
@@ -166,7 +165,7 @@
                     <!-- Due Date -->
                     <div class="addTaskDueDate formRow">
                       <label for="" class="addTaskDate"
-                        >Due date<b class="required">*</b></label
+                        >Due date<b class="require">*</b></label
                       >
                       <div class="taskCalender">
                         <input
@@ -238,7 +237,7 @@
 
                     <div class="addTaskCategory formRow">
                       <label class="lblCategory" for=""
-                        >Category<b class="required">*</b></label
+                        >Category<b class="require">*</b></label
                       >
                       <select
                         id="task_category"
@@ -287,26 +286,35 @@
                     <div class="getSubtask" id="getSubtask"></div>
                   </div>
                 </div>
+
+                <div class="addTaskFooter">
+                  <p class="requiring">
+                    <b class="require">*</b>This field is required
+                  </p>
+
+                  <div class="BTNFooter">
+                    <button class="clearBTNFooter" onclick="clearContent()">
+                      Clear
+                      <img
+                        src="./assets/img/icon/close.svg"
+                        alt=""
+                        class="cancelX"
+                      />
+                    </button>
+                    <button class="creatingBTNFooter" onclick="createTask()">
+                      Create Task
+                      <img
+                        src="./assets/img/icon/check.svg"
+                        alt=""
+                        class="check"
+                        type="submit"
+                      />
+                    </button>
+                  </div>
+                </div>
               </form>
             </div>
           </section>
-
-          <div class="addTaskFooter">
-            <p class="requiring">
-              <b class="required">*</b>This field is required
-            </p>
-
-            <div class="BTNFooter">
-              <button class="clearBTNFooter" onclick="clearContent()">
-                Clear
-                <img src="./assets/img/icon/close.svg" alt="" class="cancelX" />
-              </button>
-              <button class="creatingBTNFooter" onclick="createTask()">
-                Create Task
-                <img src="./assets/img/icon/check.svg" alt="" class="check" />
-              </button>
-            </div>
-          </div>
         </section>
       </section>
     </div>

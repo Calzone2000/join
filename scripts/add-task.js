@@ -150,9 +150,15 @@ function getTaskFromForm() {
 }
 
 async function createTask() {
+  let form = document.getElementById("myForm");
   const task = getTaskFromForm();
   const databaseUrl =
     "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task.json";
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
 
   try {
     showLoadingOverlay(); // Show loading overlay before making the request
