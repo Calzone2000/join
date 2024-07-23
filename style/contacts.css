@@ -541,6 +541,17 @@ body {
   .contact-heading-2 {
     display: none;
   }
+
+  .contacts-container {
+    position: absolute;
+    top: 0px;
+    bottom: 82px;
+    justify-content: center;
+  }
+
+  #contact-list {
+    max-height: calc(100% - 42px);
+  }
 }
 
 @media (max-width: 800px) {

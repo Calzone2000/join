@@ -13,7 +13,6 @@ const AVATAR_COLOR = [
   "#9327ff",
   "#00bee8",
   "#1fd7c1",
-  "ff745e#",
   "#ffa35e",
   "#fc71ff",
   "#ffdc00",
@@ -33,6 +32,7 @@ async function onloadFunc() {
   let contactsKeys = Object.keys(contactKey);
 
   for (let i = 0; i < contactsKeys.length; i++) {
+
     let contactId = contactsKeys[i];
     let initials = contactResponse["contact"][contactId]["name"].split(" ");
     let firstInitial = initials[0][0].toUpperCase();
@@ -235,12 +235,29 @@ async function getAllContacts(path) {
  * @param {*} functionType allows to use the input data with different function types
  */
 
-function pushAllData(functionType) {
+async function pushAllData(functionType) {
   const input = functionType;
   let name = input.name;
   let email = input.email;
   let phone = input.phone;
   let color = AVATAR_COLOR[Math.floor(Math.random() * AVATAR_COLOR.length)];
+
+  let contactResponse = await getAllContacts("");
+  let contactKey = contactResponse["contact"];
+  let contactsKeys = Object.keys(contactKey);
+
+  for (let i = 0; i < contactsKeys.length; i++) {
+    let key = contactsKeys[i];
+    let mail = contactKey[key].email;
+
+    if(email == mail){
+      let emailInput = document.getElementById('email-input');
+      emailInput.value = ''; // Inhalt löschen
+      emailInput.style.borderColor = 'red'; // Feld rot markieren
+      emailInput.placeholder = 'The e-mail address you entered is already taken.'; // Placeholder setzen
+      return;
+    }
+  }
 
   postData("contact", { color: color, name: name, email: email, phone: phone })
     .then(() => {
@@ -340,6 +357,10 @@ function openModalAdd() {
  */
 
 function closeModalAdd() {
+  clearInput();
+  let emailInput = document.getElementById('email-input');
+      emailInput.style.borderColor = '';
+      emailInput.placeholder = 'Email';
   document.getElementById("contact-form-modal-add").style.display = "none";
   document.body.classList.remove("no-scroll");
 }
