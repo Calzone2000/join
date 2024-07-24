@@ -41,6 +41,21 @@
         <section class="right-section">
             <header w3-include-html="./tpl/top.html"></header>
             <section class="content">
+
+                <div id="delete-request-task" style="display: none">
+                    <div class="delete-request-container">
+                      Are you sure you want to delete this contact permanently?
+                      <div class="delete-request-container-btns">
+                        <button class="btn-dark btn" onclick="deleteThisTask(currentTask)">
+                          Yes
+                        </button>
+                        <button class="btn-dark btn" onclick="closeDeleteRequestTask()">
+                          No
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                 <div class="board-header">
                     <h1>Board</h1>
                     <div class="board-functions">

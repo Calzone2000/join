@@ -1,3 +1,5 @@
+let currentTask = '';
+
 function dragThisTask(index) {
         currentDraggedTask = index;
 }
@@ -71,3 +73,16 @@ function filterTasks() {
         }
     }
 }
+
+function deleteRequestTask(index) {
+    document.getElementById("delete-request-task").style.display = "flex";
+    currentTask = index;
+  }
+  
+  /**
+   * this function closes the window to ask if a contact should be deleted for sure
+   */
+  
+  function closeDeleteRequestTask() {
+    document.getElementById("delete-request-task").style.display = "none";
+  }

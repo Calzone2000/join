@@ -24,8 +24,6 @@ async function loadContacts(path="contact") {
 }
 
 async function deleteThisTask(index) {    
-    let confirmDelete = confirm("Do you really want to delete this task?");
-    if (confirmDelete) {
         let path = "task/" + index + ".json";    
         let response = await fetch(BASE_URL + path, {
             method:"DELETE",
@@ -37,9 +35,10 @@ async function deleteThisTask(index) {
     task.length = 0;
     taskId.length = 0;
     await loadTasks();
+    closeDeleteRequestTask();
     renderKanbanBoard();
     }
-}
+
 
 
 async function updateTaskInStorage(data={}) {

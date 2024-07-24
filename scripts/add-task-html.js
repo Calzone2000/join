@@ -70,20 +70,15 @@ function handleCheckboxChange(event) {
   const contactId = event.target.value;
 
   if (event.target.checked) {
-    // Hinzufügen der ID zum Array, falls nicht vorhanden
     if (!assigningTo.includes(contactId)) {
       assigningTo.push(contactId);
     }
   } else {
-    // Entfernen der ID aus dem Array, falls vorhanden
     const index = assigningTo.indexOf(contactId);
     if (index > -1) {
       assigningTo.splice(index, 1);
     }
   }
-
-  // Ausgabe zum Debuggen
-  console.log("Aktueller Zustand von assigningTo:", assigningTo);
 }
 
 /**

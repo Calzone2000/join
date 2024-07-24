@@ -9,6 +9,7 @@ let BASE_URL_Contacts =
 
 let subtask = [];
 let assigningTo = [];
+let show = true;
 
 async function loadGestFromServer() {
   try {

@@ -145,7 +145,7 @@ function renderPreviewCardFooter(index) {
 
     let previewCardHTML = `
                 <div class="preview-card-footer preview-card-menu">
-                <div class="preview-card-action" onclick="deleteThisTask('${index}')">
+                <div class="preview-card-action" onclick="deleteRequestTask('${index}')">
                     <img src="./assets/img/delete.svg" alt="Delete Task">
                     <span>Delete</span>
                 </div>
