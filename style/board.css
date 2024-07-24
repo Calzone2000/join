@@ -116,6 +116,10 @@
     justify-content: space-between;
 }
 
+.task-add-info img {
+    width:32px;
+}
+
 .participants {
     display: flex;
     justify-content: flex-start;
@@ -202,7 +206,6 @@ input.filter-tasks-field {
 input.filter-tasks-field:focus {
     outline: none;
 }
-
 
 
 .search-seperator {
