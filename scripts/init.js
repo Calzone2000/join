@@ -9,6 +9,7 @@ async function initBoard() {
     await loadContacts();
     renderKanbanBoard();
     renderInitials();
+    renderAddTask();
 }
 
 async function initSummary() {
