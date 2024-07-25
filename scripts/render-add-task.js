@@ -1,17 +1,17 @@
 function renderAddTask() {
-    let addTaskForm = renderAddTaskTitle();
-    addTaskForm += renderAddTaskDescription();
-    addTaskForm += renderAddTaskAssignetTo();
-    addTaskForm += renderAddTaskDueDate();
-    addTaskForm += renderAddTaskPrio();
-    addTaskForm += renderAddTaskCategorie();
-    addTaskForm += renderAddTaskSubtasks();
-    addTaskForm += renderAddTaskFooter();
-    document.getElementById('myForm').innerHTML = addTaskForm;
+  let addTaskForm = renderAddTaskTitle();
+  addTaskForm += renderAddTaskDescription();
+  addTaskForm += renderAddTaskAssignetTo();
+  addTaskForm += renderAddTaskDueDate();
+  addTaskForm += renderAddTaskPrio();
+  addTaskForm += renderAddTaskCategorie();
+  addTaskForm += renderAddTaskSubtasks();
+  addTaskForm += renderAddTaskFooter();
+  document.getElementById("myForm").innerHTML = addTaskForm;
 }
 
 function renderAddTaskTitle() {
-    return `<div class="addTaskForm">
+  return /* html */ `<div class="addTaskForm">
                 <div class="addTaskLeft addTaskWidth">
                     <div class="addTaskTitle formRow">
                         <label for="" class="titleAddTask">Title<b class="require">*</b></label>
@@ -20,7 +20,7 @@ function renderAddTaskTitle() {
 }
 
 function renderAddTaskDescription() {
-    return `<div class="addTaskDescription formRow">
+  return /* html */ `<div class="addTaskDescription formRow">
                 <label class="lblDescription" for="">Description<b class="require">*</b></label>
                 <div class="addTaskTextArea">
                     <textarea name="description" id="taskDescriptionArea" class="DescriptionTXTArea" cols="30" rows="10"
@@ -31,7 +31,7 @@ function renderAddTaskDescription() {
 }
 
 function renderAddTaskAssignetTo() {
-    return `<div class="addTaskAssigned formRow">
+  return /*html */ `<div class="addTaskAssigned formRow">
       <label class="lblAssigned">Assigned to</label>
       <div class="choosingContact" onclick="toggleCheckboxes(event)">
         <img src="./assets/img/icon/arrow_drop_down.svg" alt=""/>
@@ -45,9 +45,8 @@ function renderAddTaskAssignetTo() {
   </div>`;
 }
 
-
 function renderAddTaskDueDate() {
-    return `<div class="addTaskLine"></div>
+  return /*html */ `<div class="addTaskLine"></div>
             <div class="addTaskRight addTaskWidth">
             <div class="addTaskDueDate formRow">
                 <label for="" class="addTaskDate" >Due date<b class="require">*</b></label>
@@ -55,10 +54,10 @@ function renderAddTaskDueDate() {
                     <input for="" id="taskDate" class="addDate addTaskInput" type="date" required/>
                 </div>
             </div>`;
-}   
+}
 
 function renderAddTaskPrio() {
-    return `<div class="addTaskPrio formRow">
+  return /*html */ `<div class="addTaskPrio formRow">
                 <label for="">Prio</label>
                 <div class="prioBTNS">
                     <button id="high" type="button" class="addTaskBTN addTaskHover urgents" value="1" onclick="getTaskPrio('high')">
@@ -83,9 +82,8 @@ function renderAddTaskPrio() {
             </div>`;
 }
 
-
 function renderAddTaskCategorie() {
-    return `<div class="addTaskCategory formRow">
+  return /*html */ `<div class="addTaskCategory formRow">
                 <label class="lblCategory" for="">Category<b class="require">*</b></label>
                 <select id="task_category" class="taskCategorySelection" required>
                     <option value="" hidden>Select task category</option>
@@ -96,7 +94,7 @@ function renderAddTaskCategorie() {
 }
 
 function renderAddTaskSubtasks() {
-    return `<div class="addTaskSubtasks formRow">
+  return /*html */ `<div class="addTaskSubtasks formRow">
                 <label class="lblSubtasks">Subtasks</label>
                 <div class="addTaskPlus" id="addTaskBTNPlus">
                     <img class="addTaskPlusIMG" id="addNewTask" src="./assets/img/icon/add.svg" onclick="showAddAndDeleteSubTask()"/>
@@ -113,7 +111,7 @@ function renderAddTaskSubtasks() {
 }
 
 function renderAddTaskFooter() {
-    return `<div class="addTaskFooter">
+  return /*html */ `<div class="addTaskFooter">
                 <p class="requiring"><b class="require">*</b>This field is required</p>
                 <div class="BTNFooter">
                     <button class="clearBTNFooter" onclick="clearContent()">
@@ -125,7 +123,5 @@ function renderAddTaskFooter() {
                         <img src="./assets/img/icon/check.svg" alt="" class="check" type="submit"/>
                     </button>
                 </div>
-            /div>`;
+            </div>`;
 }
-
-
