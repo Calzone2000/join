@@ -74,7 +74,7 @@ function renderProgress(index) {
     let subtasksCompleted = 0;
     let subtasksTotal = task[index].subtask.length;
     for (let i = 0; i < subtasksTotal; i++) {
-        if (task[index].subtask[i].status == true) {
+        if (task[index].subtask[i] != undefined && task[index].subtask[i].status == true) {
             subtasksCompleted++;
         }
     }
@@ -126,7 +126,7 @@ function renderParticipants(index) {
  * @param {*} index 
  */
 
-function renderPreviewCard(index) {
+function renderPreviewCard(index) {    
     let previewCard = document.getElementById('preview-card');
     let previewCardHTML = ``;
     previewCardHTML += renderPreviewCardHeader(index);
@@ -252,19 +252,23 @@ function renderEditCard2(index) {
     document.getElementById('edit-task-area').classList.remove('d-none');
     document.getElementById('preview-task-area').classList.add('d-none');
     let editCard = document.getElementById('edit-card');
-    let editCardForm = `<h2>Edit Task</h2>
-                        <form>
-                            <div>
+    let editCardForm = `<form class="frm-edit-task" onsubmit="updateCurrentTask('${index}'); return false;">
+                            <div class="preview-card-header right">
+                                <!--<h2>Edit Task</h2>-->
+                                <img class="pointer" src="./assets/img/close.svg" alt="Close Task" onclick="closeEditTask('${index}')">
                             </div>
-                            <div>                        
+                            <div class="preview-card-content">
+                                                        
+                            <div class="title-input">                        
                                 <label for="task-title">Titel</label>
                                 <input type="text" id="task-title" value="${task[index].title}">
                             </div>
-                            <div>
+                            <div class="title-input">
                                 <label for="task-description">Description</label>
-                                <input type="text" id="task-description" value="${task[index].description}">
+                                <textarea id="task-description" value="${task[index].description}">${task[index].description}</textarea>
                             </div>
-                            <div>
+                            <div class="edit-task-2-col">
+                            <div class="title-input small">
                                 <label for "task-category">Category</label>
                                 <select id="task-category" requried>`;
     if (task[index].category == "technical") {
@@ -277,14 +281,37 @@ function renderEditCard2(index) {
     editCardForm +=            `</select>
                             </div>`;
     
-    editCardForm +=         `<div>
+    editCardForm +=         `<div class="title-input small">
                                 <label for "task-due-date">Due Date</label>
                                 <input type="date" id="task-due-date" value="${task[index].dueDate}"></input>
-                             </div>`;
+                             </div> </div>`;
+
+    let currentPriority = task[index].priority;
+   
+    
+    if (!currentPriority) {
+        currentPriority = "low";
+    }
+
+    editCardForm +=         `<div class="title-input">
+                             <label for "task-priority">Priority</label>
+                             <select id="task-priority" name="priority">
+                                <option value="low" ${currentPriority === 'low' ? 'selected' : ''}>Low</option>
+                                <option value="medium" ${currentPriority === 'medium' ? 'selected' : ''}>Medium</option>
+                                <option value="high" ${currentPriority === 'high' ? 'selected' : ''}>High</option>                                
+                             </select>
+                             
+                          </div>`;
 
     editCardForm +=         `<div class="task-participiants-dropdown">
-                                <label="task-participiants">
-                                    <button type="button" class="dropdown-btn">Assign contacts</button>`;
+                                <!--<label="task-participiants">-->
+                                <div class="dropdown-btn" onclick="showContacts()">
+                                    <span>Assign contacts</span>
+                                    
+                                    <img id="arrow" src="./assets/img/edit.svg">
+                                </div>
+                                <div class="dropdown-contacts d-none" id="dropdown-contacts">
+                                    `;
                                     
    
     for (let i=0; i < contactId.length; i++) {
@@ -303,22 +330,52 @@ function renderEditCard2(index) {
     }
    
 
+    editCardForm += `<!--</label>--></div></div>`;
 
-    /*
-    for (let j=0; j<task[index].assignetTo.length; j++) {
-        for (let i=0; i < contactId.length; i++) {
-            if (contactId[i] == task[index].assignetTo[j]) {
-                editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}" checked>${i} ${j} ${contact[contactId[i]].name}</label>`;
-            } else {
-               editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}">${i} ${j} ${contact[contactId[i]].name}</label>`;
-            }   
-            editCardForm += `<br>`                ;
-        }                             
+    editCardForm +=         `<div class="task-subtask-list title-input">
+                                <h3>Subtasks</h3>
+                                    <div class="add-new-subtask">
+                                        <input type="text" preview="Add a new subtask">
+                                        <span class="btn-add-new-subtask">Add</span>
+                                    </div>
+                                <label="task-subtasks"></label>`;
+
+    if (task[index].subtask) {
+        for (let i=0; i < task[index].subtask.length; i++) {
+            let isChecked = task[index].subtask[i].status;            
+            editCardForm += `<div>
+                                <div class="subtask-preview" id="subtask-preview-${i}">
+                                    <div class="subtask-description">
+                                    <input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
+                                    <span class="description-preview">${task[index].subtask[i].description}</span>
+                                    </div>
+                                    <div class="edit-icons">
+                                        <img class="pointer" src="./assets/img/edit.svg" onclick="editSubtask(${i}, '${index}')">
+                                        <img class="pointer" src="./assets/img/delete.svg" onclick="deleteEditedSubtask(${i}, '${index}')">
+                                    </div>
+                                </div>
+                                <div class="subtask-edit d-none" id="subtask-edit-${i}">
+                                    <div class="subtask-description">
+                                    <input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
+                                    <input class="description-preview" type="text" id="subtask-description-${i}" value="${task[index].subtask[i].description}">                                    
+                                    </div>
+                                    <div class="edit-icons">
+                                        <img class="pointer" src="./assets/img/edit.svg" onclick="saveEditedSubtask(${i}, '${index}')">
+                                        <img class="pointer" src="./assets/img/delete.svg">
+                                    </div>
+                                </div>
+                             </div>`;                             
+        }
+
+
+        
+    } else {
+        editCardForm +=         `There are NO subtasks`;    
     }
-    */
-    editCardForm += `</label></div>`;
-           
-                            
+    
+    editCardForm +=         `</div></div>`;
+    editCardForm +=         `<div class="preview-card-footer><button>Save</button></div>`;
+        
 
     editCardForm += `</form>`;
     editCard.innerHTML = editCardForm;
@@ -354,3 +411,4 @@ function generateGreeting() {
         return "Hello";
     }
 }
+

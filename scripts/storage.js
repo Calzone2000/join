@@ -1,50 +1,67 @@
-async function loadTasks(path="task") {
+async function loadTasks(path = "task") {
     try {
-        let response = await fetch(BASE_URL + path + ".json");        
+        let response = await fetch(BASE_URL + path + ".json");
         task = await response.json();
-        Object.keys(task).forEach(id => {        
-            taskId.push(id); 
+        Object.keys(task).forEach(id => {
+            taskId.push(id);
         });
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
 }
 
-async function loadContacts(path="contact") {
-    contactId.length=0;
+async function loadContacts(path = "contact") {
+    contactId.length = 0;
     try {
-        let response = await fetch(BASE_URL + path + ".json");        
+        let response = await fetch(BASE_URL + path + ".json");
         contact = await response.json();
-        Object.keys(contact).forEach(id => {        
-            contactId.push(id); 
+        Object.keys(contact).forEach(id => {
+            contactId.push(id);
         });
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
 }
 
-async function deleteThisTask(index) {    
-        let path = "task/" + index + ".json";    
-        let response = await fetch(BASE_URL + path, {
-            method:"DELETE",
-            header: {
-                "Content-Type": "application/json",
-            }            
-        });
+async function deleteThisTask(index) {
+    let path = "task/" + index + ".json";
+    let response = await fetch(BASE_URL + path, {
+        method: "DELETE",
+        header: {
+            "Content-Type": "application/json",
+        }
+    });
     document.getElementById('preview-task-area').classList.add('d-none');
     task.length = 0;
     taskId.length = 0;
     await loadTasks();
     closeDeleteRequestTask();
     renderKanbanBoard();
-    }
+}
 
-
-
-async function updateTaskInStorage(data={}) {
-    path = "task/" + currentDraggedTask + ".json";    
+async function deleteThisSubTask(index, idSubtask) {
+    let path = "task/" + index + "/subtask/" + idSubtask + ".json";
+    alert (path);
     let response = await fetch(BASE_URL + path, {
-        method:"PUT",
+        method: "DELETE",
+        header: {
+            "Content-Type": "application/json",
+        }
+    });
+    //document.getElementById('preview-task-area').classList.add('d-none');
+    //task.length = 0;
+    //taskId.length = 0;
+    //await loadTasks();
+    //closeDeleteRequestTask();
+    //renderKanbanBoard();
+}
+
+
+
+async function updateTaskInStorage(data = {}) {
+    path = "task/" + currentDraggedTask + ".json";
+    let response = await fetch(BASE_URL + path, {
+        method: "PUT",
         header: {
             "Content-Type": "application/json",
         },
@@ -52,10 +69,10 @@ async function updateTaskInStorage(data={}) {
     });
 }
 
-async function createNewTaskInStorage(data={}) {
-    path = "task/.json";    
+async function createNewTaskInStorage(data = {}) {
+    path = "task/.json";
     let response = await fetch(BASE_URL + path, {
-        method:"POST",
+        method: "POST",
         header: {
             "Content-Type": "application/json",
         },
@@ -63,10 +80,10 @@ async function createNewTaskInStorage(data={}) {
     });
 }
 
-async function createTestInStorage(data={}) {    
+async function createTestInStorage(data = {}) {
     path = "test/.json";
-        let response = await fetch(BASE_URL + path, {
-        method:"POST",
+    let response = await fetch(BASE_URL + path, {
+        method: "POST",
         header: {
             "Content-Type": "application/json",
         },
@@ -74,10 +91,10 @@ async function createTestInStorage(data={}) {
     });
 }
 
-async function updateTestInStorage(data={}) {
-    path = "test/-O0NzSEsE4_jJFMmF6g4/.json";    
+async function updateTestInStorage(data = {}) {
+    path = "test/-O0NzSEsE4_jJFMmF6g4/.json";
     let response = await fetch(BASE_URL + path, {
-        method:"PUT",
+        method: "PUT",
         header: {
             "Content-Type": "application/json",
         },
@@ -91,7 +108,7 @@ function setCurrentUser() {
 }
 
 function setCurrentUserName(uid) {
-    currentUID = localStorage.getItem('user');    
+    currentUID = localStorage.getItem('user');
     if (currentUID) {
         currentUserName = user[currentUID].name;
     }
@@ -103,12 +120,12 @@ function logoutCurrentUser() {
     window.location.href = 'login.html';
 }
 
-async function loadUserData(path="user") {
+async function loadUserData(path = "user") {
     try {
-        let response = await fetch(BASE_URL + path + ".json");        
+        let response = await fetch(BASE_URL + path + ".json");
         user = await response.json();
-        Object.keys(user).forEach(id => {        
-            uid.push(id); 
+        Object.keys(user).forEach(id => {
+            uid.push(id);
         });
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
