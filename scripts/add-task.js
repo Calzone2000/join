@@ -150,21 +150,28 @@ function getTaskFromForm() {
   return task;
 }
 
+let isCreatingTask = false;
+
 async function createTask() {
+  if (isCreatingTask) {
+    console.log("Task creation is already in progress.");
+    return;
+  }
+  isCreatingTask = true;
+
   let form = document.getElementById("myForm");
   const task = getTaskFromForm();
-  const databaseUrl =
-    "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task.json";
 
   if (!form.checkValidity()) {
     form.reportValidity();
+    isCreatingTask = false;
     return;
   }
 
   try {
-    showLoadingOverlay(); // Show loading overlay before making the request
+    showLoadingOverlay();
 
-    const response = await fetch(databaseUrl, {
+    const response = await fetch("https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task.json", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -172,20 +179,19 @@ async function createTask() {
       body: JSON.stringify(task),
     });
 
-    if (response.ok) {
-      // Redirect to board.html after a short delay to show the loading indicator
-      setTimeout(() => {
-        window.location.href = "board.html";
-      }, 1000);
-    } else {
-      console.error("Failed to create task");
-      removeLoadingOverlay(); // Remove loading overlay if there is an error
-    }
+    if (!response.ok) throw new Error("Failed to create task");
+
+    setTimeout(() => {
+      window.location.href = "board.html";
+    }, 1000);
   } catch (error) {
     console.error("Error:", error);
-    removeLoadingOverlay(); // Remove loading overlay if there is an error
+  } finally {
+    removeLoadingOverlay();
+    isCreatingTask = false;
   }
 }
+
 
 async function createNewTaskInStorage(data = {}) {
   path = "task/.json";
