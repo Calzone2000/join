@@ -99,16 +99,21 @@ function renderCardFooter(index) {
 
 function renderParticipants(index) {
     let participiantId = task[index].assignetTo;
+    let counter = 0;
     if (participiantId) {
         let participiantHTML = "";
-        for (let i = 0; i < participiantId.length; i++) {
+        for (let i = 0; i < participiantId.length; i++) {            
             let participiantData = contact[participiantId[i]];
-            if (participiantData) {
+            if (participiantData && counter < 3) {
                 let participiantName = participiantData.name;
                 let participiantInitials = getInitials(participiantName);
                 let participiantColor = participiantData.color;
                 participiantHTML += `<span style="background-color: ${participiantColor}" class="user-in">${participiantInitials}</span>`;
-            }
+            } 
+            counter++;           
+        }
+        if (counter > 3) {
+            participiantHTML += `<span style="background-color: black" class="user-in">+${counter-3}</span>`;
         }
         return participiantHTML;
     } else {
