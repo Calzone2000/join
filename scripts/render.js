@@ -251,14 +251,13 @@ function renderEditCard2(index) {
     
     document.getElementById('edit-task-area').classList.remove('d-none');
     document.getElementById('preview-task-area').classList.add('d-none');
-    let editCard = document.getElementById('edit-card');
-    let editCardForm = `<form class="frm-edit-task" onsubmit="updateCurrentTask('${index}'); return false;">
-                            <div class="preview-card-header right">
-                                <!--<h2>Edit Task</h2>-->
-                                <img class="pointer" src="./assets/img/close.svg" alt="Close Task" onclick="closeEditTask('${index}')">
-                            </div>
-                            <div class="preview-card-content">
-                                                        
+    let editCard = document.getElementById('edit-card');    
+    let editCardForm = `<div class="preview-card-header">
+                            <h3>Edit Task</h3>                                                       
+                            <img class="pointer" src="./assets/img/close.svg" alt="Close Task" onclick="closeEditTask('${index}')">
+                        </div>
+                        <div class="preview-card-content">
+                            <form class="frm-edit-task" onsubmit="updateCurrentTask('${index}'); return false;">
                             <div class="title-input">                        
                                 <label for="task-title">Titel</label>
                                 <input type="text" id="task-title" value="${task[index].title}">
@@ -373,13 +372,13 @@ function renderEditCard2(index) {
         editCardForm +=         `There are NO subtasks`;    
     }
     
-    editCardForm +=         `</div></div>`;
+    editCardForm +=         `</div></form></div>`;
 
 
 
-    editCardForm += `</form>`;
-    editCardForm += `<div class="edit-card-footer">        
-                        <button class="save-edited-task">Save</button>
+    editCardForm += ``;
+    editCardForm += `<div class="edit-card-footer blur">        
+                        <span class="save-edited-task btn-add-task btn-small">Save</span>
                      </div>`;
 
     editCard.innerHTML = editCardForm;
