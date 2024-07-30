@@ -81,7 +81,10 @@ function addNewSubTask() {
   let check = document.getElementById("check");
 
   if (subtaskInput.value) {
-    subtask.push(subtaskInput.value); // Füge den neuen Subtask zur globalen subtask-Liste hinzu
+    subtask.push({
+      description: subtaskInput.value,
+      status: true  // Standardstatus, kann je nach Anwendungslogik angepasst werden
+    }); // Füge den neuen Subtask zur globalen subtask-Liste hinzu
   }
   getSubTaskAddTask(); // Aktualisiere die Anzeige der Subtasks
   check.style.display = "none"; // Verstecke den Check-Button
@@ -96,7 +99,7 @@ function getSubTaskAddTask() {
 
   if (subtask) {
     for (let i = 0; i < subtask.length; i++) {
-      const element = subtask[i];
+      const element = subtask[i]['description'];
       getSubtask.innerHTML += renderGetSubtasks(i, element);
     }
   }
@@ -144,7 +147,7 @@ function getTaskFromForm() {
     category: getValue("task_category"),
     priority,
     assignetTo: assigningTo,
-    subtasks: subtask,
+    subtask: subtask,
     currentState: currentState,
   };
   return task;
@@ -154,7 +157,6 @@ let isCreatingTask = false;
 
 async function createTask() {
   if (isCreatingTask) {
-    console.log("Task creation is already in progress.");
     return;
   }
   isCreatingTask = true;
@@ -187,11 +189,9 @@ async function createTask() {
   } catch (error) {
     console.error("Error:", error);
   } finally {
-    removeLoadingOverlay();
     isCreatingTask = false;
   }
 }
-
 
 async function createNewTaskInStorage(data = {}) {
   path = "task/.json";
