@@ -30,8 +30,6 @@
     min-height: calc(100% + 125px);
 }
 
-
-
 .kanban-tasks {
     /* Standard CSS für den Container */
     width: 100%;
@@ -510,6 +508,11 @@ img.spyglass {
     position: absolute;
     overflow-y: scroll;
     overflow-x:hidden;
+}
+
+.dropdown-contacts-edit{
+    position: relative;
+    background-color: #f6f7f8;
 }
 
 .title-input {

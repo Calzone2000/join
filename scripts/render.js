@@ -246,6 +246,21 @@ async function renderEditCard(index) {
     renderEditCard2(index);
 }
 
+function getTaskPrio(id) {
+    const button = document.getElementById(id);
+  
+    if (button.classList.contains("active")) {
+      button.classList.remove("active");
+    } else {
+      document.querySelectorAll(".addTaskBTN").forEach((btn) => {
+        btn.classList.remove("active");
+      });
+      button.classList.add("active");
+  
+      userPriotity = button.innerText.trim();
+    }
+  }
+
 
 function renderEditCard2(index) {
     
@@ -292,24 +307,38 @@ function renderEditCard2(index) {
         currentPriority = "low";
     }
 
-    editCardForm +=         `<div class="title-input">
-                             <label for "task-priority">Priority</label>
-                             <select id="task-priority" name="priority">
-                                <option value="low" ${currentPriority === 'low' ? 'selected' : ''}>Low</option>
-                                <option value="medium" ${currentPriority === 'medium' ? 'selected' : ''}>Medium</option>
-                                <option value="high" ${currentPriority === 'high' ? 'selected' : ''}>High</option>                                
-                             </select>
-                             
-                          </div>`;
+    editCardForm +=         `<div class="addTaskPrio formRow">
+    <label for="">Prio</label>
+    <div class="prioBTNS">
+        <button id="high" type="button" class="addTaskBTN addTaskHover urgents" value="1" onclick="getTaskPrio('high')">
+            Urgent
+            <div class="addTaskBTNImg">
+                <img src="./assets/img/prio-high.svg" alt="" class="urgentIMG">
+            </div>
+        </button>
+        <button id="medium" type="button" class="addTaskBTN addTaskHover mediums active" value="1" onclick="getTaskPrio('medium')">
+            Medium
+            <div class="addTaskBTNImg">
+                <img src="./assets/img/prio-medium.svg" alt="" class="mediumIMG">           
+            </div>
+        </button>
+        <button id="low" type="button" class="addTaskBTN addTaskHover lows" value="1" onclick="getTaskPrio('low')">
+            Low
+            <div class="addTaskBTNImg">
+                <img src="./assets/img/prio-low.svg" alt="" class="lowIMG"/>
+            </div>
+        </button>
+    </div>
+</div>`;
 
     editCardForm +=         `<div class="task-participiants-dropdown">
-                                <!--<label="task-participiants">-->
+                                <label="task-participiants">
                                 <div class="dropdown-btn" onclick="showContacts()">
                                     <span>Assign contacts</span>
                                     
                                     <img id="arrow" src="./assets/img/edit.svg">
                                 </div>
-                                <div class="dropdown-contacts d-none" id="dropdown-contacts">
+                                <div class="dropdown-contacts d-none dropdown-contacts-edit" id="dropdown-contacts">
                                     `;
                                     
    
@@ -329,7 +358,7 @@ function renderEditCard2(index) {
     }
    
 
-    editCardForm += `<!--</label>--></div></div>`;
+    editCardForm += `</label></div></div>`;
 
     editCardForm +=         `<div class="task-subtask-list title-input">
                                 <h3>Subtasks</h3>
