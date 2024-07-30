@@ -335,8 +335,8 @@ function renderEditCard2(index) {
     editCardForm +=         `<div class="task-subtask-list title-input">
                                 <h3>Subtasks</h3>
                                     <div class="add-new-subtask">
-                                        <input type="text" preview="Add a new subtask">
-                                        <span class="btn-add-new-subtask">Add</span>
+                                        <input class="add-task-input" type="text" preview="Add a new subtask">
+                                        <span class="btn-add-new-subtask pointer">+</span>
                                     </div>
                                 <label="task-subtasks"></label>`;
 
@@ -346,8 +346,8 @@ function renderEditCard2(index) {
             editCardForm += `<div>
                                 <div class="subtask-preview" id="subtask-preview-${i}">
                                     <div class="subtask-description">
-                                    <input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
-                                    <span class="description-preview">${task[index].subtask[i].description}</span>
+                                        <input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
+                                        <span class="description-preview">${task[index].subtask[i].description}</span>
                                     </div>
                                     <div class="edit-icons">
                                         <img class="pointer" src="./assets/img/edit.svg" onclick="editSubtask(${i}, '${index}')">
@@ -356,12 +356,12 @@ function renderEditCard2(index) {
                                 </div>
                                 <div class="subtask-edit d-none" id="subtask-edit-${i}">
                                     <div class="subtask-description">
-                                    <input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
-                                    <input class="description-preview" type="text" id="subtask-description-${i}" value="${task[index].subtask[i].description}">                                    
+                                        <input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
+                                        <input class="description-preview" type="text" id="subtask-description-${i}" value="${task[index].subtask[i].description}">                                    
                                     </div>
                                     <div class="edit-icons">
                                         <img class="pointer" src="./assets/img/edit.svg" onclick="saveEditedSubtask(${i}, '${index}')">
-                                        <img class="pointer" src="./assets/img/delete.svg">
+                                        <!--<img class="pointer" src="./assets/img/delete.svg">-->
                                     </div>
                                 </div>
                              </div>`;                             
@@ -374,10 +374,14 @@ function renderEditCard2(index) {
     }
     
     editCardForm +=         `</div></div>`;
-    editCardForm +=         `<div class="preview-card-footer><button>Save</button></div>`;
-        
+
+
 
     editCardForm += `</form>`;
+    editCardForm += `<div class="edit-card-footer">        
+                        <button class="save-edited-task">Save</button>
+                     </div>`;
+
     editCard.innerHTML = editCardForm;
 
 

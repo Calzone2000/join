@@ -262,6 +262,7 @@ img.spyglass {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    overflow:hidden;
 }
 
 .preview-card-header {
@@ -280,14 +281,18 @@ img.spyglass {
     scrollbar-color: #012f4971 #f1f1f14d;
 }
 
-.preview-card-footer {
+.preview-card-footer, .edit-card-footer {
     display: flex;
     justify-content: flex-end;
     gap: 24px;
     bottom: 0;
 }
 
-.preview-card-menu {
+.edit-card-footer {
+    justify-content:center;
+}
+
+.preview-card-menu, .save-edited-task{
     position: sticky;    
     padding: 20px;
 }
@@ -575,5 +580,28 @@ img.spyglass {
     justify-content: space-between;
 }
 
+.subtask-description input[type="checkbox"] {
+    width: 20px;
+}
 
+.subtask-description input[type="text"] {
+    width: 230px;
+    height: 20px;
+}
+
+.add-new-subtask {
+    display:flex;
+    align-items: center;
+    border: 1px lightgray solid;
+    border-radius:10px;
+}
+
+.add-task-input {
+    border: none !important;
+}
+
+.save-edited-task {
+    text-align:center ;
+    margin:10px;
+}
 

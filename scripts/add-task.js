@@ -144,7 +144,7 @@ function getTaskFromForm() {
     category: getValue("task_category"),
     priority,
     assignetTo: assigningTo,
-    subtasks: subtask,
+    subtask: subtask,
     currentState: currentState,
   };
   return task;
