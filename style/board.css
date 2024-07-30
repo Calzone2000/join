@@ -245,10 +245,12 @@ img.spyglass {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.15);
-    z-index: 1000;
+    z-index: 10000;
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(2px);
+
 }
 
 .preview-card, 
@@ -260,12 +262,14 @@ img.spyglass {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    overflow:hidden;
 }
 
 .preview-card-header {
     display: flex;
     justify-content: space-between;
     top: 0;
+    margin:0px 20px;
 }
 
 .preview-card-content {
@@ -273,19 +277,23 @@ img.spyglass {
     padding: 0px 20px;
     flex-direction: column;
     justify-content: flex-start;
-    overflow-y: auto;
+    overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: #012f4971 #f1f1f14d;
 }
 
-.preview-card-footer {
+.preview-card-footer, .edit-card-footer {
     display: flex;
     justify-content: flex-end;
     gap: 24px;
     bottom: 0;
 }
 
-.preview-card-menu {
+.edit-card-footer {
+    justify-content:center;
+}
+
+.preview-card-menu, .save-edited-task{
     position: sticky;    
     padding: 20px;
 }
@@ -476,4 +484,133 @@ img.spyglass {
         width: 170px;
         font-size: 16px;
     }
+}
+
+.frm-edit-task {
+    margin:20px;
+}
+
+.dropdown-btn {
+    width:100%;
+    padding: 10px 10px;    
+    border: solid 1px lightgrey;
+    border-radius: 10px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-contacts {
+    margin-left:10px;
+    max-height:100px;
+    width:300px;
+    z-index:1000000;
+    background-color: rgb(233, 233, 233);
+    border: solid 1px rgb(185, 185, 185);
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
+
+.title-input {
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.title-input label {
+    font-size:1.3rem;    
+}
+
+.title-input input, select {
+    width:100%;
+    padding: 10px 10px;    
+    border: solid 1px lightgrey;
+    border-radius: 10px;
+}
+
+.title-input textarea{
+    width: 100%;
+    height: 100px;
+    resize: vertical; 
+    overflow: auto; 
+    border-radius:0px;
+}
+
+.edit-task-2-col {
+    display:flex;
+    gap:10%;
+}
+
+.small {
+    width:42%;
+}
+
+.edit-form-header {
+    display:flex;
+    justify-content: flex-end;
+}
+
+.right {
+    justify-content:flex-end !important;
+}
+
+.subtask-preview, .subtask-edit {
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.edit-icons {
+    width: 10%;
+    display:flex;
+}
+
+.description-preview {
+    flex:1;
+    width: 80%;
+}
+
+.class-done {
+    width:10%;
+}
+
+.subtask-description {
+    display:flex;
+    justify-content: space-between;
+}
+
+.subtask-description input[type="checkbox"] {
+    width: 20px;
+}
+
+.subtask-description input[type="text"] {
+    width: 230px;
+    height: 20px;
+}
+
+.add-new-subtask {
+    display:flex;
+    align-items: center;
+    border: 1px lightgray solid;
+    border-radius:10px;
+}
+
+.add-task-input {
+    border: none !important;
+}
+
+.save-edited-task {
+    text-align:center ;
+    margin:10px;
+}
+
+.btn-small {
+    font-size: 14px !important;    
+    height:30px !important;
+}
+
+.blur {
+    background: none !important;
 }
