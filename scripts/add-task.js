@@ -83,7 +83,7 @@ function addNewSubTask() {
   if (subtaskInput.value) {
     subtask.push({
       description: subtaskInput.value,
-      status: true  // Standardstatus, kann je nach Anwendungslogik angepasst werden
+      status: false  // Standardstatus, kann je nach Anwendungslogik angepasst werden
     }); // Füge den neuen Subtask zur globalen subtask-Liste hinzu
   }
   getSubTaskAddTask(); // Aktualisiere die Anzeige der Subtasks

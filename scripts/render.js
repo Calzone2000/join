@@ -341,14 +341,17 @@ function renderEditCard2(index) {
                                 <div class="dropdown-contacts d-none dropdown-contacts-edit" id="dropdown-contacts">
                                     `;
                                     
-   
+    
     for (let i=0; i < contactId.length; i++) {
         let contactIsAssignet = false;
+
+        if (task[index].assignetTo && task[index].assignetTo.length > 0) {
         for (let j=0; j<task[index].assignetTo.length; j++) {
             if (contactId[i] == task[index].assignetTo[j]) {
                 contactIsAssignet = true;
             }
-        }        
+        }    
+    }    
         if (contactIsAssignet == true) {
             editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}" checked>${contact[contactId[i]].name}</label>`;
         } else {
