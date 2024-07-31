@@ -78,7 +78,7 @@
     color: darkgrey;
     border-radius: 10px;
     height: 75px;
-    border-color: rgb(73, 73, 73);
+    border-color: rgb(73, 73, 73);    
 }
 
 .task-info {
@@ -93,6 +93,7 @@
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    margin:15px;
 }
 
 .task-info span {
@@ -360,27 +361,27 @@ img.spyglass {
     }
 
     10% {
-        transform: rotate(8deg);
+        transform: rotate(2deg);
     }
 
     20%,
     40%,
     60% {
-        transform: rotate(-10deg);
+        transform: rotate(-4deg);
     }
 
     30%,
     50%,
     70% {
-        transform: rotate(10deg);
+        transform: rotate(4deg);
     }
 
     80% {
-        transform: rotate(-8deg);
+        transform: rotate(-2deg);
     }
 
     90% {
-        transform: rotate(8deg);
+        transform: rotate(1deg);
     }
 }
 
@@ -650,4 +651,12 @@ img.spyglass {
 
 .green, .yellow, .red {
     color:white;
+}
+
+.add-task-input:focus {
+    outline:none;
+}
+
+#task-title:focus, #task-description:focus { 
+    outline:none;
 }

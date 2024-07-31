@@ -41,7 +41,8 @@ function dishighlight(state) {
 
 function closePreview() {
     document.getElementById('preview-task-area').classList.add('d-none');
-    initBoard();
+    renderKanbanBoard();
+    //initBoard();
 }
 
 function openPreview(index) {
