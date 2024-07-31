@@ -13,6 +13,7 @@ const AVATAR_COLOR = ["#ff7a00", "#ff5eb3", "#6e52ff",
                       "#ffe62b", "#ff4646"]
 
 /** Tasks for Kanban Board */
+let taskCache = [];
 let task = [];
 let taskId = [];
 let currentDraggedTask;

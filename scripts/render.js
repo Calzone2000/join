@@ -117,7 +117,8 @@ function renderParticipants(index) {
         }
         return participiantHTML;
     } else {
-        return `<span style="background-color: red; color: black!important; font-weight: bold;" class="user-in">??</span>`;
+        return `<span></span>`;
+        /*return `<span style="background-color: red; color: black!important; font-weight: bold;" class="user-in">??</span>`;*/
     }
 }
 
@@ -242,6 +243,7 @@ function renderPreviewCardSubtasks(index) {
 }
 
 async function renderEditCard(index) {
+    taskCache = task[index];
     await loadContacts();
     renderEditCard2(index);
 }
@@ -307,29 +309,14 @@ function renderEditCard2(index) {
         currentPriority = "low";
     }
 
-    editCardForm +=         `<div class="addTaskPrio formRow">
-    <label for="">Prio</label>
-    <div class="prioBTNS">
-        <button id="high" type="button" class="addTaskBTN addTaskHover urgents" value="1" onclick="getTaskPrio('high')">
-            Urgent
-            <div class="addTaskBTNImg">
-                <img src="./assets/img/prio-high.svg" alt="" class="urgentIMG">
-            </div>
-        </button>
-        <button id="medium" type="button" class="addTaskBTN addTaskHover mediums active" value="1" onclick="getTaskPrio('medium')">
-            Medium
-            <div class="addTaskBTNImg">
-                <img src="./assets/img/prio-medium.svg" alt="" class="mediumIMG">           
-            </div>
-        </button>
-        <button id="low" type="button" class="addTaskBTN addTaskHover lows" value="1" onclick="getTaskPrio('low')">
-            Low
-            <div class="addTaskBTNImg">
-                <img src="./assets/img/prio-low.svg" alt="" class="lowIMG"/>
-            </div>
-        </button>
-    </div>
-</div>`;
+    let priority = task[index].priority;
+    editCardForm += `    <label for="priority">Priority:</label>
+                            <div id="priority">
+                                <div id="btn-prio-low" onclick="changePriority('low')" class="btn-prio ${priority === 'low' ? 'green' : ''}" data-value="low">Low</div>
+                                <div id="btn-prio-medium" onclick="changePriority('medium')"  class="btn-prio ${priority === 'medium' ? 'yellow' : ''}" data-value="medium">Medium</div>
+                                <div id="btn-prio-high"  onclick="changePriority('high')" class="btn-prio ${priority === 'high' ? 'red' : ''}" data-value="high">High</div>
+                                
+                            </div>`;    
 
     editCardForm +=         `<div class="task-participiants-dropdown">
                                 <label="task-participiants">
@@ -344,14 +331,13 @@ function renderEditCard2(index) {
     
     for (let i=0; i < contactId.length; i++) {
         let contactIsAssignet = false;
-
-        if (task[index].assignetTo && task[index].assignetTo.length > 0) {
-        for (let j=0; j<task[index].assignetTo.length; j++) {
-            if (contactId[i] == task[index].assignetTo[j]) {
-                contactIsAssignet = true;
+        if(task[index].assignetTo && task[index].assignetTo.length > 0) {        
+            for (let j=0; j<task[index].assignetTo.length; j++) {
+                if (contactId[i] == task[index].assignetTo[j]) {
+                    contactIsAssignet = true;
+                }
             }
-        }    
-    }    
+        }        
         if (contactIsAssignet == true) {
             editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}" checked>${contact[contactId[i]].name}</label>`;
         } else {
@@ -366,18 +352,19 @@ function renderEditCard2(index) {
     editCardForm +=         `<div class="task-subtask-list title-input">
                                 <h3>Subtasks</h3>
                                     <div class="add-new-subtask">
-                                        <input class="add-task-input" type="text" preview="Add a new subtask">
-                                        <span class="btn-add-new-subtask pointer">+</span>
+                                        <input id="add-subtask-input" class="add-task-input" type="text" preview="Add a new subtask">
+                                        <span class="btn-add-new-subtask pointer" onclick = addSubtask('${index}')>+ Add</span>
                                     </div>
-                                <label="task-subtasks"></label>`;
+                                <label="task-subtasks"></label>
+                                <div id="subtask-list">`;
 
     if (task[index].subtask) {
         for (let i=0; i < task[index].subtask.length; i++) {
             let isChecked = task[index].subtask[i].status;            
-            editCardForm += `<div>
+            editCardForm += `<div id="subtask-${i}">
                                 <div class="subtask-preview" id="subtask-preview-${i}">
                                     <div class="subtask-description">
-                                        <input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
+                                        <input onclick="updateSubtaskState(${i})" class="task-done-prev" type="checkbox" id="checkbox-${i}" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
                                         <span class="description-preview">${task[index].subtask[i].description}</span>
                                     </div>
                                     <div class="edit-icons">
@@ -387,7 +374,7 @@ function renderEditCard2(index) {
                                 </div>
                                 <div class="subtask-edit d-none" id="subtask-edit-${i}">
                                     <div class="subtask-description">
-                                        <input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
+                                        <!--<input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>-->
                                         <input class="description-preview" type="text" id="subtask-description-${i}" value="${task[index].subtask[i].description}">                                    
                                     </div>
                                     <div class="edit-icons">
@@ -395,24 +382,18 @@ function renderEditCard2(index) {
                                         <!--<img class="pointer" src="./assets/img/delete.svg">-->
                                     </div>
                                 </div>
-                             </div>`;                             
-        }
-
-
-        
+                             </div>
+                             `;                             
+        }        
     } else {
         editCardForm +=         `There are NO subtasks`;    
     }
     
-    editCardForm +=         `</div></form></div>`;
-
-
-
+    editCardForm +=         `</div></div></form></div>`;
     editCardForm += ``;
     editCardForm += `<div class="edit-card-footer blur">        
-                        <span class="save-edited-task btn-add-task btn-small">Save</span>
+                        <span class="save-edited-task btn-add-task btn-small" onclick="updateTaskArray('${index}')">Save</span>
                      </div>`;
-
     editCard.innerHTML = editCardForm;
 
 

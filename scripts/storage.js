@@ -69,6 +69,18 @@ async function updateTaskInStorage(data = {}) {
     });
 }
 
+async function updateEditedTaskInStorage(data = {}, idTask) {
+    path = "task/" + idTask + ".json";
+    let response = await fetch(BASE_URL + path, {
+        method: "PUT",
+        header: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data)
+    });
+}
+
+
 async function createNewTaskInStorage(data = {}) {
     path = "task/.json";
     let response = await fetch(BASE_URL + path, {
