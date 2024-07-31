@@ -44,7 +44,6 @@ let priority = [
  * generates a checkbox element with a label, user initials, and a name based on the input element and
  * index `i`.
  */
-
 function renderGenerateCheckBox(element, key) {
   return /*html*/ `        
     <label class="lblCheckBox">
@@ -142,6 +141,11 @@ function renderGetSubtasks(i, element) {
     `;
 }
 
+/**
+ * Displays an overlay element that serves as a loading indicator.
+ * Creates a `div` element, positions it as a fixed overlay over the entire page, and adds it to the `body`.
+ * The overlay element has a semi-transparent black background and displays the text “Loading...” in white.
+ */
 function showLoadingOverlay() {
   const overlay = document.createElement("div");
   overlay.id = "loadingOverlay";
