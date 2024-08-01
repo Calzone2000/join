@@ -1,3 +1,7 @@
+/**
+ * Creates a new task and puts it into the state of this column
+ * @param {string} currentState
+ */
 function openAddTask(currentState="to-do") {
     window.name = currentState;
     window.location.href = 'add-task.html';
@@ -24,7 +28,6 @@ function getInitials(name) {
 /**
  * Generate greeting depending on local time
  */
-
 function generateGreeting() {
     let currentHour = new Date().getHours();
     if (currentHour >= 0 && currentHour < 12) {
@@ -39,9 +42,8 @@ function generateGreeting() {
 }
 
 /**
- * Render summary page 
+ * Render summary page, divided into several subfunctions
  */
-
 function renderSummary() {
     renderStates();
     renderGreeting();

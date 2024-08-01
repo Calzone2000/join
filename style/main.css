@@ -46,7 +46,6 @@ a.logo-big {
   justify-content: center;
 }
 
-/* Slide-Out Menu at the right top position of any page */
 .slide-out {
   display: flex;
   flex-direction: column;
@@ -226,6 +225,11 @@ h2 {
 
 h3 {
   font-size: 24px;
+  margin-left:20px;
+}
+
+h3.help  {
+  margin-left:0!important;
 }
 
 h1,
@@ -292,6 +296,13 @@ h4,
   cursor: pointer;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   transition: 0.2s;
+}
+
+@media (max-width: 1500px) {
+  h3 {
+    font-size: 18px;
+    margin-left:10px;
+  }
 }
 
 @media (max-width: 1100px) {

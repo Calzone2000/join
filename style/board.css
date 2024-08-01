@@ -76,10 +76,23 @@
   color: darkgrey;
   border-radius: 10px;
   height: 75px;
+}
+
+.no-task-info-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-color: rgb(73, 73, 73);
+  border: dotted 1px;
+  border-radius:8px;
+  text-align:center;
+  width: 93%;
+  height:80%;
+  font-size:1.2rem;  
 }
 
 .task-info {
+    margin:0px 12px;
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -230,8 +243,7 @@ img.spyglass {
   background-color: #091931;
 }
 
-.preview-task-area, 
-.edit-task-area{
+.preview-task-area, .edit-task-area{
     position: fixed;
     top: 0;
     left: 0;
@@ -246,8 +258,7 @@ img.spyglass {
 
 }
 
-.preview-card,
-.edit-card {
+.preview-card, .edit-card {
     max-height: 80vh;
     width: 400px;
     border-radius: 30px;

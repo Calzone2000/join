@@ -1,7 +1,6 @@
 /**
  * Render Kanban Board columns
  */
-
 function renderKanbanBoard() {
     renderKanbanCard("to-do");
     renderKanbanCard("in-progress");
@@ -13,7 +12,6 @@ function renderKanbanBoard() {
  * Render Kanban card (divided into sub functions)
  * @param {string} [state="to-do"] 
  */
-
 function renderKanbanCard(state = "to-do") {
     let currentColumn = document.getElementById(`kb-task-${state}`);
     let currentColumnContent = "";
@@ -29,7 +27,7 @@ function renderKanbanCard(state = "to-do") {
     if (countTasks > 0) {
         currentColumn.innerHTML = currentColumnContent;
     } else {
-        currentColumn.innerHTML = `<div id="no-task-to-do-${state}" class="no-task-info">No tasks to do</div>`;
+        currentColumn.innerHTML = `<div id="no-task-to-do-${state}" class="no-task-info"><div class="no-task-info-inner">No tasks to do</div></div>`;
     }
 }
 
@@ -71,7 +69,7 @@ function renderCardFooter(index) {
                         <div class="participants">`;
     cardFooter += renderParticipants(index);
     cardFooter += `                    </div>
-                        <img src="./assets/img/prio-${priority}.svg">
+                        <img class="prio-icon" src="./assets/img/prio-${priority}.svg">
                     </div>
                 </div>`;
     return cardFooter;
@@ -84,7 +82,7 @@ function renderParticipants(index) {
         let participiantHTML = "";
         for (let i = 0; i < participiantId.length; i++) {
             let participiantData = contact[participiantId[i]];
-            if (participiantData && counter < 3) {
+            if (participiantData && counter < 2) {
                 let participiantName = participiantData.name;
                 let participiantInitials = getInitials(participiantName);
                 let participiantColor = participiantData.color;
@@ -93,7 +91,7 @@ function renderParticipants(index) {
             counter++;
         }
         if (counter > 3) {
-            participiantHTML += `<span style="background-color: black" class="user-in">+${counter - 3}</span>`;
+            participiantHTML += `<span style="background-color: black" class="user-in">+${counter - 2}</span>`;
         }
         return participiantHTML;
     } else {
@@ -105,7 +103,6 @@ function renderParticipants(index) {
  * Render preview card on click (divided into sub functions)
  * @param {*} index  
  */
-
 function renderPreviewCard(index) {
     let previewCard = document.getElementById('preview-card');
     let previewCardHTML = ``;
@@ -237,7 +234,6 @@ function getTaskPrio(id) {
  * Render edit card on click (divided into sub functions)
  * @param {*} index 
  */
-
 function renderEditCard(index) {
     openEditTask(index);
     let editCard = document.getElementById('edit-card');
@@ -259,7 +255,7 @@ function renderEditCardHeader(index) {
 }
 
 function renderEditCardTitleSection(index) {
-    return ` <div class="preview-card-content edit-card-content">
+    return ` <div class="preview-card-content edit-card-content">                            
                             <form class="frm-edit-task" onsubmit="updateCurrentTask('${index}'); return false;">
                             <div class="title-input">                        
                                 <label for="task-title"></label>
@@ -395,7 +391,7 @@ function renderEditCardEditSubtaskArea(index) {
 }
 
 function renderEditCardFooter(index) {
-    return `<div class="edit-card-footer blur">        
+    return `<div class="edit-card-footer blur">                        
                 <span class="save-edited-task btn-add-task btn-small" onclick="updateTaskArray('${index}')">Save</span>
             </div>`;
 }

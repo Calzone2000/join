@@ -1,3 +1,7 @@
+/**
+ *  Load all tasks from firebase
+ *  @param {string} path
+ */
 async function loadTasks(path = "task") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -10,6 +14,10 @@ async function loadTasks(path = "task") {
     }
 }
 
+/**
+ *  Load all contacts from firebase
+ *  @param {string} path
+ */
 async function loadContacts(path = "contact") {
     contactId.length = 0;
     try {
@@ -23,6 +31,11 @@ async function loadContacts(path = "contact") {
     }
 }
 
+
+/**
+ *  Remove / delete a task from storage
+ *  @param {string} index
+ */
 async function deleteThisTask(index) {
     let path = "task/" + index + ".json";
     let response = await fetch(BASE_URL + path, {
@@ -39,6 +52,11 @@ async function deleteThisTask(index) {
     renderKanbanBoard();
 }
 
+/**
+ *  Remove / delete a subtask from firebase storage
+ *  @param {string} index - identifier of the main task
+ *  @param {number} idSubtask - ID of the subtask to remove
+ */
 async function deleteThisSubTask(index, idSubtask) {
     let path = "task/" + index + "/subtask/" + idSubtask + ".json";
     alert (path);
@@ -48,16 +66,12 @@ async function deleteThisSubTask(index, idSubtask) {
             "Content-Type": "application/json",
         }
     });
-    //document.getElementById('preview-task-area').classList.add('d-none');
-    //task.length = 0;
-    //taskId.length = 0;
-    //await loadTasks();
-    //closeDeleteRequestTask();
-    //renderKanbanBoard();
 }
 
-
-
+/**
+ *  Update a task in firebase storage
+ *  @param {Object[]} data - complete task as JSON array 
+ */
 async function updateTaskInStorage(data = {}) {
     path = "task/" + currentDraggedTask + ".json";
     let response = await fetch(BASE_URL + path, {
@@ -69,6 +83,11 @@ async function updateTaskInStorage(data = {}) {
     });
 }
 
+/**
+ *  Update a task in firebase storage
+ *  @param {Object[]} data - complete task as JSON array 
+ *  @param {string} idTask - identifier of the main task
+ */
 async function updateEditedTaskInStorage(data = {}, idTask) {
     path = "task/" + idTask + ".json";
     let response = await fetch(BASE_URL + path, {
@@ -80,7 +99,10 @@ async function updateEditedTaskInStorage(data = {}, idTask) {
     });
 }
 
-
+/**
+ *  Create a new task in firebase storage
+ *  @param {Object[]} data - complete task as JSON array 
+ */
 async function createNewTaskInStorage(data = {}) {
     path = "task/.json";
     let response = await fetch(BASE_URL + path, {
@@ -92,46 +114,10 @@ async function createNewTaskInStorage(data = {}) {
     });
 }
 
-async function createTestInStorage(data = {}) {
-    path = "test/.json";
-    let response = await fetch(BASE_URL + path, {
-        method: "POST",
-        header: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-}
-
-async function updateTestInStorage(data = {}) {
-    path = "test/-O0NzSEsE4_jJFMmF6g4/.json";
-    let response = await fetch(BASE_URL + path, {
-        method: "PUT",
-        header: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-}
-
-function setCurrentUser() {
-    loggedInUserId = localStorage.getItem('user');
-    setCurrentUserName();
-}
-
-function setCurrentUserName(uid) {
-    currentUID = localStorage.getItem('user');
-    if (currentUID) {
-        currentUserName = user[currentUID].name;
-    }
-}
-
-function logoutCurrentUser() {
-    localStorage.removeItem('user');
-    loggedInUserId = "";
-    window.location.href = 'login.html';
-}
-
+/**
+ *  Remove / delete a task from storage
+ *  @param {string} path - Path in firebase 
+ */
 async function loadUserData(path = "user") {
     try {
         let response = await fetch(BASE_URL + path + ".json");
@@ -142,4 +128,32 @@ async function loadUserData(path = "user") {
     } catch (error) {
         console.error('Fehler beim Laden der Daten:', error);
     }
+}
+
+/**
+ *  Set current user when logged in 
+ */
+function setCurrentUser() {
+    loggedInUserId = localStorage.getItem('user');
+    setCurrentUserName();
+}
+
+/**
+ *  Set current user name to show correct salutation when logged in
+ *  @param {string} uid
+ */
+function setCurrentUserName(uid) {
+    currentUID = localStorage.getItem('user');
+    if (currentUID) {
+        currentUserName = user[currentUID].name;
+    }
+}
+
+/**
+ *  Logout a user
+ */
+function logoutCurrentUser() {
+    localStorage.removeItem('user');
+    loggedInUserId = "";
+    window.location.href = 'login.html';
 }

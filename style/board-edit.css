@@ -173,32 +173,32 @@
     }
   
       10% {
-          transform: rotate(8deg);
+          transform: rotate(1deg);
       }
   
       20%,
       40%,
       60% {
-          transform: rotate(-10deg);
+          transform: rotate(-2deg);
       }
   
       30%,
       50%,
       70% {
-          transform: rotate(10deg);
+          transform: rotate(2deg);
       }
   
       80% {
-          transform: rotate(-8deg);
+          transform: rotate(-1deg);
       }
   
       90% {
-          transform: rotate(8deg);
+          transform: rotate(1deg);
       }
   }
   
   .shake {
-    animation: shake 1.5s;
+    animation: shake 1s;
     animation-iteration-count: 1sec;
   }
   
