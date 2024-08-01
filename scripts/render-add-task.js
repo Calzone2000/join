@@ -43,8 +43,7 @@ function renderAddTaskDescription() {
                 <label class="lblDescription" for="">Description<b class="require">*</b></label>
                 <div class="addTaskTextArea">
                     <textarea name="description" id="taskDescriptionArea" class="DescriptionTXTArea" cols="30" rows="10"
-                         placeholder="Enter a Description" required>
-                    </textarea>
+                         placeholder="Enter a Description" required></textarea>
                 </div>
             </div>`;
 }
