@@ -5,22 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Kanban Board</title>
-    <script src="./scripts/render-add-task.js"></script>  
-    
-    <script src="./scripts/include.js"></script>    
+    <script src="./scripts/render-add-task.js"></script>
+    <script src="./scripts/include.js"></script>
     <script src="./scripts/storage.js"></script>
     <script src="./scripts/board.js"></script>
     <script src="./scripts/global.js"></script>
     <script src="./scripts/init.js"></script>
-    <script src="./scripts/render.js"></script>    
-    <script src="./scripts/general.js"></script>    
+    <script src="./scripts/render.js"></script>
+    <script src="./scripts/general.js"></script>
     <link rel="stylesheet" href="./style/add-task.css">
     <link rel="stylesheet" href="./style/add-task-img.css">
-    <link rel="stylesheet" href="./style/add-task-btn.css"> 
+    <link rel="stylesheet" href="./style/add-task-btn.css">
     <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/board.css">
     <link rel="stylesheet" href="./style/board-edit.css">
-    <link rel="stylesheet" href="./style/fonts.css">    
+    <link rel="stylesheet" href="./style/fonts.css">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png">
@@ -31,40 +30,33 @@
 </head>
 
 <body onload="includeHTML(); initBoard();">
-
     <div class="edit-task-area card-shadow d-none" id="edit-task-area">
-        <div class ="edit-card" id="edit-card">           
-                <form action="" id="myForm" onsubmit="createTask(); return false;"> </form>
+        <div class="edit-card" id="edit-card">
+            <form action="" id="myForm" onsubmit="createTask(); return false;"> </form>
         </div>
-
     </div>
-    
     <div class="preview-task-area card-shadow d-none" id="preview-task-area">
-        <div class ="preview-card" id="preview-card"></div>
+        <div class="preview-card" id="preview-card"></div>
     </div>
-
-
     <div id="slide-out" class="slide-out" w3-include-html="./tpl/flyout.html"></div>
     <div class="body">
         <section class="sidebar" w3-include-html="./tpl/sidebar.html"></section>
         <section class="right-section">
             <header w3-include-html="./tpl/top.html"></header>
             <section class="content">
-
                 <div id="delete-request-task" style="display: none">
                     <div class="delete-request-container">
-                      Are you sure you want to delete this task permanently?
-                      <div class="delete-request-container-btns">
-                        <button class="btn-dark btn" onclick="deleteThisTask(currentTask)">
-                          Yes
-                        </button>
-                        <button class="btn-dark btn" onclick="closeDeleteRequestTask()">
-                          No
-                        </button>
-                      </div>
+                        Are you sure you want to delete this task permanently?
+                        <div class="delete-request-container-btns">
+                            <button class="btn-dark btn" onclick="deleteThisTask(currentTask)">
+                                Yes
+                            </button>
+                            <button class="btn-dark btn" onclick="closeDeleteRequestTask()">
+                                No
+                            </button>
+                        </div>
                     </div>
-                  </div>
-
+                </div>
                 <div class="board-header">
                     <h1>Board</h1>
                     <div class="board-functions">
@@ -84,30 +76,29 @@
                     <div id="col-to-do" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>To Do</h3>
-                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add" onclick="openAddTask('to-do')">
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add"
+                                onclick="openAddTask('to-do')">
                         </div>
-                        <div id="kb-task-to-do" class="kanban-tasks" 
-                             ondragleave="dishighlight('to-do')"
-                             ondragover="allowDrop(event); highlight('to-do')" 
-                             ondrop="moveTaskTo('to-do')">
+                        <div id="kb-task-to-do" class="kanban-tasks" ondragleave="dishighlight('to-do')"
+                            ondragover="allowDrop(event); highlight('to-do')" ondrop="moveTaskTo('to-do')">
                         </div>
                     </div>
                     <div id="col-in-progress" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>In Progress</h3>
-                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add" onclick="openAddTask('in-progress')">
-                        </div>                        
-                        <div id="kb-task-in-progress" class="kanban-tasks" 
-                             ondragleave="dishighlight('in-progress')"
-                             ondragover="allowDrop(event); highlight('in-progress')" 
-                             ondrop="moveTaskTo('in-progress')">
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add"
+                                onclick="openAddTask('in-progress')">
+                        </div>
+                        <div id="kb-task-in-progress" class="kanban-tasks" ondragleave="dishighlight('in-progress')"
+                            ondragover="allowDrop(event); highlight('in-progress')" ondrop="moveTaskTo('in-progress')">
                         </div>
                     </div>
                     <div id="col-await-feedback" class="kanban-board-col">
                         <div class="kanban-col-hl">
                             <h3>Await Feedback</h3>
-                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add" onclick="openAddTask('await-feedback')">
-                        </div>                        
+                            <img class="btn-add-task-to-column" src="./assets/img/plus_b.svg" alt="Add"
+                                onclick="openAddTask('await-feedback')">
+                        </div>
                         <div id="kb-task-await-feedback" class="kanban-tasks"
                             ondragleave="dishighlight('await-feedback')"
                             ondragover="allowDrop(event); highlight('await-feedback')"
@@ -117,11 +108,9 @@
                         <div class="kanban-col-hl">
                             <h3>Done</h3>
                             <img class="btn-add-task-to-column d-none" src="./assets/img/plus_b.svg" alt="Add">
-                        </div>                        
-                        <div id="kb-task-done" class="kanban-tasks" 
-                             ondragleave="dishighlight('done')"
-                             ondragover="allowDrop(event); highlight('done')" 
-                             ondrop="moveTaskTo('done')"></div>
+                        </div>
+                        <div id="kb-task-done" class="kanban-tasks" ondragleave="dishighlight('done')"
+                            ondragover="allowDrop(event); highlight('done')" ondrop="moveTaskTo('done')"></div>
                     </div>
                 </section>
             </section>
