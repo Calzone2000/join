@@ -1,9 +1,15 @@
-/** top.html */
+/**
+ * Render top section (initials)
+ */
+
 function renderInitials() {
     document.getElementById('user-initials').innerHTML = getInitials(currentUserName);
 }
 
-/** summary.html */
+
+/**
+ * Render summary page 
+ */
 
 function renderSummary() {
     renderStates();
@@ -25,7 +31,9 @@ function renderGreeting() {
 }
 
 
-/** board.html */
+/**
+ * Render Kanban Board columns
+ */
 
 function renderKanbanBoard() {
     renderKanbanCard("to-do");
@@ -33,6 +41,12 @@ function renderKanbanBoard() {
     renderKanbanCard("await-feedback");
     renderKanbanCard("done");
 }
+
+
+/**
+ * Render Kanban card (divided into sub functions)
+ * @param {string} [state="to-do"] 
+ */
 
 function renderKanbanCard(state = "to-do") {
     let currentColumn = document.getElementById(`kb-task-${state}`);
@@ -47,7 +61,7 @@ function renderKanbanCard(state = "to-do") {
         }
     }
     if (countTasks > 0) {
-    currentColumn.innerHTML = currentColumnContent;
+        currentColumn.innerHTML = currentColumnContent;
     } else {
         currentColumn.innerHTML = `<div id="no-task-to-do-${state}" class="no-task-info">No tasks to do</div>`;
     }
@@ -102,32 +116,32 @@ function renderParticipants(index) {
     let counter = 0;
     if (participiantId) {
         let participiantHTML = "";
-        for (let i = 0; i < participiantId.length; i++) {            
+        for (let i = 0; i < participiantId.length; i++) {
             let participiantData = contact[participiantId[i]];
             if (participiantData && counter < 3) {
                 let participiantName = participiantData.name;
                 let participiantInitials = getInitials(participiantName);
                 let participiantColor = participiantData.color;
                 participiantHTML += `<span style="background-color: ${participiantColor}" class="user-in">${participiantInitials}</span>`;
-            } 
-            counter++;           
+            }
+            counter++;
         }
         if (counter > 3) {
-            participiantHTML += `<span style="background-color: black" class="user-in">+${counter-3}</span>`;
+            participiantHTML += `<span style="background-color: black" class="user-in">+${counter - 3}</span>`;
         }
         return participiantHTML;
     } else {
         return `<span></span>`;
-        /*return `<span style="background-color: red; color: black!important; font-weight: bold;" class="user-in">??</span>`;*/
     }
 }
 
+
 /**
- * Render preview card on click
- * @param {*} index 
+ * Render preview card on click (divided into sub functions)
+ * @param {*} index  
  */
 
-function renderPreviewCard(index) {    
+function renderPreviewCard(index) {
     let previewCard = document.getElementById('preview-card');
     let previewCardHTML = ``;
     previewCardHTML += renderPreviewCardHeader(index);
@@ -138,7 +152,6 @@ function renderPreviewCard(index) {
 }
 
 function renderPreviewCardHeader(index) {
-
     let previewCardHTML =
         `<div class="preview-card-header preview-card-menu">
                 <div class="task-cat ${task[index].category}">${task[index].category}</div>
@@ -148,20 +161,18 @@ function renderPreviewCardHeader(index) {
 }
 
 function renderPreviewCardFooter(index) {
-
     let previewCardHTML = `
                 <div class="preview-card-footer preview-card-menu">
                 <div class="preview-card-action" onclick="deleteRequestTask('${index}')">
                     <img src="./assets/img/delete.svg" alt="Delete Task">
                     <span>Delete</span>
                 </div>
-                <div class="preview-card-action" onclick="renderEditCard('${index}')">
+                <div class="preview-card-action" onclick="openEditCard('${index}')">
                     <img src="./assets/img/edit.svg" alt="Edit Task">
                     <span>Edit</span>
                 </div>
             </div>`;
     return previewCardHTML;
-
 }
 
 function renderPreviewCardContent(index) {
@@ -175,14 +186,12 @@ function renderPreviewCardContent(index) {
 }
 
 function renderPreviewCardTitleDescription(index) {
-
     let previewCardHTML = `<h2 class="preview-card-title">${task[index].title}</h2>
                            <span class="preview-card-description">${task[index].description}</span>`;
     return previewCardHTML;
 }
 
 function renderPreviewCardTable(index) {
-
     let previewCardHTML = `<table>
                     <tr style="height: 60px;">
                         <td class="preview-card-sub-hl" style="width: 100px;">Due Date:</td>
@@ -217,14 +226,12 @@ function renderPreviewResponsibles(index) {
                             </div>`;
             }
         }
-    } 
-
+    }
     previewCardHTML += `</div>`;
     return previewCardHTML;
 }
 
 function renderPreviewCardSubtasks(index) {
-
     let previewCardHTML = ``;
     if (task[index].subtask) {
         previewCardHTML += `<span class="preview-card-sub-hl">Subtasks</span>
@@ -242,130 +249,159 @@ function renderPreviewCardSubtasks(index) {
     return previewCardHTML;
 }
 
-async function renderEditCard(index) {
+async function openEditCard(index) {
     taskCache = task[index];
     await loadContacts();
-    renderEditCard2(index);
+    renderEditCard(index);
 }
 
 function getTaskPrio(id) {
     const button = document.getElementById(id);
-  
     if (button.classList.contains("active")) {
-      button.classList.remove("active");
+        button.classList.remove("active");
     } else {
-      document.querySelectorAll(".addTaskBTN").forEach((btn) => {
-        btn.classList.remove("active");
-      });
-      button.classList.add("active");
-  
-      userPriotity = button.innerText.trim();
+        document.querySelectorAll(".addTaskBTN").forEach((btn) => {
+            btn.classList.remove("active");
+        });
+        button.classList.add("active");
+        userPriotity = button.innerText.trim();
     }
-  }
+}
 
 
-function renderEditCard2(index) {
-    
-    document.getElementById('edit-task-area').classList.remove('d-none');
-    document.getElementById('preview-task-area').classList.add('d-none');
-    let editCard = document.getElementById('edit-card');    
-    let editCardForm = `<div class="preview-card-header">
+
+/**
+ * Render edit card on click (divided into sub functions)
+ * @param {*} index 
+ */
+
+function renderEditCard(index) {
+    openEditTask(index);
+    let editCard = document.getElementById('edit-card');
+    let editCardForm = renderEditCardHeader(index);
+    editCardForm += renderEditCardTitleSection(index);
+    editCardForm += renderEditCard2ColArea(index);
+    editCardForm += renderEditCardPriority(index);
+    editCardForm += renderEditCardParticipiants(index);
+    editCardForm += renderEditCardSubtaskArea(index);    
+    editCardForm += renderEditCardFooter(index);        
+    editCard.innerHTML = editCardForm;
+}
+
+function renderEditCardHeader(index) {
+    return `<div class="preview-card-header">
                             <h3>Edit Task</h3>                                                       
                             <img class="pointer" src="./assets/img/close.svg" alt="Close Task" onclick="closeEditTask('${index}')">
-                        </div>
-                        <div class="preview-card-content preview-card-content">
+                        </div>`;
+}
+
+function renderEditCardTitleSection(index) {
+    return ` <div class="preview-card-content preview-card-content">
                             <form class="frm-edit-task" onsubmit="updateCurrentTask('${index}'); return false;">
                             <div class="title-input">                        
-                                <label for="task-title">Titel</label>
-                                <input type="text" id="task-title" value="${task[index].title}">
+                                <label for="task-title"></label>
+                                <h3 class="title-edit-card">Titel</h3>
+                                <input type="text" required id="task-title" value="${task[index].title}">
                             </div>
                             <div class="title-input">
-                                <label for="task-description">Description</label>
+                                <label for="task-description"></label>
+                                <h3 class="title-edit-card">Description</h3>
                                 <textarea id="task-description" value="${task[index].description}">${task[index].description}</textarea>
-                            </div>
-                            <div class="edit-task-2-col">
+                            </div>`;
+}
+
+function renderEditCard2ColArea(index) {
+    let editCardForm = `<div class="edit-task-2-col">
                             <div class="title-input small">
-                                <label for "task-category">Category</label>
+                                <label for "task-category"></label>
+                                <h3 class="title-edit-card">Category</h3>
                                 <select id="task-category" requried>`;
     if (task[index].category == "technical") {
-        editCardForm +=             `<option value="technical" selected>Technical Task</option>
-                                    <option value="story">User Story</option>`;
+        editCardForm += `<option value="technical" selected>Technical Task</option>
+                         <option value="story">User Story</option>`;
     } else {
-        editCardForm +=             `<option value="story" selected>User story</option>
-                                    <option value="technical">Technical Task</option>`;
-    }    
-    editCardForm +=            `</select>
-                            </div>`;
-    
-    editCardForm +=         `<div class="title-input small">
-                                <label for "task-due-date">Due Date</label>
-                                <input type="date" id="task-due-date" value="${task[index].dueDate}"></input>
-                             </div> </div>`;
+        editCardForm += `<option value="story" selected>User story</option>
+                         <option value="technical">Technical Task</option>`;
+    }
+    editCardForm += `</select></div>`;
+    editCardForm += `<div class="title-input small">
+                        <label for "task-due-date"></label>
+                        <h3 class="title-edit-card">Due Date</h3>
+                        <input type="date" id="task-due-date" value="${task[index].dueDate}"></input>
+                     </div> </div>`;    
+    return editCardForm;
+}
 
+function renderEditCardPriority(index) {
     let currentPriority = task[index].priority;
-   
-    
     if (!currentPriority) {
         currentPriority = "low";
     }
-
     let priority = task[index].priority;
-    editCardForm += `       <div class="title-input">                        
-                                <label for="task-title">Priority</label>
+    let editCardForm = `   <div class="title-input">                        
+                                <label for="task-title"></label>
                             </div>
+                            <h3 class="title-edit-card">Priority</h3>
                             <div id="priority">
                                 <div id="btn-prio-low" onclick="changePriority('low')" class="btn-prio ${priority === 'low' ? 'green' : ''}" data-value="low">Low</div>
                                 <div id="btn-prio-medium" onclick="changePriority('medium')"  class="btn-prio ${priority === 'medium' ? 'yellow' : ''}" data-value="medium">Medium</div>
                                 <div id="btn-prio-high"  onclick="changePriority('high')" class="btn-prio ${priority === 'high' ? 'red' : ''}" data-value="high">High</div>
-                                
-                            </div>`;    
+                            </div>`;
+    return editCardForm;
+}
 
-    editCardForm +=         `<div class="task-participiants-dropdown">
+function renderEditCardParticipiants(index) {
+    let editCardForm = `<div class="task-participiants-dropdown">
                                 <label="task-participiants">
                                 <div class="dropdown-btn" onclick="showContacts()">
                                     <span>Assign contacts</span>                                    
                                     <img id="arrow" src="./assets/img/edit.svg">
                                 </div>
-                                <div class="dropdown-contacts d-none dropdown-contacts-edit" id="dropdown-contacts">
-                                    `;
-                                    
-   
-    for (let i=0; i < contactId.length; i++) {
+                                <div class="dropdown-contacts d-none dropdown-contacts-edit" id="dropdown-contacts">`;
+    for (let i = 0; i < contactId.length; i++) {
         let contactIsAssignet = false;
-        if(task[index].assignetTo && task[index].assignetTo.length > 0) {        
-            for (let j=0; j<task[index].assignetTo.length; j++) {
+        if (task[index].assignetTo && task[index].assignetTo.length > 0) {
+            for (let j = 0; j < task[index].assignetTo.length; j++) {
                 if (contactId[i] == task[index].assignetTo[j]) {
                     contactIsAssignet = true;
                 }
             }
-        }        
-        if (contactIsAssignet == true) {
-            editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}" checked>${contact[contactId[i]].name}</label>`;
-        } else {
-            editCardForm +=     `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}">${contact[contactId[i]].name}</label>`;
         }
-        editCardForm += `<br>`                ;
+        if (contactIsAssignet == true) {
+            editCardForm += `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}" checked>${contact[contactId[i]].name}</label>`;
+        } else {
+            editCardForm += `<label><input type="checkbox" name="task-participiant" value="${contactId[i]}">${contact[contactId[i]].name}</label>`;
+        }
+        editCardForm += `<br>`;
     }
-   
-
     editCardForm += `</label></div></div>`;
+    return editCardForm;
+}
 
-    editCardForm +=         `
-    <div class="task-subtask-list title-input">
-    <div class="title-input">                        
-                                <label for="task-title">Subtasks</label>
-                            </div>
-                                <!--<div class="title-input">Subtasks</div>-->
-                                    <div class="add-new-subtask">
-                                        <input id="add-subtask-input" class="add-task-input" type="text" preview="Add a new subtask">
-                                        <span class="btn-add-new-subtask pointer" onclick = addSubtask('${index}')>+ Add</span>
-                                    </div>
-                                <label="task-subtasks"></label>
-                                <div id="subtask-list">`;
+function renderEditCardSubtaskArea(index) {
+    let editCardForm = renderEditCardAddSubtask(index);
+    editCardForm += renderEditCardEditSubtaskArea(index);
+    return editCardForm;
+}
 
+function renderEditCardAddSubtask(index) {
+    return `<div class="task-subtask-list title-input">
+                <div class="title-input">                        
+                    <label for="task-title"></label>
+                </div>
+                <h3 class="title-edit-card">Subtasks</h3>
+                <div class="add-new-subtask">
+                    <input id="add-subtask-input" class="add-task-input" type="text" preview="Add a new subtask">                                    
+                    <img class="btn-add-new-subtask pointer" onclick = addSubtask('${index}') src="./assets/img/add.svg">
+                </div>
+                `;
+}
+
+function renderEditCardEditSubtaskArea(index) {
+    let editCardForm = `<label="task-subtasks"></label><div id="subtask-list">`;
     if (task[index].subtask) {
-        for (let i=0; i < task[index].subtask.length; i++) {
-            let isChecked = task[index].subtask[i].status;            
+        for (let i = 0; i < task[index].subtask.length; i++) {
+            let isChecked = task[index].subtask[i].status;
             editCardForm += `<div id="subtask-${i}">
                                 <div class="subtask-preview" id="subtask-preview-${i}">
                                     <div class="subtask-description">
@@ -378,8 +414,7 @@ function renderEditCard2(index) {
                                     </div>
                                 </div>
                                 <div class="subtask-edit d-none" id="subtask-edit-${i}">
-                                    <div class="subtask-description">
-                                        <!--<input class="task-done" type="checkbox" name="subtask-${i}" ${isChecked ? 'checked' : ''}>-->
+                                    <div class="subtask-description">                                        
                                         <input class="description-preview" type="text" id="subtask-description-${i}" value="${task[index].subtask[i].description}">                                    
                                     </div>
                                     <div class="edit-icons">
@@ -387,23 +422,25 @@ function renderEditCard2(index) {
                                     </div>
                                 </div>
                              </div>
-                             `;                             
-        }        
+                             `;
+        }
     } else {
-        editCardForm +=         `There are NO subtasks`;    
+        editCardForm += `There are NO subtasks`;
     }
-    
-    editCardForm +=         `</div></div></form></div>`;
-    editCardForm += ``;
-    editCardForm += `<div class="edit-card-footer blur">        
-                        <span class="save-edited-task btn-add-task btn-small" onclick="updateTaskArray('${index}')">Save</span>
-                     </div>`;
-    editCard.innerHTML = editCardForm;
-
-
+    editCardForm += `</div></div></form></div>`;
+    return editCardForm;
 }
 
-/** Mandatory functions for rendering */
+function renderEditCardFooter(index) {
+    return `<div class="edit-card-footer blur">        
+                <span class="save-edited-task btn-add-task btn-small" onclick="updateTaskArray('${index}')">Save</span>
+            </div>`;
+}
+
+/**
+ * Extract initials from name
+ * @param {string} name
+ */
 
 function getInitials(name) {
     name = name.trim();
@@ -419,6 +456,11 @@ function getInitials(name) {
     }
 }
 
+
+/**
+ * Generate greeting depending on local time
+ */
+
 function generateGreeting() {
     let currentHour = new Date().getHours();
     if (currentHour >= 0 && currentHour < 12) {
@@ -431,4 +473,3 @@ function generateGreeting() {
         return "Hello";
     }
 }
-

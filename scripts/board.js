@@ -41,8 +41,7 @@ function dishighlight(state) {
 
 function closePreview() {
     document.getElementById('preview-task-area').classList.add('d-none');
-    renderKanbanBoard();
-    //initBoard();
+    renderKanbanBoard();    
 }
 
 function openPreview(index) {
@@ -89,12 +88,6 @@ function closeDeleteRequestTask() {
     document.getElementById("delete-request-task").style.display = "none";
 }
 
-/*
-function editSubtask(i, idTask) {
-    document.getElementById(`edit-task-area`).classList.remove("d-none");
-    document.getElementById(`preview-task-area`).classList.add("d-none");
-}*/
-
 function editSubtask(i, idTask) {    
     document.getElementById(`subtask-preview-${i}`).classList.add("d-none");
     document.getElementById(`subtask-edit-${i}`).classList.remove("d-none");
@@ -107,20 +100,11 @@ function saveEditedSubtask(i, idTask) {
     document.getElementById(`description-preview-${i}`).innerHTML = newSubtask;
 }
 
-/*
-function saveEditedSubtask(i, idTask) {
-    document.getElementById(`edit-task-area`).classList.add("d-none");
-    document.getElementById(`preview-task-area`).classList.remove("d-none");
-}
-    */
-
-async function deleteEditedSubtask(i, idTask) {
-    /*alert (idTask);*/
+async function deleteEditedSubtask(i, idTask) {    
     task[idTask].subtask.splice(i, 1);
     let editedTask = generateEditedTaskAsJson(idTask);
     document.getElementById(`subtask-${i}`).classList.add('d-none');
-    await updateEditedTaskInStorage(editedTask, idTask);  
-    
+    await updateEditedTaskInStorage(editedTask, idTask);      
 }
 
 async function updateCurrentTask(idTask) {
@@ -129,9 +113,7 @@ async function updateCurrentTask(idTask) {
     document.getElementById(`edit-task-area`).classList.add("d-none");
 }
 
-function showContacts() {
-    let currentRotation
-    document.getElementById('arrow').style.transform = 'rotate(180deg)';
+function showContacts() {        
     document.getElementById('dropdown-contacts').classList.toggle('d-none');    
 }
 
@@ -140,6 +122,13 @@ function closeEditTask(idTask) {
     document.getElementById(`edit-task-area`).classList.add("d-none");
     document.getElementById(`preview-task-area`).classList.remove("d-none");
 }
+
+function openEditTask(idTask) {    
+    document.getElementById('edit-task-area').classList.remove('d-none');
+    document.getElementById('preview-task-area').classList.add('d-none');
+}
+
+
 
 function generateEditedTaskAsJson(idTask) {
     let assignetTo = task[idTask].assignetTo;
@@ -169,17 +158,15 @@ function addSubtask(idTask) {
         let mySubtask = [{description: newSubtaskDescription, status:false}];
         taskCache.subtask = mySubtask;        
     }
-    renderEditCard2(idTask);
+    renderEditCard(idTask);
 }
 
 async function updateTaskArray(idTask) {    
     taskCache.title = document.getElementById('task-title').value;
     taskCache.description = document.getElementById('task-description').value;
-    taskCache.category = document.getElementById('task-category').value;
-    //taskCache.currentState = document.getElementById('task-description').value;
+    taskCache.category = document.getElementById('task-category').value;    
     taskCache.dueDate = document.getElementById('task-due-date').value;
-    taskCache.assignetTo = getSelectedParticipiants();
-    //taskCache.subtask = getSubtasks();
+    taskCache.assignetTo = getSelectedParticipiants();    
     task[idTask] = taskCache;
     await updateEditedTaskInStorage(taskCache, idTask);
     closeEditTask(idTask);

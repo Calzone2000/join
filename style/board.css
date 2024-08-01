@@ -553,11 +553,11 @@ select {
 .edit-task-2-col {
     display: flex;
     justify-content: space-between;
-    gap: 10%;
+    gap: 5%;
 }
 
 .small {
-    width: 42%;
+    width: 50%;
 }
 
 .edit-form-header {
@@ -687,4 +687,16 @@ div#subtask-list {
 
 .preview-card-content {
     padding: 0px 20px;
+}
+
+.title-edit-card {
+    font-size:1.3rem;
+    font-weight:normal !important;
+    margin-bottom: 5px;
+    margin-top:0px;
+}
+
+.btn-add-new-subtask {
+    margin-right:10px;
+    width:20px;
 }
