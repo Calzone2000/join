@@ -1,653 +1,651 @@
 .board-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .board-functions {
-    display: flex;
-    gap: 50px;
+  display: flex;
+  gap: 50px;
 }
 
 .kanban-col-hl {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .kanban-board-col {
-    width: 20%;
+  width: 20%;
 }
 
 .kanban-board {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .kanban-tasks {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    min-height: calc(100% + 125px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: calc(100% + 125px);
 }
 
 .kanban-tasks {
-    /* Standard CSS für den Container */
-    width: 100%;
-    height: 100%;
-    overflow-y: auto; /* Nur vertikales Scrollen */
-    scrollbar-width: thin; /* Für Firefox */
-    scrollbar-color: #888 #f1f1f1; /* Für Firefox */
+  /* Standard CSS für den Container */
+  width: 100%;
+  height: 100%;
+  overflow-y: auto; /* Nur vertikales Scrollen */
+  scrollbar-width: thin; /* Für Firefox */
+  scrollbar-color: #888 #f1f1f1; /* Für Firefox */
 }
 
 /* Für Webkit-basierte Browser (Chrome, Safari, Edge) */
 .kanban-tasks::-webkit-scrollbar {
-    width: 1px; /* Breite der vertikalen Scrollbar */
-    height: 1px; /* Höhe der horizontalen Scrollbar */
+  width: 1px; /* Breite der vertikalen Scrollbar */
+  height: 1px; /* Höhe der horizontalen Scrollbar */
 }
 
 .kanban-tasks::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Hintergrund des Scrollbar-Tracks */
-    border-radius: 10px;
+  background: #f1f1f1; /* Hintergrund des Scrollbar-Tracks */
+  border-radius: 10px;
 }
 
 .kanban-tasks::-webkit-scrollbar-thumb {
-    background-color: #888; /* Farbe des Scrollbar-Griffs */
-    border-radius: 10px; /* Abgerundete Ecken für den Griff */
-    border: 12px solid #f1f1f1; /* Abstand um den Griff */
+  background-color: #888; /* Farbe des Scrollbar-Griffs */
+  border-radius: 10px; /* Abgerundete Ecken für den Griff */
+  border: 12px solid #f1f1f1; /* Abstand um den Griff */
 }
 
 .kanban-tasks::-webkit-scrollbar-thumb:hover {
-    background-color: #ffffff; /* Farbe des Scrollbar-Griffs bei Hover */
+  background-color: #ffffff; /* Farbe des Scrollbar-Griffs bei Hover */
 }
 
 .kanban-tasks-highlight {
-    background-color: #ececec;
+  background-color: #ececec;
 }
 
 .btn-add-task-to-column {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .no-task-info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #E7E7E7;
-    font-size: x-large;
-    color: darkgrey;
-    border-radius: 10px;
-    height: 75px;
-    border-color: rgb(73, 73, 73);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #e7e7e7;
+  font-size: x-large;
+  color: darkgrey;
+  border-radius: 10px;
+  height: 75px;
+  border-color: rgb(73, 73, 73);
 }
 
 .task-info {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    font-size: medium;
-    color: black;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-size: medium;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 .task-info span {
-    color: rgb(185, 185, 185);
+  color: rgb(185, 185, 185);
 }
 
 .task-cat {
-    width: fit-content;
-    background-color: black;
-    border-radius: 10px;
-    color: white;
-    padding: 8px 15px;
+  width: fit-content;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  padding: 8px 15px;
 }
 
 .progress,
 .task-add-info {
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .task-add-info img {
-    width:32px;
+  width: 32px;
 }
 
 .participants {
-    display: flex;
-    justify-content: flex-start;
-
+  display: flex;
+  justify-content: flex-start;
 }
 
 .user-in {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    border-radius: 25px;
-    color: white !important;
-    width: 40px;
-    height: 40px;
-    margin-left: -10px;
-    position: relative;
-    z-index: 1;
-    border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  border-radius: 25px;
+  color: white !important;
+  width: 40px;
+  height: 40px;
+  margin-left: -10px;
+  position: relative;
+  z-index: 1;
+  border: 2px solid white;
 }
 
 .progress-counter {
-    font-size: small;
+  font-size: small;
 }
 
 .technical {
-    background-color: #1FD7C1;
+  background-color: #1fd7c1;
 }
 
 .story {
-    background-color: #0038FF;
+  background-color: #0038ff;
 }
 
 .progress {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .progress-bar {
-    width: 60%;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    height: 10px;
+  width: 60%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 10px;
 }
 
 .current-progress {
-    height: 100%;
-    width: 50%;
-    background-color: #76c7c0;
-    text-align: center;
-    line-height: 30px;
-    color: white;
-    font-weight: bold;
+  height: 100%;
+  width: 50%;
+  background-color: #76c7c0;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
 }
 
 .search-task {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: solid 1px rgb(185, 185, 185);
-    z-index: 10;
-    border-radius: 10px;
-    height: 50px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: solid 1px rgb(185, 185, 185);
+  z-index: 10;
+  border-radius: 10px;
+  height: 50px;
 }
 
 .search-task:focus-within {
-    border: solid 1px #29abe2;
+  border: solid 1px #29abe2;
 }
 
 input.filter-tasks-field {
-    height: 45px;
-    margin-left: 20px;
-    width: 250px;
-    color: gray;
-    border: unset;
-    font-size: 20px;
-    font-weight: 400;
-    z-index: 0;
+  height: 45px;
+  margin-left: 20px;
+  width: 250px;
+  color: gray;
+  border: unset;
+  font-size: 20px;
+  font-weight: 400;
+  z-index: 0;
 }
 
 input.filter-tasks-field:focus {
-    outline: none;
+  outline: none;
 }
 
-
 .search-seperator {
-    width: 1px;
-    height: 90%;
-    background-color: lightgray;
-
+  width: 1px;
+  height: 90%;
+  background-color: lightgray;
 }
 
 img.spyglass {
-    width: 40px;
-    padding: 10px;
+  width: 40px;
+  padding: 10px;
 }
 
 .btn-add-task {
-    background-color: #2a3647;
-    border-radius: 10px;
-    color: white;
-    font-size: x-large;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    min-width: 200px;
-    cursor: pointer;
+  background-color: #2a3647;
+  border-radius: 10px;
+  color: white;
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 200px;
+  cursor: pointer;
 }
 
 .btn-add-task:hover {
-    background-color: #091931;
+  background-color: #091931;
 }
 
-.preview-task-area, 
-.edit-task-area{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.15);
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(2px);
-
+.preview-task-area,
+.edit-task-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
 }
 
-.preview-card, 
+.preview-card,
 .edit-card {
-    max-height: 80vh;
-    width: 400px;
-    border-radius: 30px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow:hidden;
+  max-height: 80vh;
+  width: 400px;
+  border-radius: 30px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
 }
 
 .preview-card-header {
-    display: flex;
-    justify-content: space-between;
-    top: 0;
-    margin:0px 20px;
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+  margin: 0px 20px;
 }
 
 .preview-card-content {
-    display: flex;
-    padding: 0px 20px;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: #012f4971 #f1f1f14d;
+  display: flex;
+  padding: 0px 20px;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #012f4971 #f1f1f14d;
 }
 
-.preview-card-footer, .edit-card-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 24px;
-    bottom: 0;
+.preview-card-footer,
+.edit-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  bottom: 0;
 }
 
 .edit-card-footer {
-    justify-content:center;
+  justify-content: center;
 }
 
-.preview-card-menu, .save-edited-task{
-    position: sticky;    
-    padding: 20px;
+.preview-card-menu,
+.save-edited-task {
+  position: sticky;
+  padding: 20px;
 }
 
 .preview-card-action {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    margin-top: 30px;
-    position: relative;
-    bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  margin-top: 30px;
+  position: relative;
+  bottom: 0;
 }
 
 .preview-card-sub-hl {
-    color: gray;
-    font-weight: 100;
-    margin-top: 20px;
-    margin-bottom: 10px;
+  color: gray;
+  font-weight: 100;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .preview-card-prio {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
 }
 
 .preview-card-subtask {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
-    margin-left: 10px;
-    margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 #delete-request-task {
-    position: fixed;
-    z-index: 1000000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  position: fixed;
+  z-index: 1000000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .user-preview {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 20px;
-    margin-left: 15px;
-    margin-top: 1px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  margin-left: 15px;
+  margin-top: 1px;
 }
 
 @keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+    transform-origin: 50% 50%;
+  }
 
-    0%,
-    100% {
-        transform: rotate(0deg);
-        transform-origin: 50% 50%;
-    }
+  10% {
+    transform: rotate(8deg);
+  }
 
-    10% {
-        transform: rotate(8deg);
-    }
+  20%,
+  40%,
+  60% {
+    transform: rotate(-10deg);
+  }
 
-    20%,
-    40%,
-    60% {
-        transform: rotate(-10deg);
-    }
+  30%,
+  50%,
+  70% {
+    transform: rotate(10deg);
+  }
 
-    30%,
-    50%,
-    70% {
-        transform: rotate(10deg);
-    }
+  80% {
+    transform: rotate(-8deg);
+  }
 
-    80% {
-        transform: rotate(-8deg);
-    }
-
-    90% {
-        transform: rotate(8deg);
-    }
+  90% {
+    transform: rotate(8deg);
+  }
 }
 
 .shake {
-    animation: shake 1.5s;
-    animation-iteration-count: 1sec;
+  animation: shake 1.5s;
+  animation-iteration-count: 1sec;
 }
 
 .card-shadow {
-    box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
-    -webkit-box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
-    -moz-box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
+  box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
+  -webkit-box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
+  -moz-box-shadow: 3px 4px 19px -1px rgba(0, 0, 0, 0.43);
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 ::-moz-scrollbar-button:decrement,
 ::-moz-scrollbar-button:increment,
 ::-webkit-scrollbar-button:decrement,
 ::-webkit-scrollbar-button:increment {
-    width: 0px;
+  width: 0px;
 }
 
+@media (max-width: 1100px) {
+  #kb-task-done {
+    margin-bottom: 120px;
+  }
 
+  .kanban-col-hl {
+    justify-content: flex-start;
+    gap: 30px;
+    width: 90vw;
+  }
 
-@media (max-width:1100px) {
-    #kb-task-done {
-        margin-bottom:120px;
-    }
+  .kanban-board {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-    .kanban-col-hl {
-        justify-content: flex-start;
-        gap:30px;
-        width:90vw;
-    }
+  .kanban-tasks {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 90vw;
+    padding: 20px 2px;
+    margin-right: 100px;
+    overflow-x: auto;
+    min-height: 100px;
+  }
 
-    .kanban-board {
-        flex-direction: column;
-        justify-content: space-between;
-    }
+  .right-section {
+    overflow-x: hidden;
+  }
 
-    .kanban-tasks {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;                
-        width:90vw;
-        padding:20px 2px;
-        margin-right:100px;       
-        overflow-x:auto;
-        min-height: 100px;
-    }
+  .task-info {
+    min-width: 200px;
+    max-width: 200px;
+  }
 
-    .right-section {
-        overflow-x: hidden;
-        
-    }
+  .no-task-info {
+    width: 200px;
+  }
 
-    .task-info {
-        min-width:200px;
-        max-width:200px;
-    }
+  .board-header {
+    flex-direction: column;
+  }
 
-    .no-task-info {
-        width:200px;
-    }
-
-    .board-header {
-        flex-direction: column;
-    }
-
-    .btn-add-task {
-        min-width:120px;
-        font-size:medium;
-    }
-    .progress {
-        flex-direction: column;
-    }
+  .btn-add-task {
+    min-width: 120px;
+    font-size: medium;
+  }
+  .progress {
+    flex-direction: column;
+  }
 }
 
-@media (max-width:580px) {
-    .board-functions {
-        flex-direction: column;
-        gap:10px;
-        align-items: center;
-    }
-    
-    .btn-add-task {
-        height:56px;
-        min-width: 200px;       
-    }
+@media (max-width: 580px) {
+  .board-functions {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
 
-    .search-task {
-        width: 250px;
-    }
+  .btn-add-task {
+    height: 56px;
+    min-width: 200px;
+  }
 
-    input.filter-tasks-field {
-        width: 170px;
-        font-size: 16px;
-    }
+  .search-task {
+    width: 250px;
+  }
+
+  input.filter-tasks-field {
+    width: 170px;
+    font-size: 16px;
+  }
 }
 
 .frm-edit-task {
-    margin:20px;
+  margin: 20px;
 }
 
 .dropdown-btn {
-    width:100%;
-    padding: 10px 10px;    
-    border: solid 1px lightgrey;
-    border-radius: 10px;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  padding: 10px 10px;
+  border: solid 1px lightgrey;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .dropdown-contacts {
-    margin-left:10px;
-    max-height:100px;
-    width:300px;
-    z-index:1000000;
-    background-color: rgb(233, 233, 233);
-    border: solid 1px rgb(185, 185, 185);
-    position: absolute;
-    overflow-y: scroll;
-    overflow-x:hidden;
+  margin-left: 10px;
+  max-height: 100px;
+  width: 300px;
+  z-index: 1000000;
+  background-color: rgb(233, 233, 233);
+  border: solid 1px rgb(185, 185, 185);
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-.dropdown-contacts-edit{
-    position: relative;
-    background-color: #f6f7f8;
+.dropdown-contacts-edit {
+  position: relative;
+  background-color: #f6f7f8;
 }
 
 .title-input {
-    display:flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .title-input label {
-    font-size:1.3rem;    
+  font-size: 1.3rem;
 }
 
-.title-input input, select {
-    width:100%;
-    padding: 10px 10px;    
-    border: solid 1px lightgrey;
-    border-radius: 10px;
+.title-input input,
+select {
+  width: 100%;
+  padding: 10px 10px;
+  border: solid 1px lightgrey;
+  border-radius: 10px;
 }
 
-.title-input textarea{
-    width: 100%;
-    height: 100px;
-    resize: vertical; 
-    overflow: auto; 
-    border-radius:0px;
+.title-input textarea {
+  width: 100%;
+  height: 100px;
+  resize: vertical;
+  overflow: auto;
+  border-radius: 0px;
 }
 
 .edit-task-2-col {
-    display:flex;
-    gap:10%;
+  display: flex;
+  gap: 10%;
 }
 
 .small {
-    width:42%;
+  width: 42%;
 }
 
 .edit-form-header {
-    display:flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .right {
-    justify-content:flex-end !important;
+  justify-content: flex-end !important;
 }
 
-.subtask-preview, .subtask-edit {
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items: center;
+.subtask-preview,
+.subtask-edit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .edit-icons {
-    width: 10%;
-    display:flex;
+  width: 10%;
+  display: flex;
 }
 
 .description-preview {
-    flex:1;
-    width: 80%;
+  flex: 1;
+  width: 80%;
 }
 
 .class-done {
-    width:10%;
+  width: 10%;
 }
 
 .subtask-description {
-    display:flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .subtask-description input[type="checkbox"] {
-    width: 20px;
+  width: 20px;
 }
 
 .subtask-description input[type="text"] {
-    width: 230px;
-    height: 20px;
+  width: 230px;
+  height: 20px;
 }
 
 .add-new-subtask {
-    display:flex;
-    align-items: center;
-    border: 1px lightgray solid;
-    border-radius:10px;
+  display: flex;
+  align-items: center;
+  border: 1px lightgray solid;
+  border-radius: 10px;
 }
 
 .add-task-input {
-    border: none !important;
+  border: none !important;
 }
 
 .save-edited-task {
-    text-align:center ;
-    margin:10px;
+  text-align: center;
+  margin: 10px;
 }
 
 .btn-small {
-    font-size: 14px !important;    
-    height:30px !important;
+  font-size: 14px !important;
+  height: 30px !important;
 }
 
 .blur {
-    background: none !important;
+  background: none !important;
 }
 
 #priority {
-    display:flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn-prio {
-    height:40px;
-    display:flex;
-    align-items: center;
-    justify-content:center;
-    width: 30%;
-    cursor:pointer;
-    border: 1px lightgray solid;
-    border-radius:10px;
-    margin: 15px 0;
-    font-size: 12px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  cursor: pointer;
+  border: 1px lightgray solid;
+  border-radius: 10px;
+  margin: 15px 0;
+  font-size: 12px;
 }
 
 .green {
-    background-color:green;
+  background-color: green;
 }
 
 .yellow {
-    background-color:yellow;    
+  background-color: yellow;
 }
 
 .red {
-    background-color:red;
+  background-color: red;
 }
 
-.green, .yellow, .red {
-    color:white;
+.green,
+.yellow,
+.red {
+  color: white;
 }
