@@ -296,7 +296,7 @@ function renderEditCardHeader(index) {
 }
 
 function renderEditCardTitleSection(index) {
-    return ` <div class="preview-card-content preview-card-content">
+    return ` <div class="preview-card-content edit-card-content">
                             <form class="frm-edit-task" onsubmit="updateCurrentTask('${index}'); return false;">
                             <div class="title-input">                        
                                 <label for="task-title"></label>

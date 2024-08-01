@@ -351,6 +351,219 @@ img.spyglass {
   margin-top: 1px;
 }
 
+.frm-edit-task {
+  margin:20px;
+}
+
+.dropdown-btn {
+  width:100%;
+  padding: 10px 10px;    
+  border: solid 1px lightgrey;
+  border-radius: 10px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-contacts {
+  margin-left:10px;
+  max-height:100px;
+  width:300px;
+  z-index:1000000;
+  background-color: rgb(233, 233, 233);
+  border: solid 1px rgb(185, 185, 185);
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x:hidden;
+}
+
+.dropdown-contacts-edit{
+  position: relative;
+  background-color: #f6f7f8;
+}
+
+.title-input {
+  display:flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.title-input label {
+  font-size:1.3rem;    
+}
+
+.title-input input, select {
+  width:100%;
+  padding: 10px 10px;    
+  border: solid 1px lightgrey;
+  border-radius: 10px;
+}
+
+.title-input textarea{
+  width: 100%;
+  height: 100px;
+  resize: vertical; 
+  overflow: auto; 
+  border-radius:0px;
+}
+
+.edit-task-2-col {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+}
+
+.small {
+  width: 50%;
+}
+
+.edit-form-header {
+  display:flex;
+  justify-content: flex-end;
+}
+
+.right {
+  justify-content:flex-end !important;
+}
+
+.subtask-preview, .subtask-edit {
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  gap:5px;
+  margin-right:10px;
+}
+
+.edit-icons {
+  width: 10%;
+  display:flex;
+  margin-right:10px;
+}
+
+.edit-icons img{
+width: 100px;
+}
+
+.description-preview {
+  flex:1;
+  width:250px;  
+}
+
+.class-done {
+  width:10%;
+}
+
+.subtask-description {
+  display:flex;
+  justify-content: space-between;
+  width:85%;    
+}
+
+.subtask-description input[type="checkbox"] {
+width: 20px;
+}
+
+.subtask-description input[type="text"] {
+  width: 290px;
+  height: 28px;
+  flex:1;
+
+}
+
+.add-new-subtask {
+  display:flex;
+  align-items: center;
+  border: 1px lightgray solid;
+  border-radius:10px;
+}
+
+.add-task-input {
+border: none !important;
+}
+
+.save-edited-task {
+  text-align:center ;
+  margin:10px;
+}
+
+.btn-small {
+  font-size: 14px !important;    
+  height:30px !important;
+}
+
+.blur {
+background: none !important;
+}
+
+#priority {
+  display:flex;
+  justify-content: space-between;
+}
+
+.btn-prio {
+  height:40px;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  width: 30%;
+  cursor:pointer;
+  border: 1px lightgray solid;
+  border-radius:10px;
+  margin: 15px 0;
+  font-size: 12px;
+}
+
+.green {
+  background-color:#7AE229;
+}
+
+.yellow {
+  background-color:#FFA800;    
+}
+
+.red {
+  background-color:#FF0000;
+}
+
+.green, .yellow, .red {
+  color:white;
+}
+
+.add-task-input:focus {
+  outline: none;
+}
+
+#task-title:focus,
+#task-description:focus {
+  outline: none;
+}
+
+div#subtask-list {
+  
+  margin-top: 18px;
+}
+
+.preview-card-content {
+  padding: 0px 20px;
+}
+
+.edit-card-content {
+padding: 0px 0px !important;
+}
+
+.title-edit-card {
+  font-size:1.3rem;
+  font-weight:normal !important;
+  margin-bottom: 5px;
+  margin-top:0px;
+}
+
+.btn-add-new-subtask {
+  margin-right:10px;
+  width:20px;
+}
+
 @keyframes shake {
   0%,
   100% {
@@ -483,205 +696,3 @@ img.spyglass {
   }
 }
 
-.frm-edit-task {
-    margin:20px;
-}
-
-.dropdown-btn {
-    width:100%;
-    padding: 10px 10px;    
-    border: solid 1px lightgrey;
-    border-radius: 10px;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.dropdown-contacts {
-    margin-left:10px;
-    max-height:100px;
-    width:300px;
-    z-index:1000000;
-    background-color: rgb(233, 233, 233);
-    border: solid 1px rgb(185, 185, 185);
-    position: absolute;
-    overflow-y: scroll;
-    overflow-x:hidden;
-}
-
-.dropdown-contacts-edit{
-    position: relative;
-    background-color: #f6f7f8;
-}
-
-.title-input {
-    display:flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
-.title-input label {
-    font-size:1.3rem;    
-}
-
-.title-input input, select {
-    width:100%;
-    padding: 10px 10px;    
-    border: solid 1px lightgrey;
-    border-radius: 10px;
-}
-
-.title-input textarea{
-    width: 100%;
-    height: 100px;
-    resize: vertical; 
-    overflow: auto; 
-    border-radius:0px;
-}
-
-.edit-task-2-col {
-    display: flex;
-    justify-content: space-between;
-    gap: 5%;
-}
-
-.small {
-    width: 50%;
-}
-
-.edit-form-header {
-    display:flex;
-    justify-content: flex-end;
-}
-
-.right {
-    justify-content:flex-end !important;
-}
-
-.subtask-preview, .subtask-edit {
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items: center;
-}
-
-.edit-icons {
-    width: 10%;
-    display:flex;
-}
-
-.description-preview {
-    flex:1;
-    width: 80%;
-}
-
-.class-done {
-    width:10%;
-}
-
-.subtask-description {
-    display:flex;
-    justify-content: space-between;
-}
-
-.subtask-description input[type="checkbox"] {
-  width: 20px;
-}
-
-.subtask-description input[type="text"] {
-    width: 230px;
-    height: 20px;
-}
-
-.add-new-subtask {
-    display:flex;
-    align-items: center;
-    border: 1px lightgray solid;
-    border-radius:10px;
-}
-
-.add-task-input {
-  border: none !important;
-}
-
-.save-edited-task {
-    text-align:center ;
-    margin:10px;
-}
-
-.btn-small {
-    font-size: 14px !important;    
-    height:30px !important;
-}
-
-.blur {
-  background: none !important;
-}
-
-#priority {
-    display:flex;
-    justify-content: space-between;
-}
-
-.btn-prio {
-    height:40px;
-    display:flex;
-    align-items: center;
-    justify-content:center;
-    width: 30%;
-    cursor:pointer;
-    border: 1px lightgray solid;
-    border-radius:10px;
-    margin: 15px 0;
-    font-size: 12px;
-}
-
-.green {
-    background-color:green;
-}
-
-.yellow {
-    background-color:yellow;    
-}
-
-.red {
-    background-color:red;
-}
-
-.green, .yellow, .red {
-    color:white;
-}
-
-.add-task-input:focus {
-    outline: none;
-}
-
-#task-title:focus,
-#task-description:focus {
-    outline: none;
-}
-
-div#subtask-list {
-    margin-right: 11px;
-    margin-top: 18px;
-}
-
-.edit-card-content {
-    padding: 0px 0px !important;
-}
-
-.preview-card-content {
-    padding: 0px 20px;
-}
-
-.title-edit-card {
-    font-size:1.3rem;
-    font-weight:normal !important;
-    margin-bottom: 5px;
-    margin-top:0px;
-}
-
-.btn-add-new-subtask {
-    margin-right:10px;
-    width:20px;
-}
