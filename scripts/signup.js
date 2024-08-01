@@ -7,6 +7,7 @@ function setGuestUser() {
     sessionStorage.setItem('user', 'guest user');
 }
 
+// checks, if all required fields are filled correctly and (if yes) makes the log in possible
 async function logIn() {
     const email = document.getElementById('logInEmail').value;
     const password = document.getElementById('logInPassword').value;
@@ -15,7 +16,7 @@ async function logIn() {
 
     await loadUserDataFromFB();
 
-    for (let i = 0; i < userData.length; i++) {
+    for (let i = 0; i < userData.length; i++) { // saves the user, that just logged in, in SS and LS, to keep him logged in
         if (userData[i].email == email && userData[i].password == password) {
             localStorage.setItem('user', userIDs[i]);
 
@@ -28,7 +29,7 @@ async function logIn() {
                 localStorage.removeItem('password');
                 localStorage.removeItem('email');
             }
-            window.location.href = 'summary.html';
+            window.location.href = 'summary.html';  // leads the user to summary.html (if logged in successfully)
             break;
         } else {
             document.getElementById('wrongPassword').style.display = 'block';
@@ -41,6 +42,7 @@ async function updateCurrentUser(newUser) {
     currentUserName = newUser;
 }
 
+// sign up by posting a new user into the data bank
 async function createNewUser() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -69,7 +71,6 @@ async function createNewUser() {
         document.getElementById('email').style.border = '';
     }
 
-
     let data = {
         name: name,
         email: email,
@@ -89,6 +90,7 @@ function confirmRegistration() {
     document.getElementById('logInBtns').innerHTML = '<button class="btn-dark btn confirm-registration" style="font-size: 21px;" disabled><p>You Signed Up successfully</p></button>';
 }
 
+// posts a new user into the data bank after a successfull sign up process
 async function postNewUser(path = "", data = {}) {
     let response = await fetch(BASE_URL + path + '.json', {
         method: 'POST',
@@ -100,6 +102,7 @@ async function postNewUser(path = "", data = {}) {
     return await response.json();
 }
 
+// fetches user data from firebase and pushes it into local arrays
 async function loadUserDataFromFB() {
     let userResponse = await loadUserData('/user');
 
@@ -119,6 +122,7 @@ async function loadUserDataFromFB() {
     }
 }
 
+// a helping function to load user data in the function above
 async function loadUserData(path = "") {
     let response = await fetch(BASE_URL + path + '.json');
     let responseToJSON = await response.json();
