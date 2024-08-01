@@ -1,3 +1,8 @@
+/**
+ * Render the full form for adding a task.
+ * Combines the HTML output of multiple sub-functions that each create different parts of the form, including title, description, assignment, due date, priority, category, subtasks and footer.
+ * Sets the combined HTML string as the content of the form element with the ID “myForm”.
+ */
 function renderAddTask() {
   let addTaskForm = renderAddTaskTitle();
   addTaskForm += renderAddTaskDescription();
@@ -10,6 +15,13 @@ function renderAddTask() {
   document.getElementById("myForm").innerHTML = addTaskForm;
 }
 
+/**
+ * Renders the HTML code for the title area of a task form.
+ * Returns an HTML string containing an input field for the task title and a corresponding label caption.
+ * The input field is marked as required and contains placeholder text that prompts the user to enter a title.
+ *
+ * @returns {string} The HTML code for the title area of the task form.
+ */
 function renderAddTaskTitle() {
   return /* html */ `<div class="addTaskForm">
                 <div class="addTaskLeft addTaskWidth">
@@ -19,6 +31,13 @@ function renderAddTaskTitle() {
                     </div>`;
 }
 
+/**
+ * Renders the HTML code for the description area of a task form.
+ * Returns an HTML string containing a textarea field for the description of the task and a corresponding label caption.
+ * The textarea field is marked as required and contains placeholder text that prompts the user to enter a description.
+ *
+ * @returns {string} The HTML code for the description area of the task form.
+ */
 function renderAddTaskDescription() {
   return /* html */ `<div class="addTaskDescription formRow">
                 <label class="lblDescription" for="">Description<b class="require">*</b></label>
@@ -30,6 +49,13 @@ function renderAddTaskDescription() {
             </div>`;
 }
 
+/**
+ * Render the HTML code for the task assignment section of a form.
+ * Returns an HTML string containing an input field for selecting assigned users, a drop-down menu for selecting options and an area for displaying the checkboxes.
+ * The input field has a placeholder text and a click event that toggles the visibility of the checkboxes.
+ *
+ * @returns {string} The HTML code for the section for assigning tasks in the form.
+ */
 function renderAddTaskAssignetTo() {
   return /*html */ `<div class="addTaskAssigned formRow">
       <label class="lblAssigned">Assigned to</label>
@@ -45,6 +71,13 @@ function renderAddTaskAssignetTo() {
   </div>`;
 }
 
+/**
+ * Render the HTML code for the due date field of a task form.
+ * Returns an HTML string containing an input field for the due date of the task and a corresponding label caption.
+ * The input field uses the date input type and is marked as required.
+ *
+ * @returns {string} The HTML code for the due date field in the task form.
+ */
 function renderAddTaskDueDate() {
   return /*html */ `<div class="addTaskLine"></div>
             <div class="addTaskRight addTaskWidth">
@@ -56,6 +89,13 @@ function renderAddTaskDueDate() {
             </div>`;
 }
 
+/**
+ * Render the HTML code for the priority section of a task form.
+ * Returns an HTML string containing three buttons for selecting the priority (high, medium, low), including icons and corresponding labels.
+ * Each button has an `onclick` event that calls the `getTaskPrio` function to set the selected priority.
+ *
+ * @returns {string} The HTML code for the priority area in the task form.
+ */
 function renderAddTaskPrio() {
   return /*html */ `<div class="addTaskPrio formRow">
                 <label for="">Prio</label>
@@ -82,6 +122,13 @@ function renderAddTaskPrio() {
             </div>`;
 }
 
+/**
+ * Renders the HTML code for the category area of a task form.
+ * Returns an HTML string containing a drop-down menu for selecting the task category and a corresponding label caption.
+ * The drop-down menu contains two options: “Technical Task” and “User Story”, and is marked as required.
+ *
+ * @returns {string} The HTML code for the category section in the task form.
+ */
 function renderAddTaskCategorie() {
   return /*html */ `<div class="addTaskCategory formRow">
                 <label class="lblCategory" for="">Category<b class="require">*</b></label>
@@ -93,6 +140,13 @@ function renderAddTaskCategorie() {
             </div>`;
 }
 
+/**
+ * Renders the HTML code for the subtask area of a task form.
+ * Returns an HTML string containing an input field for new subtasks, buttons for adding and deleting subtasks, and icons for interaction.
+ * The layout includes a plus symbol for adding subtasks, buttons for deleting and confirming subtasks and an area for displaying the added subtasks.
+ *
+ * @returns {string} The HTML code for the subtask area in the task form.
+ */
 function renderAddTaskSubtasks() {
   return /*html */ `<div class="addTaskSubtasks formRow">
                 <label class="lblSubtasks">Subtasks</label>
@@ -110,6 +164,13 @@ function renderAddTaskSubtasks() {
     </div>`;
 }
 
+/**
+ * Renders the HTML code for the footer area of a task form.
+ * Returns an HTML string containing a hint message for required fields and two buttons for resetting and creating the task.
+ * The buttons contain icons and have `onclick` events that call the `clearContent` and `createTask` functions.
+ *
+ * @returns {string} The HTML code for the footer area in the task form.
+ */
 function renderAddTaskFooter() {
   return /*html */ `<div class="addTaskFooter">
                 <p class="requiring"><b class="require">*</b>This field is required</p>

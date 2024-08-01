@@ -11,6 +11,11 @@ let subtask = [];
 let assigningTo = [];
 let show = true;
 
+/**
+ * Loads guest data from the server and stores it in an array.
+ * Retrieves a JSON file from a specified URL and converts the data into an array of objects.
+ * Handles possible errors during retrieval and displays appropriate error messages in the console.
+ */
 async function loadGestFromServer() {
   try {
     const response = await fetch(`${BASE_URL_Contacts}.json`);
@@ -27,7 +32,11 @@ async function loadGestFromServer() {
   }
 }
 
-/* Task Priorisieren */
+/**
+ * Changes the priority of a task based on the click of a button.
+ * Activates the clicked button, deactivates all others and saves the priority as text.
+ * Removes the active class if the button is already active and updates the priority accordingly.
+ */
 function getTaskPrio(id) {
   const button = document.getElementById(id);
 
@@ -44,7 +53,9 @@ function getTaskPrio(id) {
 }
 
 /**
- * add Task
+ * Shows the elements for adding and deleting subtasks.
+ * Hides the button for adding a new task and shows the delete and check buttons instead.
+ * Changes the visibility and display of the corresponding elements based on their IDs.
  */
 function showAddAndDeleteSubTask() {
   let BTNPlus = document.getElementById("addTaskBTNPlus");
@@ -57,7 +68,9 @@ function showAddAndDeleteSubTask() {
 }
 
 /**
- * del Task / clear inputfield
+ * Deletes the content of the subtask input field and restores the original buttons.
+ * Sets the value of the subtask input field to empty, hides the delete and check buttons and displays the add button again.
+ * Changes the display and visibility of the corresponding elements based on their IDs.
  */
 function delTask() {
   let BTNPlus = document.getElementById("addTaskBTNPlus");
@@ -72,7 +85,9 @@ function delTask() {
 }
 
 /**
- * add Subtask
+ * Adds a new subtask and updates the display of subtasks.
+ * Checks whether the input field for subtasks contains a value, adds it to the global list of subtasks and updates the display.
+ * Hides the check and delete buttons, shows the plus button again and resets the input field.
  */
 function addNewSubTask() {
   let subtaskInput = document.getElementById("taskSubtasks");
@@ -86,42 +101,49 @@ function addNewSubTask() {
       status: false  // Standardstatus, kann je nach Anwendungslogik angepasst werden
     }); // Füge den neuen Subtask zur globalen subtask-Liste hinzu
   }
-  getSubTaskAddTask(); // Aktualisiere die Anzeige der Subtasks
-  check.style.display = "none"; // Verstecke den Check-Button
-  del.style.display = "none"; // Verstecke den Delete-Button
-  BTNPlus.style.visibility = "initial"; // Zeige den Plus-Button
-  subtaskInput.value = ""; // Setze das Eingabefeld zurück
+  getSubTaskAddTask(); // Update the display of the subtasks
+  check.style.display = "none"; // Hide the check button
+  del.style.display = "none"; // Hide the delete button
+  BTNPlus.style.visibility = "initial"; // Show the plus button
+  subtaskInput.value = ""; // Reset the input field
 }
 
+/**
+ * Refreshes the display of the list of subtasks on the web page.
+ * Deletes the current content of the element displaying the subtasks and adds the current list of subtasks.
+ * Iterates over the global list of subtasks and adds each subtask to the HTML content by calling the `renderGetSubtasks` function.
+ */
 function getSubTaskAddTask() {
   let getSubtask = document.getElementById("getSubtask");
   getSubtask.innerHTML = "";
 
   if (subtask) {
     for (let i = 0; i < subtask.length; i++) {
-      const element = subtask[i]['description'];
+      const element = subtask[i]["description"];
       getSubtask.innerHTML += renderGetSubtasks(i, element);
     }
   }
 }
 
 /**
- * Die Eingegebenen Inhalt wird gelöscht
+ * Deletes the content of the subtask area and resets all relevant input fields and variables.
+ * Removes the contents of the div container with the ID “getSubtask”, resets the global variable “subtask” and the input field for subtasks, and resets the form.
+ * Subsequently updates the display of subtasks by calling the function `getSubTaskAddTask`.
  */
 function clearContent() {
-  // Lösche den Inhalt des Div-Containers mit der ID "getSubtask"
+  // Delete the content of the div container with the ID “getSubtask”
   document.getElementById("getSubtask").innerHTML = "";
 
-  // Setze die globale Variable "subtask" zurück
+  // Reset the global variable “subtask”
   subtask = [];
 
-  // Leere das Eingabefeld für Subtasks
+  // Empty the input field for subtasks
   document.getElementById("taskSubtasks").value = "";
 
-  // Setze das Formular zurück
+  // Reset the form
   document.getElementById("myForm").reset();
 
-  // Aktualisiere die Anzeige der Subtasks
+  // Update the display of the subtasks
   getSubTaskAddTask();
 }
 
@@ -132,6 +154,11 @@ function getValue(id) {
   return document.getElementById(id).value.trim();
 }
 
+/**
+ * Creates a task object based on the form input and the current application state.
+ * Reads the values of the title, description, due date, category and priority fields from the form as well as the assigned users and subtasks.
+ * If the window name is set, the current state is set based on it and the created task object is returned.
+ */
 function getTaskFromForm() {
   const priorityElement = document.querySelector(".prioBTNS .active"); // Find the active priority button
   const priority = priorityElement ? priorityElement.id : "";
@@ -155,6 +182,11 @@ function getTaskFromForm() {
 
 let isCreatingTask = false;
 
+/**
+ * Creates a new task by collecting the form data and sending it to a server.
+ * Prevents task creation if an already running creation is active, checks form validity and displays a loading indicator if successful.
+ * Sends the task as JSON to a Firebase database and redirects the user to the board page upon successful creation.
+ */
 async function createTask() {
   if (isCreatingTask) {
     return;
@@ -173,13 +205,16 @@ async function createTask() {
   try {
     showLoadingOverlay();
 
-    const response = await fetch("https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task.json", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(task),
-    });
+    const response = await fetch(
+      "https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/task.json",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    );
 
     if (!response.ok) throw new Error("Failed to create task");
 
@@ -193,6 +228,13 @@ async function createTask() {
   }
 }
 
+/**
+ * Creates a new task in the database by sending the transferred data to a server.
+ * Sends the data as JSON to a specified URL in the Firebase database using a POST request.
+ * The function uses `BASE_URL` and a fixed path to store the task.
+ *
+ * @param {Object} [data={}] - The data of the new task to be created.
+ */
 async function createNewTaskInStorage(data = {}) {
   path = "task/.json";
   //data = {title:"neuer Titel"};
@@ -274,6 +316,13 @@ async function toggleCheckboxes(event) {
   }
 }
 
+/**
+ * Loads data from a server and displays the checkboxes in a specified container.
+ * Retrieves a JSON file from a specified URL, converts the data and generates a checkbox for each row of data.
+ * Empties the contents of the container before adding the new checkboxes and handles possible errors when retrieving the data.
+ *
+ * @param {HTMLElement} checkboxes - The HTML element in which the checkboxes are to be displayed.
+ */
 async function loadCheckboxes(checkboxes) {
   try {
     const response = await fetch(`${BASE_URL_Contacts}.json`);
@@ -291,12 +340,26 @@ async function loadCheckboxes(checkboxes) {
   }
 }
 
+/**
+ * Updates the status of checkboxes based on the assigned values.
+ * Sets the `checked` status of each checkbox named “options” depending on whether its value is included in the `assigningTo` list.
+ *
+ * @param {HTMLElement} checkboxes - The HTML element containing the checkboxes to be updated.
+ */
 function updateCheckboxes(checkboxes) {
   document.querySelectorAll('[name="optionen"]').forEach((checkbox) => {
     checkbox.checked = assigningTo.includes(checkbox.value);
   });
 }
 
+/**
+ * Extracts the initials from a complete name.
+ * Splits the name into words, takes the first letter of each word and joins these letters into a string.
+ * Returns the initials in the composed string.
+ *
+ * @param {string} name - The full name from which the initials are to be extracted.
+ * @returns {string} - A string containing the initials of the name.
+ */
 function getInitials(name) {
   return name
     .split(" ")
@@ -305,8 +368,9 @@ function getInitials(name) {
 }
 
 /**
- * The function generates a list of selected guests' names, colors, and initials based on checked
- * checkboxes.
+ * Generates lists of names, colors and initials based on the selected checkboxes.
+ * Searches all selected checkboxes, finds the corresponding guests in `guesteArray`, and adds their names, colors and initials to the corresponding global lists.
+ * The values of the checkboxes are used to identify the guests and only valid guests are added to the lists.
  */
 function generateCheckBoxName() {
   const selectedGuest = Array.from(
@@ -323,8 +387,9 @@ function generateCheckBoxName() {
 }
 
 /**
- * The function generates checkbox based on elements in an array and hides the checkbox when
- * clicking outside the select box.
+ * Loads data from a server and generates checkboxes for selecting users.
+ * First empties the contents of the container for checkboxes, then retrieves a JSON file and creates a checkbox for each row of data.
+ * The generated checkboxes are added to the container and errors are logged when retrieving the data.
  */
 async function generateCheckBox() {
   const checkboxes = document.getElementById("checkboxUsername");
