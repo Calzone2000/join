@@ -101,8 +101,10 @@ function editSubtask(i, idTask) {
 }
 
 function saveEditedSubtask(i, idTask) {
+    let newSubtask = document.getElementById(`subtask-description-${i}`).value;
     document.getElementById(`subtask-preview-${i}`).classList.remove("d-none");
     document.getElementById(`subtask-edit-${i}`).classList.add("d-none");
+    document.getElementById(`description-preview-${i}`).innerHTML = newSubtask;
 }
 
 /*

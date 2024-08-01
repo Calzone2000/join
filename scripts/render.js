@@ -273,7 +273,7 @@ function renderEditCard2(index) {
                             <h3>Edit Task</h3>                                                       
                             <img class="pointer" src="./assets/img/close.svg" alt="Close Task" onclick="closeEditTask('${index}')">
                         </div>
-                        <div class="preview-card-content">
+                        <div class="preview-card-content preview-card-content">
                             <form class="frm-edit-task" onsubmit="updateCurrentTask('${index}'); return false;">
                             <div class="title-input">                        
                                 <label for="task-title">Titel</label>
@@ -310,7 +310,9 @@ function renderEditCard2(index) {
     }
 
     let priority = task[index].priority;
-    editCardForm += `    <label for="priority">Priority:</label>
+    editCardForm += `       <div class="title-input">                        
+                                <label for="task-title">Priority</label>
+                            </div>
                             <div id="priority">
                                 <div id="btn-prio-low" onclick="changePriority('low')" class="btn-prio ${priority === 'low' ? 'green' : ''}" data-value="low">Low</div>
                                 <div id="btn-prio-medium" onclick="changePriority('medium')"  class="btn-prio ${priority === 'medium' ? 'yellow' : ''}" data-value="medium">Medium</div>
@@ -321,8 +323,7 @@ function renderEditCard2(index) {
     editCardForm +=         `<div class="task-participiants-dropdown">
                                 <label="task-participiants">
                                 <div class="dropdown-btn" onclick="showContacts()">
-                                    <span>Assign contacts</span>
-                                    
+                                    <span>Assign contacts</span>                                    
                                     <img id="arrow" src="./assets/img/edit.svg">
                                 </div>
                                 <div class="dropdown-contacts d-none dropdown-contacts-edit" id="dropdown-contacts">
@@ -349,8 +350,12 @@ function renderEditCard2(index) {
 
     editCardForm += `</label></div></div>`;
 
-    editCardForm +=         `<div class="task-subtask-list title-input">
-                                <h3>Subtasks</h3>
+    editCardForm +=         `
+    <div class="task-subtask-list title-input">
+    <div class="title-input">                        
+                                <label for="task-title">Subtasks</label>
+                            </div>
+                                <!--<div class="title-input">Subtasks</div>-->
                                     <div class="add-new-subtask">
                                         <input id="add-subtask-input" class="add-task-input" type="text" preview="Add a new subtask">
                                         <span class="btn-add-new-subtask pointer" onclick = addSubtask('${index}')>+ Add</span>
@@ -365,7 +370,7 @@ function renderEditCard2(index) {
                                 <div class="subtask-preview" id="subtask-preview-${i}">
                                     <div class="subtask-description">
                                         <input onclick="updateSubtaskState(${i})" class="task-done-prev" type="checkbox" id="checkbox-${i}" name="subtask-${i}" ${isChecked ? 'checked' : ''}>
-                                        <span class="description-preview">${task[index].subtask[i].description}</span>
+                                        <span id="description-preview-${i}" class="description-preview">${task[index].subtask[i].description}</span>
                                     </div>
                                     <div class="edit-icons">
                                         <img class="pointer" src="./assets/img/edit.svg" onclick="editSubtask(${i}, '${index}')">
@@ -378,8 +383,7 @@ function renderEditCard2(index) {
                                         <input class="description-preview" type="text" id="subtask-description-${i}" value="${task[index].subtask[i].description}">                                    
                                     </div>
                                     <div class="edit-icons">
-                                        <img class="pointer" src="./assets/img/edit.svg" onclick="saveEditedSubtask(${i}, '${index}')">
-                                        <!--<img class="pointer" src="./assets/img/delete.svg">-->
+                                        <img class="pointer" src="./assets/img/check.svg" onclick="saveEditedSubtask(${i}, '${index}')">
                                     </div>
                                 </div>
                              </div>

@@ -34,30 +34,40 @@
     /* Standard CSS für den Container */
     width: 100%;
     height: 100%;
-    overflow-y: auto; /* Nur vertikales Scrollen */
-    scrollbar-width: thin; /* Für Firefox */
-    scrollbar-color: #888 #f1f1f1; /* Für Firefox */
+    overflow-y: auto;
+    /* Nur vertikales Scrollen */
+    scrollbar-width: thin;
+    /* Für Firefox */
+    scrollbar-color: #888 #f1f1f1;
+    /* Für Firefox */
 }
 
 /* Für Webkit-basierte Browser (Chrome, Safari, Edge) */
 .kanban-tasks::-webkit-scrollbar {
-    width: 1px; /* Breite der vertikalen Scrollbar */
-    height: 1px; /* Höhe der horizontalen Scrollbar */
+    width: 1px;
+    /* Breite der vertikalen Scrollbar */
+    height: 1px;
+    /* Höhe der horizontalen Scrollbar */
 }
 
 .kanban-tasks::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Hintergrund des Scrollbar-Tracks */
+    background: #f1f1f1;
+    /* Hintergrund des Scrollbar-Tracks */
     border-radius: 10px;
 }
 
 .kanban-tasks::-webkit-scrollbar-thumb {
-    background-color: #888; /* Farbe des Scrollbar-Griffs */
-    border-radius: 10px; /* Abgerundete Ecken für den Griff */
-    border: 12px solid #f1f1f1; /* Abstand um den Griff */
+    background-color: #888;
+    /* Farbe des Scrollbar-Griffs */
+    border-radius: 10px;
+    /* Abgerundete Ecken für den Griff */
+    border: 12px solid #f1f1f1;
+    /* Abstand um den Griff */
 }
 
 .kanban-tasks::-webkit-scrollbar-thumb:hover {
-    background-color: #ffffff; /* Farbe des Scrollbar-Griffs bei Hover */
+    background-color: #ffffff;
+    /* Farbe des Scrollbar-Griffs bei Hover */
 }
 
 .kanban-tasks-highlight {
@@ -78,7 +88,7 @@
     color: darkgrey;
     border-radius: 10px;
     height: 75px;
-    border-color: rgb(73, 73, 73);    
+    border-color: rgb(73, 73, 73);
 }
 
 .task-info {
@@ -93,7 +103,7 @@
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
-    margin:15px;
+    margin: 15px;
 }
 
 .task-info span {
@@ -116,7 +126,7 @@
 }
 
 .task-add-info img {
-    width:32px;
+    width: 32px;
 }
 
 .participants {
@@ -236,8 +246,8 @@ img.spyglass {
     background-color: #091931;
 }
 
-.preview-task-area, 
-.edit-task-area{
+.preview-task-area,
+.edit-task-area {
     position: fixed;
     top: 0;
     left: 0;
@@ -252,7 +262,7 @@ img.spyglass {
 
 }
 
-.preview-card, 
+.preview-card,
 .edit-card {
     max-height: 80vh;
     width: 400px;
@@ -261,19 +271,18 @@ img.spyglass {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .preview-card-header {
     display: flex;
     justify-content: space-between;
     top: 0;
-    margin:0px 20px;
+    margin: 0px 20px;
 }
 
-.preview-card-content {
+.preview-card-content, .edit-card-content {
     display: flex;
-    padding: 0px 20px;
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: scroll;
@@ -281,7 +290,8 @@ img.spyglass {
     scrollbar-color: #012f4971 #f1f1f14d;
 }
 
-.preview-card-footer, .edit-card-footer {
+.preview-card-footer,
+.edit-card-footer {
     display: flex;
     justify-content: flex-end;
     gap: 24px;
@@ -289,11 +299,12 @@ img.spyglass {
 }
 
 .edit-card-footer {
-    justify-content:center;
+    justify-content: center;
 }
 
-.preview-card-menu, .save-edited-task{
-    position: sticky;    
+.preview-card-menu,
+.save-edited-task {
+    position: sticky;
     padding: 20px;
 }
 
@@ -341,7 +352,7 @@ img.spyglass {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
 .user-preview {
     display: flex;
@@ -411,13 +422,13 @@ img.spyglass {
 
 @media (max-width:1100px) {
     #kb-task-done {
-        margin-bottom:120px;
+        margin-bottom: 120px;
     }
 
     .kanban-col-hl {
         justify-content: flex-start;
-        gap:30px;
-        width:90vw;
+        gap: 30px;
+        width: 90vw;
     }
 
     .kanban-board {
@@ -428,26 +439,26 @@ img.spyglass {
     .kanban-tasks {
         display: flex;
         flex-direction: row;
-        gap: 20px;                
-        width:90vw;
-        padding:20px 2px;
-        margin-right:100px;       
-        overflow-x:auto;
+        gap: 20px;
+        width: 90vw;
+        padding: 20px 2px;
+        margin-right: 100px;
+        overflow-x: auto;
         min-height: 100px;
     }
 
     .right-section {
         overflow-x: hidden;
-        
+
     }
 
     .task-info {
-        min-width:200px;
-        max-width:200px;
+        min-width: 200px;
+        max-width: 200px;
     }
 
     .no-task-info {
-        width:200px;
+        width: 200px;
     }
 
     .board-header {
@@ -455,9 +466,10 @@ img.spyglass {
     }
 
     .btn-add-task {
-        min-width:120px;
-        font-size:medium;
+        min-width: 120px;
+        font-size: medium;
     }
+
     .progress {
         flex-direction: column;
     }
@@ -466,13 +478,13 @@ img.spyglass {
 @media (max-width:580px) {
     .board-functions {
         flex-direction: column;
-        gap:10px;
+        gap: 10px;
         align-items: center;
     }
-    
+
     .btn-add-task {
-        height:56px;
-        min-width: 200px;       
+        height: 56px;
+        min-width: 200px;
     }
 
     .search-task {
@@ -485,103 +497,102 @@ img.spyglass {
     }
 }
 
-.frm-edit-task {
-    margin:20px;
-}
-
 .dropdown-btn {
-    width:100%;
-    padding: 10px 10px;    
+    width: 100%;
+    padding: 10px 10px;
     border: solid 1px lightgrey;
     border-radius: 10px;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .dropdown-contacts {
-    margin-left:10px;
-    max-height:100px;
-    width:300px;
-    z-index:1000000;
+    margin-left: 10px;
+    max-height: 100px;
+    width: 300px;
+    z-index: 1000000;
     background-color: rgb(233, 233, 233);
     border: solid 1px rgb(185, 185, 185);
     position: absolute;
     overflow-y: scroll;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
-.dropdown-contacts-edit{
+.dropdown-contacts-edit {
     position: relative;
     background-color: #f6f7f8;
 }
 
 .title-input {
-    display:flex;
+    display: flex;
     flex-direction: column;
     margin-bottom: 20px;
 }
 
 .title-input label {
-    font-size:1.3rem;    
+    font-size: 1.3rem;
 }
 
-.title-input input, select {
-    width:100%;
-    padding: 10px 10px;    
+.title-input input,
+select {
+    width: 100%;
+    padding: 10px 10px;
     border: solid 1px lightgrey;
     border-radius: 10px;
 }
 
-.title-input textarea{
+.title-input textarea {
     width: 100%;
     height: 100px;
-    resize: vertical; 
-    overflow: auto; 
-    border-radius:0px;
+    resize: vertical;
+    overflow: auto;
+    border-radius: 0px;
 }
 
 .edit-task-2-col {
-    display:flex;
-    gap:10%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10%;
 }
 
 .small {
-    width:42%;
+    width: 42%;
 }
 
 .edit-form-header {
-    display:flex;
+    display: flex;
     justify-content: flex-end;
 }
 
 .right {
-    justify-content:flex-end !important;
+    justify-content: flex-end !important;
 }
 
-.subtask-preview, .subtask-edit {
-    width:100%;
-    display:flex;
-    justify-content:space-between;
+.subtask-preview,
+.subtask-edit {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .edit-icons {
     width: 10%;
-    display:flex;
+    display: flex;
 }
 
 .description-preview {
-    flex:1;
+    flex: 1;
     width: 80%;
 }
 
 .class-done {
-    width:10%;
+    width: 10%;
 }
 
 .subtask-description {
-    display:flex;
+    display: flex;
     justify-content: space-between;
 }
 
@@ -590,15 +601,16 @@ img.spyglass {
 }
 
 .subtask-description input[type="text"] {
-    width: 230px;
-    height: 20px;
+    width: 300px;
+    height: 25px;
+    margin-right: 15px;
 }
 
 .add-new-subtask {
-    display:flex;
+    display: flex;
     align-items: center;
     border: 1px lightgray solid;
-    border-radius:10px;
+    border-radius: 10px;
 }
 
 .add-task-input {
@@ -606,13 +618,13 @@ img.spyglass {
 }
 
 .save-edited-task {
-    text-align:center ;
-    margin:10px;
+    text-align: center;
+    margin: 10px;
 }
 
 .btn-small {
-    font-size: 14px !important;    
-    height:30px !important;
+    font-size: 14px !important;
+    height: 30px !important;
 }
 
 .blur {
@@ -620,43 +632,59 @@ img.spyglass {
 }
 
 #priority {
-    display:flex;
+    display: flex;
     justify-content: space-between;
 }
 
 .btn-prio {
-    height:40px;
-    display:flex;
+    height: 40px;
+    display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     width: 30%;
-    cursor:pointer;
+    cursor: pointer;
     border: 1px lightgray solid;
-    border-radius:10px;
-    margin: 15px 0;
+    border-radius: 10px;
+    margin-bottom:15px;
     font-size: 12px;
 }
 
 .green {
-    background-color:green;
+    background-color: #7AE229;
 }
 
 .yellow {
-    background-color:yellow;    
+    background-color: #FFA800;
 }
 
 .red {
-    background-color:red;
+    background-color: #FF0000;
 }
 
-.green, .yellow, .red {
-    color:white;
+.green,
+.yellow,
+.red {
+    color: white;
 }
 
 .add-task-input:focus {
-    outline:none;
+    outline: none;
 }
 
-#task-title:focus, #task-description:focus { 
-    outline:none;
+#task-title:focus,
+#task-description:focus {
+    outline: none;
+}
+
+div#subtask-list {
+    margin-right: 11px;
+    margin-top: 18px;
+}
+
+.edit-card-content {
+    padding: 0px 0px !important;
+}
+
+.preview-card-content {
+    padding: 0px 20px;
 }
