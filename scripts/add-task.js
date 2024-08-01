@@ -98,8 +98,8 @@ function addNewSubTask() {
   if (subtaskInput.value) {
     subtask.push({
       description: subtaskInput.value,
-      status: true, // Standard status, can be adjusted depending on the application logic
-    }); // Add the new subtask to the global subtask list
+      status: false  // Standardstatus, kann je nach Anwendungslogik angepasst werden
+    }); // Füge den neuen Subtask zur globalen subtask-Liste hinzu
   }
   getSubTaskAddTask(); // Update the display of the subtasks
   check.style.display = "none"; // Hide the check button

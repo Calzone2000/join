@@ -10,17 +10,35 @@
     <script src="./scripts/storage.js"></script>
     <script src="./scripts/add-task.js"></script>
     <script src="./scripts/add-task-html.js"></script>
-    <link rel="stylesheet" href="./style/main.css">
-    <link rel="stylesheet" href="./style/contacts.css">
-    <link rel="stylesheet" href="./style/fonts.css" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png">
-    <link rel="manifest" href="./assets/img/site.webmanifest">
-    <link rel="mask-icon" href="./assets/img/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">    
-</head>
+    <link rel="stylesheet" href="./style/main.css" />
+    <link rel="stylesheet" href="./style/contacts.css" />
+    <link rel="stylesheet" href="./style/fonts.css" rel="stylesheet" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/img/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/img/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./assets/img/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="./assets/img/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
 
   <body onload="includeHTML(); onloadFunc()">
     <div
@@ -35,11 +53,11 @@
         <header w3-include-html="./tpl/top.html"></header>
 
         <div id="contact-form-modal-add" class="modal" style="display: none">
-          <div w3-include-html="add_contact.html"></div>
+          <div w3-include-html="add-contact.html"></div>
         </div>
 
         <div id="contact-form-modal-edit" class="modal" style="display: none">
-          <div w3-include-html="edit_contact.html"></div>
+          <div w3-include-html="edit-contact.html"></div>
         </div>
 
         <div id="delete-request" style="display: none">

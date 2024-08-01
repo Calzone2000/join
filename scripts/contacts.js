@@ -32,7 +32,6 @@ async function onloadFunc() {
   let contactsKeys = Object.keys(contactKey);
 
   for (let i = 0; i < contactsKeys.length; i++) {
-
     let contactId = contactsKeys[i];
     let initials = contactResponse["contact"][contactId]["name"].split(" ");
     let firstInitial = initials[0][0].toUpperCase();
@@ -69,26 +68,33 @@ function renderContacts() {
         `;
   }
   for (let i = 0; i < contacts.length; i++) {
-    document.getElementById(
-      `${contacts[i]["name"][0]}-content`
-    ).innerHTML += /*html*/ `
-    <div class="contact-field" onclick="showContact(${i})">
-        <div>
-            <div class="profile-badge" style="background-color: ${contacts[i]["color"]}">${contacts[i]["firstInitial"]}${contacts[i]["secondInitial"]}</div>
-        </div>
-        <div class="contact-data">
-            <div>${contacts[i]["name"]}</div>
-            <div><a href="${contacts[i]["email"]}">${contacts[i]["email"]}</a></div>
-
-        </div>
-    </div>
-        
-    `;
+    document.getElementById(`${contacts[i]["name"][0]}-content`).innerHTML +=
+      renderContactsHtml(i);
   }
 }
 
 /**
- * this funtion hides all the contact data, which which were displayed by clicking a contact
+ * this function returns the html code for the renderContacts function
+ */
+
+function renderContactsHtml(i) {
+  return `
+  <div class="contact-field" onclick="showContact(${i})">
+      <div>
+          <div class="profile-badge" style="background-color: ${contacts[i]["color"]}">${contacts[i]["firstInitial"]}${contacts[i]["secondInitial"]}</div>
+      </div>
+      <div class="contact-data">
+          <div>${contacts[i]["name"]}</div>
+          <div><a href="${contacts[i]["email"]}">${contacts[i]["email"]}</a></div>
+
+      </div>
+  </div>
+      
+  `;
+}
+
+/**
+ * this funtion hides all the contact data, which which were displayed by clicking on a contact
  */
 
 function closeShownContact() {
@@ -98,7 +104,7 @@ function closeShownContact() {
 }
 
 /**
- * this function displays all the data from a contact by clicking the contact
+ * this function displays all the data from a contact by clicking on a contact
  * @param {index} i this parameter is there, to identify the current selected contact and to display the correct data
  */
 
@@ -112,35 +118,45 @@ function showContact(i) {
   document.getElementById("right-container").classList.remove("hide-800");
   document.getElementById("contacts-container").classList.add("hide-800");
   document.getElementById("shown-contact-close").classList.remove("hide");
-  document.getElementById("selected-contact").innerHTML += /*html*/ `
-        <div class="selected-contact">
-            <div class="selected-contact-top">
-                <div class="profile-badge-big" style="background-color: ${contacts[i]["color"]}">${contacts[i]["firstInitial"]}${contacts[i]["secondInitial"]}</div>
-                <div class="selected-contact-top-right">
-                    <h2>${contacts[i]["name"]}</h2>
-                    <div class="selected-contact-top-right-btns">
-                        <button class="contact-buttons" onclick="openModalEdit(${i})">
-                            <img src="../assets/img/edit.svg" alt="">
-                            <p class="contact-button-p">Edit</p>
-                        </button>
-                        <button class="contact-buttons" onclick="deleteRequest()">
-                            <img src="../assets/img/delete.svg" alt="">
-                            <p class="contact-button-p">Delete</p>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <h3>Contact Information</h3>
-            </div>
-            <div>
-                <h4 class="mail-heading">Email</h4>
-                <a href="${contacts[i]["email"]}">${contacts[i]["email"]}</a>
-                <h4>Phone</h4>
-                ${contacts[i]["phone"]}
-            </div>
-        </div>
-    `;
+  document.getElementById("selected-contact").innerHTML += showContactHtml(i);
+}
+
+/**
+ * this function returns the html code for the showContact function
+ * @param {*} i this parameter is there, to identify the current selected contact and to display the correct data
+ * @returns html code
+ */
+
+function showContactHtml(i) {
+  return `
+  <div class="selected-contact">
+      <div class="selected-contact-top">
+          <div class="profile-badge-big" style="background-color: ${contacts[i]["color"]}">${contacts[i]["firstInitial"]}${contacts[i]["secondInitial"]}</div>
+          <div class="selected-contact-top-right">
+              <h2>${contacts[i]["name"]}</h2>
+              <div class="selected-contact-top-right-btns">
+                  <button class="contact-buttons" onclick="openModalEdit(${i})">
+                      <img src="../assets/img/edit.svg" alt="">
+                      <p class="contact-button-p">Edit</p>
+                  </button>
+                  <button class="contact-buttons" onclick="deleteRequest()">
+                      <img src="../assets/img/delete.svg" alt="">
+                      <p class="contact-button-p">Delete</p>
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div>
+          <h3>Contact Information</h3>
+      </div>
+      <div>
+          <h4 class="mail-heading">Email</h4>
+          <a href="${contacts[i]["email"]}">${contacts[i]["email"]}</a>
+          <h4>Phone</h4>
+          ${contacts[i]["phone"]}
+      </div>
+  </div>
+`;
 }
 
 /**
@@ -149,7 +165,6 @@ function showContact(i) {
  */
 
 async function deleteContact() {
-  // Stelle sicher, dass currentElement korrekt gesetzt ist
   if (currentElement < 0 || currentElement >= contacts.length) {
     console.error("Index out of bounds");
     return;
@@ -163,18 +178,14 @@ async function deleteContact() {
     });
 
     if (response.ok) {
-      // Entferne die ID aus dem assigningTo Array
       const index = assigningTo.indexOf(contactId);
       if (index > -1) {
         assigningTo.splice(index, 1);
         console.log("ID aus assigningTo entfernt");
       }
 
-      // Entferne den Kontakt aus dem contacts Array
       contacts.splice(currentElement, 1);
       console.log("Kontakt erfolgreich gelöscht");
-
-      // Aktualisiere die Anzeige ohne Neuladen der Seite
       renderContacts();
     } else {
       console.error("Fehler beim Löschen des Kontakts: ", response.statusText);
@@ -187,7 +198,7 @@ async function deleteContact() {
 }
 
 /**
- * this function opens a window to ask if a contact should be deleted for sure
+ * this function opens a window to ask if a contact should be deleted permanently
  */
 
 function deleteRequest() {
@@ -195,7 +206,7 @@ function deleteRequest() {
 }
 
 /**
- * this function closes the window to ask if a contact should be deleted for sure
+ * this function closes the window to ask if a contact should be deleted permanently
  */
 
 function closeDeleteRequest() {
@@ -250,11 +261,12 @@ async function pushAllData(functionType) {
     let key = contactsKeys[i];
     let mail = contactKey[key].email;
 
-    if(email == mail){
-      let emailInput = document.getElementById('email-input');
-      emailInput.value = ''; // Inhalt löschen
-      emailInput.style.borderColor = 'red'; // Feld rot markieren
-      emailInput.placeholder = 'The e-mail address you entered is already taken.'; // Placeholder setzen
+    if (email == mail) {
+      let emailInput = document.getElementById("email-input");
+      emailInput.value = "";
+      emailInput.style.borderColor = "red";
+      emailInput.placeholder =
+        "The e-mail address you entered is already taken.";
       return;
     }
   }
@@ -358,9 +370,9 @@ function openModalAdd() {
 
 function closeModalAdd() {
   clearInput();
-  let emailInput = document.getElementById('email-input');
-      emailInput.style.borderColor = '';
-      emailInput.placeholder = 'Email';
+  let emailInput = document.getElementById("email-input");
+  emailInput.style.borderColor = "";
+  emailInput.placeholder = "Email";
   document.getElementById("contact-form-modal-add").style.display = "none";
   document.body.classList.remove("no-scroll");
 }

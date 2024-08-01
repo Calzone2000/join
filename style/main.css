@@ -1,7 +1,7 @@
 @font-face {
-    font-family: "figtree";
-    src: url(../assets/fonts/static/Figtree-Regular.ttf);
-  }
+  font-family: "figtree";
+  src: url(../assets/fonts/static/Figtree-Regular.ttf);
+}
 
 html {
   overflow: hidden;
