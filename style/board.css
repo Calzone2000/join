@@ -66,6 +66,10 @@
   cursor: pointer;
 }
 
+.title-edit-card {
+  margin-left:1px !important;
+}
+
 .no-task-info {
   display: flex;
   justify-content: center;
