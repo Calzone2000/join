@@ -31,6 +31,14 @@ body {
   text-decoration: none;
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: rgb(42, 54, 71);
+}
+
+a:hover {
+  text-decoration: none;
+}
 
 .btn img {
   height: 24px;

@@ -25,6 +25,12 @@ function getInitials(name) {
     }    
 }
 
+function setCurrentUser() {
+    let currentUserId = localStorage.getItem('user');
+    currentUserName = user[currentUserId].name;   
+}
+
+
 /**
  * Generate greeting depending on local time
  */
@@ -70,3 +76,5 @@ function renderStates() {
     document.getElementById('sum-tasks-urgent').innerHTML = countUrgency();
     document.getElementById('greeting-depends-on-time').innerHTML = generateGreeting();
 }
+
+

@@ -1,8 +1,3 @@
-/*
-let task = [];
-
-*/
-
 let taskIDs = [];
 let nextUrgentTask = [];
 let taskPriorityArray = [];

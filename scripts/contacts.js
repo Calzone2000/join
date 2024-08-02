@@ -49,10 +49,10 @@ async function onloadFunc() {
       secondInitial: secondInitial,
       id: contactId,
     });
-  }
-
+  }  
   getFirstLetters();
   renderContacts();
+  renderContent();
 }
 
 /**

@@ -20,3 +20,20 @@ async function initSummary() {
     renderSummary();
     renderInitials();
 }
+
+async function initAddTask() {        
+    await loadUserData();        
+    setCurrentUser();  
+    await loadUserData();     
+    renderAddTask();     
+    generateCheckBox();  
+    renderInitials();  
+}
+
+async function renderContent() {
+    await loadUserData();
+    setCurrentUser(); 
+    await loadUserData();
+    await loadUserData();
+    renderInitials();
+}

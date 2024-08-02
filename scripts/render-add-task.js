@@ -3,7 +3,7 @@
  * Combines the HTML output of multiple sub-functions that each create different parts of the form, including title, description, assignment, due date, priority, category, subtasks and footer.
  * Sets the combined HTML string as the content of the form element with the ID “myForm”.
  */
-function renderAddTask() {
+async function renderAddTask() {
   let addTaskForm = renderAddTaskTitle();
   addTaskForm += renderAddTaskDescription();
   addTaskForm += renderAddTaskAssignetTo();
