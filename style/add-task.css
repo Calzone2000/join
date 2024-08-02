@@ -17,6 +17,10 @@ body {
   min-height: 100vh;
 }
 
+/* .addTaskHTMLBody {
+  overflow: hidden;
+} */
+
 #myForm {
   display: flex;
   flex-direction: column;
@@ -328,6 +332,13 @@ body {
   height: 30px;
 }
 
+.crossLine {
+  background-color: #2a3647;
+  width: 1px;
+  height: 30px;
+  margin: 0px 10px 10px;
+}
+
 .editingDeleting {
   display: flex;
 }
@@ -348,11 +359,6 @@ body {
   border-bottom: 1px solid #29abe2;
   padding-left: 15px;
 }
-
-/* .showTaskSubtaskEditBTN:focus {
-  border: 1px solid #29abe2;
-  outline: none;
-} */
 
 .getSubtask {
   margin-top: 10px;
