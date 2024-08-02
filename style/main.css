@@ -336,6 +336,10 @@ h4,
     flex-direction: column-reverse;
   }
 
+  .content {
+    margin-bottom:150px;
+  }
+
   img.logo-light {
     display: none;
   }
