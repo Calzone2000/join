@@ -16,6 +16,7 @@ async function initSummary() {
     await loadUserData();
     setCurrentUser();
     await loadTasks();
+	await loadUserData();
     await loadContacts();
     renderSummary();
     renderInitials();

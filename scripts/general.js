@@ -27,7 +27,11 @@ function getInitials(name) {
 
 function setCurrentUser() {
     let currentUserId = localStorage.getItem('user');
-    currentUserName = user[currentUserId].name;   
+    if (currentUserId) {
+        currentUserName = user[currentUserId].name;   
+    } else {
+        currentUserName = "Guest User";   
+    }
 }
 
 
