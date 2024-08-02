@@ -133,8 +133,6 @@ function renderGetSubtasks(i, element) {
     <div class="editSubtasks_delEdit">
         <div class="showTask"><li>${element}</li></div>
         <div class="showSubTask">
-            <img class="imgHoverBTN" src="./assets/img/edit.svg" onclick="EditNewSubTask(${i})">
-            <div class="crossLine"></div>
             <img class="imgHoverBTN" src="./assets/img/delete.svg"  onclick="delNewTask(${i})">
         </div>
     </div>
