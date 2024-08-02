@@ -263,7 +263,7 @@ function EditNewSubTask(i) {
     `showTaskSubtaskEditInput${i}`
   );
   if (showInputSubtask) {
-    showInputSubtask.value = subtask[i]; // Directly assign value if subtask is a string
+    showInputSubtask.value = subtask[i]["description"]; // Directly assign value if subtask is a string
   }
 }
 
