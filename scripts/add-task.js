@@ -98,7 +98,7 @@ function addNewSubTask() {
   if (subtaskInput.value) {
     subtask.push({
       description: subtaskInput.value,
-      status: false  // Standardstatus, kann je nach Anwendungslogik angepasst werden
+      status: false, // Standardstatus, kann je nach Anwendungslogik angepasst werden
     }); // Füge den neuen Subtask zur globalen subtask-Liste hinzu
   }
   getSubTaskAddTask(); // Update the display of the subtasks
@@ -255,12 +255,16 @@ async function createNewTaskInStorage(data = {}) {
  */
 function EditNewSubTask(i) {
   let showEditSubtask = document.getElementById(`showTaskSubtaskEditBTN${i}`);
-  showEditSubtask.style.display = "flex";
+  if (showEditSubtask) {
+    showEditSubtask.style.display = "flex"; // Ensure element exists before styling
+  }
 
   let showInputSubtask = document.getElementById(
     `showTaskSubtaskEditInput${i}`
   );
-  showInputSubtask.value = subtask[i];
+  if (showInputSubtask) {
+    showInputSubtask.value = subtask[i]; // Directly assign value if subtask is a string
+  }
 }
 
 /**
@@ -283,8 +287,10 @@ function saveEditNewTask(i) {
   let showTaskSubtaskEditInput = document.getElementById(
     `showTaskSubtaskEditInput${i}`
   );
-  subtask[i] = showTaskSubtaskEditInput.value;
-  getSubTaskAddTask();
+  if (showTaskSubtaskEditInput) {
+    subtask[i].description = showTaskSubtaskEditInput.value; // Update the specific property if subtask is an object
+    getSubTaskAddTask(); // Refresh the display
+  }
 }
 
 /**
