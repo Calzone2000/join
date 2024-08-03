@@ -12,7 +12,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: start;
-  margin: 80px 77px;
+  margin: 54px 48px;
 }
 
 .sign-up-section {
@@ -31,6 +31,7 @@ body {
   text-decoration: none;
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
   color: rgb(42, 54, 71);
@@ -79,6 +80,10 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.login-part {
+  margin-top: 84px;
 }
 
 .log-in-section {
@@ -254,9 +259,6 @@ main {
 }
 
 @media (max-width: 1000px) {
-  .log-in-section {
-    margin-top: 32px;
-  }
 
   .sign-up-1 {
     display: none;
@@ -284,6 +286,34 @@ main {
 @media (max-width: 450px) {
   .log-in-headline p {
     font-size: 40px;
+  }
+
+  .join-logo {
+    margin-bottom: 54px;
+  }
+
+  @keyframes logoAnimation {
+    0% {
+      top: 50%;
+      left: 50%;
+    }
+
+    100% {
+      top: 37px;
+      left: 38px;
+      width: 64px;
+      height: 78px;
+      transform: translate(0%, 0%);
+    }
+  }
+
+  .log-in-section {
+    margin-top: 0;
+  }
+
+  .signup-logo img {
+    width: 64px;
+    height: 78px;
   }
 
   .back-to-log-in {
