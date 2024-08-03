@@ -88,7 +88,11 @@ async function createNewUser() {
 
 function confirmRegistration() {
     document.getElementById('logInBtns').innerHTML = '<button class="btn-dark btn confirm-registration" style="font-size: 21px;" disabled><p>You Signed Up successfully</p></button>';
-}
+    setTimeout(function() {
+        // Weiterleitung zur neuen Seite
+        window.location.href = "index.html";
+      }, 2000); // 3000 ms Verzögerung
+    }
 
 // posts a new user into the data bank after a successfull sign up process
 async function postNewUser(path = "", data = {}) {
