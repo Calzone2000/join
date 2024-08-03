@@ -41,6 +41,12 @@ img.logo-dark {
   cursor: pointer;
 }
 
+img.logo-dark-no-login {
+  width: 50px;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
 a.logo-big {
   display: flex;
   justify-content: center;
