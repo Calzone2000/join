@@ -6,6 +6,7 @@ function renderKanbanBoard() {
     renderKanbanCard("in-progress");
     renderKanbanCard("await-feedback");
     renderKanbanCard("done");
+    addEventListener()
 }
 
 /**

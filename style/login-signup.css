@@ -258,6 +258,10 @@ main {
   display: none;
 }
 
+.dont-show {
+  display:none
+}
+
 @media (max-width: 1000px) {
 
   .sign-up-1 {
@@ -348,6 +352,18 @@ main {
 }
 
 .notification {
-  display: none;
+  text-align:center;
   color: red;
+}
+
+.not-login-link {
+  color: rgb(42, 54, 71) !important;
+  margin: 0 5px !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+}
+
+a.not-login-link:hover {
+  color: rgb(41, 171, 226) !important;
 }

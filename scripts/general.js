@@ -2,7 +2,7 @@
  * Creates a new task and puts it into the state of this column
  * @param {string} currentState
  */
-function openAddTask(currentState="to-do") {
+function openAddTask(currentState = "to-do") {
     window.name = currentState;
     window.location.href = 'add-task.html';
 }
@@ -11,26 +11,26 @@ function openAddTask(currentState="to-do") {
  * Extract initials from name
  * @param {string} name
  */
-function getInitials(name) {        
-    name = name.trim();    
-    let spaceIndex = name.indexOf(' ');    
+function getInitials(name) {
+    name = name.trim();
+    let spaceIndex = name.indexOf(' ');
     if (spaceIndex !== -1) {
-        let firstWord = name.slice(0, spaceIndex).trim();        
-        let secondWord = name.slice(spaceIndex + 1).trim();        
-        let initials = firstWord.charAt(0).toUpperCase() + secondWord.charAt(0).toUpperCase();                
-        return initials;    
-    } else {        
-        let initials = name.slice(0, 2).toUpperCase();                
+        let firstWord = name.slice(0, spaceIndex).trim();
+        let secondWord = name.slice(spaceIndex + 1).trim();
+        let initials = firstWord.charAt(0).toUpperCase() + secondWord.charAt(0).toUpperCase();
         return initials;
-    }    
+    } else {
+        let initials = name.slice(0, 2).toUpperCase();
+        return initials;
+    }
 }
 
 function setCurrentUser() {
     let currentUserId = localStorage.getItem('user');
     if (currentUserId) {
-        currentUserName = user[currentUserId].name;   
+        currentUserName = user[currentUserId].name;
     } else {
-        currentUserName = "Guest User";   
+        currentUserName = "Guest User";
     }
 }
 

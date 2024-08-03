@@ -1,5 +1,3 @@
-//const BASE_URL = 'https://join-6878f-default-rtdb.europe-west1.firebasedatabase.app/'
-
 let userIDs = [];
 let userData = [];
 
@@ -16,6 +14,8 @@ async function logIn() {
 
     await loadUserDataFromFB();
 
+    let userDataCorrect = false;
+
     for (let i = 0; i < userData.length; i++) { // saves the user, that just logged in, in SS and LS, to keep him logged in
         if (userData[i].email == email && userData[i].password == password) {
             localStorage.setItem('user', userIDs[i]);
@@ -29,11 +29,14 @@ async function logIn() {
                 localStorage.removeItem('password');
                 localStorage.removeItem('email');
             }
+            userDataCorrect = true;
             window.location.href = 'summary.html';  // leads the user to summary.html (if logged in successfully)
             break;
-        } else {
-            document.getElementById('wrongPassword').style.display = 'block';
         }
+    }
+
+    if (!userDataCorrect) {
+        document.getElementById('wrongPassword').innerHTML = `Email address or password is incorrect`;
     }
 }
 
@@ -42,32 +45,32 @@ async function updateCurrentUser(newUser) {
     currentUserName = newUser;
 }
 
-// sign up by posting a new user into the data bank
+// sign up by posting a new user into the database
 async function createNewUser() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
+    document.getElementById('passwordsDontMatchNotification').classList.add('dont-show');
+    document.getElementById('emailAlreadyExistsNotification').classList.add('dont-show');
 
     if (password !== confirmPassword) {
         document.getElementById('password').style.border = 'solid 2px rgb(252, 3, 3)';
         document.getElementById('confirm-password').style.border = 'solid 2px rgb(252, 3, 3)';
-        document.getElementById('passwordsDontMatchNotification').style.display = 'block';
+        document.getElementById('passwordsDontMatchNotification').classList.remove('dont-show');
         return;
     } else {
         document.getElementById('password').style.border = '';
         document.getElementById('confirm-password').style.border = '';
-        document.getElementById('passwordsDontMatchNotification').style.display = '';
     }
 
     await loadUserDataFromFB();
 
     if (userData.some(user => user.email === email)) {
-        document.getElementById('emailAlreadyExistsNotification').style.display = 'block';
+        document.getElementById('emailAlreadyExistsNotification').classList.remove('dont-show');
         document.getElementById('email').style.border = 'solid 2px rgb(252, 3, 3)';
         return;
     } else {
-        document.getElementById('emailAlreadyExistsNotification').style.display = '';
         document.getElementById('email').style.border = '';
     }
 
@@ -88,11 +91,11 @@ async function createNewUser() {
 
 function confirmRegistration() {
     document.getElementById('logInBtns').innerHTML = '<button class="btn-dark btn confirm-registration" style="font-size: 21px;" disabled><p>You Signed Up successfully</p></button>';
-    setTimeout(function() {
+    setTimeout(function () {
         // Weiterleitung zur neuen Seite
         window.location.href = "index.html";
-      }, 2000); // 3000 ms Verzögerung
-    }
+    }, 2000); // 3000 ms Verzögerung
+}
 
 // posts a new user into the data bank after a successfull sign up process
 async function postNewUser(path = "", data = {}) {
