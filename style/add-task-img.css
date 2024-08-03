@@ -143,6 +143,10 @@
 }
 
 @media screen and (max-width: 1100px) {
+  .imgHoverBTN {
+    height: 20px;
+  }
+
   .addTaskCheckDel {
     position: absolute;
     top: 10px;
