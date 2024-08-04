@@ -345,7 +345,7 @@ function addDragAndDropListeners(element) {
 
                 let currentParent = initialParent.id.replace("kb-task-", "");;
                 let newParent = potentialParent.id.replace("kb-task-", "");;
-                let currentDraggedTask = element.id;
+                currentDraggedTask = element.id;
 
                 if (currentParent != newParent) {
                     task[currentDraggedTask].currentState = newParent;
