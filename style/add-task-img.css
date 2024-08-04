@@ -139,10 +139,10 @@
 
   .accept {
     height: 40px;
-    position: relative;
-    top: 412px;
+    position: absolute;
+    top: 422px;
     bottom: 0px;
-    left: 150px;
+    left: 125px;
     display: none;
   }
 
@@ -168,7 +168,7 @@
 
   .accept {
     height: 40px;
-    position: relative;
+    position: absolute;
     top: 420px;
     bottom: 0px;
     left: 150px;
@@ -193,7 +193,7 @@
 
   .accept {
     height: 40px;
-    position: relative;
+    position: absolute;
     top: 375px;
     bottom: 0px;
     left: 150px;
