@@ -281,6 +281,27 @@ async function pushAllData(functionType) {
     });
 }
 
+async function pushAllDataEdit(functionType) {
+  const input = functionType;
+  let name = input.name;
+  let email = input.email;
+  let phone = input.phone;
+  let color = AVATAR_COLOR[Math.floor(Math.random() * AVATAR_COLOR.length)];
+
+  let contactResponse = await getAllContacts("");
+  let contactKey = contactResponse["contact"];
+  let contactsKeys = Object.keys(contactKey);
+
+  postData("contact", { color: color, name: name, email: email, phone: phone })
+    .then(() => {
+      closeModalEdit();
+      location.reload();
+    })
+    .catch((error) => {
+      console.error("Fehler beim Posten der Daten: ", error);
+    });
+}
+
 /**
  * pushes new data to the database
  * @param {*} path gets the correct path of where the requested data is stored
