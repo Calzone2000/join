@@ -408,3 +408,8 @@ img.spyglass {
   border: solid 1px lightgrey;
   border-radius: 10px;
 }
+
+.no-side-margin {
+  margin-left:0;
+  margin-right:0;
+}

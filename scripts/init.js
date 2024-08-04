@@ -1,40 +1,46 @@
 /** Includes ALL init Functions for main- and subpages
  */
 
-/** Init Kanban Board */
+/** 
+ * Init Kanban Board 
+ */
 async function initBoard() {    
-    await loadUserData();
-    setCurrentUser();
+    await loadUserData();    
     await loadTasks();
     await loadContacts();
+    setCurrentUser();
     renderKanbanBoard();
     renderInitials();
     renderAddTask();    
 }
 
+/** 
+ * Init Summary page
+ */
 async function initSummary() {
     await loadUserData();
     setCurrentUser();
-    await loadTasks();
-	await loadUserData();
-    await loadContacts();
+    await loadTasks();	    
     renderSummary();
     renderInitials();
 }
 
+/** 
+ * Init Add Task section
+ */
 async function initAddTask() {        
     await loadUserData();        
-    setCurrentUser();  
-    await loadUserData();     
+    setCurrentUser();         
     renderAddTask();     
     generateCheckBox();  
     renderInitials();  
 }
 
+/** 
+ * Init content pages
+ */
 async function renderContent() {
     await loadUserData();
     setCurrentUser(); 
-    await loadUserData();
-    await loadUserData();
     renderInitials();
 }

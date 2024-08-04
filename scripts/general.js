@@ -25,6 +25,9 @@ function getInitials(name) {
     }
 }
 
+/**
+ * Get value of currentUserName (global variable) from localStorage if logged in and copy the * 
+ */
 function setCurrentUser() {
     let currentUserId = localStorage.getItem('user');
     if (currentUserId) {
@@ -59,18 +62,31 @@ function renderSummary() {
     renderGreeting();
 }
 
+
+/**
+ * open the small right side menu when clicked on initials
+ */
 function showSlideOutMenu() {
     document.getElementById('slide-out').classList.toggle('show');
 }
 
+/**
+ * insert current User name dynamicly into the greeting area of the summary
+ */
 function renderGreeting() {
     document.getElementById('greeted-person').innerHTML = currentUserName;
 }
 
+/**
+ * render the initials of the current user dynamicly into the small circle of the top area
+ */
 function renderInitials() {
     document.getElementById('user-initials').innerHTML = getInitials(currentUserName);
 }
 
+/**
+ * render the computed figures for the summary page
+ */
 function renderStates() {
     document.getElementById('sum-tasks-open').innerHTML = countStateOccurrences("to-do");
     document.getElementById('sum-tasks-done').innerHTML = countStateOccurrences("done");

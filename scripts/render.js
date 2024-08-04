@@ -116,7 +116,7 @@ function renderPreviewCard(index) {
 
 function renderPreviewCardHeader(index) {
     let previewCardHTML =
-        `<div class="preview-card-header preview-card-menu">
+        `<div class="preview-card-header preview-card-menu no-side-margin">
                 <div class="task-cat ${task[index].category}">${task[index].category}</div>
                 <img class="pointer" src="./assets/img/close.svg" alt="Close Task" onclick="closePreview()">
             </div>`;
