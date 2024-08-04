@@ -79,11 +79,11 @@
 }
 
 .accept {
-  height: 40px;
+  height: 44px;
   position: relative;
-  top: 7px;
+  top: 11px;
   bottom: 0px;
-  left: 120px;
+  left: 93px;
   display: none;
 }
 
@@ -96,7 +96,7 @@
   height: 20px;
   position: absolute;
   bottom: 0px;
-  left: 80px;
+  left: 45px;
   display: none;
 }
 

@@ -17,10 +17,6 @@ body {
   min-height: 100vh;
 }
 
-/* .addTaskHTMLBody {
-  overflow: hidden;
-} */
-
 #myForm {
   display: flex;
   flex-direction: column;
@@ -362,8 +358,7 @@ body {
 }
 
 .getSubtask {
-  margin-top: 10px;
-  height: 100px;
+  margin-top: 10px;  
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 10px;

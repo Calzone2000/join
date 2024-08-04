@@ -3,6 +3,15 @@
     margin-bottom: 300px;
   }
 
+  .accept {
+    height: 48px;
+    position: absolute;
+    top: 423px;
+    bottom: 0px;
+    left: 121px;
+    display: none;
+}
+
   .addTaskFooter {
     display: flex;
     justify-content: space-between;
@@ -80,6 +89,15 @@
   .showTask {
     font-size: 20px;
   }
+
+  .accept {
+    height: 47px;
+    position: absolute;
+    top: 414px;
+    bottom: 0px;
+    left: 119px;
+    display: none;
+}
 }
 
 @media screen and (max-width: 850px) {
@@ -159,6 +177,23 @@
     margin-block-start: 0;
     margin-block-end: 0;
   }
+
+  .delContent {
+    height: 20px;
+    position: absolute;
+    left: 104px;
+    bottom: 75px;
+    display: none;
+}
+
+.accept {
+    height: 48px;
+    top: 371px;
+    bottom: 66px;
+    left: 118px;
+    display: none;
+}
+
 }
 
 @media screen and (max-width: 600px) {
@@ -312,4 +347,29 @@
     left: 50px;
     bottom: 0px;
   }
+
+  .accept {
+    height: 32px;
+    top: 38px;
+    bottom: 76px;
+    left: 130px;
+    display: none;
+  }
+
+  .delContent {
+    height: 13px;
+    position: absolute;
+    left: 119px;
+    bottom: 10px;
+    display: none;
+}
+
+.getSubtask {
+  margin-top: 10px;  
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 10px;
+  position: relative;
+  top: 152px;
+}
 }
