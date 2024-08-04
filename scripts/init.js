@@ -18,7 +18,7 @@ async function initBoard() {
  * Init Summary page
  */
 async function initSummary() {
-    await loadUserData();
+    await loadUserData();    
     setCurrentUser();
     await loadTasks();	    
     renderSummary();
@@ -29,7 +29,8 @@ async function initSummary() {
  * Init Add Task section
  */
 async function initAddTask() {        
-    await loadUserData();        
+    await loadUserData();  
+    await loadAllContacts(); 
     setCurrentUser();         
     renderAddTask();     
     generateCheckBox();  

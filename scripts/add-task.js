@@ -9,6 +9,8 @@ let BASE_URL_Contacts =
 
 let subtask = [];
 let assigningTo = [];
+let allContacts = [];
+let allContactIds= [];
 let show = true;
 
 /**
@@ -306,6 +308,7 @@ async function toggleCheckboxes(event) {
 
   let assignedToInput = document.getElementById("checkBoxes");
   const checkboxes = document.getElementById("checkboxUsername");
+  renderUserIcons();
 
   // Prüfen, ob das Dropdown-Menü geöffnet oder geschlossen wird
   if (show) {
@@ -354,7 +357,7 @@ async function loadCheckboxes(checkboxes) {
  */
 function updateCheckboxes(checkboxes) {
   document.querySelectorAll('[name="optionen"]').forEach((checkbox) => {
-    checkbox.checked = assigningTo.includes(checkbox.value);
+    checkbox.checked = assigningTo.includes(checkbox.value);    
   });
 }
 

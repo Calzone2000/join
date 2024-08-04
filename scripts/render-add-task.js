@@ -6,7 +6,7 @@
 async function renderAddTask() {
   let addTaskForm = renderAddTaskTitle();
   addTaskForm += renderAddTaskDescription();
-  addTaskForm += renderAddTaskAssignetTo();
+  addTaskForm += renderAddTaskAssignetTo();  
   addTaskForm += renderAddTaskDueDate();
   addTaskForm += renderAddTaskPrio();
   addTaskForm += renderAddTaskCategorie();
@@ -59,15 +59,31 @@ function renderAddTaskAssignetTo() {
   return /*html */ `<div class="addTaskAssigned formRow">
       <label class="lblAssigned">Assigned to</label>
       <div class="choosingContact" onclick="toggleCheckboxes(event)">
-        <img src="./assets/img/icon/arrow_drop_down.svg" alt=""/>
+        <img class="dropdown-arrow" src="./assets/img/dropdown-arrow-down.png" alt=""/>
         <input type="text" name="assignedTo" class="AssignedToContact addTaskInput" id="taskAssignedTo" placeholder="Select options"/>
       </div>
       <div class="checkboxName" id="checkBoxes" onclick="event.stopPropagation()">
         <div class="dropdownUsername" id="checkboxUsername" ></div>
       </div>
     </div>
-    <div class="showCheck" id="showCheck"></div>
-  </div>`;
+    <div class="showCheck" id="showCheck">        
+    </div></div>`;
+}
+
+
+/**
+ * render user icons for assigned contacts after closing dropdown
+ */
+function renderUserIcons() {
+    let userIcons = document.getElementById(`showCheck`);
+    let userIconHtml ="";
+    for (let i=0; i<assigningTo.length; i++) {  
+        let userName = allContacts[`${assigningTo[i]}`].name;
+        let colorCode = allContacts[`${assigningTo[i]}`].color;
+        userName = getInitials(userName);                
+        userIconHtml += `<span style="background-color: ${colorCode}" class="user-in">${userName}</span>`;
+    }    
+    userIcons.innerHTML = userIconHtml;
 }
 
 /**

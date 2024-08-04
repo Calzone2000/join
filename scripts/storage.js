@@ -31,6 +31,23 @@ async function loadContacts(path = "contact") {
     }
 }
 
+/**
+ *  Load all contacts from firebase
+ *  @param {string} path
+ */
+async function loadAllContacts(path = "contact") {
+    allContactIds.length = 0;
+    try {
+        let response = await fetch(BASE_URL + path + ".json");
+        allContacts = await response.json();
+        Object.keys(allContacts).forEach(id => {
+            allContactIds.push(id);
+        });
+    } catch (error) {
+        console.error('Fehler beim Laden der Daten:', error);
+    }
+}
+
 
 /**
  *  Remove / delete a task from storage
