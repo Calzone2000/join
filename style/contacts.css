@@ -257,6 +257,11 @@ body {
   cursor: pointer;
 }
 
+.activated {
+  background-color: rgb(42, 54, 71);
+  color:white;
+}
+
 .contact-field:hover a {
   color: #007cee;
   cursor: pointer;

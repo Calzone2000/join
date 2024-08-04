@@ -79,7 +79,7 @@ function renderContacts() {
 
 function renderContactsHtml(i) {
   return `
-  <div class="contact-field" onclick="showContact(${i})">
+  <div id="contact-field-${i}" class="contact-field" onclick="showContact(${i})">
       <div>
           <div class="profile-badge" style="background-color: ${contacts[i]["color"]}">${contacts[i]["firstInitial"]}${contacts[i]["secondInitial"]}</div>
       </div>
@@ -109,6 +109,13 @@ function closeShownContact() {
  */
 
 function showContact(i) {
+  let contactFields = document.querySelectorAll('.contact-field');
+  contactFields.forEach(contactField => {
+    contactField.classList.remove('activated');
+  });
+  
+  document.getElementById(`contact-field-${i}`).classList.add('activated');
+  
   document.getElementById("selected-contact").innerHTML = "";
   currentName = contacts[i]["name"];
   currentEmail = contacts[i]["email"];
