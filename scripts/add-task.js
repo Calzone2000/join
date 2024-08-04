@@ -60,13 +60,15 @@ function getTaskPrio(id) {
  * Changes the visibility and display of the corresponding elements based on their IDs.
  */
 function showAddAndDeleteSubTask() {
+  document.getElementById('addTaskBTNPlus').classList.add('d-none');
+  document.getElementById('addTaskCheckDel').classList.remove('d-none');
   let BTNPlus = document.getElementById("addTaskBTNPlus");
   let del = document.getElementById("delSubtasks");
   let check = document.getElementById("check");
 
-  BTNPlus.style.visibility = "hidden";
+  /*BTNPlus.style.visibility = "hidden";
   del.style.display = "inline";
-  check.style.display = "inline";
+  check.style.display = "inline";*/
 }
 
 /**
@@ -75,15 +77,20 @@ function showAddAndDeleteSubTask() {
  * Changes the display and visibility of the corresponding elements based on their IDs.
  */
 function delTask() {
-  let BTNPlus = document.getElementById("addTaskBTNPlus");
+  /*let BTNPlus = document.getElementById("addTaskBTNPlus");
   let del = document.getElementById("delSubtasks");
   let check = document.getElementById("check");
   let subtask = document.getElementById("taskSubtasks");
+  */
 
-  subtask.value = "";
+  document.getElementById('addTaskBTNPlus').classList.remove('d-none');
+  document.getElementById('addTaskCheckDel').classList.add('d-none');
+  subtaskInput.value = ""; 
+  /*subtask.value = "";
   check.style.display = "none";
   del.style.display = "none";
   BTNPlus.style.visibility = "initial";
+  */
 }
 
 /**
@@ -93,10 +100,10 @@ function delTask() {
  */
 function addNewSubTask() {
   let subtaskInput = document.getElementById("taskSubtasks");
-  let BTNPlus = document.getElementById("addTaskBTNPlus");
+  /*let BTNPlus = document.getElementById("addTaskBTNPlus");
   let del = document.getElementById("delSubtasks");
   let check = document.getElementById("check");
-
+*/
   if (subtaskInput.value) {
     subtask.push({
       description: subtaskInput.value,
@@ -104,9 +111,13 @@ function addNewSubTask() {
     }); // Füge den neuen Subtask zur globalen subtask-Liste hinzu
   }
   getSubTaskAddTask(); // Update the display of the subtasks
-  check.style.display = "none"; // Hide the check button
+  /*check.style.display = "none"; // Hide the check button
   del.style.display = "none"; // Hide the delete button
-  BTNPlus.style.visibility = "initial"; // Show the plus button
+  BTNPlus.style.visibility = "initial"; // Show the plus button+/
+
+  */
+  document.getElementById('addTaskBTNPlus').classList.remove('d-none');
+  document.getElementById('addTaskCheckDel').classList.add('d-none');
   subtaskInput.value = ""; // Reset the input field
 }
 

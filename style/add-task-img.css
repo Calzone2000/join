@@ -6,9 +6,9 @@
 }
 
 .addTaskPlusIMG {
-  position: absolute;
+  /*position: absolute;
   top: 25px;
-  right: 16px;
+  right: 16px;*/
 }
 
 /* IMG Footer */
@@ -67,37 +67,18 @@
   display: none;
 }
 
-.addTaskCheckDel {
-  display: flex;
-  justify-content: flex-end;
-  width: 14px;
-  position: absolute;
-  right: 8%;
-  gap: 4px;
-  bottom: 9px;
-  color: #2a3647;
-}
 
 .accept {
   height: 44px;
-  position: relative;
-  top: 11px;
-  bottom: 0px;
-  left: 93px;
-  display: none;
+}
+
+.delContent {
+  height: 20px;
 }
 
 .accept:hover {
   filter: invert(43%) sepia(76%) saturate(438%) hue-rotate(157deg)
     brightness(96%) contrast(97%);
-}
-
-.delContent {
-  height: 20px;
-  position: absolute;
-  bottom: 0px;
-  left: 45px;
-  display: none;
 }
 
 .delContent:hover {
@@ -135,29 +116,6 @@
     height: 25px;
     margin: 5px;
   }
-
-  .addTaskCheckDel {
-    position: absolute;
-    top: 10px;
-    right: 150px;
-  }
-
-  .accept {
-    height: 40px;
-    position: absolute;
-    top: 422px;
-    bottom: 0px;
-    left: 125px;
-    display: none;
-  }
-
-  .delContent {
-    height: 20px;
-    position: absolute;
-    bottom: 0px;
-    left: 110px;
-    display: none;
-  }
 }
 
 @media screen and (max-width: 1100px) {
@@ -165,53 +123,9 @@
     height: 20px;
   }
 
-  .addTaskCheckDel {
-    position: absolute;
-    top: 10px;
-    right: 150px;
-  }
-
-  .accept {
-    height: 40px;
-    position: absolute;
-    top: 420px;
-    bottom: 0px;
-    left: 150px;
-    display: none;
-  }
-
-  .delContent {
-    height: 20px;
-    position: absolute;
-    bottom: 100px;
-    left: 105px;
-    display: none;
-  }
 }
 
 @media screen and (max-width: 850px) {
-  .addTaskCheckDel {
-    position: absolute;
-    top: 10px;
-    right: 150px;
-  }
-
-  .accept {
-    height: 40px;
-    position: absolute;
-    top: 375px;
-    bottom: 0px;
-    left: 150px;
-    display: none;
-  }
-
-  .delContent {
-    height: 20px;
-    position: absolute;
-    bottom: 75px;
-    left: 105px;
-    display: none;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -221,26 +135,4 @@
 }
 
 @media screen and (max-width: 320px) {
-  .addTaskCheckDel {
-    position: absolute;
-    top: 10px;
-    right: 150px;
-  }
-
-  .accept {
-    height: 40px;
-    position: absolute;
-    top: 33px;
-    bottom: 0px;
-    left: 120px;
-    display: none;
-  }
-
-  .delContent {
-    height: 20px;
-    position: absolute;
-    bottom: 7px;
-    left: 105px;
-    display: none;
-  }
 }

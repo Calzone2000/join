@@ -13,7 +13,19 @@ async function renderAddTask() {
   addTaskForm += renderAddTaskSubtasks();
   addTaskForm += renderAddTaskFooter();
   document.getElementById("myForm").innerHTML = addTaskForm;
+
+  let inputField = document.getElementById('taskSubtasks');
+            
+  if (inputField) {
+      inputField.addEventListener('focus', () => {
+          document.getElementById('outer-input-field').classList.add('mark-outer-input-field');
+      });
+      inputField.addEventListener('blur', () => {
+        document.getElementById('outer-input-field').classList.remove('mark-outer-input-field');
+    });
+  } 
 }
+
 
 /**
  * Renders the HTML code for the title area of a task form.
@@ -162,7 +174,7 @@ function renderAddTaskCategorie() {
  *
  * @returns {string} The HTML code for the subtask area in the task form.
  */
-function renderAddTaskSubtasks() {
+function renderAddTaskSubtasks_OLD() {
   return /*html */ `<div class="addTaskSubtasks formRow">
                 <label class="lblSubtasks">Subtasks</label>
                 <div class="addTaskPlus" id="addTaskBTNPlus">
@@ -177,6 +189,24 @@ function renderAddTaskSubtasks() {
             <div class="getSubtask" id="getSubtask"></div>
         </div>
     </div>`;
+}
+
+function renderAddTaskSubtasks() {
+    return /*html */ `<div class="addTaskSubtasks formRow">
+                        <label class="lblSubtasks">Subtasks</label>
+                        <div id="outer-input-field" class="addTaskSubs addTaskInput flex-input">
+                            <input class="inner-input-field" id="taskSubtasks" placeholder="Add new subtask" type="text"/>
+                            <div class="addTaskPlus flex-end" id="addTaskBTNPlus">
+                                <img class="addTaskPlusIMG" id="addNewTask" src="./assets/img/icon/add.svg" onclick="showAddAndDeleteSubTask()"/>
+                            </div>
+                            <div class="addTaskCheckDel flex-icons d-none" id="addTaskCheckDel">
+                                <img id="delSubtasks" src="./assets/img/icon/close.svg" alt="" onclick="delTask()" class="delContent"/>
+                                <img id="check" src="./assets/img/check.svg" onclick="addNewSubTask()" class="accept"/>
+                            </div>
+                        </div>
+                <div class="getSubtask" id="getSubtask"></div>
+            </div>
+        </div>`;
 }
 
 /**
