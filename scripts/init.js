@@ -10,8 +10,7 @@ async function initBoard() {
     await loadContacts();
     setCurrentUser();
     renderKanbanBoard();
-    renderInitials();
-    /*renderAddTask();*/
+    renderInitials();    
 }
 
 /** 

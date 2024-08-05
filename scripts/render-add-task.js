@@ -35,15 +35,17 @@ async function renderAddTask() {
   } 
 }
 
+
+/**
+ * Close contact dropdown when dropped out and click anywhere
+ * @param {} event 
+ */
 async function toggleDropdown(event) {
     let assignedToInput = document.getElementById("checkBoxes");
     if (!show) {
       assignedToInput.style.display = "none"; 
       show = true;
-    } /*else {
-      assignedToInput.style.display = "none"; 
-      show = true;
-    }*/
+    } 
   }
 
 
