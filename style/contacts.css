@@ -506,31 +506,12 @@ body {
     display: none;
   }
 
-  .selected-contact-top {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-direction: row;
-  }
-
   #right-container {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-left: 64px;
-    margin-top: 64px;
-  }
-
-  .selected-contact {
-    gap: 32px;
-  }
-
-  .selected-contact-top-right-btns {
     justify-content: center;
-  }
-
-  .selected-contact-top-right-btns p {
-    display: none;
+    align-items: flex-start;
+    margin: 0;
+    margin-top: 64px;
   }
 
   .contacts-container {
@@ -573,7 +554,29 @@ body {
 }
 
 @media (max-width: 400px) {
-  .add-contact-right-section {
-    padding: 32px;
+  .selected-contact-top {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-direction: row;
+  }
+
+  .selected-contact {
+    gap: 32px;
+  }
+
+  .selected-contact-top-right-btns {
+    justify-content: center;
+  }
+
+  .selected-contact-top-right-btns p {
+    display: none;
+  }
+
+  #right-container {
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 64px;
+    margin-top: 64px;
   }
 }
