@@ -469,7 +469,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 32px;
   }
 
   .contact-default-svg {
