@@ -259,7 +259,8 @@ body {
 
 .activated {
   background-color: rgb(42, 54, 71);
-  color:white;
+  color: white;
+  border-radius: 8px;
 }
 
 .contact-field:hover a {
@@ -502,6 +503,33 @@ body {
 
 @media (max-width: 800px) {
   .hide-800 {
+    display: none;
+  }
+
+  .selected-contact-top {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-direction: row;
+  }
+
+  #right-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 64px;
+    margin-top: 64px;
+  }
+
+  .selected-contact {
+    gap: 32px;
+  }
+
+  .selected-contact-top-right-btns {
+    justify-content: center;
+  }
+
+  .selected-contact-top-right-btns p {
     display: none;
   }
 
