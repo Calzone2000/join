@@ -65,10 +65,6 @@ function showAddAndDeleteSubTask() {
   let BTNPlus = document.getElementById("addTaskBTNPlus");
   let del = document.getElementById("delSubtasks");
   let check = document.getElementById("check");
-
-  /*BTNPlus.style.visibility = "hidden";
-  del.style.display = "inline";
-  check.style.display = "inline";*/
 }
 
 /**
@@ -77,20 +73,9 @@ function showAddAndDeleteSubTask() {
  * Changes the display and visibility of the corresponding elements based on their IDs.
  */
 function delTask() {
-  /*let BTNPlus = document.getElementById("addTaskBTNPlus");
-  let del = document.getElementById("delSubtasks");
-  let check = document.getElementById("check");
-  let subtask = document.getElementById("taskSubtasks");
-  */
-
   document.getElementById('addTaskBTNPlus').classList.remove('d-none');
   document.getElementById('addTaskCheckDel').classList.add('d-none');
   subtaskInput.value = ""; 
-  /*subtask.value = "";
-  check.style.display = "none";
-  del.style.display = "none";
-  BTNPlus.style.visibility = "initial";
-  */
 }
 
 /**
@@ -100,10 +85,6 @@ function delTask() {
  */
 function addNewSubTask() {
   let subtaskInput = document.getElementById("taskSubtasks");
-  /*let BTNPlus = document.getElementById("addTaskBTNPlus");
-  let del = document.getElementById("delSubtasks");
-  let check = document.getElementById("check");
-*/
   if (subtaskInput.value) {
     subtask.push({
       description: subtaskInput.value,

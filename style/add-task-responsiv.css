@@ -120,7 +120,8 @@
 
   .addTaskRight {
     position: relative;
-    top: 50px;
+    top: 100px;
+    height: 500px;
   }
 
   .addTaskWidth {
@@ -128,9 +129,7 @@
     width: 100%;
   }
 
-  .addTaskRight {
-    height: 500px;
-  }
+
 
   .requiring {
     position: relative;

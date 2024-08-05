@@ -24,6 +24,17 @@ async function renderAddTask() {
         document.getElementById('outer-input-field').classList.remove('mark-outer-input-field');
     });
   } 
+
+  let container = document.getElementById('checkBoxes');
+  if (container) {
+      document.addEventListener('click', function(event) {
+          if (!container.contains(event.target)) {                  
+              /*document.getElementById("checkBoxes").style.diplay = "none";
+              show=true;*/
+              toggleCheckboxes(event);
+          }
+      });
+  } 
 }
 
 
