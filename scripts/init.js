@@ -11,7 +11,7 @@ async function initBoard() {
     setCurrentUser();
     renderKanbanBoard();
     renderInitials();
-    renderAddTask();    
+    /*renderAddTask();*/
 }
 
 /** 

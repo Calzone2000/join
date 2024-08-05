@@ -29,13 +29,22 @@ async function renderAddTask() {
   if (container) {
       document.addEventListener('click', function(event) {
           if (!container.contains(event.target)) {                  
-              /*document.getElementById("checkBoxes").style.diplay = "none";
-              show=true;*/
-              toggleCheckboxes(event);
+            toggleDropdown(event);
           }
       });
   } 
 }
+
+async function toggleDropdown(event) {
+    let assignedToInput = document.getElementById("checkBoxes");
+    if (!show) {
+      assignedToInput.style.display = "none"; 
+      show = true;
+    } /*else {
+      assignedToInput.style.display = "none"; 
+      show = true;
+    }*/
+  }
 
 
 /**
@@ -81,7 +90,7 @@ function renderAddTaskDescription() {
 function renderAddTaskAssignetTo() {
   return /*html */ `<div class="addTaskAssigned formRow">
       <label class="lblAssigned">Assigned to</label>
-      <div class="choosingContact" onclick="toggleCheckboxes(event)">
+      <div id="choosing-contact" class="choosingContact" onclick="toggleCheckboxes(event)">
         <img class="dropdown-arrow" src="./assets/img/dropdown-arrow-down.png" alt=""/>
         <input type="text" name="assignedTo" class="AssignedToContact addTaskInput" id="taskAssignedTo" placeholder="Select options"/>
       </div>
