@@ -296,6 +296,10 @@ main {
     margin-bottom: 54px;
   }
 
+  .upper-section-sign-up {
+    margin: 28px 48px 8px 48px;
+  }
+
   @keyframes logoAnimation {
     0% {
       top: 50%;
