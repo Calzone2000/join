@@ -75,7 +75,7 @@ function showAddAndDeleteSubTask() {
 function delTask() {
   document.getElementById("addTaskBTNPlus").classList.remove("d-none");
   document.getElementById("addTaskCheckDel").classList.add("d-none");
-  subtaskInput.value = "";
+  document.getElementById("taskSubtasks").value = "";
 }
 
 /**
