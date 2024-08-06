@@ -125,6 +125,8 @@ function getSubTaskAddTask() {
  * Subsequently updates the display of subtasks by calling the function `getSubTaskAddTask`.
  */
 function clearContent() {
+  document.getElementById("showCheck").innerHTML = "";
+
   // Delete the content of the div container with the ID “getSubtask”
   document.getElementById("getSubtask").innerHTML = "";
 
