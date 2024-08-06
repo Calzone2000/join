@@ -6,7 +6,7 @@
 async function renderAddTask() {
   let addTaskForm = renderAddTaskTitle();
   addTaskForm += renderAddTaskDescription();
-  addTaskForm += renderAddTaskAssignetTo();  
+  addTaskForm += renderAddTaskAssignetTo();
   addTaskForm += renderAddTaskDueDate();
   addTaskForm += renderAddTaskPrio();
   addTaskForm += renderAddTaskCategorie();
@@ -14,40 +14,42 @@ async function renderAddTask() {
   addTaskForm += renderAddTaskFooter();
   document.getElementById("myForm").innerHTML = addTaskForm;
 
-  let inputField = document.getElementById('taskSubtasks');
-            
+  let inputField = document.getElementById("taskSubtasks");
+
   if (inputField) {
-      inputField.addEventListener('focus', () => {
-          document.getElementById('outer-input-field').classList.add('mark-outer-input-field');
-      });
-      inputField.addEventListener('blur', () => {
-        document.getElementById('outer-input-field').classList.remove('mark-outer-input-field');
+    inputField.addEventListener("focus", () => {
+      document
+        .getElementById("outer-input-field")
+        .classList.add("mark-outer-input-field");
     });
-  } 
+    inputField.addEventListener("blur", () => {
+      document
+        .getElementById("outer-input-field")
+        .classList.remove("mark-outer-input-field");
+    });
+  }
 
-  let container = document.getElementById('checkBoxes');
+  let container = document.getElementById("checkBoxes");
   if (container) {
-      document.addEventListener('click', function(event) {
-          if (!container.contains(event.target)) {                  
-            toggleDropdown(event);
-          }
-      });
-  } 
+    document.addEventListener("click", function (event) {
+      if (!container.contains(event.target)) {
+        toggleDropdown(event);
+      }
+    });
+  }
 }
-
 
 /**
  * Close contact dropdown when dropped out and click anywhere
- * @param {} event 
+ * @param {} event
  */
 async function toggleDropdown(event) {
-    let assignedToInput = document.getElementById("checkBoxes");
-    if (!show) {
-      assignedToInput.style.display = "none"; 
-      show = true;
-    } 
+  let assignedToInput = document.getElementById("checkBoxes");
+  if (!show) {
+    assignedToInput.style.display = "none";
+    show = true;
   }
-
+}
 
 /**
  * Renders the HTML code for the title area of a task form.
@@ -104,20 +106,19 @@ function renderAddTaskAssignetTo() {
     </div></div>`;
 }
 
-
 /**
  * render user icons for assigned contacts after closing dropdown
  */
 function renderUserIcons() {
-    let userIcons = document.getElementById(`showCheck`);
-    let userIconHtml ="";
-    for (let i=0; i<assigningTo.length; i++) {  
-        let userName = allContacts[`${assigningTo[i]}`].name;
-        let colorCode = allContacts[`${assigningTo[i]}`].color;
-        userName = getInitials(userName);                
-        userIconHtml += `<span style="background-color: ${colorCode}" class="user-in">${userName}</span>`;
-    }    
-    userIcons.innerHTML = userIconHtml;
+  let userIcons = document.getElementById(`showCheck`);
+  let userIconHtml = "";
+  for (let i = 0; i < assigningTo.length; i++) {
+    let userName = allContacts[`${assigningTo[i]}`].name;
+    let colorCode = allContacts[`${assigningTo[i]}`].color;
+    userName = getInitials(userName);
+    userIconHtml += `<span style="background-color: ${colorCode}" class="user-in">${userName}</span>`;
+  }
+  userIcons.innerHTML = userIconHtml;
 }
 
 /**
@@ -133,7 +134,7 @@ function renderAddTaskDueDate() {
             <div class="addTaskDueDate formRow">
                 <label for="" class="addTaskDate" >Due date<b class="require">*</b></label>
                 <div class="taskCalender">
-                    <input for="" id="taskDate" class="addDate addTaskInput" type="date" required/>
+                    <input for="" id="taskDate" class="addDate addTaskInput" type="date" required min="${setDate()}"/>
                 </div>
             </div>`;
 }
@@ -214,7 +215,7 @@ function renderAddTaskSubtasks_OLD() {
 }
 
 function renderAddTaskSubtasks() {
-    return /*html */ `<div class="addTaskSubtasks formRow">
+  return /*html */ `<div class="addTaskSubtasks formRow">
                         <label class="lblSubtasks">Subtasks</label>
                         <div id="outer-input-field" class="addTaskSubs addTaskInput flex-input">
                             <input class="inner-input-field" id="taskSubtasks" placeholder="Add new subtask" type="text"/>
@@ -253,4 +254,3 @@ function renderAddTaskFooter() {
                 </div>
             </div>`;
 }
-

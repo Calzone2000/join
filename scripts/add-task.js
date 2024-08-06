@@ -10,7 +10,7 @@ let BASE_URL_Contacts =
 let subtask = [];
 let assigningTo = [];
 let allContacts = [];
-let allContactIds= [];
+let allContactIds = [];
 let show = true;
 
 /**
@@ -60,8 +60,8 @@ function getTaskPrio(id) {
  * Changes the visibility and display of the corresponding elements based on their IDs.
  */
 function showAddAndDeleteSubTask() {
-  document.getElementById('addTaskBTNPlus').classList.add('d-none');
-  document.getElementById('addTaskCheckDel').classList.remove('d-none');
+  document.getElementById("addTaskBTNPlus").classList.add("d-none");
+  document.getElementById("addTaskCheckDel").classList.remove("d-none");
   let BTNPlus = document.getElementById("addTaskBTNPlus");
   let del = document.getElementById("delSubtasks");
   let check = document.getElementById("check");
@@ -73,9 +73,9 @@ function showAddAndDeleteSubTask() {
  * Changes the display and visibility of the corresponding elements based on their IDs.
  */
 function delTask() {
-  document.getElementById('addTaskBTNPlus').classList.remove('d-none');
-  document.getElementById('addTaskCheckDel').classList.add('d-none');
-  subtaskInput.value = ""; 
+  document.getElementById("addTaskBTNPlus").classList.remove("d-none");
+  document.getElementById("addTaskCheckDel").classList.add("d-none");
+  subtaskInput.value = "";
 }
 
 /**
@@ -97,8 +97,8 @@ function addNewSubTask() {
   BTNPlus.style.visibility = "initial"; // Show the plus button+/
 
   */
-  document.getElementById('addTaskBTNPlus').classList.remove('d-none');
-  document.getElementById('addTaskCheckDel').classList.add('d-none');
+  document.getElementById("addTaskBTNPlus").classList.remove("d-none");
+  document.getElementById("addTaskCheckDel").classList.add("d-none");
   subtaskInput.value = ""; // Reset the input field
 }
 
@@ -349,7 +349,7 @@ async function loadCheckboxes(checkboxes) {
  */
 function updateCheckboxes(checkboxes) {
   document.querySelectorAll('[name="optionen"]').forEach((checkbox) => {
-    checkbox.checked = assigningTo.includes(checkbox.value);    
+    checkbox.checked = assigningTo.includes(checkbox.value);
   });
 }
 
@@ -484,4 +484,14 @@ function checkGuestsName(checkedValues) {
       `;
     }
   }
+}
+
+function setDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  const minDate = `${year}-${month}-${day}`;
+
+  return minDate;
 }
