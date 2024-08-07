@@ -56,26 +56,45 @@ async function onloadFunc() {
 }
 
 /**
- * this function renders all the contacts
+ * this function gets the first letters of all the contacts, in order to display a list with all the first letters
  */
 
-function renderContacts() {
-  for (let index = 0; index < namesFirstLetters.length; index++) {
-    document.getElementById("contact-list").innerHTML += /*html*/ `
-        <div class="contacts-alphabet" id="${namesFirstLetters[index]}">${namesFirstLetters[index]}</div>
-        <div class="seperator"></div>
-        <div id="${namesFirstLetters[index]}-content"></div>
-        `;
-  }
+function getFirstLetters() {
   for (let i = 0; i < contacts.length; i++) {
-    document.getElementById(`${contacts[i]["name"][0]}-content`).innerHTML +=
-      renderContactsHtml(i);
+    let name = contacts[i];
+    let firstLetter = name["name"][0].toUpperCase(); 
+    if (!namesFirstLetters.includes(firstLetter)) {
+      namesFirstLetters.push(firstLetter);
+    }
   }
+  namesFirstLetters.sort(); 
 }
 
-/**
- * this function returns the html code for the renderContacts function
- */
+function renderContacts() {
+  let contactListEl = document.getElementById("contact-list");
+  if (contactListEl) {
+    for (let index = 0; index < namesFirstLetters.length; index++) {
+      contactListEl.innerHTML += `
+        <div class="contacts-alphabet" id="${namesFirstLetters[index]}">${namesFirstLetters[index]}</div>
+        <div class="separator"></div>
+        <div id="${namesFirstLetters[index]}-content"></div>
+      `;
+    }
+    
+    for (let i = 0; i < contacts.length; i++) {
+      let firstLetter = contacts[i]["name"][0].toUpperCase();
+      let contentEl = document.getElementById(`${firstLetter}-content`);
+      if (contentEl) {
+        contentEl.innerHTML += renderContactsHtml(i);
+      } else {
+        console.error('No element found for first letter:', firstLetter);
+      }
+    }
+  } else {
+    console.error('No contact list element found');
+  }
+  namesFirstLetters.sort();
+}
 
 function renderContactsHtml(i) {
   return `
@@ -85,13 +104,14 @@ function renderContactsHtml(i) {
       </div>
       <div class="contact-data">
           <div>${contacts[i]["name"]}</div>
-          <div><a href="${contacts[i]["email"]}">${contacts[i]["email"]}</a></div>
-
+          <div><a href="mailto:${contacts[i]["email"]}">${contacts[i]["email"]}</a></div>
       </div>
   </div>
-      
   `;
 }
+
+
+
 
 /**
  * this funtion hides all the contact data, which which were displayed by clicking on a contact
@@ -108,7 +128,7 @@ function closeShownContact() {
  * @param {index} i this parameter is there, to identify the current selected contact and to display the correct data
  */
 
-function showContact(i) {
+async function showContact(i) {
   let contactFields = document.querySelectorAll('.contact-field');
   contactFields.forEach(contactField => {
     contactField.classList.remove('activated');
@@ -221,22 +241,6 @@ function closeDeleteRequest() {
 }
 
 /**
- * this function gets the first letters of all the contacts, in order to display a list with all the first letters
- */
-
-function getFirstLetters() {
-  namesFirstLetters.push(contacts[0]["name"][0]);
-  for (let i = 0; i < contacts.length; i++) {
-    let name = contacts[i];
-    let firstLetter = name["name"][0];
-    if (!namesFirstLetters.includes(firstLetter)) {
-      namesFirstLetters.push(firstLetter);
-    }
-  }
-  namesFirstLetters.sort();
-}
-
-/**
  * this function is there to load all the data from the database
  * @param {*} path gets the correct path of where the requested data is stored
  * @returns returns the data as a json
@@ -295,11 +299,7 @@ async function pushAllDataEdit(functionType) {
   let phone = input.phone;
   let color = AVATAR_COLOR[Math.floor(Math.random() * AVATAR_COLOR.length)];
 
-  let contactResponse = await getAllContacts("");
-  let contactKey = contactResponse["contact"];
-  let contactsKeys = Object.keys(contactKey);
-
-  postData("contact", { color: color, name: name, email: email, phone: phone })
+  putData({ color: color, name: name, email: email, phone: phone })
     .then(() => {
       closeModalEdit();
       location.reload();
@@ -319,6 +319,27 @@ async function pushAllDataEdit(functionType) {
 async function postData(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  let responseToJson = await response.json();
+  return responseToJson;
+}
+
+async function putData(data = {}) {
+
+  let contactResponse = await getAllContacts("");
+  let contactKey = contactResponse["contact"];
+  let contactsKeys = Object.keys(contactKey);
+
+  selectedId = contactsKeys[currentElement];
+
+  console.log(selectedId);
+
+  let response = await fetch(`${BASE_URL}contact/${selectedId}.json`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
