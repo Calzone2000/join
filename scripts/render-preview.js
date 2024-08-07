@@ -184,9 +184,11 @@ function renderEditCard(index) {
     editCardForm += renderEditCard2ColArea(index);
     editCardForm += renderEditCardPriority(index);
     editCardForm += renderEditCardParticipiants(index);
+    editCardForm += renderAvatars(index);        
     editCardForm += renderEditCardSubtaskArea(index);    
     editCardForm += renderEditCardFooter(index);        
     editCard.innerHTML = editCardForm;
+    changePriority(taskCache.priority);    
 }
 
 /**
@@ -195,10 +197,11 @@ function renderEditCard(index) {
  * @returns html string
  */
 function renderEditCardHeader(index) {
-    return `<div class="preview-card-header">
-                            <h3>Edit Task</h3>                                                       
-                            <img class="pointer" src="./assets/img/close.svg" alt="Close Task" onclick="closeEditTask('${index}')">
-                        </div>`;
+    return `<form class="frm-edit-task" onsubmit="updateTaskArray('${index}'); return false;">
+                <div class="edit-card-header">
+                    <h3>Edit Task</h3>                                                       
+                    <img class="pointer" src="./assets/img/close.svg" alt="Close Task" onclick="closeEditTask('${index}')">
+                </div>`;
 }
 
 /**
@@ -206,19 +209,33 @@ function renderEditCardHeader(index) {
  * @param {*} index - firebase ID of current task
  * @returns html string
  */
+function renderEditCardTitleSection_OLD(index) {
+    return ` <div class="edit-card-content">                         
+                <form class="frm-edit-task" onsubmit="updateTaskArray('${index}'); return false;">
+                    <div class="title-input">                        
+                        <label for="task-title"></label>
+                        <h3 class="title-edit-card">Titel</h3>
+                        <input type="text" required id="task-title" value="${task[index].title}">
+                    </div>
+                    <div class="title-input">
+                        <label for="task-description"></label>
+                        <h3 class="title-edit-card">Description</h3>
+                        <textarea id="task-description" required value="${task[index].description}">${task[index].description}</textarea>
+                    </div>`;
+}
+
 function renderEditCardTitleSection(index) {
-    return ` <div class="preview-card-content edit-card-content">                            
-                            <form class="frm-edit-task" onsubmit="updateCurrentTask('${index}'); return false;">
-                            <div class="title-input">                        
-                                <label for="task-title"></label>
-                                <h3 class="title-edit-card">Titel</h3>
-                                <input type="text" required id="task-title" value="${task[index].title}">
-                            </div>
-                            <div class="title-input">
-                                <label for="task-description"></label>
-                                <h3 class="title-edit-card">Description</h3>
-                                <textarea id="task-description" value="${task[index].description}">${task[index].description}</textarea>
-                            </div>`;
+    return `<div class="preview-card-content edit-card-content">
+                <div class="title-input">                        
+                    <label for="task-title"></label>
+                    <h3 class="title-edit-card">Titel</h3>
+                    <input type="text" required id="task-title" value="${task[index].title}">
+                </div>
+                <div class="title-input">
+                    <label for="task-description"></label>
+                    <h3 class="title-edit-card">Description</h3>
+                    <textarea id="task-description" required value="${task[index].description}">${task[index].description}</textarea>
+                </div>`;
 }
 
 /**
@@ -233,18 +250,20 @@ function renderEditCard2ColArea(index) {
                                 <h3 class="title-edit-card">Category</h3>
                                 <select id="task-category" requried>`;
     if (task[index].category == "technical") {
-        editCardForm += `<option value="technical" selected>Technical Task</option>
-                         <option value="story">User Story</option>`;
+        editCardForm += `           <option value="technical" selected>Technical Task</option>
+                                    <option value="story">User Story</option>`;
     } else {
-        editCardForm += `<option value="story" selected>User story</option>
-                         <option value="technical">Technical Task</option>`;
+        editCardForm += `           <option value="story" selected>User story</option>
+                                    <option value="technical">Technical Task</option>`;
     }
-    editCardForm += `</select></div>`;
-    editCardForm += `<div class="title-input small">
-                        <label for "task-due-date"></label>
-                        <h3 class="title-edit-card">Due Date</h3>
-                        <input type="date" id="task-due-date" value="${task[index].dueDate}"></input>
-                     </div> </div>`;    
+    editCardForm += `           </select>
+                            </div>`;
+    editCardForm += `       <div class="title-input small">
+                                <label for "task-due-date"></label>
+                                <h3 class="title-edit-card">Due Date</h3>
+                                <input type="date" id="task-due-date" value="${task[index].dueDate}"></input>
+                            </div> 
+                        </div>`;    
     return editCardForm;
 }
 
@@ -259,14 +278,26 @@ function renderEditCardPriority(index) {
         currentPriority = "low";
     }
     let priority = task[index].priority;
-    let editCardForm = `   <div class="title-input">                        
+    let editCardForm = `<div class="title-input">                        
                                 <label for="task-title"></label>
                             </div>
                             <h3 class="title-edit-card">Priority</h3>
                             <div id="priority">
-                                <div id="btn-prio-low" onclick="changePriority('low')" class="btn-prio ${priority === 'low' ? 'green' : ''}" data-value="low">Low</div>
-                                <div id="btn-prio-medium" onclick="changePriority('medium')"  class="btn-prio ${priority === 'medium' ? 'yellow' : ''}" data-value="medium">Medium</div>
-                                <div id="btn-prio-high"  onclick="changePriority('high')" class="btn-prio ${priority === 'high' ? 'red' : ''}" data-value="high">High</div>
+                                <div id="btn-prio-low" onclick="changePriority('low')" class="btn-prio ${priority === 'low' ? 'green' : ''}" data-value="low">
+                                    <span>Low</span>
+                                    <img src="./assets/img/prio-low.svg" id="img-prio-low-color">
+                                    <img src="./assets/img/prio-low-white.svg" id="img-prio-low-white">
+                                </div>
+                                <div id="btn-prio-medium" onclick="changePriority('medium')"  class="btn-prio ${priority === 'medium' ? 'yellow' : ''}" data-value="medium">
+                                    <span>Medium</span>
+                                    <img src="./assets/img/prio-medium.svg" id="img-prio-med-color">
+                                    <img src="./assets/img/prio-medium-white.svg" id="img-prio-med-white">
+                                </div>
+                                <div id="btn-prio-high"  onclick="changePriority('high')" class="btn-prio ${priority === 'high' ? 'red' : ''}" data-value="high">
+                                    <span>High</span>
+                                    <img src="./assets/img/prio-high.svg" id="img-prio-high-color">
+                                    <img src="./assets/img/prio-high-white.svg" id="img-prio-high-white">
+                                </div>
                             </div>`;
     return editCardForm;
 }
@@ -278,12 +309,12 @@ function renderEditCardPriority(index) {
  */
 function renderEditCardParticipiants(index) {
     let editCardForm = `<div class="task-participiants-dropdown">
-                                <label="task-participiants">
-                                <div class="dropdown-btn" onclick="showContacts()">
-                                    <span>Assign contacts</span>                                    
-                                    <img id="arrow" src="./assets/img/edit.svg">
-                                </div>
-                                <div class="dropdown-contacts d-none dropdown-contacts-edit" id="dropdown-contacts">`;
+                            <label="task-participiants"></label>
+                            <div class="dropdown-btn" onclick="showContacts('${index}')">
+                                <span>Assign contacts</span>                                    
+                                <img id="arrow" src="./assets/img/edit.svg">
+                            </div>
+                            <div class="dropdown-contacts d-none dropdown-contacts-edit" id="dropdown-contacts">`;
     for (let i = 0; i < contactId.length; i++) {
         let contactIsAssignet = false;
         if (task[index].assignetTo && task[index].assignetTo.length > 0) {
@@ -300,8 +331,28 @@ function renderEditCardParticipiants(index) {
         }
         editCardForm += `<br>`;
     }
-    editCardForm += `</label></div></div>`;
+    editCardForm += `   </div>
+                    </div>`;
     return editCardForm;
+}
+
+/**
+ * render avatar icons in edit board 
+ * @param {*} index 
+ */
+function renderAvatars(index) {
+    let editCardForm = "<div class='avatar' id='avatar'>";
+    editCardForm += renderParticipantsEditCard();
+    editCardForm += "</div>";
+    return editCardForm;
+}
+
+/**
+ * update avatar icons in edit board on change
+ * @param {*} index 
+ */
+function updateAvatars() {            
+    document.getElementById('avatar').innerHTML = renderParticipantsEditCard();
 }
 
 /**
@@ -339,7 +390,8 @@ function renderEditCardAddSubtask(index) {
  * @returns html string
  */
 function renderEditCardEditSubtaskArea(index) {
-    let editCardForm = `<label="task-subtasks"></label><div id="subtask-list">`;
+    let editCardForm = `<label="task-subtasks"></label>
+                            <div id="subtask-list">`;
     if (task[index].subtask) {
         for (let i = 0; i < task[index].subtask.length; i++) {
             let isChecked = task[index].subtask[i].status;
@@ -363,12 +415,13 @@ function renderEditCardEditSubtaskArea(index) {
                                     </div>
                                 </div>
                              </div>
+                        
                              `;
         }
     } else {
         editCardForm += `There are NO subtasks`;
     }
-    editCardForm += `</div></div></form></div>`;
+
     return editCardForm;
 }
 
@@ -378,7 +431,9 @@ function renderEditCardEditSubtaskArea(index) {
  * @returns html string
  */
 function renderEditCardFooter(index) {
-    return `<div class="edit-card-footer blur">                        
-                <span class="save-edited-task btn-add-task btn-small" onclick="updateTaskArray('${index}')">Save</span>
-            </div>`;
+
+    return  `</div></div></div><div class="edit-card-footer blur">                        
+                <button class="save-edited-task btn-add-task btn-small" type="submit">Save</button>
+             </div>
+         </form>`;
 }

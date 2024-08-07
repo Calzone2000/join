@@ -148,8 +148,10 @@ async function updateCurrentTask(idTask) {
 /**
  * Open dropdown menu with contacts
  */
-function showContacts() {
+function showContacts(index) {    
     document.getElementById('dropdown-contacts').classList.toggle('d-none');
+    taskCache.assignetTo = getSelectedParticipiants();
+    updateAvatars(index);
 }
 
 /**
@@ -243,12 +245,27 @@ function changePriority(priority) {
     document.getElementById('btn-prio-low').classList.remove('green');
     document.getElementById('btn-prio-medium').classList.remove('yellow');
     document.getElementById('btn-prio-high').classList.remove('red');
+    document.getElementById('img-prio-high-color').classList.add('d-none');
+    document.getElementById('img-prio-high-white').classList.add('d-none');
+    document.getElementById('img-prio-med-white').classList.add('d-none');
+    document.getElementById('img-prio-med-color').classList.add('d-none');
+    document.getElementById('img-prio-low-white').classList.add('d-none');
+    document.getElementById('img-prio-low-color').classList.add('d-none');
     if (priority === 'low') {
         document.getElementById('btn-prio-low').classList.add('green');
+        document.getElementById('img-prio-low-white').classList.remove('d-none');
+        document.getElementById('img-prio-med-color').classList.remove('d-none');
+        document.getElementById('img-prio-high-color').classList.remove('d-none');
     } else if (priority === 'medium') {
         document.getElementById('btn-prio-medium').classList.add('yellow');
+        document.getElementById('img-prio-low-color').classList.remove('d-none');
+        document.getElementById('img-prio-med-white').classList.remove('d-none');
+        document.getElementById('img-prio-high-color').classList.remove('d-none');
     } else {
         document.getElementById('btn-prio-high').classList.add('red');
+        document.getElementById('img-prio-low-color').classList.remove('d-none');
+        document.getElementById('img-prio-med-color').classList.remove('d-none');
+        document.getElementById('img-prio-high-white').classList.remove('d-none');
     }
 }
 

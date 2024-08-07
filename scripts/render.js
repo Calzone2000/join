@@ -124,3 +124,30 @@ function renderParticipants(index) {
         return `<span></span>`;
     }
 }
+
+/**
+ * render small colored circles with initials of participiants of the small review kanban cards of the board
+ * @param {*} index - firebase ID of current task
+ * @returns html string
+ */
+function renderParticipantsEditCard() {
+    let participiantId = taskCache.assignetTo;
+    let counter = 0;
+    if (participiantId) {        
+        let participiantHTML = "";
+        for (let i = 0; i < participiantId.length; i++) {
+            
+            let participiantData = contact[participiantId[i]];
+            if (participiantData) {                
+                let participiantName = participiantData.name;
+                let participiantInitials = getInitials(participiantName);
+                let participiantColor = participiantData.color;
+                participiantHTML += `<span style="background-color: ${participiantColor}" class="user-in">${participiantInitials}</span>`;
+                counter++;
+            }
+        }
+        return participiantHTML;
+    } else {
+        return `<span></span>`;
+    }
+}

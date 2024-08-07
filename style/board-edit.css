@@ -147,12 +147,8 @@
   
   .preview-card-content {
     padding: 0px 20px;
-  }
-  
-  .edit-card-content {
-  padding: 0px 0px !important;
-  }
-  
+  } 
+ 
   .title-edit-card {
     font-size:1.3rem;
     font-weight:normal !important;
@@ -280,6 +276,10 @@
           flex-direction: column;
           gap:10px;
           align-items: center;
+      }
+
+      .dropdown-contacts {
+        width:95%;
       }
       
       .btn-add-task {
