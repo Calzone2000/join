@@ -10,7 +10,8 @@ async function initBoard() {
     await loadContacts();
     setCurrentUser();
     renderKanbanBoard();
-    renderInitials();   
+    renderInitials();
+    highlightActiveMenu("board");
 }
 
 /** 
@@ -22,6 +23,7 @@ async function initSummary() {
     await loadTasks();	    
     renderSummary();
     renderInitials();
+    highlightActiveMenu("summary");
 }
 
 /** 
@@ -33,7 +35,8 @@ async function initAddTask() {
     setCurrentUser();         
     renderAddTask();     
     generateCheckBox();  
-    renderInitials();  
+    renderInitials();
+    highlightActiveMenu("add-task");
 }
 
 /** 

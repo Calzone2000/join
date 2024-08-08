@@ -126,6 +126,10 @@ nav a {
   background-color: #091931;
 }
 
+.nav-link-active {
+  background-color: #091931;
+}
+
 .nav-link:hover .nav-text {
   color: rgb(255, 255, 255);
 }
