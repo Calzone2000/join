@@ -80,7 +80,7 @@
           <div class="contacts-main">
             <div class="contacts-container" id="contacts-container">
               <button
-                class="btn-dark btn"
+                class="btn-dark btn add-contact-btn"
                 style="font-size: 21px"
                 onclick="openModalAdd()"
               >
@@ -95,15 +95,28 @@
                 class="hide close-svg"
                 onclick="closeShownContact()"
               >
-                <img src="./assets/img/close.svg" alt="" />
+                <img class="arrow-left-line" src="./assets/img/icon/arrow-left-line.svg" alt="" />
               </div>
+              <img id="mobile-icon-menu" onclick="openMobileMenu() " class="hide" src="./assets/img/icon/menu-options.svg" alt="">
+              <div class="hide" id="mobile-icon-menu-container" onclick="closeMobileMenu()"></div>
+              <div class="hide hide-800" id="mobile-menu">
+                <button class="mobile-menu-btn" onclick="edit">
+                    <img src="../assets/img/edit.svg" alt="">
+                    Edit
+                </button>
+                <button class="mobile-menu-btn" onclick="deleteRequest()">
+                    <img src="../assets/img/delete.svg" alt="">
+                    Delete
+                </button>
+            </div>
               <div class="contacts-header">
                 <h1>Contacts</h1>
                 <img
-                  id="contacts-header-img"
+                  class="vector-vertical"
                   src="./assets/img/icon/divider.svg"
                 />
                 <p id="contacts-header-paragraph">Better with a team</p>
+                <img class="vector-horizontal" src="./assets/img/icon/vector-horizontal.svg" alt="">
               </div>
               <div id="selected-contact"></div>
             </div>

@@ -22,12 +22,63 @@ const AVATAR_COLOR = [
   "#ff4646",
 ];
 
-/**
- * this function gets all required data from the database and renders the page
- */
+async function pushdefaultData() {
+  let name = "default";
+  let email = "default@join.de";
+  let phone = 123;
+  let color = "#fffff";
+
+  try {
+    let contacts = await getAllContacts("");
+    if (!contacts || Object.keys(contacts).length === 0 || !contacts.contact) {
+      await postData("contact", {
+        color: color,
+        name: name,
+        email: email,
+        phone: phone,
+      });
+    } else {
+      console.log("Contacts already exist.");
+    }
+  } catch (error) {
+    console.error("Fehler beim Abrufen der Kontakte: ", error);
+    try {
+      await postData("contact", {
+        color: color,
+        name: name,
+        email: email,
+        phone: phone,
+      });
+    } catch (postError) {
+      console.error("Fehler beim Posten der Daten: ", postError);
+    }
+  }
+}
 
 async function onloadFunc() {
-  let contactResponse = await getAllContacts("");
+  try {
+    await pushdefaultData();
+  } catch (error) {
+    console.error("Error pushing default data: ", error);
+  }
+
+  let contactResponse;
+  try {
+    contactResponse = await getAllContacts("");
+  } catch (error) {
+    console.error("Error fetching contacts: ", error);
+    return;
+  }
+
+  if (
+    !contactResponse ||
+    !contactResponse["contact"] ||
+    contactResponse["contact"] === ""
+  ) {
+    console.error("No contacts found or invalid contact response.");
+    return;
+  }
+
   let contactKey = contactResponse["contact"];
   let contactsKeys = Object.keys(contactKey);
 
@@ -49,7 +100,8 @@ async function onloadFunc() {
       secondInitial: secondInitial,
       id: contactId,
     });
-  }  
+  }
+
   getFirstLetters();
   renderContacts();
   renderContent();
@@ -62,12 +114,12 @@ async function onloadFunc() {
 function getFirstLetters() {
   for (let i = 0; i < contacts.length; i++) {
     let name = contacts[i];
-    let firstLetter = name["name"][0].toUpperCase(); 
+    let firstLetter = name["name"][0].toUpperCase();
     if (!namesFirstLetters.includes(firstLetter)) {
       namesFirstLetters.push(firstLetter);
     }
   }
-  namesFirstLetters.sort(); 
+  namesFirstLetters.sort();
 }
 
 function renderContacts() {
@@ -80,18 +132,21 @@ function renderContacts() {
         <div id="${namesFirstLetters[index]}-content"></div>
       `;
     }
-    
+
     for (let i = 0; i < contacts.length; i++) {
       let firstLetter = contacts[i]["name"][0].toUpperCase();
       let contentEl = document.getElementById(`${firstLetter}-content`);
       if (contentEl) {
         contentEl.innerHTML += renderContactsHtml(i);
       } else {
-        console.error('No element found for first letter:', firstLetter);
+        console.error("No element found for first letter:", firstLetter);
       }
     }
+    document.getElementById(
+      "contact-list"
+    ).innerHTML += `<img id="mobile-icon-contact" onclick="openModalAdd()" src="./assets/img/icon/add-contact-icon.svg" alt="">`;
   } else {
-    console.error('No contact list element found');
+    console.error("No contact list element found");
   }
   namesFirstLetters.sort();
 }
@@ -110,9 +165,6 @@ function renderContactsHtml(i) {
   `;
 }
 
-
-
-
 /**
  * this funtion hides all the contact data, which which were displayed by clicking on a contact
  */
@@ -121,6 +173,7 @@ function closeShownContact() {
   document.getElementById("right-container").classList.add("hide-800");
   document.getElementById("contacts-container").classList.remove("hide-800");
   document.getElementById("shown-contact-close").classList.add("hide");
+  document.getElementById("mobile-icon-menu").classList.add("hide");
 }
 
 /**
@@ -129,13 +182,13 @@ function closeShownContact() {
  */
 
 async function showContact(i) {
-  let contactFields = document.querySelectorAll('.contact-field');
-  contactFields.forEach(contactField => {
-    contactField.classList.remove('activated');
+  let contactFields = document.querySelectorAll(".contact-field");
+  contactFields.forEach((contactField) => {
+    contactField.classList.remove("activated");
   });
-  
-  document.getElementById(`contact-field-${i}`).classList.add('activated');
-  
+
+  document.getElementById(`contact-field-${i}`).classList.add("activated");
+
   document.getElementById("selected-contact").innerHTML = "";
   currentName = contacts[i]["name"];
   currentEmail = contacts[i]["email"];
@@ -145,6 +198,7 @@ async function showContact(i) {
   document.getElementById("right-container").classList.remove("hide-800");
   document.getElementById("contacts-container").classList.add("hide-800");
   document.getElementById("shown-contact-close").classList.remove("hide");
+  document.getElementById("mobile-icon-menu").classList.remove("hide");
   document.getElementById("selected-contact").innerHTML += showContactHtml(i);
 }
 
@@ -329,7 +383,6 @@ async function postData(path = "", data = {}) {
 }
 
 async function putData(data = {}) {
-
   let contactResponse = await getAllContacts("");
   let contactKey = contactResponse["contact"];
   let contactsKeys = Object.keys(contactKey);
@@ -410,6 +463,7 @@ function clearInputEdit() {
 function openModalAdd() {
   document.getElementById("contact-form-modal-add").style.display = "block";
   document.body.classList.add("no-scroll");
+  document.getElementById("mobile-icon-contact").classList.add("hide");
   includeHTML();
 }
 
@@ -423,6 +477,7 @@ function closeModalAdd() {
   emailInput.style.borderColor = "";
   emailInput.placeholder = "Email";
   document.getElementById("contact-form-modal-add").style.display = "none";
+  document.getElementById("mobile-icon-contact").classList.remove("hide");
   document.body.classList.remove("no-scroll");
 }
 
@@ -446,4 +501,18 @@ async function openModalEdit() {
 function closeModalEdit() {
   document.getElementById("contact-form-modal-edit").style.display = "none";
   document.body.classList.remove("no-scroll");
+}
+
+function openMobileMenu() {
+  document.getElementById("mobile-menu").classList.remove("hide");
+  document.getElementById("mobile-icon-menu").classList.add("hide");
+  document
+    .getElementById("mobile-icon-menu-container")
+    .classList.remove("hide");
+}
+
+function closeMobileMenu() {
+  document.getElementById("mobile-menu").classList.add("hide");
+  document.getElementById("mobile-icon-menu").classList.remove("hide");
+  document.getElementById("mobile-icon-menu-container").classList.add("hide");
 }
