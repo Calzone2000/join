@@ -201,6 +201,17 @@ async function showContact(i) {
   document.getElementById("shown-contact-close").classList.remove("hide");
   document.getElementById("mobile-icon-menu").classList.remove("hide");
   document.getElementById("selected-contact").innerHTML += showContactHtml(i);
+  document.getElementById("selected-contact").innerHTML += ` 
+              <div class="hide hide-800" id="mobile-menu">
+                <button class="mobile-menu-btn" onclick="openModalEdit(${i})">
+                  <img src="../assets/img/edit.svg" alt="" />
+                  Edit
+                </button>
+                <button class="mobile-menu-btn" onclick="deleteRequest()">
+                  <img src="../assets/img/delete.svg" alt="" />
+                  Delete
+                </button>
+              </div>`;
 }
 
 /**
