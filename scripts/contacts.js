@@ -105,6 +105,7 @@ async function onloadFunc() {
   getFirstLetters();
   renderContacts();
   renderContent();
+  highlightActiveMenu("contacts");
 }
 
 /**

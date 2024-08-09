@@ -74,14 +74,26 @@ function showSlideOutMenu() {
  * insert current User name dynamicly into the greeting area of the summary
  */
 function renderGreeting() {
-    document.getElementById('greeted-person').innerHTML = currentUserName;
+    let uid = localStorage.getItem('user');
+    let initials = "GU";
+    if(uid) {
+        let name = user[uid].name;    
+        initials = getInitials(name);
+    }
+    document.getElementById('greeted-person').innerHTML = initials;
 }
 
 /**
  * render the initials of the current user dynamicly into the small circle of the top area
  */
 function renderInitials() {
-    document.getElementById('user-initials').innerHTML = getInitials(currentUserName);
+    let uid = localStorage.getItem('user');
+    let initials = "GU";
+    if(uid) {
+        let name = user[uid].name;    
+        initials = getInitials(name);
+    }
+    document.getElementById('user-initials').innerHTML = initials;
 }
 
 /**
@@ -95,6 +107,18 @@ function renderStates() {
     document.getElementById('sum-tasks-await-feedback').innerHTML = countStateOccurrences("await-feedback");
     document.getElementById('sum-tasks-urgent').innerHTML = countUrgency();
     document.getElementById('greeting-depends-on-time').innerHTML = generateGreeting();
+}
+
+/**
+ * 
+ */
+function highlightActiveMenu(menu="summary") {
+    /*.nav-link-active*/
+    let nav = ["summary","add-task", "board", "contacts"]
+    for (let i=0; i<nav.length; i++) {
+        document.getElementById(`nav-${nav[i]}`).classList.remove('nav-link-active');
+    }
+    document.getElementById(`nav-${menu}`).classList.add('nav-link-active');
 }
 
 

@@ -122,7 +122,22 @@ nav a {
   cursor: pointer;
 }
 
+section.content {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 25px;
+}
+
+section.content h1, h2, h3{
+  margin-left:0 !important;
+}
+
 .nav-link:hover {
+  background-color: #091931;
+}
+
+.nav-link-active {
   background-color: #091931;
 }
 
