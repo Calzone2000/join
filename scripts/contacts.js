@@ -5,6 +5,8 @@ let currentName = "";
 let currentEmail = "";
 let currentPhone = "";
 let currentElement = "";
+let task = []
+let taskId = []
 
 const AVATAR_COLOR = [
   "#ff7a00",
@@ -53,9 +55,11 @@ async function pushdefaultData() {
       console.error("Fehler beim Posten der Daten: ", postError);
     }
   }
+
 }
 
 async function onloadFunc() {
+  await loadTasks();
   try {
     await pushdefaultData();
   } catch (error) {
@@ -100,6 +104,7 @@ async function onloadFunc() {
       secondInitial: secondInitial,
       id: contactId,
     });
+
   }
 
   getFirstLetters();
@@ -258,6 +263,8 @@ function showContactHtml(i) {
  */
 
 async function deleteContact() {
+
+  await deleteUserFromTask();
   if (currentElement < 0 || currentElement >= contacts.length) {
     console.error("Index out of bounds");
     return;
@@ -286,6 +293,7 @@ async function deleteContact() {
   } catch (error) {
     console.error("Fehler beim Löschen des Kontakts: ", error);
   }
+
   location.reload();
   renderContacts();
 }
@@ -527,4 +535,50 @@ function closeMobileMenu() {
   document.getElementById("mobile-menu").classList.add("hide");
   document.getElementById("mobile-icon-menu").classList.remove("hide");
   document.getElementById("mobile-icon-menu-container").classList.add("hide");
+}
+
+/**
+ * Remove the contact from all tasks assigned to them 
+ */
+async function deleteUserFromTask() {
+  let contactResponse = await getAllContacts("");
+  let contactKey = contactResponse["contact"];
+  let contactsKeys = Object.keys(contactKey);
+  let selectedId = contactsKeys[currentElement];
+  console.log(task);
+  for (let i = 0; i < taskId.length; i++) {
+    if (task[taskId[i]].assignetTo) {
+      if  (Array.isArray(task[taskId[i]].assignetTo)) {
+        for (let j = 0; j < task[taskId[i]].assignetTo.length; j++) {
+          if (task[taskId[i]].assignetTo[j] === selectedId) {
+            task[taskId[i]].assignetTo.splice(j, 1);
+            let updatedTask = generateEditedTaskAsJson(taskId[i]);
+            await updateEditedTaskInStorage(updatedTask, taskId[i]);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/**
+ * Generate the complete task as JSON from which the user was removed
+ * @param {} idTask 
+ * @returns 
+ */
+function generateEditedTaskAsJson(idTask) {
+  let assignetTo = task[idTask].assignetTo;
+  let subTask = task[idTask].subtask;
+  let updatedTask = {
+      assignetTo: assignetTo,
+      category: `${task[idTask].category}`,
+      currentState: `${task[idTask].currentState}`,
+      description: `${task[idTask].description}`,
+      dueDate: `${task[idTask].dueDate}`,
+      priority: `${task[idTask].priority}`,
+      title: `${task[idTask].title}`,
+      subtask: subTask
+  };
+  return updatedTask;
 }
