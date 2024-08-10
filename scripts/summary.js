@@ -44,7 +44,6 @@ function countUrgency(priority = "high") {
 async function loadUrgentTasksDeadline() {
     let nextDeadline = document.getElementById('next-deadline');
     let allTasks = await fetchAllTasks('/task');
-    // console.log(allTasks);
 
     if (!allTasks) {
         return;
@@ -65,10 +64,7 @@ async function loadUrgentTasksDeadline() {
         tasksByPriority = await fetchTasksByPriority(taskKeysArray, priority);
     }
 
-    // console.log(taskPriorityArray);
-    // console.log(taskIDs[0]);
     let nextUrgentDate = allTasks[taskIDs[0]].dueDate;
-    // console.log(nextUrgentDate);
 
     if (tasksByPriority.length == 1) {
         nextDeadline.innerHTML = nextUrgentDate;
@@ -78,12 +74,10 @@ async function loadUrgentTasksDeadline() {
 
     for (let index = 1; index < tasksByPriority.length; index++) {
         const currentElement = tasksByPriority[index];
-        // console.log(currentElement);
         if (currentElement.dueDate <= nextUrgentDate) {
             nextUrgentDate = currentElement.dueDate;
         }    
     }
-    // console.log(nextUrgentDate);
 
     nextDeadline.innerHTML = formatDate(nextUrgentDate);
 }

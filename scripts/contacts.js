@@ -5,8 +5,6 @@ let currentName = "";
 let currentEmail = "";
 let currentPhone = "";
 let currentElement = "";
-let task = []
-let taskId = []
 
 const AVATAR_COLOR = [
   "#ff7a00",
@@ -23,72 +21,13 @@ const AVATAR_COLOR = [
   "#ffe62b",
   "#ff4646",
 ];
-/**
- *Create a default user if there are no contacts in list so far  
-*/
-async function pushdefaultData() {
-  let name = "default";
-  let email = "default@join.de";
-  let phone = 123;
-  let color = "#fffff";
-
-  try {
-    let contacts = await getAllContacts("");
-    if (!contacts || Object.keys(contacts).length === 0 || !contacts.contact) {
-      await postData("contact", {
-        color: color,
-        name: name,
-        email: email,
-        phone: phone,
-      });
-    } else {
-      console.log("Contacts already exist.");
-    }
-  } catch (error) {
-    console.error("Fehler beim Abrufen der Kontakte: ", error);
-    try {
-      await postData("contact", {
-        color: color,
-        name: name,
-        email: email,
-        phone: phone,
-      });
-    } catch (postError) {
-      console.error("Fehler beim Posten der Daten: ", postError);
-    }
-  }
-
-}
 
 /**
- * Inot function for contact page
- * @returns 
+ * this function gets all required data from the database and renders the page
  */
+
 async function onloadFunc() {
-  await loadTasks();
-  try {
-    await pushdefaultData();
-  } catch (error) {
-    console.error("Error pushing default data: ", error);
-  }
-
-  let contactResponse;
-  try {
-    contactResponse = await getAllContacts("");
-  } catch (error) {
-    console.error("Error fetching contacts: ", error);
-    return;
-  }
-
-  if (
-    !contactResponse ||
-    !contactResponse["contact"] ||
-    contactResponse["contact"] === ""
-  ) {
-    console.error("No contacts found or invalid contact response.");
-    return;
-  }
-
+  let contactResponse = await getAllContacts("");
   let contactKey = contactResponse["contact"];
   let contactsKeys = Object.keys(contactKey);
 
@@ -110,68 +49,34 @@ async function onloadFunc() {
       secondInitial: secondInitial,
       id: contactId,
     });
-
-  }
-
+  }  
   getFirstLetters();
   renderContacts();
   renderContent();
-  highlightActiveMenu("contacts");
 }
 
 /**
- * this function gets the first letters of all the contacts, in order to display a list with all the first letters
+ * this function renders all the contacts
  */
 
-function getFirstLetters() {
-  for (let i = 0; i < contacts.length; i++) {
-    let name = contacts[i];
-    let firstLetter = name["name"][0].toUpperCase();
-    if (!namesFirstLetters.includes(firstLetter)) {
-      namesFirstLetters.push(firstLetter);
-    }
-  }
-  namesFirstLetters.sort();
-}
-
-
-/**
- * render contact list
- */
 function renderContacts() {
-  let contactListEl = document.getElementById("contact-list");
-  if (contactListEl) {
-    for (let index = 0; index < namesFirstLetters.length; index++) {
-      contactListEl.innerHTML += `
+  for (let index = 0; index < namesFirstLetters.length; index++) {
+    document.getElementById("contact-list").innerHTML += /*html*/ `
         <div class="contacts-alphabet" id="${namesFirstLetters[index]}">${namesFirstLetters[index]}</div>
-        <div class="separator"></div>
+        <div class="seperator"></div>
         <div id="${namesFirstLetters[index]}-content"></div>
-      `;
-    }
-
-    for (let i = 0; i < contacts.length; i++) {
-      let firstLetter = contacts[i]["name"][0].toUpperCase();
-      let contentEl = document.getElementById(`${firstLetter}-content`);
-      if (contentEl) {
-        contentEl.innerHTML += renderContactsHtml(i);
-      } else {
-        console.error("No element found for first letter:", firstLetter);
-      }
-    }
-    document.getElementById(
-      "contact-list"
-    ).innerHTML += `<img id="mobile-icon-contact" onclick="openModalAdd()" src="./assets/img/icon/add-contact-icon.svg" alt="">`;
-  } else {
-    console.error("No contact list element found");
+        `;
   }
-  namesFirstLetters.sort();
+  for (let i = 0; i < contacts.length; i++) {
+    document.getElementById(`${contacts[i]["name"][0]}-content`).innerHTML +=
+      renderContactsHtml(i);
+  }
 }
 
 /**
- * render contact details of each contact
- * @param {} i 
- * @returns 
+ * this function returns the html code for the renderContacts function
  */
+
 function renderContactsHtml(i) {
   return `
   <div id="contact-field-${i}" class="contact-field" onclick="showContact(${i})">
@@ -180,9 +85,11 @@ function renderContactsHtml(i) {
       </div>
       <div class="contact-data">
           <div>${contacts[i]["name"]}</div>
-          <div><a href="mailto:${contacts[i]["email"]}">${contacts[i]["email"]}</a></div>
+          <div><a href="${contacts[i]["email"]}">${contacts[i]["email"]}</a></div>
+
       </div>
   </div>
+      
   `;
 }
 
@@ -194,7 +101,6 @@ function closeShownContact() {
   document.getElementById("right-container").classList.add("hide-800");
   document.getElementById("contacts-container").classList.remove("hide-800");
   document.getElementById("shown-contact-close").classList.add("hide");
-  document.getElementById("mobile-icon-menu").classList.add("hide");
 }
 
 /**
@@ -202,14 +108,14 @@ function closeShownContact() {
  * @param {index} i this parameter is there, to identify the current selected contact and to display the correct data
  */
 
-async function showContact(i) {
-  let contactFields = document.querySelectorAll(".contact-field");
-  contactFields.forEach((contactField) => {
-    contactField.classList.remove("activated");
+function showContact(i) {
+  let contactFields = document.querySelectorAll('.contact-field');
+  contactFields.forEach(contactField => {
+    contactField.classList.remove('activated');
   });
-
-  document.getElementById(`contact-field-${i}`).classList.add("activated");
-
+  
+  document.getElementById(`contact-field-${i}`).classList.add('activated');
+  
   document.getElementById("selected-contact").innerHTML = "";
   currentName = contacts[i]["name"];
   currentEmail = contacts[i]["email"];
@@ -219,19 +125,7 @@ async function showContact(i) {
   document.getElementById("right-container").classList.remove("hide-800");
   document.getElementById("contacts-container").classList.add("hide-800");
   document.getElementById("shown-contact-close").classList.remove("hide");
-  document.getElementById("mobile-icon-menu").classList.remove("hide");
   document.getElementById("selected-contact").innerHTML += showContactHtml(i);
-  document.getElementById("selected-contact").innerHTML += ` 
-              <div class="hide hide-800" id="mobile-menu">
-                <button class="mobile-menu-btn" onclick="openModalEdit(${i})">
-                  <img src="../assets/img/edit.svg" alt="" />
-                  Edit
-                </button>
-                <button class="mobile-menu-btn" onclick="deleteRequest()">
-                  <img src="../assets/img/delete.svg" alt="" />
-                  Delete
-                </button>
-              </div>`;
 }
 
 /**
@@ -278,8 +172,6 @@ function showContactHtml(i) {
  */
 
 async function deleteContact() {
-
-  await deleteUserFromTask();
   if (currentElement < 0 || currentElement >= contacts.length) {
     console.error("Index out of bounds");
     return;
@@ -296,11 +188,9 @@ async function deleteContact() {
       const index = assigningTo.indexOf(contactId);
       if (index > -1) {
         assigningTo.splice(index, 1);
-        console.log("ID aus assigningTo entfernt");
       }
 
       contacts.splice(currentElement, 1);
-      console.log("Kontakt erfolgreich gelöscht");
       renderContacts();
     } else {
       console.error("Fehler beim Löschen des Kontakts: ", response.statusText);
@@ -308,7 +198,6 @@ async function deleteContact() {
   } catch (error) {
     console.error("Fehler beim Löschen des Kontakts: ", error);
   }
-
   location.reload();
   renderContacts();
 }
@@ -330,16 +219,27 @@ function closeDeleteRequest() {
 }
 
 /**
+ * this function gets the first letters of all the contacts, in order to display a list with all the first letters
+ */
+
+function getFirstLetters() {
+  namesFirstLetters.push(contacts[0]["name"][0]);
+  for (let i = 0; i < contacts.length; i++) {
+    let name = contacts[i];
+    let firstLetter = name["name"][0];
+    if (!namesFirstLetters.includes(firstLetter)) {
+      namesFirstLetters.push(firstLetter);
+    }
+  }
+  namesFirstLetters.sort();
+}
+
+/**
  * this function is there to load all the data from the database
  * @param {*} path gets the correct path of where the requested data is stored
  * @returns returns the data as a json
  */
 
-/**
- * load contacts from database
- * @param {} path 
- * @returns 
- */
 async function getAllContacts(path) {
   let response = await fetch(BASE_URL + path + ".json");
   let responseToJson = await response.json();
@@ -386,10 +286,6 @@ async function pushAllData(functionType) {
     });
 }
 
-/**
- * edit existing contact
- * @param {*} functionType 
- */
 async function pushAllDataEdit(functionType) {
   const input = functionType;
   let name = input.name;
@@ -397,7 +293,11 @@ async function pushAllDataEdit(functionType) {
   let phone = input.phone;
   let color = AVATAR_COLOR[Math.floor(Math.random() * AVATAR_COLOR.length)];
 
-  putData({ color: color, name: name, email: email, phone: phone })
+  let contactResponse = await getAllContacts("");
+  let contactKey = contactResponse["contact"];
+  let contactsKeys = Object.keys(contactKey);
+
+  postData("contact", { color: color, name: name, email: email, phone: phone })
     .then(() => {
       closeModalEdit();
       location.reload();
@@ -417,31 +317,6 @@ async function pushAllDataEdit(functionType) {
 async function postData(path = "", data = {}) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  let responseToJson = await response.json();
-  return responseToJson;
-}
-
-/**
- * update current contact
- * @param {*} data 
- * @returns 
- */
-async function putData(data = {}) {
-  let contactResponse = await getAllContacts("");
-  let contactKey = contactResponse["contact"];
-  let contactsKeys = Object.keys(contactKey);
-
-  selectedId = contactsKeys[currentElement];
-
-  console.log(selectedId);
-
-  let response = await fetch(`${BASE_URL}contact/${selectedId}.json`, {
-    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
@@ -512,7 +387,6 @@ function clearInputEdit() {
 function openModalAdd() {
   document.getElementById("contact-form-modal-add").style.display = "block";
   document.body.classList.add("no-scroll");
-  document.getElementById("mobile-icon-contact").classList.add("hide");
   includeHTML();
 }
 
@@ -526,7 +400,6 @@ function closeModalAdd() {
   emailInput.style.borderColor = "";
   emailInput.placeholder = "Email";
   document.getElementById("contact-form-modal-add").style.display = "none";
-  document.getElementById("mobile-icon-contact").classList.remove("hide");
   document.body.classList.remove("no-scroll");
 }
 
@@ -550,70 +423,4 @@ async function openModalEdit() {
 function closeModalEdit() {
   document.getElementById("contact-form-modal-edit").style.display = "none";
   document.body.classList.remove("no-scroll");
-}
-
-/**
- * open popup menu to edit and delete contact in responsive view
- */
-function openMobileMenu() {
-  document.getElementById("mobile-menu").classList.remove("hide");
-  document.getElementById("mobile-icon-menu").classList.add("hide");
-  document
-    .getElementById("mobile-icon-menu-container")
-    .classList.remove("hide");
-}
-
-/**
- * hide popup menu
- */
-function closeMobileMenu() {
-  document.getElementById("mobile-menu").classList.add("hide");
-  document.getElementById("mobile-icon-menu").classList.remove("hide");
-  document.getElementById("mobile-icon-menu-container").classList.add("hide");
-}
-
-/**
- * Remove the contact from all tasks assigned to them 
- */
-async function deleteUserFromTask() {
-  let contactResponse = await getAllContacts("");
-  let contactKey = contactResponse["contact"];
-  let contactsKeys = Object.keys(contactKey);
-  let selectedId = contactsKeys[currentElement];
-  console.log(task);
-  for (let i = 0; i < taskId.length; i++) {
-    if (task[taskId[i]].assignetTo) {
-      if  (Array.isArray(task[taskId[i]].assignetTo)) {
-        for (let j = 0; j < task[taskId[i]].assignetTo.length; j++) {
-          if (task[taskId[i]].assignetTo[j] === selectedId) {
-            task[taskId[i]].assignetTo.splice(j, 1);
-            let updatedTask = generateEditedTaskAsJson(taskId[i]);
-            await updateEditedTaskInStorage(updatedTask, taskId[i]);
-          }
-        }
-      }
-    }
-  }
-}
-
-
-/**
- * Generate the complete task as JSON from which the user was removed
- * @param {} idTask 
- * @returns 
- */
-function generateEditedTaskAsJson(idTask) {
-  let assignetTo = task[idTask].assignetTo;
-  let subTask = task[idTask].subtask;
-  let updatedTask = {
-      assignetTo: assignetTo,
-      category: `${task[idTask].category}`,
-      currentState: `${task[idTask].currentState}`,
-      description: `${task[idTask].description}`,
-      dueDate: `${task[idTask].dueDate}`,
-      priority: `${task[idTask].priority}`,
-      title: `${task[idTask].title}`,
-      subtask: subTask
-  };
-  return updatedTask;
 }

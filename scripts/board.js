@@ -398,7 +398,6 @@ function addDragAndDropListeners(element) {
          * open preview card on mobile screen / touchscreen if card is dragged less than 10 px
          */
         function handleClick(event) {
-            console.log('Clicked', event);
             renderPreviewCard(element.id);
         }
 
