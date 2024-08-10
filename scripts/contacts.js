@@ -23,7 +23,9 @@ const AVATAR_COLOR = [
   "#ffe62b",
   "#ff4646",
 ];
-
+/**
+ *Create a default user if there are no contacts in list so far  
+*/
 async function pushdefaultData() {
   let name = "default";
   let email = "default@join.de";
@@ -58,6 +60,10 @@ async function pushdefaultData() {
 
 }
 
+/**
+ * Inot function for contact page
+ * @returns 
+ */
 async function onloadFunc() {
   await loadTasks();
   try {
@@ -128,6 +134,10 @@ function getFirstLetters() {
   namesFirstLetters.sort();
 }
 
+
+/**
+ * render contact list
+ */
 function renderContacts() {
   let contactListEl = document.getElementById("contact-list");
   if (contactListEl) {
@@ -157,6 +167,11 @@ function renderContacts() {
   namesFirstLetters.sort();
 }
 
+/**
+ * render contact details of each contact
+ * @param {} i 
+ * @returns 
+ */
 function renderContactsHtml(i) {
   return `
   <div id="contact-field-${i}" class="contact-field" onclick="showContact(${i})">
@@ -320,6 +335,11 @@ function closeDeleteRequest() {
  * @returns returns the data as a json
  */
 
+/**
+ * load contacts from database
+ * @param {} path 
+ * @returns 
+ */
 async function getAllContacts(path) {
   let response = await fetch(BASE_URL + path + ".json");
   let responseToJson = await response.json();
@@ -366,6 +386,10 @@ async function pushAllData(functionType) {
     });
 }
 
+/**
+ * edit existing contact
+ * @param {*} functionType 
+ */
 async function pushAllDataEdit(functionType) {
   const input = functionType;
   let name = input.name;
@@ -402,6 +426,11 @@ async function postData(path = "", data = {}) {
   return responseToJson;
 }
 
+/**
+ * update current contact
+ * @param {*} data 
+ * @returns 
+ */
 async function putData(data = {}) {
   let contactResponse = await getAllContacts("");
   let contactKey = contactResponse["contact"];
@@ -523,6 +552,9 @@ function closeModalEdit() {
   document.body.classList.remove("no-scroll");
 }
 
+/**
+ * open popup menu to edit and delete contact in responsive view
+ */
 function openMobileMenu() {
   document.getElementById("mobile-menu").classList.remove("hide");
   document.getElementById("mobile-icon-menu").classList.add("hide");
@@ -531,6 +563,9 @@ function openMobileMenu() {
     .classList.remove("hide");
 }
 
+/**
+ * hide popup menu
+ */
 function closeMobileMenu() {
   document.getElementById("mobile-menu").classList.add("hide");
   document.getElementById("mobile-icon-menu").classList.remove("hide");
